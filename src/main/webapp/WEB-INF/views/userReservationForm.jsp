@@ -11,16 +11,6 @@
 <html xmlns="https://www.w3.org/1999/xhtml">
   <head>
     <title>COSMO 교통약자 이동지원센터</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/css/pop.css"/>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/jquery.bxslider.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.css"/>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.js"></script>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/design.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
       $('.slider_box .slider_main').bxSlider({loop:true, auto:true});
@@ -37,6 +27,20 @@
 
 
     </script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+        <script type="text/javascript">
+            $(function() { 
+            $("#datepicker").datepicker({
+            dateFormat: 'yymmdd',
+            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin: ['일','월','화','수','목','금','토'],
+                changeMonth: true, //월변경가능
+                changeYear: true, //년변경가능
+                showMonthAfterYear: true, //년 뒤에 월 표시
+            });
+            });
+    	</script>
+    
       <script type="text/javascript" language="javascript">
 
           if (/Android/i.test(navigator.userAgent)) {
@@ -47,74 +51,6 @@
               // 그 외 디바이스
           }
      </script>
-
-
-      <script type="text/javascript" language="javascript">
-
-          
-
-                  var LogOutTimer = function () {
-                      var S = {
-                          timer: null,
-                          limit: 1000 * 60 * 10,
-                          fnc: function () { },
-                          start: function () {
-                              S.timer = window.setTimeout(S.fnc, S.limit);
-                          },
-                          reset: function () {
-                              window.clearTimeout(S.timer);
-                              S.start();
-                          }
-                      };
-
-                      document.onmousemove = function () { S.reset(); };
-
-                      return S;
-                  }();
-
-                  // 로그아웃 체크시간 설정
-                  LogOutTimer.limit = 1000 * 60 * 10;
-
-                  // 로그아웃 함수 설정
-                  LogOutTimer.fnc = function () {
-                      alert("로그인후 약 10분동안 서비스 이용이 없어 로그아웃 합니다.");
-
-                      document.location.href = "https://www.gurihappycall.or.kr/member_logout.aspx";
-                  }
-
-                  // 로그아웃 타이머 실행
-                  LogOutTimer.start();
-          
-
-
-      </script>
-      
-        <script type="text/javascript" language="javascript">
-  	function userMainPage(){
-		location.replace("/support/userMainPage.do");
-	}
-	function loginForm(){
-		location.replace("/support/loginForm.do");
-	}
-	function regTypeForm(){
-		location.replace("/support/regTypeForm.do");
-	}
-	function userUseProcedure(){
-		location.replace("/support/userUseProcedure.do");
-	}
-	function userReservationForm(){
-		location.replace("/support/userReservationForm.do");
-	}
-	function userReservationSituation(){
-		location.replace("/support/userReservationSituation.do");
-	}
-	function qnaListForm(){
-		location.replace("/support/qnaListForm.do");
-	}
-
-	
-      </script>
-
 
   </head>
   <body>
@@ -129,268 +65,7 @@
 
 
 
-        <form name="aspnetForm" method="post" action="./reserv_request.aspx" id="aspnetForm" class="form-horizontal ">
-<div>
-<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTI0NzQ2OTI2MQ9kFgJmD2QWAmYPZBYCAgEPZBYCAgsPZBYCZg9kFgQCAQ8QZA8WAWYWARAFDOyngeygkeyeheugpQUM7KeB7KCR7J6F66ClZxYBZmQCCQ8QZA8WAWYWARAFDOyngeygkeyeheugpQUM7KeB7KCR7J6F66ClZxYBZmRkezR3JA8iHO2qebjnhUtgyUBy/CyJDoH7zlTJA5A8fG0=" />
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['aspnetForm'];
-if (!theForm) {
-    theForm = document.aspnetForm;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
-
-
-<script src="/WebResource.axd?d=_iJmq2pkNMcXKGYk-Qnev1h1px0gsAbaclohN03Mh_xkkyPMulJlNsUKyaJ4Tti62JxMKsAHwd-MOvwNIB4REZK204J4EVuf6Wd75B_MJ241&amp;t=636355230046607314" type="text/javascript"></script>
-
-
-<script src="/ScriptResource.axd?d=L3lQo1A6wjFF9aDgCxHl8_x30Mxjv_P2x0fYlSJtmPVXpZwk5SViIqaOUU1Gnt-deCkxtl0HHcKRMFVd1h_Sen8qQGpiMNIxTmj_XneqatBKSuFbkIcFwLNVL-6_vNJeOcmsBf2Cv7lRGNIRDKffDKP0plgHqEmxNozlmgzDDMfRt-dsJONrnFB9fwHYlRe_0&amp;t=3d6efc1f" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax 클라이언트 쪽 프레임워크를 로드하지 못했습니다.');
-//]]>
-</script>
-
-<script src="/ScriptResource.axd?d=4Ep19dWAME-2r40imd1gTtbcCBTgsjv_owj8tvhmid6QHNRbHmGW9Gzzdb8SdXOobCLHRc_QAW7OfW3PNbhnuCrVzJpJlOzozekjZIrq0QR1M1sdfZA1Z2esuqrVnxLCga0zSX8ypbKWwb1WNh18T3qvuJ2lnIC6162PfNxwFlX7aBwHBOmgWRQ-ZbfZmp550&amp;t=3d6efc1f" type="text/javascript"></script>
-<div>
-
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9ADC024A" />
-</div>
-           
-                    
-    
-      <!-- 엔터키막기 -->
-                             <div style="display:none;"> 
-                                <input type="submit" name="ctl00$ContentPlaceHolder1$btnNull" value="" onclick="return false;" id="ctl00_ContentPlaceHolder1_btnNull" /> 
-                            </div>
-         <!-- 엔터키막기 -->
-    
-    <!-- -------------- 카렌다 시작 ---------------------- -->
-    
-    <script type="text/javascript">
-        $(document).ready(function(){
-            load_datetime('','');
-        });
-        $(document).delegate('.tbl_search td','mouseover', function(){
-            $(this).closest('table').find('td').removeClass('on');
-            $(this).closest('tr').find('td').addClass('on');
-        });
-
-        function load_datetime(date, time) {
-            $('#datetimepicker').datetimepicker({
-                timepicker: false,
-                format: 'Y-m-d',
-                lang: 'kr'
-            });
-
-            $('#datetimepicker').datetimepicker({ value: date, step: 10 });
-
-            $('#datetimepicker1').datetimepicker({
-                datepicker: false,
-                format: 'H:i',
-                step: 10
-            });
-            $('#datetimepicker1').datetimepicker({ value: time, step: 10 });
-
-        }
-
-    </script> 
-    
-    <script lang="ja">
-        window.onload = function () {
-           
-            /* 예약가능시간
-
-            var onul = new Date();
-            var h = onul.getHours();
-
-            if ((h >= 0 && h <= 7)
-                || (h >= 21 && h <= 23)) {
-                ;
-            }
-            else {
-                alert("온라인 예약가능시간은 8일전 21:00 ~ 익일 07:00까지입니다.");
-                document.location.href = "/";
-            }
-            예약가능시간 */
-  
-        };
-
-        function zip_select1(addr) {
-             
-            //ZIP_CODE | ADDRBUNJI | DETAIL | SEQ
-            var arr = addr.split('|');
-
-
-            $("#closemodal1").click();
-
-
-            arr[1] = arr[1].substring(0, arr[1].indexOf('('));
-
-            document.forms[0].TextDeptZipCode.value = arr[0];
-            document.forms[0].TextDeptFAddr.value = arr[1];
-            document.forms[0].TextDeptNm.value = "";
-            document.forms[0].HiddenSeq1.value = arr[3];
-
-
-             
-
-        }
-        function zip_search1(search) {
-            if (search.value == '') {
-                alert('동명 또는 도로명을 입력하세요.');
-                search.focus();
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-
-        function zip_select2(addr) {
-             
-            //ZIP_CODE | ADDRBUNJI | DETAIL | SEQ
-            var arr = addr.split('|');
-
-
-            arr[1] = arr[1].substring(0, arr[1].indexOf('('));
-
-            $("#closemodal2").click();
-
-            document.forms[0].TextArrvZipCode.value = arr[0];
-            document.forms[0].TextArrvFAddr.value = arr[1];
-            document.forms[0].TextArrvNm.value = "";
-            document.forms[0].HiddenSeq2.value = arr[3];
-        }
-        function zip_search2(search) {
-
-            if (search.value == '') {
-                alert('동명 또는 도로명을 입력하세요.');
-                search.focus();
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-
-
-        function submit_check() {
-
-            try {
-                 
-                var deptZipCode = document.forms[0].TextDeptZipCode;
-                var deptFAddr = document.forms[0].TextDeptFAddr;
-                var deptNm = document.forms[0].TextDeptNm;
-                var arrvZipCode = document.forms[0].TextArrvZipCode;
-                var arrvFAddr = document.forms[0].TextArrvFAddr;
-                var arrvNm = document.forms[0].TextArrvNm;
-
-
-                /* 이틀후만가능 */
-
-                var mydate = document.forms[0].datetimepicker.value;
-
-
-                var diff_day = todaydiff(mydate);
-
-                var today = new Date(); 
-
-                //if (diff_day < 1 || diff_day > 2) 
-                //{
-                //    alert('예약일은 2일이내의 날짜만 예약가능합니다');
-                //    return false;
-                //}
-                /* 이틀후만가능 */
-
-                if (document.forms[0].datetimepicker1.value == '00:00') {
-                    alert('예약시간을 입력하세요.');
-                    document.forms[0].datetimepicker1.focus();
-                    return false;
-                }
-                if (document.forms[0].DropDownDept.value == '직접입력' && deptZipCode.value == '') {
-                    alert('출발지주소를 조회하세요.');
-                    deptZipCode.focus();
-                    return false;
-                }
-
-                if (document.forms[0].DropDownDept.value == '직접입력' && deptFAddr.value == '') {
-                    alert('출발지주소를 입력하세요.');
-                    deptFAddr.focus();
-                    return false;
-                }
-                if (document.forms[0].DropDownDept.value == '직접입력' && deptNm.value == '') {
-                    alert('출발지명칭을 입력하세요.');
-                    deptNm.focus();
-                    return false;
-                }
-                if (document.forms[0].DropDownArrv.value == '직접입력' && arrvZipCode.value == '') {
-                    alert('도착지주소를 조회하세요.');
-                    arrvZipCode.focus();
-                    return false;
-                }
-                if (document.forms[0].DropDownArrv.value == '직접입력' && arrvFAddr.value == '') {
-                    alert('도착지주소를 입력하세요.');
-                    arrvFAddr.focus();
-                    return false;
-                }
-                if (document.forms[0].DropDownArrv.value == '직접입력' && arrvNm.value == '') {
-                    alert('도착지명칭을 입력하세요.');
-                    arrvNm.focus();
-                    return false;
-                }
-
-            }
-            catch (e) {
-
-                alert(e.message);
-                return false;
-            }
-            return true;
-        }
-        function todaydiff(diffdate) {
-            var today = new Date();
-
-            var dateArray = diffdate.split("-");
-            var dateObj = new Date(dateArray[0], Number(dateArray[1]) - 1, dateArray[2]);
-
-            var getDiffTime = dateObj.getTime() - today.getTime();
-
-            return Math.floor(getDiffTime / (1000 * 60 * 60 * 24)) + 1;
-
-
-        }
-    </script>
-    
-    
-    <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPlaceHolder1$ScriptManager1', 'aspnetForm', ['tctl00$ContentPlaceHolder1$UpdatePanel3','','tctl00$ContentPlaceHolder1$UpdatePanel1','','tctl00$ContentPlaceHolder1$UpdatePanel4',''], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-    
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$HiddenWeb_Res_No" id="HiddenWeb_Res_No" value="0" />
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$HiddenSeq1" id="HiddenSeq1" value="0" />
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$HiddenSeq2" id="HiddenSeq2" value="0" />
-     
-    <div id="ctl00_ContentPlaceHolder1_UpdatePanel3">
-	
-
-     
+       
     
     <!--container-->
     <div id="container">
@@ -749,53 +424,12 @@ function reservationCheck() {
     <title>회원가입</title>
     
     <!-- 신청 날짜 달력 코드 -->
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+	
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
         <link rel="stylesheet" href="/resources/demos/style.css" />
 
-        <script type="text/javascript">
-            $(function() { 
-            $("#datepicker").datepicker({
-            dateFormat: 'yymmdd',
-            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                dayNamesMin: ['일','월','화','수','목','금','토'],
-                changeMonth: true, //월변경가능
-                changeYear: true, //년변경가능
-                showMonthAfterYear: true, //년 뒤에 월 표시
-            });
-            });
-    	</script>
 
-
-    <!-- Icons font CSS-->
-    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
-    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
-    
-    
-    
-	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css2/main.css">
-    
-    
-</head>
 
 <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">

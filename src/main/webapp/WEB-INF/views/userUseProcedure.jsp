@@ -44,13 +44,7 @@
    
    
    <!--구리시에서 따온거 -->
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/css/pop.css"/>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/jquery.bxslider.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.css"/>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.js"></script>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/design.js"></script>
+   
         <script type="text/javascript">
       $(document).ready(function(){
       $('.slider_box .slider_main').bxSlider({loop:true, auto:true});
@@ -113,92 +107,7 @@
 <body>
     <div id="wrap">
       <!--head-->
-      <div id="head" style="border-bottom:1px solid #b9b9b9">
-        <div class="toolbar_box">
-          <div class="container">
-            <ul class="toolbar">
-                                    
-                                            <li><a href="javascript:userMainPage();">HOME</a></li>
-    										 <li><a href="javascript:loginForm();">로그인</a></li>
-                                            <li><a href="javascript:regTypeForm();">회원가입</a></li> 
-                                           
-                                    
-
-                 
-      <!--관리자 메뉴 -->
- 
-                  
-                                    
-
- 
-      <!--관리자 메뉴 -->
-            </ul>
-          </div>
-        </div>
-        <div class="head_box container">
-          <div class="logo_box">
-            <a href="javascript:userMainPage();">
-              <img src="/support/resources/imagesUserMain1/banner1.jpg" alt="LOGO" />
-            </a>
-          </div>
-          <div class="menu_box">
-            <ul class="menu">
-              <li>
-               
-              </li>
-              <li>
-                <a href="javascript:userUseProcedure();">예약안내</a>
-              </li>
-              <li>
-                <a href="javascript:userReservationForm();">예약신청</a>
-              </li>
-              <li>
-                <a href="javascript:userReservationSituation();">예약 확인/취소</a>
-              </li>
-             <li>
-                <a href="https://www.gurihappycall.or.kr/notice_list.aspx">이용내역</a>
-              </li>
-              <li>
-                <a href="javascript:qnaListForm();">공지사항</a>
-              </li>
-               <li>
-                <a href="javascript:qnaListForm();">불만게시판</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <a href="#" class="btn_menu">
-          <img src="https://www.gurihappycall.or.kr/images/btn/btn_menu.png" alt="menu" />
-        </a>
-        <div class="nav_wrap">
-          <div class="left_menu">
-            <a href="#" class="btn_leftMenu_close">
-              <img src="https://www.gurihappycall.or.kr/images/btn/btn_menu_close.png" alt="close" />
-            </a>
-            <ul class="menu">
-              <li>
-               
-              </li>
-              <li>
-                <a href="javascript:userUseProcedure();" class="link01">예약안내</a>
-              </li>
-              <li>
-                <a href="javascript:userReservationForm();" class="link02">예약신청</a>
-              </li>
-              <li>
-                <a href="javascript:userReservationSituation();" class="link03">예약 확인/취소</a>
-              </li>
-              <li>
-                <a href="#" class="link04">이용내역</a>
-              </li>
-               <li>
-                <a href="javascript:qnaListForm();" class="link05">공지사항</a>
-              </li>
-            </ul>
-          </div>
-          <div class="nav_mask"></div>
-        </div>
-      </div>
+      <%@include file="title.jsp" %>
       <!--head end-->
 
 
@@ -474,25 +383,7 @@
         </form>
         
         <!--foot-->
-        <div id="term">  
-          <div class="term_box container"> 
-            <div style="margin-top:20px;text-align:center; color:#777777; font-family:Dotum; font-size:15px;">
-                 <a href='#'>이용약관</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/private.aspx'>개인정보 처리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/media.aspx'>영상정보처리기 운영관리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
-            </div> 
-             </div> 
-        </div>
-        
-        <div id="foot">   
-          <div class="foot_box container"> 
-            <p class="copyright">
-              경기도 구리시 안골로 40(교문동, 교문동주차빌딩 3층)&nbsp;㉾ 11934&nbsp;&nbsp;&nbsp;전화 : 1577-3659&nbsp;&nbsp;&nbsp;팩스 : 070-4275-1080
-              <br/>Copyright © Guri Support For Moving Center All Right Reserved.
-            </p> 
-          </div>
-        </div>
+        <%@include file="foot.jsp" %>
         <!--foot end-->
       </div>
     </div>
