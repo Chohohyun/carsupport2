@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 </head>
     <body>
-    <center><h1>주행 기록 UI</h1><br><br>
+    <center><br><h3>주행 기록 UI</h3><br>
     <!-- ----------------------[리스트 검색/요청]----------------------------- -->
     <!-- 
     <form name="carListForm" method="post" action="/support/carListForm.do">
@@ -47,14 +47,15 @@ $(document).ready(function() {
 
 				<c:forEach items="${requestScope.driveList}" var="drive" varStatus="loopTagStatus">
 					<tr style="cursor:pointer" onClick="gocarContentForm( ${drive.DRIVER_NO} )" >
-						<td> ${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}   <!-- 1증가일련번호-->						
+						<td>${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}   <!-- 1증가일련번호-->						
 						<td>${drive.RESERVATION_DATE}
 						<td>${drive.START_ROAD_ADDR}
 						<td>${drive.END_ROAD_ADDR}
-						<td>${drive.START_TIME}
-						<td>${drive.START_TIME}
-						<td>
-						<td><input type="button" value="리뷰" onClick="goDriverGradeForm( ${drive.RESERVE_APPLY_CAR_NUMBER} )">	
+						<td>${drive.DRIVE_START_TIME}
+						<td>${drive.DRIVE_FINISH_TIME}
+						<td>${drive.DRIVE_DISTANCE}
+						<td><input type="button" value="리뷰" onClick="goDriverGradeForm( ${drive.RESERVE_APPLY_CAR_NUMBER})">	
+						
 													
 				</c:forEach>
 				

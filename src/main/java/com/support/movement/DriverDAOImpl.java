@@ -39,4 +39,16 @@ public class DriverDAOImpl implements DriverDAO{
 		 List<Map<String, String>> driveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriveList",id);
 			return driveList;
 	}
+	
+	@Override
+	public int getDriverUserReresveListAllCnt(String id) {
+		int reserveListAllCnt = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriverUserReresveListAllCnt",id);
+		return reserveListAllCnt;
+	}
+	
+	@Override
+	public List<Map<String, String>> getDriverUserReresveList(String id) {
+		List<Map<String, String>> reserveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriverUserReresveList",id);
+		return reserveList;
+	}
 }

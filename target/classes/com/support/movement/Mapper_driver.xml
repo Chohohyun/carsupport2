@@ -36,12 +36,10 @@
 			,START_POINT_LATITUDE as "START_POINT_LATITUDE"
 			,END_POINT_LONGITUDE as "END_POINT_LONGITUDE"
 			,END_POINT_LATITUDE as "END_POINT_LATITUDE"
-			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "START_TIME"
-			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "FINISH_TIME"
-			
-			
+			,to_char( DRIVE_START_TIME, 'HH24:MI:SS' ) as "DRIVE_START_TIME"
+			,to_char( DRIVE_FINISH_TIME, 'HH24:MI:SS' ) as "DRIVE_FINISH_TIME"
+			,DRIVE_DISTANCE as "DRIVE_DISTANCE"			
 			,CAR_NUMBER as "CAR_NUMBER"
-
 			,RESERVE_COUNT as "RESERVE_COUNT"
 			,USER_NO as "USER_NO"
 			,DRIVER_NO as "DRIVER_NO"
@@ -49,6 +47,7 @@
 			,START_DETAIL_ADDR as "START_DETAIL_ADDR"
 			,END_ROAD_ADDR as "END_ROAD_ADDR"
 			,END_DETAIL_ADDR as "END_DETAIL_ADDR"
+	
 		from RESERVE_APPLY_CAR
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
 	</select>
@@ -70,5 +69,32 @@
 		from car_info
 		where
 		car_driver=(select driver_no from driver where driver_id=#{id})
+	</select>
+	
+	<select id="getDriverUserReresveListAllCnt" parameterType="String" resultType="int">
+		select 
+			count(*)	
+		from RESERVE_APPLY_CAR
+		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2'
+	</select>
+	
+	<select id="getDriverUserReresveList" parameterType="String" resultType="hashmap">
+		select
+			RESERVE_APPLY_CAR_NUMBER as "RESERVE_APPLY_CAR_NUMBER"
+			,to_char( RESERVATION_DATE, 'YYYYMMDD' ) as "RESERVATION_DATE"
+			,RESERVE_COUNT as "RESERVE_COUNT"
+			,USER_NO as "USER_NO"
+			            ,(select user_name from DISABILITY_USER 
+                        where user_no=(select user_no from RESERVE_APPLY_CAR where driver_no=(select driver_no from driver where driver_id=#{id}) 
+                        and reserve_apply_car_number=(select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2')    
+                    )
+              ) as "USER_NAME"
+			,START_ROAD_ADDR as "START_ROAD_ADDR"
+			,START_DETAIL_ADDR as "START_DETAIL_ADDR"
+			,END_ROAD_ADDR as "END_ROAD_ADDR"
+			,END_DETAIL_ADDR as "END_DETAIL_ADDR"
+			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "RESERVATION_HOUR"
+		from RESERVE_APPLY_CAR 
+		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2'
 	</select>
 </mapper>

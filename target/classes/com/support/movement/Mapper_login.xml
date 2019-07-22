@@ -220,4 +220,14 @@
 	select count(*) From driver 
 	where driver_id = #{id}
 	</select>
+	
+	<select id="getUserName" parameterType="hashmap" resultType="String">
+	select user_name from disability_user
+	where user_id=#{id}
+	</select>
+	<select id="getDriverName" parameterType="hashmap" resultType="String">
+	select driver_name from driver
+	where driver_id=#{id}
+	</select>
+	
 </mapper>

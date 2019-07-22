@@ -14,5 +14,11 @@ public interface DriverService {
 	int getDriveListAllCnt(String id);
 
 	List<Map<String, String>> getDriveList(String id);
+	
+	int getDriverUserReresveListAllCnt(String id);
+
+	List<Map<String, String>> getDriverUserReresveList(String id);
+
+	
 
 }

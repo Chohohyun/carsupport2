@@ -23,6 +23,7 @@ public class DriverServiceImpl implements DriverService{
 	@Autowired
 	private DriverDAO driverDAO;
 
+	
 	@Override
 	public DriverDTO getDriverDTO(String id) {
 		DriverDTO driverDTO = this.driverDAO.getDriverDTO(id);
@@ -45,6 +46,18 @@ public class DriverServiceImpl implements DriverService{
 	public List<Map<String, String>> getDriveList(String id) {
 		List<Map<String, String>> driveList = this.driverDAO.getDriveList(id);
 		return driveList;
+	}
+	
+	@Override
+	public int getDriverUserReresveListAllCnt(String id) {
+		int reserveListAllCnt = this.driverDAO.getDriverUserReresveListAllCnt(id);
+		return reserveListAllCnt;
+	}
+	
+	@Override
+	public List<Map<String, String>> getDriverUserReresveList(String id) {
+		List<Map<String, String>> reserveList = this.driverDAO.getDriverUserReresveList(id);
+		return reserveList;
 	}
 
 }

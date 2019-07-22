@@ -193,4 +193,17 @@ public class LoginDAOImpl implements LoginDAO{
 		return driverIdCnt;
 	}
 
+
+	@Override
+	public String getUserName(Map<String, String> paramsMap) {
+		String name = this.sqlSession.selectOne("com.support.movement.LoginDAO.getUserName",paramsMap); 
+		return name;
+	}
+
+	@Override
+	public String getDriverName(Map<String, String> paramsMap) {
+		String name = this.sqlSession.selectOne("com.support.movement.LoginDAO.getDriverName",paramsMap); 
+		return name;
+	}
+
 }

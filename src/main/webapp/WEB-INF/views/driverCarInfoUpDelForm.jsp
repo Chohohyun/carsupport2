@@ -18,21 +18,23 @@
         
 </head>
     <body>
-    <center>차량 정보 UI<br><br>
-       <table border=1	class="" cellpadding=5	cellspacing=0> 
-            <tr><th>차량번호<th>남은 차량 연식<th>정비까지 남은 KM<th>차량 종류
-
- 				<tr style="cursor: pointer"> 
-  							
- 					<td>${carDTO.car_number} 
- 					<td>${carDTO.car_year}
- 					<td>${carDTO.car_distance} 
- 					<td>${carDTO.car_code}
+    <center><br><h3>차량 정보 UI</h3><br>
+       <table border=2	class="" cellpadding=5	cellspacing=0> 
+            <tr>
+            	<th width=200 height=30>차량번호
+            	<td width=200 align=center>${carDTO.car_number} 
+            <tr> 
+            	<th width=200 height=30>남은 차량 연식
+            	<td width=200 align=center>${carDTO.car_year} 년
+             <tr> 
+            	<th width=200 height=30>정비까지 남은 KM
+            	<td width=200 align=center >${carDTO.car_distance} KM
+             <tr> 
+            	<th width=200 height=30>차량 종류
+				<td  width=200 align=center>${carDTO.car_code}
  				
- 			
-
 	 
-	</table>
+		</table>
 
 </center>
     </body>

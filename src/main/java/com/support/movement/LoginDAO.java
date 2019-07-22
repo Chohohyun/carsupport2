@@ -55,4 +55,9 @@ public interface LoginDAO {
 	int checkDriverId(Map<String, String> paramsMap);
 
 
+	String getUserName(Map<String, String> paramsMap);
+
+	String getDriverName(Map<String, String> paramsMap);
+
+
 }

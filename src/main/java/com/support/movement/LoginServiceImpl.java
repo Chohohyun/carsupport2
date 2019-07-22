@@ -168,4 +168,20 @@ public class LoginServiceImpl implements LoginService{
 		}
 	}
 
+	@Override
+	public String getName(Map<String, String> paramsMap, int admin_idCnt) {
+		if(admin_idCnt==3) {
+			String name = this.loginDAO.getUserName(paramsMap);
+			return name;
+		}
+		if(admin_idCnt==5) {
+			String name = this.loginDAO.getDriverName(paramsMap);
+			return name;
+		}
+		else {
+			return null;
+		}
+		
+	}
+
 }

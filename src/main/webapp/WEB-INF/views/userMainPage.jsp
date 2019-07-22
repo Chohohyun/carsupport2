@@ -6,230 +6,325 @@
 
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp" %>
-
 <html>
+
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html xmlns="https://www.w3.org/1999/xhtml">
+  <head>
+    <title>COSMO 교통약자 이동지원센터</title>
+ 
+    <script type="text/javascript">
+      $(document).ready(function(){
+      $('.slider_box .slider_main').bxSlider({loop:true, auto:true});
+      /*$('.slider_box .slider_list').bxSlider({
+      loop:true,
+      auto:true,
+      controls:false,
+      onSlideBefore:function($slideElement, oldIndex, newIndex){
+      $container = $('.main_cont .bot_box .item.bg_transport img');
+      $container.attr('src','images/img_main_car_0'+(newIndex+1)+'.jpg');
+      }
+      });*/
+      });
 
-<meta charset="utf-8">
-<title>서울시각장애인 생활이동지원센터</title>
-<!-- CSS -->
-<link rel="stylesheet" href="code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link href="/support/resources/cssUserMain/bootstrap.min.css" rel="stylesheet">
-<link href="/support/resources/cssUserMain/kbucall_web.css" rel="stylesheet">
+
+    </script>
+      <script type="text/javascript" language="javascript">
+
+          if (/Android/i.test(navigator.userAgent)) {
+              window.document.location.href = "/NotFound.aspx";
+          } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+              window.document.location.href = "/NotFound.aspx";
+          } else {
+              // 그 외 디바이스
+          }
+     </script>
 
 
-<link type="text/css" href="/support/resources/cssUserMain/style.css" rel="stylesheet" />
-<!-- javascript -->
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" src="/support/resources/jsUserMain/common/jquery.js"></script>
-<script type="text/javascript" src="/support/resources/jsUserMain/common/jquery.cookie.js"></script>	
-<script type="text/javascript" src="/support/resources/jsUserMain/common/jquery-ui.custom.min.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-135363789-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-135363789-1');
-</script>
-<script type="text/javascript">
-	function menuLink(link_url) {
-		location.href = link_url;
+      <script type="text/javascript" language="javascript">
+  	function userMainPage(){
+		location.replace("/support/userMainPage.do");
 	}
-	
-	function contents_link(contents_no) {
-		location.href = "/contents.do?contents_no="+contents_no;
+	function loginForm(){
+		location.replace("/support/loginForm.do");
 	}
-</script>
-
-</head>
-
-<body>	
-	<div id="skipToContent">
-		<a href="#container">본문 바로가기</a>
-		
-	</div>
-	<!-- 헤더 -->
-	<header id="header_wrap">
-		<section>
-			<a href="/" class="header_logo" title="서울시각장애인 생활이동지원센터"><img src="/support/resources/imagesUserMain/img_logo.png" alt="서울시각장애인 생활이동지원센터 로고"></a>
-			<nav class="header_nav">
-				<ul class="header_quick">
-					<li><a href="/order/main.do?menu_no=3&amp;c_no=13" title="인터넷접수">인터넷접수</a></li>
-					
-						
-													
-							<li><a href="/login.do" title="로그인">로그인</a></li>
-						
-					
-				</ul>
-				<ul class="header_menu">
-		
-					<li>
-					
-						
-						
-							<a href="/sub.do?menu_no=1&amp;c_no=6" title="센터소개">센터소개</a>
-						
-											
-					</li>
-		
-					<li>
-					
-						
-						
-							<a href="/sub.do?menu_no=3&amp;c_no=15" title="장애인 복지콜">장애인 복지콜</a>
-						
-											
-					</li>
-		
-					<li>
-					
-						
-						
-							<a href="/sub.do?menu_no=5&amp;c_no=21" title="장애인 바우처택시">장애인 바우처택시</a>
-						
-											
-					</li>
-		
-					<li>
-					
-						
-						
-							<a href="/sub.do?menu_no=4&amp;c_no=16" title="참여/열린마당">참여/열린마당</a>
-						
-											
-					</li>
-		
-				</ul>
-			</nav>
-		</section>
-	</header>
-	<!--// 헤더 -->
-
-	
-	
-<script type="text/javascript">
-	$(function() {
-		
-	});
-
-	function mainLink(url) {
-		location.href = url;
+	function regTypeForm(){
+		location.replace("/support/regTypeForm.do");
 	}
-</script>
-		<!-- 메인 -->
-		<main id="main_wrap">
-			<!-- 메인 비주얼 영역 -->
-			<article class="main_visual_wrap" style="background: #0d1f3d url('/support/resources/banner/main/20190425104951720') center top no-repeat;">
-				<section class="main_visual">
-					<div class="main_msg">
-						<p>시각장애인의 생활이동편의와 발이 되겠습니다.</p>
-						<h2>서울시각장애인 생활·이동지원센터 </h2>						
-						<div class="main_call">
-							<ul>
-								<li>신청접수 : 02-2092-0000<a href="tel:02-2092-0000" title="신청접수  02-2092-0000 전화연결"><img src="/support/resources/imagesUserMain/icon_call.png" alt="장애인복지콜 신청접수"></a></li>
-								<li>1600-4477<a href="tel:1600-4477" title="신청접수  1600-4477 전화연결"><img src="/support/resources/imagesUserMain/icon_call.png" alt="장애인복지콜 신청접수"></a></li>
-							</ul>						
-						</div>
-					</div>
-				</section>
-			</article>
-			<!--// 메인 비주얼 영역 -->
+	function userUseProcedure(){
+		location.replace("/support/userUseProcedure.do");
+	}
+	function userReservationForm(){
+		location.replace("/support/userReservationForm.do");
+	}
+	function userReservationSituation(){
+		location.replace("/support/userReservationSituation.do");
+	}
+	function qnaListForm(){
+		location.replace("/support/qnaListForm.do");
+	}
 
-			<!-- 메인 컨텐츠 영역 -->
-			<article id="container" tabindex="0" class="main_contents" title="본문">
-				<nav class="main_menu">
-					<ul>
-						<li class="menu_btn_method"><a href="javascript:void(0);" onclick="mainLink('/order/main.do?menu_no=3&amp;c_no=13'); return false;" title="이용안내">이용안내</a></li>
-						<li class="menu_btn_method"><a href="javascript:void(0);" onclick="mainLink('/sub.do?menu_no=3&amp;c_no=12');" title="예약방법">예약방법</a></li>
-						<li class="menu_btn_call"><a href="javascript:void(0);" onclick="mainLink('/sub.do?menu_no=3&amp;c_no=12');" title="예약하기">예약하기</a></li>
-						<li class="menu_btn_voucher"><a href="javascript:void(0);" onclick="mainLink('/sub.do?menu_no=5&amp;c_no=21');" title="이용현황">이용현황</a></li>
-					</ul>
-				</nav>
-				<section class="main_notice">
-					<div class="main_notice_l">
-						<span class="notice_header">공지사항<a href="/board.do?menu_no=4&amp;c_no=16" title="공지사항">전체보기</a></span>
-						<ul>
-							
-								
-									
-										<li><a href="/board/view.do?menu_no=4&amp;c_no=16&amp;b_c_no=132">서울시각장애인생활이동지원센터 관제원 모집(~7/12)</a><span>06/28</span></li>
-									
-										<li><a href="/board/view.do?menu_no=4&amp;c_no=16&amp;b_c_no=124">2019년 상반기 장애인 바우처택시 신청접수 안내 </a><span>04/10</span></li>
-									
-										<li><a href="/board/view.do?menu_no=4&amp;c_no=16&amp;b_c_no=129">서울시각장애인생활이동지원센터 예약 합승제 시범 실시 안내</a><span>06/04</span></li>
-									
-										<li><a href="/board/view.do?menu_no=4&amp;c_no=16&amp;b_c_no=128">서울시각장애인생활이동지원센터 운전원 모집(~6/12)</a><span>05/21</span></li>
-									
-										<li><a href="/board/view.do?menu_no=4&amp;c_no=16&amp;b_c_no=121">2018년 서울시각장애인생활.이동지원센터 세입.세출결산서</a><span>03/25</span></li>
-									
-								
-								
-							
-						</ul>
-					</div>
-					<div class="main_notice_r">
-						<span class="notice_header">센터소식<a href="/board.do?menu_no=4&amp;c_no=39" title="센터소식">전체보기</a></span>
-						<ul>
-							
-								
-								
-									<li>등록된 글이 없습니다.</li>
-								
-							
-						</ul>
-					</div>
-				</section>
-			</article>
-			<!--// 메인 게시판 영역 -->
-
-			<!-- 메인 배너 영역 -->
-			<article class="main_banner_wrap">
-				<ul class="main_banner">
-								
-					<li><a href="http://kbuseoul.org/" target="_blank" title="서울특별시시각장애인연합회 배너"><img src="/support/resources/banner/2019/6/20190612012430090" alt="서울특별시시각장애인연합회 배너"></a></li>
-								
-					<li><a href="http://www.seoul.go.kr/main/index.jsp" target="_blank" title="서울특별시 배너"><img src="/support/resources/banner/2019/6/20190612012442495" alt="서울특별시 배너"></a></li>
-								
-					<li><a href="http://www.kbuwel.or.kr/" target="_blank" title="사단법인한국시각장애인연합회 배너"><img src="/support/resources/banner/2019/6/20190612014403873" alt="사단법인한국시각장애인연합회 배너"></a></li>
-					
-				</ul>
-			</article>
-			<!--// 메인 배너 영역 -->
-		</main>
-		<!--// 메인 -->
-
-
-		
-
-		<!-- 푸터 -->
-		<footer>
-			<article class="footer_wrap">
-				<div class="footer_link">
-					<a href="/sub.do?menu_no=1&amp;c_no=6" title="센터소개">센터소개</a>
-					<span> I </span>
-					<a href="/contents.do?contents_no=2" title="개인정보 취급방침">개인정보 취급방침</a>					  
-					<span> I </span>
-					<a href="/contents.do?contents_no=3" title="이용자준수사항">이용자준수사항</a>
-				</div>
-				<span class="footer_callnum">
-				전화. 1600-4477 / 02-2092-0000&nbsp;&nbsp;&nbsp;팩스. 02-937-0099&nbsp;&nbsp;&nbsp;
-				민원 및 대절. 02-2092-0088&nbsp;&nbsp;&nbsp;바우처택시. 02-2092-0055
-				</span>
-				<p>서울특별시 동작구 상도로216 (인경빌딩 3, 4층)</p>
-				<small>Copyright ⓒ 2018 kbucall. All Right Reserved.</small>
-				
-				<!-- 웹접근성 인증마크 -->
-				<div class="wa_wrap">
-					<a href="http://www.kwacc.or.kr/CertificationSite/WA/List" title="한국웹접근성평가센터 인증현황 바로가기 _새창" target="_blank">
-					<img src="/support/resources/imagesUserMain/WA.png" alt="국가공인 웹 접근성 품질인증마크 ">
-					</a>
-				</div>				
-			</article>			
-		</footer>
-		<!--// 푸터 -->	
 	
-</body>
+      </script>
+	
+	
+
+  </head>
+  <body>
+    <div id="wrap">
+      <!--head-->
+     <%@include file="title.jsp" %>
+      <!--head end-->
+
+
+
+
+
+
+        <form name="aspnetForm" method="post" action="./" id="aspnetForm" class="form-horizontal ">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTQ0NTgzODEyNA9kFgJmD2QWAmYPZBYCAgEPZBYCZg8WAh4LXyFJdGVtQ291bnQCBxYOZg9kFgJmDxUDAjM2RTIwMTnrhYQgN+yblCAx7J28IOq1rOumrOyLnCDqtZDthrXslb3snpAg7J2064+Z7KeA7JuQ7IS87YSwIOydtOyaqeuMgAoyMDE5LTA2LTI3ZAIBD2QWAmYPFQMCMzUmNuyblCA27J28KOuqqSkg7ZiE7Lap7J28IO2ctOustCDqtIDroKgKMjAxOS0wNS0xNGQCAg9kFgJmDxUDAjM0OTXsm5QgNuydvCjsm5TsmpTsnbwpIOyWtOumsOydtOuCoCDrjIDssrQg6rO17Zy07J28IOyVjOumvAoyMDE5LTA0LTE3ZAIDD2QWAmYPFQMCMzMzNeyblCAx7J28KOyImOyalOydvCkg6re866Gc7J6Q7J2YIOuCoCDqtIDroKgg7JWM66a8CjIwMTktMDQtMTdkAgQPZBYCZg8VAwIzMikyMDE564WEIDPsm5QgMeydvCDsgrzsnbzsoIgg7Zy066y0IOyVjOumvAoyMDE5LTAyLTE5ZAIFD2QWAmYPFQMCMzEuMjAxOeuFhCAy7JuUIDXsnbwg7ISk64KgIOyXsO2ctCDqtIDroKgg7JWM66a8IAoyMDE5LTAxLTA3ZAIGD2QWAmYPFQMCMjknMjAxOeuFhCAx7JuUIDHsnbwg7Iug7KCVIOq0gOugqCDslYzrprwgCjIwMTgtMTItMjZkZMWGtHGsyHtMNPWNYmr1tO1q1wmrQWkOoCJMRxET3FVf" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+</div>
+           
+                    
+ 
+      <!--container-->
+      <div id="container">
+        <div class="main_cont container">
+          <div class="top_box">
+            <div class="top_col center">
+              <div class="slider_box">
+                <ul class="slider_main">
+                  <li>
+                    <a href="#">
+                      <img src="/support/resources/imagesUserMain1/background1.jpg" alt="slider01" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="/support/resources/imagesUserMain1/background2.jpg" alt="slider02" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="top_col right">
+              <a href="javascript:userReservationSituation();" class="item l1 radius-15 m-l-10">
+                <h2 class="tit">
+                  예약확인/취소 <span class="size-18" >></span>
+                </h2>
+                <span class="img">
+                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main02.png" alt="icon" />
+                </span>
+              </a>
+              <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b" >
+                <p class="m-notice">
+                  <span class="notice-tit">공지사항</span>
+                  <a href="javascript:qnaListForm();"><span class="notice-view">+더보기</span></a>
+                </p>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                    
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=36">2019년 7월 1일 구리시 교통약자 이동지원센터 이용대</a></td>
+													<td >2019-06-27</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=35">6월 6일(목) 현충일 휴무 관련</a></td>
+													<td >2019-05-14</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=34">5월 6일(월요일) 어린이날 대체 공휴일 알림</a></td>
+													<td >2019-04-17</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=33">5월 1일(수요일) 근로자의 날 관련 알림</a></td>
+													<td >2019-04-17</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=32">2019년 3월 1일 삼일절 휴무 알림</a></td>
+													<td >2019-02-19</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=31">2019년 2월 5일 설날 연휴 관련 알림 </a></td>
+													<td >2019-01-07</td> 
+  
+                                        </tr>
+
+                             
+                        
+                            
+                                        <tr>
+										
+													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=29">2019년 1월 1일 신정 관련 알림 </a></td>
+													<td >2018-12-26</td> 
+  
+                                        </tr>
+
+                             
+                         
+
+                </table>
+              </div>
+            </div>
+
+            <div class="top_col right">
+              <a href="javascript:userReservationForm();" class="item r1 radius-15 m-l-10">
+                <h2 class="tit">
+                  예약신청 <span class="size-18">></span>
+                </h2>
+                <!--<a href="#" class="btn_go"></a>-->
+                <div class="img">
+                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main01.png" alt="icon" />
+                </div>
+              </a>
+              <a href="javascript:userUseProcedure();" class="item r2 radius-15 m-l-10 m-t-10">
+                <h2 class="tit">
+                  예약안내 <span class="size-18">></span>
+                </h2>
+                <span class="img">
+                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main03.png" alt="icon" />
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="bot_box">
+            <div class="item t_obj bg-c-f">
+              <h3 class="tit">이용안내</h3>
+              <ul class="txt_list">
+                <li class="txt_item">
+                  <p class="list_txt">
+                    <strong class="size-14">사전예약(상담)</strong></br>
+                    - 평일 09:00 ~ 18:00(이용 2일전 사전예약제)</br>
+                    &nbsp;&nbsp;토·일·공휴일 예약은 평일 근무시간 접수)</br></br>
+                    <strong class="size-14">즉시(콜) 이용</strong></br>
+                    - 이용 당일 최소 2시간 전 예약신청</br>
+                    &nbsp;&nbsp;(월~금, 배차여유 가능 시)
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="item t_obj">
+              <h3 class="tit">운행지역</h3>
+              <ul class="txt_list">
+                <li class="txt_item">
+                  <p class="list_txt">
+                    - 구리시 전역, 경기도, 서울특별시, 인천광역시</br>
+                    &nbsp;&nbsp; 전역 편도운행</br></br>
+                    - 관내에서 출발하는 교통약자로서 출발지는</br>
+                    &nbsp;&nbsp;구리시 관내 원칙</br></br>
+
+                    <strong class="size-14">차량운행</strong></br>
+                    - 평일(월~금) 07:00~22:00</br>
+                    ※ 야간 및 토·일·공휴일 이용은 사전예약자에 한함
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="item bg_transport">
+              <ul class="car_slider">
+                <li>
+                  <img src="/support/resources/imagesUserMain1/car1.jpg" alt="" />
+                </li>
+                <li>
+                  <img src="/support/resources/imagesUserMain1/car2.jpg" alt="" />
+                </li>
+              </ul>
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function(){
+              $('.car_slider').bxSlider({loop:true, auto:true});
+              });
+            </script>
+            <div class="item contact_info">
+              <div class="phone_box">
+                <h3 class="tit">
+                  COSMO 교통약자 이동지원센터
+                </h3>
+              </div>
+              <div class="time_box">
+                <div class="phone_box2">
+                  <h2 class="phone2">행복콜</h2>
+                  <h2 class="phone">1577-3659</h2>
+                  <div class="txt call-img-txt">
+                    교통약자 이동지원센터에</br>
+                    <em class="blue f-bold size-15">&nbsp;&nbsp;&nbsp;등록된 회원만</em></br>
+                    <em class="blue f-bold size-15">예약 가능</em>합니다.
+                  </div>
+                  <div class="img call-img">
+                    <img src="https://www.gurihappycall.or.kr/images/img_main.png" alt="icon" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--container end-->
+
+ 
+
+        </form>
+        
+        <!--foot-->
+        <div id="term">  
+          <div class="term_box container"> 
+            <div style="margin-top:20px;text-align:center; color:#777777; font-family:Dotum; font-size:15px;">
+                 <a href='https://www.gurihappycall.or.kr/term.aspx'>이용약관</a>&nbsp;
+                |&nbsp; <a href='https://www.gurihappycall.or.kr/private.aspx'>개인정보 처리방침</a>&nbsp;
+                |&nbsp; <a href='https://www.gurihappycall.or.kr/media.aspx'>영상정보처리기 운영관리방침</a>&nbsp;
+                |&nbsp; <a href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
+            </div> 
+             </div> 
+        </div>
+        
+        <div id="foot">   
+          <div class="foot_box container"> 
+            <p class="copyright">
+              경기도 구리시 안골로 40(교문동, 교문동주차빌딩 3층)&nbsp;㉾ 11934&nbsp;&nbsp;&nbsp;전화 : 1577-3659&nbsp;&nbsp;&nbsp;팩스 : 070-4275-1080
+              <br/>Copyright © Guri Support For Moving Center All Right Reserved.
+            </p> 
+          </div>
+        </div>
+        <!--foot end-->
+      </div>
+    </div>
+  </body>
 </html>

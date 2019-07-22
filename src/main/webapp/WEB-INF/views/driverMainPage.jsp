@@ -98,14 +98,16 @@ a:hover { color: white; text-decoration: underline;}
 	left: 0; top: 35px;
 	background: #333;
 	display: none;
-
+	z-index:4;
 }
 
 /*서브메뉴 한칸 제어*/
 
 .subnav li{
-	padding:10px;
-	width:100px;
+	padding:0px;
+	width:120px;
+	height:35px;
+	line-height: 300%;
 	text-align:center;
 	border-bottom:1px solid #222;
 	border-top:1px solid #444;

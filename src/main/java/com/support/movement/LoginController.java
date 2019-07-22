@@ -60,6 +60,8 @@ public class LoginController {
 
 		// HttpSession 객체에 저장된 로그인 아이디 삭제하기
 		session.removeAttribute("id");
+		session.removeAttribute("name");
+
 
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
@@ -136,8 +138,10 @@ public class LoginController {
 		try {
 			session.removeAttribute("uri");
 			admin_idCnt = this.loginService.getAdminCnt(paramsMap);
-			if(admin_idCnt>=1) {
+			if(admin_idCnt==1 || admin_idCnt==3 || admin_idCnt==5 )  {
 				session.setAttribute("id", paramsMap.get("id"));
+				String name= this.loginService.getName(paramsMap,admin_idCnt);
+				session.setAttribute("name",name);
 				// 아이디 암호 저장의사가 없을경우
 				// 아이디 암호 저장한 Cookies 객체 생성하고 쿠키값을 null로 덮어 씌우고 수명 없애기
 				// 그리고 이 쿠키를 HttpServletRequest 객체에 저장하기
