@@ -68,7 +68,6 @@
 						src="/support/resources/imagesUserMain1/banner1.jpg" alt="LOGO" />
 					</a>
 				</div>
-				<div style="height:25px"></div>
 				<div class="menu_box">
 				
 					<ul class="menu">

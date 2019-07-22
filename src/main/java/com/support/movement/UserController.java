@@ -161,7 +161,10 @@ public class UserController {
 		try {
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
-
+			if(id==null) {
+				mav.setViewName("loginForm.jsp");
+				return mav;
+			}
 			int userRevListAllCnt = this.userService.getUserRevListAllCnt(id);
 			System.out.println(userRevListAllCnt);
 

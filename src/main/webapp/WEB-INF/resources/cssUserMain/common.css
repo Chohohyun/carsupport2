@@ -45,7 +45,7 @@ em.red {color:#e75f4f;}
 #head .head_box .menu_box .menu li { float:left; }
 #head .head_box .menu_box .menu li a { color:#000; font-size:18px; font-weight:normal; }
 #head .head_box .menu_box .menu li.on a {color:#468ed2;}
-#head .head_box .menu_box .menu li + li {margin-left:50px;		margin-top:20px;}
+#head .head_box .menu_box .menu li + li {margin-left:60px; margin-top:20px; }
 #head .btn_menu { display:none; }
 
 

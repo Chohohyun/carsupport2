@@ -13,7 +13,7 @@
 <html xmlns="https://www.w3.org/1999/xhtml">
   <head>
     <title>COSMO 교통약자 이동지원센터</title>
- 
+
     <script type="text/javascript">
       $(document).ready(function(){
       $('.slider_box .slider_main').bxSlider({loop:true, auto:true});
@@ -41,32 +41,6 @@
           }
      </script>
 
-
-      <script type="text/javascript" language="javascript">
-  	function userMainPage(){
-		location.replace("/support/userMainPage.do");
-	}
-	function loginForm(){
-		location.replace("/support/loginForm.do");
-	}
-	function regTypeForm(){
-		location.replace("/support/regTypeForm.do");
-	}
-	function userUseProcedure(){
-		location.replace("/support/userUseProcedure.do");
-	}
-	function userReservationForm(){
-		location.replace("/support/userReservationForm.do");
-	}
-	function userReservationSituation(){
-		location.replace("/support/userReservationSituation.do");
-	}
-	function qnaListForm(){
-		location.replace("/support/qnaListForm.do");
-	}
-
-	
-      </script>
 	
 	
 
@@ -74,7 +48,7 @@
   <body>
     <div id="wrap">
       <!--head-->
-     <%@include file="title.jsp" %>
+      <%@include file="title.jsp" %>
       <!--head end-->
 
 
@@ -82,16 +56,6 @@
 
 
 
-        <form name="aspnetForm" method="post" action="./" id="aspnetForm" class="form-horizontal ">
-<div>
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTQ0NTgzODEyNA9kFgJmD2QWAmYPZBYCAgEPZBYCZg8WAh4LXyFJdGVtQ291bnQCBxYOZg9kFgJmDxUDAjM2RTIwMTnrhYQgN+yblCAx7J28IOq1rOumrOyLnCDqtZDthrXslb3snpAg7J2064+Z7KeA7JuQ7IS87YSwIOydtOyaqeuMgAoyMDE5LTA2LTI3ZAIBD2QWAmYPFQMCMzUmNuyblCA27J28KOuqqSkg7ZiE7Lap7J28IO2ctOustCDqtIDroKgKMjAxOS0wNS0xNGQCAg9kFgJmDxUDAjM0OTXsm5QgNuydvCjsm5TsmpTsnbwpIOyWtOumsOydtOuCoCDrjIDssrQg6rO17Zy07J28IOyVjOumvAoyMDE5LTA0LTE3ZAIDD2QWAmYPFQMCMzMzNeyblCAx7J28KOyImOyalOydvCkg6re866Gc7J6Q7J2YIOuCoCDqtIDroKgg7JWM66a8CjIwMTktMDQtMTdkAgQPZBYCZg8VAwIzMikyMDE564WEIDPsm5QgMeydvCDsgrzsnbzsoIgg7Zy066y0IOyVjOumvAoyMDE5LTAyLTE5ZAIFD2QWAmYPFQMCMzEuMjAxOeuFhCAy7JuUIDXsnbwg7ISk64KgIOyXsO2ctCDqtIDroKgg7JWM66a8IAoyMDE5LTAxLTA3ZAIGD2QWAmYPFQMCMjknMjAxOeuFhCAx7JuUIDHsnbwg7Iug7KCVIOq0gOugqCDslYzrprwgCjIwMTgtMTItMjZkZMWGtHGsyHtMNPWNYmr1tO1q1wmrQWkOoCJMRxET3FVf" />
-</div>
-
-<div>
-
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
-</div>
-           
                     
  
       <!--container-->
@@ -302,27 +266,7 @@
  
 
         </form>
-        
-        <!--foot-->
-        <div id="term">  
-          <div class="term_box container"> 
-            <div style="margin-top:20px;text-align:center; color:#777777; font-family:Dotum; font-size:15px;">
-                 <a href='https://www.gurihappycall.or.kr/term.aspx'>이용약관</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/private.aspx'>개인정보 처리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/media.aspx'>영상정보처리기 운영관리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
-            </div> 
-             </div> 
-        </div>
-        
-        <div id="foot">   
-          <div class="foot_box container"> 
-            <p class="copyright">
-              경기도 구리시 안골로 40(교문동, 교문동주차빌딩 3층)&nbsp;㉾ 11934&nbsp;&nbsp;&nbsp;전화 : 1577-3659&nbsp;&nbsp;&nbsp;팩스 : 070-4275-1080
-              <br/>Copyright © Guri Support For Moving Center All Right Reserved.
-            </p> 
-          </div>
-        </div>
+        <%@include file="foot.jsp" %>
         <!--foot end-->
       </div>
     </div>
