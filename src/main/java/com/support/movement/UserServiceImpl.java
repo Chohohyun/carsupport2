@@ -184,6 +184,24 @@ public class UserServiceImpl implements UserService{
 		return reviewDelCnt;
 	}
 
+	@Override
+	public QnaDTO getQnaDto(int question_no) {
+		QnaDTO qnaDTO = this.userDAO.getQnaDTO(question_no);
+		return qnaDTO;
+	}
+
+	@Override
+	public int getQnaListAllCnt(QnaSearchDTO qnaSearchDTO) {
+		int qnaListAllCnt = this.userDAO.getQnaListAllCnt(qnaSearchDTO);
+		return qnaListAllCnt;
+	}
+
+	@Override
+	public List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO) {
+		List<Map<String, String>> qnaList = this.userDAO.getQnaList(qnaSearchDTO);
+		return qnaList;
+	}
+
 	
 	
 

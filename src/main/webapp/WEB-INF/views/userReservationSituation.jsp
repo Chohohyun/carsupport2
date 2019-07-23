@@ -108,12 +108,12 @@ function userCancelReservation(number){
 
 							<table class="tbl tbl_list">
 								<colgroup>
-									<col style="width: 20%;" />
+									<col style="width: 10%;" />
 									<col style="width: 10%;" />
 									<col style="width: 30%;" />
 									<col style="width: 30%;" />
-									<col style="width: 5%;" />
-									<col style="width: 5%;" />
+									<col style="width: 10%;" />
+									<col style="width: 10%;" />
 								</colgroup>
 								<thead>
 									<th scope="col">접수일시<br />예약일시
@@ -135,8 +135,8 @@ function userCancelReservation(number){
 											<td>${user.end_road_addr}<c:choose>
 													<c:when
 														test="${user.reserve_status_code==1 || user.reserve_status_code==2}">
-														<td><input type="button" value="예약수정"
-															onclick="userUpDelReservation(${user.reserve_apply_car_number});">
+														<td><a onclick="userUpDelReservation(${user.reserve_apply_car_number});" class="btn middle white radius-5">수정</a>
+															
 													</c:when>
 													<c:otherwise>
 
@@ -145,8 +145,8 @@ function userCancelReservation(number){
 												</c:choose> <c:choose>
 													<c:when
 														test="${user.reserve_status_code==1 || user.reserve_status_code==2}">
-														<td><input type="button" value="예약취소"
-															onclick="userCancelReservation(${user.reserve_apply_car_number});">
+														<td><a onclick="userCancelReservation(${user.reserve_apply_car_number});" class="btn middle white radius-5">취소</a>
+															
 													</c:when>
 													<c:otherwise>
 

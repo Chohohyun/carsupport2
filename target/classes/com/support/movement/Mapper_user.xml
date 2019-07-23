@@ -251,8 +251,70 @@
 						 
 				)
 			</if>
+			
 		order by dc.discontent_group_no desc, dc.discontent_print_no asc
 	
+	</select>
+	
+	
+	<select id="getQnaList"  parameterType="com.support.movement.QnaDTO" resultType="java.util.HashMap">
+		<if test="selectPageNo>0">
+		select 
+			*
+		from (select zzz.*, rownum||'' RNUM from (
+		</if>
+		select
+			q.question_no||''		as "question_no"
+			, q.question_subject	as "question_subject"	
+			, q.question_content		as "question_content"
+			, q.question_group_no		as "question_group_no"
+			, q.question_print_no		as "question_print_no"
+			, to_char(q.reg_date, 'YYYY-MM-DD') "reg_date"
+		from question q
+		where
+		 q.question_group_no = #{question_group_no}
+		 <if test="(keyword!=null and keyword.length()>0)">
+				and  (
+						upper(q.question_subject) like upper( '%${keyword}%')
+						 or upper(q.question_content) like upper( '%${keyword}%')
+						
+						)
+						 
+			</if>
+		 <if test="selectPageNo>0">	
+		<![CDATA[
+		 ) zzz)  where RNUM>= ${selectPageNo} * 10 - 10+1 and RNUM <= ${selectPageNo} * 10
+		 ]]>
+		 </if>
+	</select>
+	
+	
+	<select id="getQnaListAllCnt"  parameterType="com.support.movement.QnaDTO" resultType="int">
+		select
+			count(*)
+		from question q
+		where
+		 q.question_group_no = #{question_group_no}
+		 <if test="(keyword!=null and keyword.length()>0)">
+				and  (
+						upper(q.question_subject) like upper( '%${keyword}%')
+						 or upper(q.question_content) like upper( '%${keyword}%')
+						
+						)
+						 
+			</if>
+	</select>
+	<select id= "getUserQnaDTO" parameterType="int" resultType="com.support.movement.QnaDTO">
+		select
+			question_no||''		as "question_no"
+			, question_subject	as "subject"	
+			, question_content		as "content"
+			, question_group_no		as "question_group_no"
+			, question_print_no		as "question_print_no"
+			, to_char(reg_date, 'YYYY-MM-DD') "reg_date" 
+		from question
+		where
+		 question_no = #{question_no}
 	</select>
 	
 	<!-- 불만게시판 글쓰기 -->

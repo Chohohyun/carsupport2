@@ -60,5 +60,11 @@ public interface UserDAO {
 
 	int getReviewDelCnt(ReviewDTO reviewDTO);
 
+	QnaDTO getQnaDTO(int question_no);
+
+	int getQnaListAllCnt(QnaSearchDTO qnaSearchDTO);
+
+	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
+
 
 }

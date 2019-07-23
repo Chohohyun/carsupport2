@@ -191,5 +191,23 @@ public class UserDAOImpl implements UserDAO{
 		return reviewUpCnt;
 	}
 
+	@Override
+	public QnaDTO getQnaDTO(int question_no) {
+		QnaDTO qnaDTO = this.sqlSession.selectOne("com.support.movement.UserDAO.getUserQnaDTO",question_no);
+		return qnaDTO;
+	}
+
+	@Override
+	public int getQnaListAllCnt(QnaSearchDTO qnaSearchDTO) {
+		int qnaListAllCnt = this.sqlSession.selectOne("com.support.movement.UserDAO.getQnaListAllCnt",qnaSearchDTO);
+		return qnaListAllCnt;
+	}
+
+	@Override
+	public List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO) {
+		List<Map<String, String>> qnaList = this.sqlSession.selectList("com.support.movement.UserDAO.getQnaList",qnaSearchDTO);
+		return qnaList;
+	}
+
 
 }

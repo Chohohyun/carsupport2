@@ -13,8 +13,8 @@
 	$(document).ready(function(){
 		
 		$("#userEmailBtn").attr("disabled",true); 
-
-		$("#userEmail").hide();
+		$("#userEmailBtn").hide();
+		$("#userEmailTr").hide();
 		inputData("id","${userDTO.id}");
 		inputData("pwd1","${userDTO.pwd1}");
 		inputData("pwd2","${userDTO.pwd1}");
@@ -41,15 +41,12 @@
 			return;
 		}
 		else if(email=="${userDTO.email}"){
-			$("#userEmail").hide();
-			$("#userEmailBtn").removeClass("btn--red");
-			$("#userEmailBtn").addClass("btn--gray");
-			$("#userEmailBtn").attr("disabled",true); 
+			$("#userEmailTr").hide();
+			$("#userEmailBtn").hide();
 			$("[name=userUpDelForm] [name=emailCheck]").val(1);
 		}
 		else{
-			$("#userEmailBtn").removeClass("btn--gray");
-			$("#userEmailBtn").addClass("btn--red");
+			$("#userEmailBtn").show();
 			$("#userEmailBtn").attr("disabled",false); 
 			$("[name=userUpDelForm] [name=emailCheck]").val(0);
 		}
@@ -74,7 +71,7 @@
 					
 					if(type=='user'){
 
-						$("#userEmail").show();
+						$("#userEmailTr").show();
 						document.userUpDelForm.AuthenticationNumber.style.display="block";
 						document.userUpDelForm.AuthenticationNumberBtn.style.display="block";
 						var elem = document.getElementById("userEmailBtn"); 
@@ -257,12 +254,14 @@
 				if(data==1){
 					alert("인증번호 확인 완료");
 					if(type=='user'){
-						$("#userEmail").hide();
+						$("#userEmailTr").hide();
 						$("#userEmailText").attr("readonly",true); 
 						$("#userEmailBtn").attr("disabled",true); 
 						$("#userEmailBtn").removeClass("btn--red");
 						$("#userEmailBtn").addClass("btn--gray");
 						document.userUpDelForm.emailCheck.value="2";
+						var elem = document.getElementById("userEmailBtn"); 
+						elem.value = "변경완료";
 						return;
 					}
 					else{
@@ -297,375 +296,209 @@
 	
 
 </script> <!-- Jquery JS-->
-   
-<head>
-   
-    <!-- Title Page-->
-    <title>회원수정페이지</title>
-
-    <!-- Icons font CSS-->
-    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
-    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
-    
-    
-    
-	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css2/main.css">
-    
-    
-</head>
 
 <body>
-    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790">
-            <div class="card card-5">
-           
-                <div class="card-heading">
-                    <h2 class="title">회원수정/삭제</h2>
-                </div>
-                <div class="card-body">
-                
-                   
-                    
-                    <!-- ----------------------------------------------------------------------------------------------- -->
-                    
-                       <form name="userUpDelForm" method="POST">
+	<div id="wrap">
+		<!--head-->
+		<%@include file="title.jsp"%>
+		
+		<!--head end-->
+
+
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png" alt="banner" />
+					</div>
+					<div class="container">
+						<p class="tit"><br /></p>
+					</div>
+			</div>
+		<!-- ===================================[회원등록 폼]====================================== -->	
+		<form name="userUpDelForm" method="POST">
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">회원정보</span> <span
+							class="txt_notice float-r"> <em class="color-or">*</em> 는
+							필수입력항목입니다.정확한 정보를 입력해주세요.
+						</span>
+					</div>
+	
+				
+
+
+			
+				<table class="tbl tbl_form mt0">
+					<colgroup>
+						<col style="width: 21%;" />
+						<col style="width: 79%;" />
+					</colgroup>
+					<tr>
+						<th scope="row"><div class="name">아이디<em class="color-or"> *</em></div></th>
+						<td>
+							<div class="input_btn">
+								<input  type="text" name="id" id="userId" placeholder="아이디" style="width: 170px;" readonly/> 
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">비밀번호<em class="color-or"> *</em></div></th>
+						<td><input  type="password" name="pwd1" placeholder="비밀번호" style="width: 170px;" /> <br />
+							<span class="txt">*영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 9자리이상</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">비밀번호 확인<em class="color-or"> *</em></div></th>
+						<td><input  type="password" name="pwd2" placeholder="비밀번호확인" style="width: 170px;" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">이름<em class="color-or"> *</em></div></th>
+						<td><input  type="text" name="name" placeholder="이름" style="width: 170px;" /> </td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">주민번호<em class="color-or"> *</em></div></th>
+						<td><input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="jumin_num1" placeholder="앞주민번호" maxsize="6" >
+							<span>_</span>
+							<input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="password" name="jumin_num2" placeholder="뒷주민번호" maxsize="7">				
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">휴대폰번호<em class="color-or"> *</em></div></th>
+						<td><input class="input100 input--style-5" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="phone" placeholder="숫자만 입력해주세요"></br>
+						
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">성별<em class="color-or"> *</em></div></th>
+						<td><label class="radio-container">
+								<input type="radio" checked="checked" name="gender" value="1">남<span class="checkmark"></span>
+							</label>	
+							<label class="radio-container">
+								<input type="radio" checked="checked" name="gender" value="2">여<span class="checkmark"></span>
+							</label>	
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">이메일주소<em class="color-or"> *</em></div></th>
+						<td><input class="input100" id="userEmailText" type="text" name="email" placeholder="이메일주소" onkeyup="checkSameEmail();">
+							<a><input type="button" name="checkEmailBtn" id="userEmailBtn" class="btn small grey" onclick="acceptEmail('user')" value="인증번호받기"></a>
+						</td>
+					</tr>
                         
-                        <div class="form-row">
-                            <div class="name">아이디</div>
-                            <div class="value">
-                                <div class="input-group wrap-input100">
-                                    <input class="input100 input--style-5" type="text" name="id" placeholder="아이디" readonly>
-                                    
-                                           <span class="focus-input100"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">비밀번호</div>
-                            <div class="value">
-                                <div class="input-group wrap-input100">
-                                    <input class="input100 input--style-5" type="password" name="pwd1" placeholder="비밀번호">
-                                    
-                                           <span class="focus-input100"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="name">비밀번호 확인</div>
-                            <div class="value">
-                                <div class="input-group wrap-input100">
-                                    <input class="input100 input--style-5" type="password" name="pwd2" placeholder="비밀번호 확인">
-                                    
-                                           <span class="focus-input100"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row m-b-55">
-                            <div class="name">이름</div>
-                            <div class="value">
-                                <div class="row row-space">
-                                    <div class="input-group wrap-input100">
-                                       
-                                           <input class="input100 input--style-5" type="text" name="name" placeholder="이름">
-                                           <span class="focus-input100"></span>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="form-row m-b-55">
-                            <div class="name">성별</div>
-                            <div class="value">
-                                <div class="row row-space">
-                                    <div class="input-group wrap-input100">
-                               			 <label class="radio-container m-r-55">남
-                                   		 <input type="radio" checked="checked" name="gender" value="1">
-                                    		<span class="checkmark"></span>
-                               			 </label>
-                               			 <label class="radio-container m-r-55">여
-                                   		 <input type="radio" checked="checked" name="gender" value="2">
-                                    		<span class="checkmark"></span>
-                               			 </label>
-                                </div>
-                               </div>
-                            </div>
-                        </div>
-                        
-                         <div class="form-row m-b-55">
-                            <div class="name">주민번호</div>
-                            <div class="value">
-                                <div class="row row-refine">
-                                 	 
-                                        <div class="wrap-input40 input-group-desc">
-                                            <input class="input100 input--style-5" type="text" name="jumin_num1" placeholder="앞주민번호">
-                                            
-                                           <span class="focus-input100"></span>
-                                    
-                                        </div>
-                                 
-                                 			  &nbsp;&nbsp;&nbsp;
-                                        <div class="wrap-input50 input-group-desc">
-                                            <input class="input100 input--style-5" type="password" name="jumin_num2" placeholder="뒷주민번호">
-                                            
-                                           <span class="focus-input100"></span>
-                                          
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                         <div class="form-row m-b-55">
-							<div class="name">주소</div>
+					<tr id="userEmailTr">
+						<th scope="row"><div class="name" id="userEmail">인증번호 입력<em class="color-or"> *</em></div></th>
+						<td><input class="input100 input--style-5" type="text" name="AuthenticationNumber" placeholder="인증번호입력">
+							<a><input type="button" name="AuthenticationNumberBtn" class="btn small grey" onclick="checkAuthenticationNumber('user')" value="확인"></a>
+							<input type="hidden" name="emailCheck" value="1">
+						</td>
+						
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">장애구분<em class="color-or"> *</em></div></th>
+						<td class="">
+							<select name="disability_type">
+								<option disabled="disabled" selected="selected" value="">Choose option</option>
+								<option value="1">신장</option>
+								<option value="2">지체</option>
+								<option value="3">뇌병변</option>
+								<option value="4">지적</option>
+								<option value="5">시각</option>
+								<option value="6">호흡기</option>
+								<option value="7">자폐</option>
+								<option value="8">간질</option>
+								<option value="9">정신</option>
+								<option value="10">청각</option>
+								<option value="11">언어</option>
+								<option value="12">척추</option>
+								<option value="12">장애</option>
+								<option value="13">발달</option>
+								<option value="14">노인</option>
+							</select>
+							<div class="select-dropdown"></div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">장애등급<em class="color-or"> *</em></div></th>
+						<td>
+							<select name="disability_grade">
+								<option disabled="disabled" selected="selected" value="">Choose
+									option</option>
+								<option value="1">1급</option>
+								<option value="2">2급</option>
+								<option value="3">등급외</option>
+								<option value="4">3급</option>
+								<option value="5">중증</option>
+								<option value="6">경증(등급 외)</option>
+							</select>
+														<div class="select-dropdown"></div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">휠체어<em class="color-or"> *</em></div></th>
+						<td><label class="radio-container"> 
+								<input type="radio" checked="checked" name="wheelchair" value="1">사용<span class="checkmark"></span>
+							</label>	
+							<label class="radio-container">
+								<input type="radio" checked="checked" name="wheelchair" value="2">미사용<span class="checkmark"></span>
+							</label>	
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><div class="name">주소</div></th>
+						<td>
 							<div class="value">
 								<div class="row row-refine">
-
 									<div class="wrap-input40 input-group-desc">
-										<input class="input100 input--style-5" id="userpostal_code"
-											onfocus="this.blur();" type="text" name="postal_code"
-											placeholder="주소검색을 눌러주세요." readonly> <span
-											class="focus-input100"></span>
-
+										<input class="input100" id="userpostal_code" onfocus="this.blur();" type="text" name="postal_code" placeholder="주소검색을 눌러주세요." readonly>
+										<a><input type="button" style="width:100px;"class="btn small grey" onclick="searchPostal_code('user')" value="주소검색"></a>
 									</div>
-
-									&nbsp;&nbsp;&nbsp;
-									<div class="wrap-input50 input-group-desc">
-										<input type="button"
-											class="login100-form-btn btn btn--radius-2 btn--red"
-											onclick="searchPostal_code('user')" value="주소검색"> <span
-											class="focus-input100"></span>
-
-									</div>
+									
 									<div class="wrap-input40 input-group-desc">
-
-										<input class="input100 input--style-5" id="userroad_addr"
-											onfocus="this.blur();" type="text" name="road_addr"
-											placeholder="주소검색을 눌러주세요." readonly> <span
-											class="focus-input100"></span>
-
+										<input class="input100" style="width:400px;" id="userroad_addr" onfocus="this.blur();" type="text" name="road_addr" placeholder="주소검색을 눌러주세요." readonly> 
 									</div>
-
-									&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;
 									<div class="wrap-input50 input-group-desc">
-										<input class="input100 input--style-5" id="userjibun_addr"
-											onfocus="this.blur();" type="text" name="jibun_addr"
-											placeholder="주소검색을 눌러주세요." readonly> <span
-											class="focus-input100"></span> <span id="guide"
-											style="color: #999; display: none"></span>
+										<input class="input100" style="width:400px;" id="userjibun_addr" onfocus="this.blur();" type="text" name="jibun_addr"	placeholder="주소검색을 눌러주세요." readonly> 
+											<span id="guide" style="color: #999; display: none"></span>
 									</div>
+									
 									<div class="wrap-input100 input-group-desc">
-
-										<input class="input100 input--style-5" id="userdetail_addr"
-											type="text" name="detail_addr" placeholder="상세주소를 입력해주세요.">
-
-										<span class="focus-input100"></span>
-									</div>
-
-								</div>
-							</div>
-						</div>
-                      
-                        
-                         <div class="form-row m-b-55">
-                            <div class="name">휴대폰번호</div>
-                            <div class="value">
-                                <div class="row row-refine">
-                                    <!-- <div class="col-3">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="area_code">
-                                            <label class="label--desc">Area Code</label>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-9">
-                                        <div class="input-group-desc wrap-input100">
-                                            <input class="input100 input--style-5" type="text" name="phone" placeholder="휴대폰번호">
-                                            
-                                           <span class="focus-input100"></span>
-                                            <!-- <label class="label--desc">Phone Number</label> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row m-b-55">
-							<div class="name">이메일주소</div>
-							<div class="value">
-								<div class="row row-refine">
-
-									<div class="wrap-input50 input-group-desc">
-										<input class="input100 input--style-5" id="userEmailText"
-											type="text" name="email" placeholder="이메일주소" onkeyup="checkSameEmail();"> <span
-											class="focus-input100"></span>
-
-									</div>
-
-									&nbsp;&nbsp;&nbsp;
-									<div class="wrap-input40 input-group-desc">
-
-										<input type="button" name="checkEmailBtn" id="userEmailBtn"
-											class="login100-form-btn btn btn--radius-2 btn--gray"
-											onclick="acceptEmail('user')" value="인증번호받기"> <span
-											class="focus-input100"></span>
-
+										<input class="input100" style="width:400px;" id="userdetail_addr" type="text" name="detail_addr" placeholder="상세주소를 입력해주세요.">
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-row m-b-55" id="userEmail">
-							<div class="name">인증번호</div>
-							<div class="value">
-								<div class="row row-refine">
+						</td>
+					</tr>
+				</table>
 
-									<div class="wrap-input50 input-group-desc">
-										<input class="input100 input--style-5" type="text"
-											name="AuthenticationNumber" placeholder="인증번호입력"> <span
-											class="focus-input100"></span>
 
-									</div>
-
-									&nbsp;&nbsp;&nbsp;
-									<div class="wrap-input40 input-group-desc">
-
-										<input type="button" name="AuthenticationNumberBtn"
-											class="login100-form-btn btn btn--radius-2 btn--red"
-											onclick="checkAuthenticationNumber('user')" value="확인">
-										<span class="focus-input100"></span>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<input type="hidden" name="emailCheck" value="1">
-                        
-                        
-                      
-                        
-                        <div class="form-row">
-                            <div class="name">장애구분</div>
-                            <div class="value">
-                                <div class="input-group wrap-input100">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="disability_type">
-                                            <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                        	<option value="1">신장</option>
-											<option value="2">지체</option>
-											<option value="3">뇌병변</option>
-											<option value="4">지적</option>
-											<option value="5">시각</option>
-											<option value="6">호흡기</option>
-											<option value="7">자폐</option>
-											<option value="8">간질</option>
-											<option value="9">정신</option>
-											<option value="10">청각</option>
-											<option value="11">언어</option>
-											<option value="12">척추</option>
-											<option value="12">장애</option>
-											<option value="13">발달</option>
-											<option value="14">노인</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">장애등급</div>
-                            <div class="value">
-                                <div class="input-group wrap-input100">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="disability_grade">
-                                            <option disabled="disabled" selected="selected" value="">Choose option</option>
-                                            <option value="1">1급</option>
-											<option value="2">2급</option>
-											<option value="3">등급외</option>
-											<option value="4">3급</option>
-											<option value="5">중증</option>
-											<option value="6">경증(등급 외)</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="form-row m-b-55">
-                            <div class="name">휠체어</div>
-                            <div class="value">
-                                <div class="row row-space">
-                                    <div class="input-group wrap-input100">
-                               			 <label class="radio-container m-r-55">사용
-                                   		 <input type="radio" checked="checked" name="wheelchair" value="1">
-                                   		 
-                                    		<span class="checkmark"></span>
-                               			 </label>
-                               			 <label class="radio-container m-r-55">미사용
-                                   		 <input type="radio" checked="checked" name="wheelchair" value="2">
-                                    		<span class="checkmark"></span>
-                               			 </label>
-                                </div>
-                               </div>
-                            </div>
-                        </div>
-                       
-                   
-                        <div class="form-row m-b-55">
-                                 	 
-                                           <div class="wrap-input20 input-group-desc">
-                                           
-                            <input type="button" class=" login100-form-btn btn btn--radius-2 btn--blue" onclick="goUpDelProc('up');" value="수정">
-                                           <span class="focus-input100"></span>
-                                    
-                                        </div>
-                                 
-                                 			  &nbsp;&nbsp;&nbsp;
-                                        <div class="wrap-input20 input-group-desc">
-                                        
-               						 
-                            <input type="button" class="login100-form-btn btn btn--radius-2 btn--red" type="button" onclick="goUpDelProc('del');" value="삭제">
-                               <span class="focus-input100"></span>
-                          
-                          </div> 
-                          
-                                 			  &nbsp;&nbsp;&nbsp;
-                                        <div class="wrap-input20 input-group-desc">
-                                        
-               						 
-                            <input type="button" class="login100-form-btn btn btn--radius-2 btn--green" type="button" onclick="goUpDelPage();" value="취소">
-                               <span class="focus-input100"></span>
-                          
-                          </div>               
-                          	
-                          	<input type="hidden" name="user_no">
-                          	<input type="hidden" name="upDel" value="up"> 
-                       </div>    
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   
-
+			</div>
+			
+			<div class="btn_box">
+				<a><input type="button" onclick="goUpDelProc('up');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="수정"></a> 
+				
+				<a><input type="button" onclick="goUpDelProc('del');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="삭제"></a> 
+				&nbsp;&nbsp;&nbsp;
+				<a><input type="button" onclick="goUpDelPage();" value="취소" class="btn large white radius-5"></a>
+			</div>
+		</div>
+		<input type="hidden" name="user_no">
+        <input type="hidden" name="upDel" value="up"> 
+		</form>
+	</div>
+	<!--container end-->
+	
+	<!--foot-->
+	<%@include file="foot.jsp"%>
+	               	
+	<!--foot end-->
+	</div>
+	
 </body>
 </html>
+
+                 

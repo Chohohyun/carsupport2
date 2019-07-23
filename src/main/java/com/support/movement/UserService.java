@@ -41,5 +41,11 @@ public interface UserService {
 
 	int getReviewDelCnt(ReviewDTO reviewDTO);
 
+	QnaDTO getQnaDto(int question_no);
+
+	int getQnaListAllCnt(QnaSearchDTO qnaSearchDTO);
+
+	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
+
 
 }

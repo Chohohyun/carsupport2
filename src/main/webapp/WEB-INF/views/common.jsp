@@ -256,9 +256,7 @@ function panTo() {
     <link type="text/css" rel="stylesheet" href="/support/resources/cssUserMain/style.css"/>
     <link type="text/css" rel="stylesheet" href="/support/resources/cssUserMain/pop.css"/>
     <script type="text/javascript" src="/support/resources/jsUserMain/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/support/resources/jsUserMain/jquery.bxslider.min.js"></script><!-- 
-    <link type="text/css" rel="stylesheet" href="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.css"/>
-    <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/datetimepicker/jquery.datetimepicker.js"></script> -->
+    <script type="text/javascript" src="/support/resources/jsUserMain/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/design.js"></script>
 
 ${warning}

@@ -27,8 +27,8 @@
     	function userReservationSituation(){
     		location.replace("/support/userReservationSituation.do");
     	}
-    	function qnaListForm(){
-    		location.replace("/support/qnaListForm.do");
+    	function qnaListFormMain(){
+    		document.qnaListFormMain.submit();
     	}    
 
 		function userUpDelForm(){
@@ -47,6 +47,8 @@
 		<form name="discontentListFormMain" method="post" action="/support/discontentListForm.do">
 		</form>
 		<form name="userUtilizationDetailsMain" method="post" action="/support/userUtilizationDetails.do">
+		</form>
+		<form name="qnaListFormMain" method="post" action="/support/qnaListForm.do">
 		</form>
 		<div id="head" style="border-bottom: 1px solid #b9b9b9">
 			<div class="toolbar_box">
@@ -86,7 +88,7 @@
 						<li><a href="javascript:userReservationSituation();">예약확인</a></li>
 						<li><a href="javascript:userUtilizationDetailsMain();">이용내역</a>
 						</li>
-						<li><a href="javascript:qnaListForm();">공지사항</a></li>
+						<li><a href="javascript:qnaListFormMain();">공지사항</a></li>
 						<li><a href="javascript:discontentListFormMain();">불만게시판</a></li>
 					</ul>
 				</div>

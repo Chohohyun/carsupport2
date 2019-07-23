@@ -6,6 +6,7 @@ public class QnaDTO {
 	private String content;
 	private int question_group_no;
 	public int question_print_no;
+	private String reg_date;
 	
 	public String getQuestion_no() {
 		return question_no;
@@ -36,5 +37,11 @@ public class QnaDTO {
 	}
 	public void setQuestion_print_no(int question_print_no) {
 		this.question_print_no = question_print_no;
+	}
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 }

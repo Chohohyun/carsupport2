@@ -227,7 +227,7 @@ public class UserController {
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<Map<String,String>> userUtilDetailList = new ArrayList<Map<String,String>>();
 		try {
 			if(utilizationSearchDTO.getSelectPageNo()==0) {
@@ -309,7 +309,7 @@ public class UserController {
 	//*********************************************************
 	// 불만게시판 클릭하면 불만게시판 리스트 가져오기
 	//*********************************************************
-	
+
 	@RequestMapping(
 			value="/discontentListForm.do"
 			,method = RequestMethod.POST,produces="application/json;charset=UTF-8"
@@ -589,5 +589,71 @@ public class UserController {
 		return reviewUpDelCnt;
 	}
 
+	//**********************************
+	// 불만게시판 상세보기
+	//**********************************
+	@RequestMapping(value="/qnaContentForm.do", method=RequestMethod.POST,produces="application/json;charset=UTF-8") 
+	public ModelAndView qnaContentForm( 
+			@RequestParam(value="question_no") int question_no, 
+			HttpSession session ) { 
+		// ModelAndView객체 생성하기 
+		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("qnaContentForm.jsp"); 
+		try { 
+			System.out.println("driverDTO 아주 잘옴");
+			QnaDTO qnaDTO = this.userService.getQnaDto(question_no); 
 
+			mav.addObject("qnaDTO",qnaDTO); 
+			System.out.println("qnaDTO 아주 잘옴");
+		}catch(Exception e){ 
+			System.out.println("qnaDTO.qnaDTO(~) 메소드 예외 발생"); 
+		} 
+		return mav; 
+	} 
+
+	//**********************************
+	// QnA 게시판 목록 가져오기
+	//**********************************
+	@RequestMapping(
+			value="/qnaListForm.do"
+			,method = RequestMethod.POST,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody 
+	public ModelAndView qnaBoardList(
+			HttpSession session, HttpServletResponse response,
+			QnaSearchDTO qnaSearchDTO
+			){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("qnaListForm.jsp");
+
+		try {
+			if(qnaSearchDTO.getSelectPageNo()==0) {
+				qnaSearchDTO.setSelectPageNo(1);
+			}
+			if(qnaSearchDTO.getQuestion_group_no()==0) {
+				qnaSearchDTO.setQuestion_group_no(1);
+			}
+
+			int qnaListAllCnt = this.userService.getQnaListAllCnt(qnaSearchDTO);
+			
+			List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
+			//------------------------------------------------------------------
+			// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
+			// ModelAndView 객체에 addObject 메소드로 저장된 것은
+			// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
+			mav.addObject("qnaSearchDTO",qnaSearchDTO);
+			mav.addObject("qnaList", qnaList);
+			mav.addObject("qnaListAllCnt", qnaListAllCnt);
+			
+
+		}catch(Exception e) {
+			System.out.println("AdminController.qnaList(~) 메소드 호출 시 에러발생!");
+			System.out.println( e.toString() );
+		}
+		//---------------------
+		// [ModelAndView 객체] 리턴하기
+		//---------------------
+		return mav;
+	}
 }
