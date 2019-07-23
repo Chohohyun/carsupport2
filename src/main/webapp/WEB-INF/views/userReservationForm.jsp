@@ -23,6 +23,7 @@
       $container.attr('src','images/img_main_car_0'+(newIndex+1)+'.jpg');
       }
       });*/
+      
       });
 
 

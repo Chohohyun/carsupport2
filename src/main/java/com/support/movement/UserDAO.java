@@ -23,9 +23,9 @@ public interface UserDAO {
 
 	UserDTO getUserDTO(String id);
 
-	List<Map<String, String>> getDiscontentList();
+	List<Map<String, String>> getDiscontentList(DiscontentSearchDTO discontentSearchDTO);
 
-	int getDiscontentListAllCnt();
+	int getDiscontentListAllCnt(DiscontentSearchDTO discontentSearchDTO);
 
 	int insertDiscontent(DiscontentDTO discontentDTO);
 

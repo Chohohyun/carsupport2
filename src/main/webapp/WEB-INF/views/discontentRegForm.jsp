@@ -4,7 +4,6 @@
 
 <!--JSP 기술의 한 종류인 [Include Directive] 를 이용하여 common.jsp파일의 코드를 삽입-->
 <%@include file="common.jsp" %>
-<%@include file="adminMainPage.jsp" %>
 
 
 <html>
@@ -55,7 +54,7 @@
 			, success : function( qnaRegCnt ) {
 				if(qnaRegCnt == 1) {
 					alert("게시판 새글 등록 성공!");
-					location.replace("/support/discontentListForm.do");
+					document.discontentListForm.submit();
 				}
 				// [게시판 새글 입력 행 적용 개수] 가 1개가 아니면 경고하기
 				else {
@@ -73,38 +72,77 @@
 	}
 </script>
 </head>
-<body><center><br>
-	<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
-	<form  method="post" name="discontentRegForm" action="/support/discontentRegProc.do">
-		
-		<b>[불만게시판 글쓰기]</b><br><br>
+
+<body>
+	<div id="wrap">
+		<!--head-->
+		<%@include file="title.jsp"%>
+		<!--head end-->
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+
+		<form  method="post" name="discontentRegForm" >
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">불만게시판</span>
+					</div>
+					<table class="tbl tbl_form">
+						<colgroup>
+							<col style="width: 15%;">
+							<col style="width: 35%;">
+							<col style="width: 15%;">
+							<col style="width: 35%;">
+						</colgroup>	
 	
-		<table class="tbcss1"	border="1"	bordercolor=gray	cellspacing="0"		cellpadding="5"	align="center">
-		
+						<tbody>
+							<tr>
+								<th scope="row">제목</th>
+								<td><input type="text" 	size="40" maxlength="50" name="discontent_subject"></td>
+							</tr>
+						
+							<tr>
+							<th scope="row">내용</th>
+							<td colspan="3"><textarea name="discontent_content"  rows="13"	cols="150"></textarea>
+							</td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<div class="btn_box">
+					
+							<a href="javascript:checkDiscontentRegForm();" class="btn middle white radius-5">저장</a>
+							<a href="javascript:document.discontentListForm.submit();" class="btn middle white radius-5">목록</a>
+					</div>
+				</div>
+			</div>
 			
-			<tr>
-				<th>  제 목
-				<td><input type="text" 	size="40"		maxlength="50" name="discontent_subject">
-			</tr>
+			  
 			
-			<tr>
-				<th> 내 용
-				<td><textarea name="discontent_content" 	rows="13"	cols="40"></textarea>
-			</tr>
-		</table>
-		
-		<table	border="0"><tr height=4><td></table> <!-- 여백을 위한 -->
-		
-		<input type="hidden" name="upDel"value="up">
-		<input type="hidden" name="dicontent_no" value="${discontentDTO.dicontent_no}">
-		<input type="button" value="저장"	 onClick="checkDiscontentRegForm()">
-		<input type="reset"	 value="다시작성" >
-		<input type="button" value="목록보기"		onClick="document.discontentListForm.submit()">
-	</form>
-	
-	<form name="discontentListForm"	method="post"	action="/support/discontentListForm.do">
-	</form>
-	
+			</form>
+		</div>
+		<!--container end-->
+
+		<!--foot-->
+		<%@include file="foot.jsp"%>
+		<!--foot end-->
+	</div>
+
+	<!-- 이전 페이지에서 온 게시판 선택 페이지 번호를 저장한 hidden 태그 출력하고 [게시판 목록]  화면으로 이동하는 form태그 선언-->
+	<form name="discontentListForm" method="post" action="/support/discontentListForm.do"></form>
+
+
 	
 </body>
 </html>

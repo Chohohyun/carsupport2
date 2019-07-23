@@ -17,9 +17,9 @@ public interface UserService {
 
 	UserDTO getUserDTO(String id);
 
-	int getDiscontentListAllCnt();
+	int getDiscontentListAllCnt(DiscontentSearchDTO discontentSearchDTO);
 
-	List<Map<String, String>> getDiscontentList();
+	List<Map<String, String>> getDiscontentList(DiscontentSearchDTO discontentSearchDTO);
 
 	int insertDiscontent(DiscontentDTO discontentDTO);
 
@@ -40,5 +40,6 @@ public interface UserService {
 	int getReviewUpCnt(ReviewDTO reviewDTO);
 
 	int getReviewDelCnt(ReviewDTO reviewDTO);
+
 
 }

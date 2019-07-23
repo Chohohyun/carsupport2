@@ -214,27 +214,37 @@ public class UserController {
 	//**********************************
 	// 유저가 자신의 이용내역 현황을 볼 수 있는 페이지 
 	//**********************************
-	@RequestMapping(value="/userUtilizationDetails.do")
+	@RequestMapping(
+			value="/userUtilizationDetails.do"
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody
 	public ModelAndView userUtilizationDetails(
-			// HttpSession 객체가 들어올 매개변수 선언
-			// 매개변수에 자료형이 HttpSession이면 웹서버가
-			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session) {
-
-
+			HttpSession session,
+			UtilizationSearchDTO utilizationSearchDTO
+			) {
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("userUtilizationDetails.jsp");
+		
 		List<Map<String,String>> userUtilDetailList = new ArrayList<Map<String,String>>();
 		try {
+			if(utilizationSearchDTO.getSelectPageNo()==0) {
+				utilizationSearchDTO.setSelectPageNo(1);
+			}
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
-
+			if(id==null) {
+				mav.setViewName("loginForm.jsp");
+				return mav;
+			}
+			mav.setViewName("userUtilizationDetails.jsp");
 			int userUtilDetailListAllCnt = this.userService.getUserUtilDetailListAllCnt(id);
 			System.out.println(userUtilDetailListAllCnt);
 
 			userUtilDetailList= this.userService.getUserUtilDetailList(id);
+			mav.addObject("utilizationSearchDTO",utilizationSearchDTO);
 			mav.addObject("userUtilDetailListAllCnt",userUtilDetailListAllCnt);
 			mav.addObject("userUtilDetailList",userUtilDetailList);
 
@@ -299,20 +309,33 @@ public class UserController {
 	//*********************************************************
 	// 불만게시판 클릭하면 불만게시판 리스트 가져오기
 	//*********************************************************
-	@RequestMapping( value="/discontentListForm.do" )
+	
+	@RequestMapping(
+			value="/discontentListForm.do"
+			,method = RequestMethod.POST,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody 
 	public ModelAndView getDiscontentList(
-			HttpSession session
-			) {
+			HttpSession session, HttpServletResponse response,
+			DiscontentSearchDTO discontentSearchDTO
+			){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("discontentListForm.jsp");
 		try {
-			int discontentListAllCnt = this.userService.getDiscontentListAllCnt();
+			System.out.println("hi");
+			if(discontentSearchDTO.getSelectPageNo()==0) {
+				discontentSearchDTO.setSelectPageNo(1);
+			}
+			int discontentListAllCnt = this.userService.getDiscontentListAllCnt(discontentSearchDTO);
 
+			System.out.println("hi");
 			//-----------------------------------------------------
-			List<Map<String,String>> discontentList = this.userService.getDiscontentList();
+			List<Map<String,String>> discontentList = this.userService.getDiscontentList(discontentSearchDTO);
 			//-----------------------------------------------------
 
+			System.out.println("bye");
 			//-----------------------------------------------------
+			mav.addObject( "discontentSearchDTO", discontentSearchDTO );
 			mav.addObject( "discontentList", discontentList );
 			mav.addObject( "discontentListAllCnt", discontentListAllCnt );
 		}catch(Exception ex) {

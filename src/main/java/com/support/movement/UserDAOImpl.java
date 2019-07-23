@@ -89,16 +89,16 @@ public class UserDAOImpl implements UserDAO{
 	//*********************************************************
 	// [검색한 게시판 목록] 리턴하는 메소드 선언
 	//*********************************************************
-	public List<Map<String,String>> getDiscontentList(){
+	public List<Map<String,String>> getDiscontentList(DiscontentSearchDTO discontentSearchDTO){
 		List<Map<String,String>> discontentList = this.sqlSession.selectList(
-				"com.support.movement.UserDAO.getDiscontentList");
+				"com.support.movement.UserDAO.getDiscontentList",discontentSearchDTO);
 		return discontentList;
 	}
 	//*********************************************************
 	// [검색한 게시판 목록 개수] 리턴하는 메소드 선언
 	//*********************************************************
-	public int getDiscontentListAllCnt(){
-		int discontentListAllCnt = this.sqlSession.selectOne("com.support.movement.UserDAO.getDiscontentListAllCnt");
+	public int getDiscontentListAllCnt(DiscontentSearchDTO discontentSearchDTO){
+		int discontentListAllCnt = this.sqlSession.selectOne("com.support.movement.UserDAO.getDiscontentListAllCnt",discontentSearchDTO);
 		return discontentListAllCnt;
 	}
 

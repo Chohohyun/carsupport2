@@ -37,8 +37,17 @@
 		function logout(){
 			location.replace("/support/loginForm.do");
 		}
+		function discontentListFormMain(){
+			document.discontentListFormMain.submit();
+		}
+		function userUtilizationDetailsMain(){
+			document.userUtilizationDetailsMain.submit();
+		}
       </script>
-
+		<form name="discontentListFormMain" method="post" action="/support/discontentListForm.do">
+		</form>
+		<form name="userUtilizationDetailsMain" method="post" action="/support/userUtilizationDetails.do">
+		</form>
 		<div id="head" style="border-bottom: 1px solid #b9b9b9">
 			<div class="toolbar_box">
 				<div class="container">
@@ -75,10 +84,10 @@
 						<li><a href="javascript:userUseProcedure();">예약안내</a></li>
 						<li><a href="javascript:userReservationForm();">예약신청</a></li>
 						<li><a href="javascript:userReservationSituation();">예약확인</a></li>
-						<li><a href="javascript:userReservationSituation();">이용내역</a>
+						<li><a href="javascript:userUtilizationDetailsMain();">이용내역</a>
 						</li>
 						<li><a href="javascript:qnaListForm();">공지사항</a></li>
-						<li><a href="javascript:qnaListForm();">불만게시판</a></li>
+						<li><a href="javascript:discontentListFormMain();">불만게시판</a></li>
 					</ul>
 				</div>
 			</div>

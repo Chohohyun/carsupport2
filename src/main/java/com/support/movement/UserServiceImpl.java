@@ -84,15 +84,15 @@ public class UserServiceImpl implements UserService{
 	//*********************************************************
 	// [검색한 게시판 목록] 리턴하는 메소드 선언
 	//*********************************************************
-	public List<Map<String,String>> getDiscontentList(){
-		List<Map<String,String>> discontentList = this.userDAO.getDiscontentList();
+	public List<Map<String,String>> getDiscontentList(DiscontentSearchDTO discontentSearchDTO){
+		List<Map<String,String>> discontentList = this.userDAO.getDiscontentList(discontentSearchDTO);
 		return discontentList;
 	}
 	//*********************************************************
 	// [검색한 게시판 목록 개수] 리턴하는 메소드 선언
 	//*********************************************************
-	public int getDiscontentListAllCnt() {
-		int discontentListAllCnt = this.userDAO.getDiscontentListAllCnt();
+	public int getDiscontentListAllCnt(DiscontentSearchDTO discontentSearchDTO) {
+		int discontentListAllCnt = this.userDAO.getDiscontentListAllCnt(discontentSearchDTO);
 		return discontentListAllCnt;
 	}
 
@@ -184,6 +184,7 @@ public class UserServiceImpl implements UserService{
 		return reviewDelCnt;
 	}
 
+	
 	
 
 }
