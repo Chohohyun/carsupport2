@@ -59,133 +59,146 @@ $(document).ready(function() {
 	}
 </script>
 <head>
-   <!-- Icons font CSS-->
-    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
-    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
-    
-    
-    
-	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/main.css">
-    
-    
-        
+ 
 </head>
-    <center>
-		<h1>회원 수정/삭제 리스트 UI</h1>
-		<form class="userSearchForm" name="userSearchForm" method="post"
-			action="/support/userUpDelForm.do">
-			<table class="tbcss1" width="800" border="1" bordercolor="#DDDDDD"
-				cellpadding="5" align="center">
-				<tr align="center">
-					<th bgcolor="${headerColor}" colspan="6">회원 검색</th>
-				<tr align="center">
-					<th bgcolor="${headerColor}" width=60>키워드
-					<td width=250><input type="text" name="keyword">
-					<th bgcolor="${headerColor}" width=60>성별
-					<td width=150><input type="checkbox" name="gender"
-						id="gender1" value="male">남자 <input type="checkbox"
-						name="gender" id="gender2" value="female">여자
-				<tr align="center">
-					<th bgcolor="${headerColor}">장애등급
-					<td><select name="disability_grade">
-							<option value=""></option>
-							<option value="1">1급</option>
-							<option value="2">2급</option>
-							<option value="3">등급외</option>
-							<option value="4">3급</option>
-							<option value="5">중증</option>
-							<option value="6">경증(등급 외)</option>
-					</select>
-					<th bgcolor="${headerColor}">장애종류
-					<td><select name="disability_type">
-							<option value=""></option>
-							<option value="1">신장</option>
-							<option value="2">지체</option>
-							<option value="3">뇌병변</option>
-							<option value="4">지적</option>
-							<option value="5">시각</option>
-							<option value="6">호흡기</option>
-							<option value="7">자폐</option>
-							<option value="8">간질</option>
-							<option value="9">정신</option>
-							<option value="10">청각</option>
-							<option value="11">언어</option>
-							<option value="12">척추</option>
-							<option value="12">장애</option>
-							<option value="13">발달</option>
-							<option value="14">노인</option>
-					</select>
-			</table>
-			<input type="hidden" name="selectPageNo">
-			<!-- 
-		<input type="hidden" name="ascDesc">
-		<input type="hidden" name="selectOption"> -->
-			<table>
-				<tr height=4>
-					<td>
-			</table>
-			<input type="button" value="검색" onClick="goSearch();"> <input
-				type="button" value="전부검색" onClick="goSearchAll();"> <input
-				type="reset" value="초기화"> 
+<body>
+	<div id="wrap">
+		<!--head-->
 
-		</form>
-		<br> <br>
-		<table border=0>
 
-			<tr>
+		<!--head end-->
 
-				<td align=right>검색 총 개수 : ${requestScope.upDelListAllCnt} 개
-			<tr>
-				<th align=center><span class="pagingNumber"></span>
-			<tr>
-				<td>
 
-					<table class="tbcss2 accptList" border="0" cellspacing="0"
-						cellpadding="5" rules="rows" frame="hsides" width=700px>
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+			
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit">회원 검색</h2>
+					</div>
+					<form class="userSearchForm" name="userSearchForm" method="post" action="/support/userUpDelForm.do"">
+					<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 20%;" />
+							<col style="width: 30%;" />
+							<col style="width: 20%;" />
+							<col style="width: 30%;" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">키워드</th>
+								<td><input type="text" name="keyword"></td>
+								<th scope="row">성별</th>
+								<td>
+									<input type="checkbox" name="gender" id="gender1" value="male">남자 
+									<input type="checkbox" name="gender" id="gender2" value="female">여자
+								</td>
+							</tr>
+					
+							<tr>
+								<th scope="row">장애등급</th>
+								<td>
+									<select name="disability_grade">
+										<option value=""></option>
+										<option value="1">1급</option>
+										<option value="2">2급</option>
+										<option value="3">등급외</option>
+										<option value="4">3급</option>
+										<option value="5">중증</option>
+										<option value="6">경증(등급 외)</option>
+									</select>
+								</td>
+								<th scope="row">장애종류</th>
+								<td>
+									<select name="disability_type">
+										<option value=""></option>
+										<option value="1">신장</option>
+										<option value="2">지체</option>
+										<option value="3">뇌병변</option>
+										<option value="4">지적</option>
+										<option value="5">시각</option>
+										<option value="6">호흡기</option>
+										<option value="7">자폐</option>
+										<option value="8">간질</option>
+										<option value="9">정신</option>
+										<option value="10">청각</option>
+										<option value="11">언어</option>
+										<option value="12">척추</option>
+										<option value="12">장애</option>
+										<option value="13">발달</option>
+										<option value="14">노인</option>
+									</select>
+								</td>
+							</tr>	
+						</tbody>
+						</table>
+							<input type="hidden" name="selectPageNo">
+					</form>
+					
+					<div class="btn_box">
+							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+					</div>
+				</div>
+				<div class="cont_box">
+				<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+						</colgroup>
+						<thead>
+							<th scope="col">번호</th>
+							<th scope="col">회원 이름</th>
+							<th scope="col">ID</th>
+							<th scope="col">휴대폰</th>
+							<th scope="col">수정/삭제</th>
+						</thead>
+						<tbody>
+						<c:forEach items="${requestScope.upDelList}" var="upDel" varStatus="loopTagStatus">
+						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
+						<!--board 는 지역변수-->
 						<tr>
-							<th>번호
-							<th>회원이름
-							<th>회원ID
-							<th>휴대폰
-							<th>수정/삭제 <c:forEach items="${upDelList}" var="upDel"
-									varStatus="loopTagStatus">
-									<tr style="cursor: pointer">
-										<td>${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}
-											<!-- 1증가일련번호-->
-										<td>${upDel.user_name}
-										<td>${upDel.user_id}
-										<td>${upDel.user_phone}
-										<td><input type="button" value="수정/삭제" onclick="upDelUser(${upDel.user_no})"> 
-								</c:forEach>
+							<td class="txt_center">${upDelListAllCnt-(userSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${upDel.user_name}</td>
+							<td class="txt_center">${upDel.user_id}</td>
+							<td class="txt_center">${upDel.user_phone}</td>
+							<td class="txt_center"><a href="javascript:upDelUser(${upDel.user_no});" class="btn middle white radius-5">수정</a>
+						</tr>
+						</c:forEach>
+						</tbody>
 					</table>
-		</table>
-
-		<br> ${requestScope.upDelListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-		
-       
-
-	  	<form name="upDelUserForm" method="post" action="/support/userUpDelDetailForm.do">
+					${requestScope.upDelListAllCnt==0?'검색된 운전자가 없습니다.':''}
+					<div class="paging">
+					<center>
+					<table>
+						<tr>
+						<td align="center"><span  class="pagingNumber"></span>
+					</table>
+					</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--container end-->'
+	<form name="upDelUserForm" method="post" action="/support/userUpDelDetailForm.do">
 	  		<input type="hidden" name="user_no" value="" >
 	  	</form> 
-
-
-</center>
-    </body>
+	
+</body>
 </html>

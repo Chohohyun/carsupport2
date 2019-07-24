@@ -6,8 +6,7 @@
 
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp" %>
-
-
+<%@include file="adminMainPage.jsp" %>
 <html>
 <script>
 $(document).ready(function() {
@@ -52,23 +51,40 @@ $(document).ready(function() {
 		inputData("selectPageNo","1");
 		document.carInfoSearchForm.submit();
 	}
+	
+	function goreset(){
+		setEmpty2(" [name=keyword], [name=car_code]");
+	}
 
 </script>
 <head>
 
 </head>
-    <body>
-    <center><h1>차량 정보 UI</h1><br><br>
+    <body><center>
+    <br>
+    	<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit bg_service">차량 정보</h2>
+					</div>
     
-     <form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
-	<table class="tbcss1" width = "800" border="1" bordercolor="#DDDDDD" cellpadding="5" align="center">
+    <form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
+	<table class="tbl tbl_form">
+		<tr align="center" height=50px>
+			<th scope="col" colspan="6">차량 정보 검색</th>
 		<tr align="center">
-			<th bgcolor="${headerColor}" colspan="6">차량 정보 검색</th>
-		<tr align="center">
-			<th bgcolor="${headerColor}" width=60>키워드
-			<td width=250><input type="text" name="keyword"> 
-			<th bgcolor="${headerColor}" width=60>차량종류
-			<td width="150"><select name="car_code">
+			<th scope="col">키워드
+			<td style="width:500px;"><input type="text" name="keyword" style="width:500px;"> 
+			<th scope="col">차량종류
+			<td style="width:200px;"><select name="car_code" style="width:150px;">
 					<option value="0"></option>
 					<option value="1">슬로프</option>
 					<option value="2">리프트</option>
@@ -81,9 +97,15 @@ $(document).ready(function() {
 					<tr height=4>
 						<td>
 				</table>
-		<input type="button" value="검색" onClick="goSearch();"> 
+		<!--<input type="button" value="검색" onClick="goSearch();"> 
 		<input type="button" value="전부검색" onClick="goSearchAll();"> 
-		<input type="reset" value="초기화">
+		<input type="reset" value="초기화"> -->
+		<div class="btn_box">
+			<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+			<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+			<a href="javascript:goreset();" class="btn middle white radius-5">초기화</a>
+			<!-- &nbsp;<input type="reset" class="btn middle white radius-5" style="cursor:pointer; width:80px; text-align:center;"> -->
+		</div>
 		
 	</form>
     <!-- ----------------------[리스트 검색/요청]----------------------------- -->
@@ -93,35 +115,45 @@ $(document).ready(function() {
     </form>
      -->
     <!-- ----------------------[리스트 출력 화면]----------------------------- -->
+  
 		<table border=0>
-			
-			<tr><td align=right> 검색 총 개수 : ${requestScope.carListAllCnt} 개
-	
-			<tr><th align=center><span class="pagingNumber"></span>
-			<tr><td>
-			
-				<table class="tbcss2 carList" border="0" cellspacing="0" cellpadding="5" rules="rows" frame="hsides" width=700px>	
-				<tr><th>번호<th>차량번호<th>남은 차량연식<th>정비까지 남은 KM<th>차량종류<th>수정/삭제
+			<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			검색 총 개수 : ${requestScope.carListAllCnt} 개
+		</table>	
+		<table class="tbl tbl_form">	
+				<colgroup>
+                        <col style="width:15%;"/>
+                        <col style="width:20%;"/>
+                        <col style="width:15%;"/>
+                        <col style="width:15%;"/>
+                        <col style="width:15%;"/>
+                        <col style="width:20%;"/>
+                    </colgroup>
+                
+				<tr height=50px><th scope="col">번호<th scope="col">차량번호<th scope="col">차량연식<th scope="col">정비까지남은 KM<th scope="col">차량종류<th scope="col">정비내역등록
 
 				<c:forEach items="${requestScope.carList}" var="car" varStatus="loopTagStatus">
-					<tr style="cursor:pointer" onClick="gocarContentForm( ${car.car_info_no} )" >
+					<tr>
 						<td> ${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}   <!-- 1증가일련번호-->						
 						<td>${car.car_number}
 						<td>${car.car_year}
-						<td>${car.car_distance}
+						<td>${car.maintance_distance}
 						<td>${car.car_code}
-						<td><input type="button" value="정비내역등록" onClick="goCarMaintenanceRegForm( ${car.car_info_no} )">								
+						<td><a href="javascript:goCarMaintenanceRegForm( ${car.car_info_no} );" class="btn middle white radius-5">정비내역등록</a>								
 				</c:forEach>
 				
-			</table>
+			
 		</table>
+	
 		<br>
 		${requestScope.carListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-	
-		
-	<!-- 	
-		<input type="hidden" name="keyword" value="${keyword}">
-	-->
+		<div><span class="pagingNumber"></span></div>	
+   
 		<form name="carMaintenanceRegForm" method="post" action="/support/carMaintenanceRegForm.do">
 			<input type="hidden" name="car_info_no">
 		</form>

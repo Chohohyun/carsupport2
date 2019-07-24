@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="common.jsp" %>
-<%@include file="adminMainPage.jsp" %>
+<%@include file="common.jsp"%>
+<%@include file="adminMainPage.jsp"%>
 <html>
 <head>
-        <meta charset="UTF-8"> 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-        
-        <script>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+<script>
         $(document).ready(function() {
         	inputData("car_distance", "${carMaintanceDTO.car_distance}")
         	inputData("car_number", "${carMaintanceDTO.car_number}" );
@@ -19,9 +20,9 @@
         	inputData("car_maintance_content", "${carMaintanceDTO.car_maintance_content}" );
         });  // $(document).ready(function() {        
         </script>
- 
 
-        <script type="text/javascript">
+
+<script type="text/javascript">
             $(function() { 
             $("#datepicker").datepicker({
 	            dateFormat: 'yymmdd',
@@ -33,7 +34,7 @@
 	            });
             });
         </script>
-        <script>
+<script>
         
         function checkDate(){
         	var date = new Date(); 
@@ -122,49 +123,86 @@
         }
         </script>
 </head>
-	<body><center>
-		<form name="carMaintanceUpDelProc">
-    
-            <hl>차량 정비 수정/삭제 UI<br><br>
-        
-            <table border=1 cellpadding=7 cellspacing=0 >
-                <tr>
-                    <th bgcolor="gray">차량번호
-                    <td><input type="text" name="car_number" >
-                </tr>
-                <tr>
-                    <th bgcolor="gray">정비일시
-                    <td><input type="text" id="datepicker" onchange="checkDate();" placeholder="날짜선택▼" name="car_maintance_date">
-                </tr>
-                <tr>
-                    <th bgcolor="gray">정비내용
-                    <td>
-                        <select name="car_maintance_code" >
-                            <option value="">정비내역선택
-                            <option value="1">엔진오일교체
-                            <option value="2">타이어교체
-                            
-                        </select>
-                </tr> 
-                <tr>
-                    <th bgcolor="gray">주행거리
-                    <td><input type="text" name="car_distance"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"  placehoder="KM" >
-                </tr>
-      			<tr>
-					<th bgcolor="gray">세부내용
-					<td><textarea name="car_maintance_content" cols="50" rows="7"></textarea>
-			</tr>
-      
-            </table><br>
-            
-            <input type="hidden" name="car_maintance_info_no" value="${carMaintanceDTO.car_maintance_info_no}">
-            
-			<input type="button" value="수정" onClick="goCarMaintanceUpdateProc()"> &nbsp; &nbsp;
-            <input type="button" value="삭제" onClick="goCarMaintanceDeleteProc()"> &nbsp; &nbsp;
-            <input type="button" value="취소" class="cancle" onclick="goAdminMainPage();"> 
-            
-        </form>
+<body>
+<body>
+	<div id="wrap">
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
 
-	</center></body>
 
+
+		<form  method="post" name="carMaintanceUpDelProc" >
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">차량 정비 수정/삭제 UI</span>
+					</div>
+					<table class="tbl tbl_form">
+						<colgroup>
+							<col style="width: 30%;">
+							<col style="width: 70%;">
+						</colgroup>	
+	
+						<tbody>
+							<tr>
+								<th scope="row">차량번호</th>
+								<td><input type="text" name="car_number"></td>
+							</tr>
+						
+							<tr>
+								<th scope="row">정비일시</th>
+								<td><input type="text" id="datepicker" onchange="checkDate();" placeholder="날짜선택▼" name="car_maintance_date">
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">정비내용</th>
+								<td><select name="car_maintance_code">
+										<option value="">정비내역선택
+										<option value="1">엔진오일교체
+										<option value="2">타이어교체
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">주행거리</th>
+								<td><input type="text" name="car_distance"
+										onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+										placehoder="KM">
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">세부내용</th>
+								<td><textarea name="car_maintance_content" cols="50" rows="7"></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn_box">
+					<input type="hidden" name="car_maintance_info_no" value="${carMaintanceDTO.car_maintance_info_no}"> 
+					
+						<a href="javascript:goCarMaintanceUpdateProc();" class="btn middle white radius-5">수정</a>
+						<a href="javascript:goCarMaintanceDeleteProc();" class="btn middle white radius-5">삭제</a>
+						<a href="javascript:goAdminMainPage();" class="btn middle white radius-5">취소</a>
+					</div>
+				</div>
+			</div>
+			
+			  
+			
+			</form>
+		</div>
+	
+	</div>
+
+	
+	
+</body>
 </html>

@@ -14,26 +14,7 @@
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 
-body, div, ul, li, table, tr, td, th{margin:0px; padding:0px;}
 
-ul, li{list-style:none;}
-
-body {
-	font-family: NanumGothic, '나눔고딕', NanumGothicWeb, "Malgun Gothic",Gulim,sans-serif;
-	/*background: #ddd;*/
-	font-size:10px;
-}
-
-#wrap {
-	width:100%;
-	position: relative;
-}
-
-#header {
-	width:100%;
-	background:#000;
-
-}
 
 /*
 style 소스의 type = text를 제어하는 css로 한다.
@@ -98,14 +79,16 @@ a:hover { color: white; text-decoration: underline;}
 	left: 0; top: 35px;
 	background: #333;
 	display: none;
-
+	z-index:4;
 }
 
 /*서브메뉴 한칸 제어*/
 
 .subnav li{
-	padding:10px;
-	width:100px;
+	padding:0px;
+	width:120px;
+	height:35px;
+	line-height: 300%;
 	text-align:center;
 	border-bottom:1px solid #222;
 	border-top:1px solid #444;
@@ -160,8 +143,8 @@ function adminMainPage(){
 	}
 	
 	// 불만 게시판으로 이동하는 함수(관리자)
-	function adminDiscontentListForm() {
-		location.replace("/support/adminDiscontentListForm.do");
+	function goAdminDiscontentListForm() {
+		document.adminDiscontentListFormMain.submit();
 	}
 	// QnA 게시판으로 이동하는 함수
 	function qnaListForm() {
@@ -189,34 +172,6 @@ function adminMainPage(){
 </script>
 
 
- <!-- Title Page-->
-    <title>회원가입</title>
-
-    <!-- Icons font CSS-->
-    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
-    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
-    
-    
-    
-	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/support/resources/css/main.css">
-    
 </head>
 
 <body>
@@ -263,7 +218,7 @@ function adminMainPage(){
 						<div class="topnav">게시판관리</div>
 						<ul class="subnav">  
 							<li><a href="javascript:qnaListForm();">Q/A 게시판</a></li>  
-							<li><a href="javascript:adminDiscontentListForm();">불만게시판</a></li>  
+							<li><a href="javascript:goAdminDiscontentListForm();">불만게시판</a></li>  
 						</ul>  
 					</li> 
 
@@ -284,6 +239,8 @@ function adminMainPage(){
 			</div>
 	</div>
 </div>  
+<%-- <%@include file="titleadmin.jsp" %> --%>
+
 <form name="carMaintanceList" method="post" action="/support/carMaintanceListForm.do">
 
 </form>
@@ -302,6 +259,9 @@ function adminMainPage(){
 
 
 <form name="userUpDelForm" method="post" action="/support/userUpDelForm.do">
+</form>
+
+<form name="adminDiscontentListFormMain" method="post" action="/support/adminDiscontentListForm.do">
 </form>
 
 

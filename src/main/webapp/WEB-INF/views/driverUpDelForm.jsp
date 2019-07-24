@@ -56,133 +56,131 @@ $(document).ready(function() {
 	}
 </script>
 <head>
-<!-- Icons font CSS-->
-<link
-	href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-	rel="stylesheet">
-
-<!-- Vendor CSS-->
-<link href="/support/resources/vendor2/select2/select2.min.css"
-	rel="stylesheet" media="all">
-<link href="/support/resources/vendor2/datepicker/daterangepicker.css"
-	rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="/support/resources/css/main.css" rel="stylesheet"
-	media="all">
-<link href="/support/resources/css2/main.css" rel="stylesheet"
-	media="all">
-
-
-
-<link rel="icon" type="image/png"
-	href="/support/resources/images/icons/favicon.ico" />
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/css/util.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/css/main.css">
-
 
 
 </head>
 <body>
+	<div id="wrap">
+		<!--head-->
 
-	<center>
-		<h1>운전자 수정/삭제 리스트 UI</h1>
-		<form class="driverSearchForm" name="driverSearchForm" method="post"
-			action="/support/driverUpDelForm.do">
-			<table class="tbcss1" width="800" border="1" bordercolor="#DDDDDD"
-				cellpadding="5" align="center">
-				<tr align="center">
-					<th bgcolor="${headerColor}" colspan="6">운전자 검색</th>
-				<tr align="center">
-					<th bgcolor="${headerColor}" width=60>키워드
-					<td width=250><input type="text" name="keyword">
-					<th bgcolor="${headerColor}" width=60>성별
-					<td width=150><input type="checkbox" name="gender"
-						id="gender1" value="male">남자 <input type="checkbox"
-						name="gender" id="gender2" value="female">여자
-					<th bgcolor="${headerColor}">평점
-					<td><select name="score">
-							<option value=""></option>
-							<option value="1">1점이하</option>
-							<option value="2">1점~2점</option>
-							<option value="3">2점~3점</option>
-							<option value="4">3점~4점</option>
-							<option value="5">4점~5점</option>
-					</select>
-			</table>
-			<input type="hidden" name="selectPageNo">
-			<!-- 
-		<input type="hidden" name="ascDesc">
-		<input type="hidden" name="selectOption"> -->
-			<table>
-				<tr height=4>
-					<td>
-			</table>
-			<input type="button" value="검색" onClick="goSearch();"> <input
-				type="button" value="전부검색" onClick="goSearchAll();"> <input
-				type="reset" value="초기화"> 
 
-		</form>
-		<br> <br>
-		<table border=0>
+		<!--head end-->
 
-			<tr>
 
-				<td align=right>검색 총 개수 : ${requestScope.upDelListAllCnt} 개
-			<tr>
-				<th align=center><span class="pagingNumber"></span>
-			<tr>
-				<td>
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
 
-					<table class="tbcss2 accptList" border="0" cellspacing="0"
-						cellpadding="5" rules="rows" frame="hsides" width=700px>
+
+			
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit">운전자 검색</h2>
+					</div>
+					<form class="driverSearchForm" name="driverSearchForm" method="post" action="/support/driverUpDelForm.do"">
+					<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">키워드</th>
+								<td><input type="text" name="keyword"></td>
+								<th scope="row">성별</th>
+								<td>
+									<input type="checkbox" name="gender" id="gender1" value="male">남자 
+									<input type="checkbox" name="gender" id="gender2" value="female">여자
+								</td>
+								<th scope="row">평점</th>
+								<td>
+									<select name="score">
+										<option value=""></option>
+										<option value="1">1점이하</option>
+										<option value="2">1점~2점</option>
+										<option value="3">2점~3점</option>
+										<option value="4">3점~4점</option>
+										<option value="5">4점~5점</option>
+									</select>
+								</td>
+							</tr>
+								
+							
+							
+						</tbody>
+						</table>
+							<input type="hidden" name="selectPageNo">
+					</form>
+					
+					<div class="btn_box">
+							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+					</div>
+				</div>
+				<div class="cont_box">
+				<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+						</colgroup>
+						<thead>
+							<th scope="col">번호</th>
+							<th scope="col">운전자 이름</th>
+							<th scope="col">ID</th>
+							<th scope="col">면허증 번호</th>
+							<th scope="col">휴대폰</th>
+							<th scope="col">수정/삭제</th>
+						</thead>
+						<tbody>
+						<c:forEach items="${requestScope.upDelList}" var="upDel" varStatus="loopTagStatus">
+						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
+						<!--board 는 지역변수-->
 						<tr>
-							<th>번호
-							<th>운전자 이름
-							<th>ID
-							<th>면허증 번호
-							<th>휴대폰
-							<th>수정/삭제 <c:forEach items="${upDelList}" var="upDel"
-									varStatus="loopTagStatus">
-									<tr style="cursor: pointer">
-										<td>${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}
-											<!-- 1증가일련번호-->
-										<td>${upDel.driver_name}
-										<td>${upDel.driver_id}
-										<td>${upDel.driver_license_number}
-										<td>${upDel.driver_phone}
-										<td><input type="button" value="수정/삭제"
-											onclick="upDelDriver(${upDel.driver_no})">
-								</c:forEach>
+							<td class="txt_center">${upDelListAllCnt-(driverSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${upDel.driver_name}</td>
+							<td class="txt_center">${upDel.driver_id}</td>
+							<td class="txt_center">${upDel.driver_license_number}</td>
+							<td class="txt_center">${upDel.driver_phone}</td>
+							<td class="txt_center"><a href="javascript:upDelDriver(${upDel.driver_no});" class="btn middle white radius-5">수정</a>
+						</tr>
+						</c:forEach>
+						</tbody>
 					</table>
-		</table>
-
-		<br> ${requestScope.upDelListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-		
-		<form name="upDelDriverForm" method="post"
+					${requestScope.upDelListAllCnt==0?'검색된 운전자가 없습니다.':''}
+					<div class="paging">
+					<center>
+					<table>
+						<tr>
+						<td align="center"><span  class="pagingNumber"></span>
+					</table>
+					</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--container end-->'
+	<form name="upDelDriverForm" method="post"
 			action="/support/driverUpDelDetailForm.do">
 			<input type="hidden" name="driver_no" value="">
 		</form>
-
-	</center>
+	
 </body>
 </html>

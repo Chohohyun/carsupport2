@@ -61,7 +61,8 @@
     			success:function(data){
     				if(data>=0){
     					alert("차량수정 성공!");
-    					location.replace("/support/adminCarUpDelForm.do");
+    					document.adminCarUpDelForm.submit();
+    					//location.replace("/support/adminCarUpDelForm.do");
     				}
     				else{
     					alert("차량수정 실패!");
@@ -84,7 +85,8 @@
     			success:function(data){
     				if(data==1){
     					alert("차량삭제 성공!");
-    					location.replace("/support/adminCarUpDelForm.do");
+    					document.adminCarUpDelForm.submit();
+    					//location.replace("/support/adminCarUpDelForm.do");
     				}
     				else{
     					alert("차량삭제 실패!");
@@ -98,7 +100,9 @@
         }
         
         function goUpDelForm(){
-        	location.replace("/support/adminCarUpDelForm.do");
+       
+        	document.adminCarUpDelForm.submit();
+        	//location.replace("/support/adminCarUpDelForm.do");
         }
     </script>
     </head>
@@ -107,18 +111,37 @@
     
     <body><center>
     	
-         <h1>차량 상세보기 UI</h1><br><br>
+         <br>
+    	<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit bg_service">차량 수정/삭제</h2>
+					</div>
+					
+         <br>
          <form name = "carUpDelProcForm" method="POST">
          
-            <table class="tbcss1" border=1 cellpadding=7 cellspacing=0 width="600">
+            <table class="tbl tbl_form">
+             <colgroup>
+				<col style="width: 20%;" />
+				<col style="width: 60%;" />
+			</colgroup>
                 <tr>
-                    <th bgcolor="gray">차량번호
-                    <td><input type="text" name="car_number" placehoder="차량번호" value="${carDTO.car_number}"> 
+                    <th scope="row">차량번호
+                    <td><input type="text" name="car_number" placeholder="차량번호" style="width: 300px;" value="${carDTO.car_number}"> 
                 </tr>
                 <tr>
-                    <th bgcolor="gray">차량연식
+                    <th scope="row">차량연식
                     <td> 
-                        <select name="car_year" >
+                        <select name="car_year" style="width:150px;" >
                             <option value="">연식선택
                             <script>
                                 for(var i = 2010; i <= new Date().getFullYear(); i++) {
@@ -128,18 +151,22 @@
                         </select>년식
                 </tr>
                 <tr>
-                    <th bgcolor="gray">주행거리
-                    <td><input type="text" name="car_distance" placehoder="KM" value="${carDTO.car_distance}"> 
+                    <th scope="row">주행거리
+                    <td><input type="text" name="car_distance"  placeholder="주행거리(KM)" style="width: 300px;" value="${carDTO.car_distance}"> 
                 </tr>
                 <tr>
-                    <th bgcolor="gray">차량종류
-                    <td><input type="radio" name="car_code" id="car_code1" style="vertical-align:middle; margin: -1px 5px 0 1px;" value="1"><label for="car_code1">슬로프 </label> &nbsp; &nbsp;
-                        <input type="radio" name="car_code" id="car_code2" style="vertical-align:middle; margin: -1px 5px 0 1px;" value="2"><label for="car_code2">리프트 </label>
+                    <th scope="row">차량종류
+                    <td><label class="radio-container" for="car_code1"> 
+                    		<input type="radio" name="car_code" checked="checked" id="car_code1" style="vertical-align:middle; value="1"> 슬로프 <span class="checkmark"></span>
+                    	</label> <br><br>
+                    	<label class="radio-container" for="car_code2"> 
+                        	<input type="radio" name="car_code" id="car_code2" style="vertical-align:middle;  value="2">리프트 <span class="checkmark"></span>
+                        </label> 
                 </tr>
                 <tr>
-                    <th bgcolor="gray">운전자
+                    <th scope="row">운전자
                     <td>
-                        <select name="car_driver" class="car_driver">
+                        <select name="car_driver" class="car_driver" style="width:150px;">
                             <option value="0">운전자미지정
                             
                         </select>
@@ -149,12 +176,15 @@
 	
 			<input type="hidden" name="car_info_no" value="${carDTO.car_info_no}">
 			
-            <input type="button" value="수정" onclick="goCarUpdateProc();"> &nbsp; &nbsp;
-            <input type="button" value="삭제" onclick="goCarDeleteProc();"> &nbsp; &nbsp;
-             <input type="button" value="취소" onclick="goUpDelForm();"> 
+            <a href="javascript:goCarUpdateProc()" class="btn middle white radius-5">수정</a>
+            <a href="javascript:goCarDeleteProc();" class="btn middle white radius-5">삭제</a>
+            <a href="javascript:goUpDelForm();" class="btn middle white radius-5">취소</a> 
         </form>	     
        
     </center></body>
+        
+         <form name="adminCarUpDelForm" method="post" action="adminCarUpDelForm.do">
+         </form>
         
         <!-- ==================================업데이트==================================
         <form action="adminCarUpdate.do">

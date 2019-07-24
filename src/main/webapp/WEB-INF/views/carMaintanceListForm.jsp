@@ -96,25 +96,65 @@ $(document).ready(function() {
 <head>
 
 </head>
-    <body>
-    <center><h1>차량 정비 수정/삭제 리스트 UI</h1><br><br>
-    
-    <form class="carMaintanceListSearchForm" name="carMaintanceListSearchForm" method="post" action="/support/carMaintanceListForm.do">
-	<table class="tbcss1" width = "800" border="1" bordercolor="#DDDDDD" cellpadding="5" align="center">
-		<tr align="center">
-			<th bgcolor="${headerColor}" colspan="6">차량 정보 검색</th>
-		<tr align="center">
-			<th bgcolor="${headerColor}" width=60>키워드
-			<td width=250><input type="text" name="keyword"> 
-			<th bgcolor="${headerColor}" width=60>차량종류
-			<td width="150"><select name="car_code">
-					<option value="0"></option>
-					<option value="1">슬로프</option>
-					<option value="2">리프트</option>
-				</select>
-			<tr align="center">
-			<th bgcolor="${headerColor}">정비일
-			<td width="250"><select name="maintance_year">
+<body>
+	<div id="wrap">
+		<!--head-->
+
+
+		<!--head end-->
+
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+			
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit">차량정비리스트</h2>
+					</div>
+					<form class="carMaintanceListSearchForm" name="carMaintanceListSearchForm" method="post" action="/support/carMaintanceListForm.do">
+					<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							<col style="width: 10%;" />
+							<col style="width: 23%;" />
+							
+						</colgroup>
+						
+		
+						<tbody>
+							<tr>
+								<th scope="row">키워드</th>
+								<td><input type="text" name="keyword"></td>
+								<th scope="row">차량종류</th>
+								<td><select name="car_code">
+										<option value="0"></option>
+										<option value="1">슬로프</option>
+										<option value="2">리프트</option>
+									</select>
+								</td>
+								<th scope="row">차량선택</th>
+								<td><select name="carList"  onchange="searchCar()">
+										<option value="">차량선택</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">정비일</th>
+								<td><select name="maintance_year">
 											<option value=""></option>
 											<option value="2000">2000</option>
 											<option value="2001">2001</option>
@@ -153,9 +193,10 @@ $(document).ready(function() {
 											<option value="10">10</option>
 											<option value="11">11</option>
 											<option value="12">12</option>
-										</select>
-			<th bgcolor="${headerColor}">정비종류
-			<td width="250"><select name="maintance_code">
+										</select></td>
+								<th scope="row">정비종류</th>
+								<td colspan="4">
+									<select name="maintance_code">
 											<option value=""></option>
 											<option value="1">엔진오일교체</option>
 											<option value="2">타이어교체</option>
@@ -165,71 +206,67 @@ $(document).ready(function() {
 											<option value="6">범퍼교체</option>
 											<option value="7">기타</option>
 											
-										</select>
-		</table>
-		<input type="hidden" name="selectPageNo">
-		<input type="hidden" name="car_number">
-		<!-- <input type="hidden" name="ascDesc">
-		<input type="hidden" name="selectOption"> -->
-				<table>
-					<tr height=4>
-						<td>
-				</table>
-		<input type="button" value="검색" onClick="goSearch();"> 
-		<input type="button" value="전부검색" onClick="goSearchAll();"> 
-		<input type="reset" value="초기화">
-		
-	</form>
-    <!-- ----------------------[리스트 검색/요청]----------------------------- -->
-    <!-- 
-    <form name="carListForm" method="post" action="/support/carListForm.do">
-    	검색 :  <input type="text" name="carsearch" size="20">	
-    </form>
-     -->
-    <!-- ----------------------[리스트 출력 화면]----------------------------- -->
-		<table border=0>
-			
-			<tr>
-			
-			<td align=right> 검색 총 개수 : ${requestScope.carMaintanceListAllCnt} 개
-			<tr>
-			<td align=right><select name="carList"  onchange="searchCar()">
-			<option value="">차량선택</option>
-			</select>
-			<tr><th align=center><span class="pagingNumber"></span>
-			<tr><td>
-			
-				<table class="tbcss2 carMaintanceList" border="0" cellspacing="0" cellpadding="5" rules="rows" frame="hsides" width=700px>	
-				<tr><th>번호<th>차량번호<th>차량정비날짜<th>수정/삭제
-
-				<c:forEach items="${requestScope.carMaintanceList}" var="car" varStatus="loopTagStatus">
-					<tr style="cursor:pointer" onClick="gocarContentForm( ${car.car_maintance_info_no} )" >
-						<td>${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}   <!-- 1증가일련번호-->						
-						<td>${car.car_number}
-						<td>${car.car_maintance_date}
-						<td><input type="button" value="수정/삭제" onClick="goCarMaintanceUpDelDetailForm( ${car.car_maintance_info_no} )">								
-				</c:forEach>
-				
-			</table>
-		</table>
-	
-		<br>
-		${requestScope.carListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-		
-		
-		
-		
-	<!-- 	
-		<input type="hidden" name="keyword" value="${keyword}">
-	-->
-		<form name="carMaintanceContent" method="post" action="/support/carMaintanceContent.do">
+									</select>
+								</td>
+							</tr>
+							
+							
+						</tbody>
+						</table>
+							<input type="hidden" name="selectPageNo">
+							<input type="hidden" name="car_number">
+					</form>
+					${requestScope.discontentListAllCnt==0?'검색된 글이 없습니다.':''}
+					
+					<div class="btn_box">
+							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+					</div>
+				</div>
+				<div class="cont_box">
+				<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 20%;" />
+							<col style="width: 25%;" />
+							<col style="width: 25%;" />
+							<col style="width: 30%;" />
+						</colgroup>
+						<thead>
+							<th scope="col">번호</th>
+							<th scope="col">차량번호</th>
+							<th scope="col">차량정비날짜</th>
+							<th scope="col">수정/삭제</th>
+						</thead>
+						<tbody>
+						<c:forEach items="${requestScope.carMaintanceList}" var="car" varStatus="loopTagStatus">
+						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
+						<!--board 는 지역변수-->
+						<tr>
+							<td class="txt_center">${carMaintanceListAllCnt-(carSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${car.car_number}</td>
+							<td class="txt_center">${car.car_maintance_date}</td>
+							<td class="txt_center"><a href="javascript:goCarMaintanceUpDelDetailForm( ${car.car_maintance_info_no} )";" class="btn middle white radius-5">수정</a>
+						</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+					${requestScope.discontentListAllCnt==0?'검색된 글이 없습니다.':''}
+					<div class="paging">
+					<center>
+					<table>
+						<tr>
+						<td align="center"><span  class="pagingNumber"></span>
+					</table>
+					</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--container end-->'
+	<form name="carMaintanceContent" method="post" action="/support/carMaintanceContent.do">
 			<input type="hidden" name="car_maintance_info_no">
 		</form>
-		
-		<form name="searchCarForm" method="post" action="/support/carMaintanceListForm.do">
-			
-		</form>
-	 
-	</center>
-    </body>
+	
+</body>
 </html>

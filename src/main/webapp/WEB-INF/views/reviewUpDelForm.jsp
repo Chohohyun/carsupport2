@@ -6,7 +6,7 @@
 
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp"%>
-<%@include file="userMainPage.jsp"%>
+
 <html>
 <script>
 	$(document).ready(function() {
@@ -40,11 +40,13 @@
            if($("[name=upDel]").val()== "up") {
               if(upDelCnt == 1) {
 	              alert("수정성공!");
-	              location.replace("/support/userUtilizationDetails.do");
+	              document.userUtilizationDetails.submit();
+	              //location.replace("/support/userUtilizationDetails.do");
 	              } 
               else if (upDelCnt == -1) {
                  alert("삭제되어 수정이 불가능합니다")
-                 location.replace("/support/userUtilizationDetails.do");
+                 document.userUtilizationDetails.submit();
+                 //location.replace("/support/userUtilizationDetails.do");
               } else {
                  alert("서버 DB 연동 실패!")
               }
@@ -52,10 +54,12 @@
            else if($("[name=upDel]").val()=="del") {
               if(upDelCnt == 1) {
                  alert("삭제 성공!");
-                 location.replace("/support/userUtilizationDetails.do");
+                 document.userUtilizationDetails.submit();
+                 //location.replace("/support/userUtilizationDetails.do");
               } else if(upDelCnt == -1) {
                  alert("이미 삭제된 글입니다");
-                 location.replace("/support/userUtilizationDetails.do");
+                 document.userUtilizationDetails.submit();
+                 //location.replace("/support/userUtilizationDetails.do");
            		}
               	else {
                  alert("서버연동 실패");
@@ -118,66 +122,97 @@ label.star:before {
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body>
-	<center>
-		<br>
-		<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
-		<form method="post" name="reviewUpDelForm"
-			action="/support/reviewUpDelProc">
+<div id="wrap">
+	<!--head-->
 
+		<%@include file="title.jsp"%>
 
-			<table class="tbcss1" border="1" bordercolor=gray cellspacing="0"
-				cellpadding="5" align="center">
-				<tr>
-					<th bgcolor="${headerColor}">이용날짜
-					<td>${reviewDTO.reservation_date}</td>
-				</tr>
-				<tr>
-					<th bgcolor="${headerColor}">목적지
-					<td>${reviewDTO.end_road_addr}</td>
-				</tr>
-				<tr>
-					<th bgcolor="${headerColor}">운전자
-					<td>${reviewDTO.driver_name}</td>
-				</tr>
-				<tr>
-					<th bgcolor="${headerColor}">별점
-					<td><input class="star star-5" id="star-5-2" type="radio"
-						name="review_score" value="5" /> <label class="star star-5"
-						for="star-5-2"></label> <input class="star star-4" id="star-4-2"
-						type="radio" name="review_score" value="4" /> <label
-						class="star star-4" for="star-4-2"></label> <input
-						class="star star-3" id="star-3-2" type="radio" name="review_score"
-						value="3" /> <label class="star star-3" for="star-3-2"></label> <input
-						class="star star-2" id="star-2-2" type="radio" name="review_score"
-						value="2" /> <label class="star star-2" for="star-2-2"></label> <input
-						class="star star-1" id="star-1-2" type="radio" name="review_score"
-						checked="checked" value="1" /> <label class="star star-1"
-						for="star-1-2"></label></td>
-				</tr>
-				<tr>
-					<th bgcolor="${headerColor}">평가내용
-					<td><textarea name="review_content" rows="13" cols="40"></textarea></td>
-				</tr>
-			</table>
-
-			<table border="0">
-				<tr height=4>
-					<td>
-			</table>
-			<!-- 여백을 위한 -->
-
-			<input type="hidden" name="upDel" value="up"> 
-			<input type="hidden" name="reserve_apply_car_number" > <input
-				type="button" value="수정" onClick="reviewUpDelProc('up')"> <input
-				type="button" value="삭제" onClick="reviewUpDelProc('del')"> <input
-				type="button" value="취소"
-				onClick="document.userUtilizationDetails.submit()">
-		</form>
-
-		<form name="userUtilizationDetails" method="post"
-			action="/support/userUtilizationDetails.do"></form>
-
-		<input type="button" value="정보보기" onclick="print_html_info();">
-	</center>
+	<!--head end-->
+	<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit bg_service">운전자평점</h2>
+					</div>
+			
+					<br>
+					<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
+					<form method="post" name="reviewUpDelForm"
+						action="/support/reviewUpDelProc">
+			
+			
+						<table class="tbl tbl_form">
+							<colgroup>
+								<col style="width: 20%;" />
+								<col style="width: 60%;" />
+			
+							</colgroup>
+							<tr>
+								<th scope="row">이용날짜
+								<td>${reviewDTO.reservation_date}</td>
+							</tr>
+							<tr>
+								<th scope="row">목적지
+								<td>${reviewDTO.end_road_addr}</td>
+							</tr>
+							<tr>
+								<th scope="row">운전자
+								<td>${reviewDTO.driver_name}</td>
+							</tr>
+							<tr>
+								<th scope="row">별점
+								<td><input class="star star-5 pull-right " id="star-5-2" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5-2"></label>
+									<input class="star star-4" id="star-4-2" type="radio" name="review_score" value="4"/><label class="star star-4" for="star-4-2"></label>
+									<input class="star star-3" id="star-3-2" type="radio" name="review_score" value="3"/> <label class="star star-3" for="star-3-2"></label>
+									<input class="star star-2" id="star-2-2" type="radio" name="review_score" value="2"/> <label class="star star-2" for="star-2-2"></label>
+									<input class="star star-1" id="star-1-2" type="radio" name="review_score" checked="checked"  value="1"/> <label class="star star-1" for="star-1-2"></label>	
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">평가내용
+								<td><textarea name="review_content" rows="15" cols="100"></textarea></td>
+							</tr>
+						</table>
+			
+						<table border="0">
+							<tr height=4>
+								<td>
+						</table>
+						<!-- 여백을 위한 -->
+				<center>
+						<input type="hidden" name="upDel" value="up"> 
+						<input type="hidden" name="reserve_apply_car_number" > 
+						<a href="javascript:reviewUpDelProc('up');" class="btn middle white radius-5">수정</a>
+						<a href="javascript:reviewUpDelProc('del');" class="btn middle white radius-5">삭제</a>
+						<a href="javascript:document.userUtilizationDetails.submit();" class="btn middle white radius-5">취소</a>
+						
+						<!-- 
+						<input type="button" value="수정" onClick="reviewUpDelProc('up')">  
+						<input type="button" value="삭제" onClick="reviewUpDelProc('del')"> 
+						<input type="button" value="취소" onClick="document.userUtilizationDetails.submit()"> 
+						 -->
+					</form>
+			
+					<form name="userUtilizationDetails" method="post" action="/support/userUtilizationDetails.do"></form>
+					<!-- 
+					<input type="button" value="정보보기" onclick="print_html_info();">
+					 -->
+				</center>
+				</div>
+		</div>
+	</div>
+	<!--foot-->
+		<%@include file="foot.jsp"%>
+	<!--foot end-->
+</div>
 </body>
 </html>
