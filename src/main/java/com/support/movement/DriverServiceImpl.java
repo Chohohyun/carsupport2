@@ -37,26 +37,26 @@ public class DriverServiceImpl implements DriverService{
 	}
 
 	@Override
-	public int getDriveListAllCnt(String id) {
-		int driveListAllCnt = this.driverDAO.getDriveListAllCnt(id);
+	public int getDriveListAllCnt(DriveSearchDTO driveSearchDTO) {
+		int driveListAllCnt = this.driverDAO.getDriveListAllCnt(driveSearchDTO);
 		return driveListAllCnt;
 	}
 
 	@Override
-	public List<Map<String, String>> getDriveList(String id) {
-		List<Map<String, String>> driveList = this.driverDAO.getDriveList(id);
+	public List<Map<String, String>> getDriveList(DriveSearchDTO driveSearchDTO) {
+		List<Map<String, String>> driveList = this.driverDAO.getDriveList(driveSearchDTO);
 		return driveList;
 	}
 	
 	@Override
-	public int getDriverUserReresveListAllCnt(String id) {
-		int reserveListAllCnt = this.driverDAO.getDriverUserReresveListAllCnt(id);
+	public int getDriverUserReresveListAllCnt(ReserveSearchDTO reserveSearchDTO) {
+		int reserveListAllCnt = this.driverDAO.getDriverUserReresveListAllCnt(reserveSearchDTO);
 		return reserveListAllCnt;
 	}
 	
 	@Override
-	public List<Map<String, String>> getDriverUserReresveList(String id) {
-		List<Map<String, String>> reserveList = this.driverDAO.getDriverUserReresveList(id);
+	public List<Map<String, String>> getDriverUserReresveList(ReserveSearchDTO reserveSearchDTO) {
+		List<Map<String, String>> reserveList = this.driverDAO.getDriverUserReresveList(reserveSearchDTO);
 		return reserveList;
 	}
 

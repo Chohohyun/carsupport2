@@ -10,12 +10,12 @@ public interface DriverDAO {
 
 	CarDTO getDriverCarInfo(String id);
 
-	int getDriveListAllCnt(String id);
+	int getDriveListAllCnt(DriveSearchDTO driveSearchDTO);
 
-	List<Map<String, String>> getDriveList(String id);
+	List<Map<String, String>> getDriveList(DriveSearchDTO driveSearchDTO);
 
-	int getDriverUserReresveListAllCnt(String id);
+	int getDriverUserReresveListAllCnt(ReserveSearchDTO reserveSearchDTO);
 
-	List<Map<String, String>> getDriverUserReresveList(String id);
+	List<Map<String, String>> getDriverUserReresveList(ReserveSearchDTO reserveSearchDTO);
 
 }

@@ -78,12 +78,23 @@ public class UserController {
 			// HttpSession 객체가 들어올 매개변수 선언
 			// 매개변수에 자료형이 HttpSession이면 웹서버가
 			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session) {
+			HttpSession session,QnaSearchDTO qnaSearchDTO) {
 
 
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
+
+		qnaSearchDTO.setSelectPageNo(1);
+		qnaSearchDTO.setQuestion_group_no(1);
+
+
+		List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
+		//------------------------------------------------------------------
+		// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
+		// ModelAndView 객체에 addObject 메소드로 저장된 것은
+		// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
+		mav.addObject("qnaList", qnaList);
 		mav.setViewName("userMainPage.jsp");
 		return mav;
 	}
@@ -636,7 +647,7 @@ public class UserController {
 			}
 
 			int qnaListAllCnt = this.userService.getQnaListAllCnt(qnaSearchDTO);
-			
+
 			List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
 			//------------------------------------------------------------------
 			// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
@@ -645,7 +656,7 @@ public class UserController {
 			mav.addObject("qnaSearchDTO",qnaSearchDTO);
 			mav.addObject("qnaList", qnaList);
 			mav.addObject("qnaListAllCnt", qnaListAllCnt);
-			
+
 
 		}catch(Exception e) {
 			System.out.println("AdminController.qnaList(~) 메소드 호출 시 에러발생!");

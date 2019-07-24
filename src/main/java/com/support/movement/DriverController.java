@@ -74,12 +74,20 @@ public class DriverController {
 	//**********************************
 	// Driver가 주행기록 누르면 신청 form양식으로 이동
 	//**********************************
-	@RequestMapping(value="/driverHistory.do")
+	@RequestMapping(
+			value="/driveHistory.do"
+			,method = RequestMethod.POST,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody 
 	public ModelAndView driverHistory(
-
-			HttpSession session) {
-
+			HttpSession session, HttpServletResponse response,
+			DriveSearchDTO driveSearchDTO
+			){
 		String id = (String) session.getAttribute("id");
+		if(driveSearchDTO.getSelectPageNo()==0){
+			driveSearchDTO.setSelectPageNo(1);
+			driveSearchDTO.setId(id);
+		}
 		List<Map<String,String>> driveList = new ArrayList<Map<String,String>>();
 
 		ModelAndView mav = new ModelAndView();
@@ -88,12 +96,13 @@ public class DriverController {
 
 
 		try {
-			driveListAllCnt = this.driverService.getDriveListAllCnt(id);
+			driveListAllCnt = this.driverService.getDriveListAllCnt(driveSearchDTO);
 			System.out.println(driveListAllCnt);
 			if(driveListAllCnt>0) {
-				driveList= this.driverService.getDriveList(id);
+				driveList= this.driverService.getDriveList(driveSearchDTO);
 			}
-
+		
+			mav.addObject("driveSearchDTO",driveSearchDTO);
 			mav.addObject("driveListAllCnt",driveListAllCnt);
 			mav.addObject("driveList",driveList);
 		} catch (Exception e) {
@@ -111,7 +120,7 @@ public class DriverController {
 	@RequestMapping(value="/reviewRegForm.do")
 	public ModelAndView reviewRegForm(
 			HttpSession session, String reserve_apply_car_number ) {
-		
+
 		ModelAndView mav = new ModelAndView();
 		System.out.println("reserve_apply_car_number:" + reserve_apply_car_number);
 		ReviewDTO reviewDTO = this.driverService.getReviewDTO(reserve_apply_car_number);
@@ -119,28 +128,39 @@ public class DriverController {
 		System.out.println("userReservationDT : " + reviewDTO.getDriver_name());
 		mav.setViewName("reviewForm.jsp");
 		return mav;
-		
+
 	}
-	*/
-	
-	
+	 */
+
+
 	//**********************************
 	// 운전자가 예약현황을 볼 수 있는 페이지 
 	//**********************************
-	@RequestMapping(value="/driverReservationSituation.do")
+	@RequestMapping(
+			value="/driverReservationSituation.do"
+			,method = RequestMethod.POST,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody 
 	public ModelAndView driverReservationSituation(
-
-			HttpSession session) {
+			HttpSession session, HttpServletResponse response,
+			ReserveSearchDTO reserveSearchDTO
+			){
+		if(reserveSearchDTO.getSelectPageNo()==0) {
+			reserveSearchDTO.setSelectPageNo(1);
+		}
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("id");
+
+		reserveSearchDTO.setId(id);
 		int reserveListAllCnt = 0;
-		
+
 		List<Map<String,String>> reserveList = new ArrayList<Map<String,String>>();
-		reserveListAllCnt = this.driverService.getDriverUserReresveListAllCnt(id);	
-		
+		reserveListAllCnt = this.driverService.getDriverUserReresveListAllCnt(reserveSearchDTO);	
+
 		if(reserveListAllCnt>0) {
-			reserveList = this.driverService.getDriverUserReresveList(id);
+			reserveList = this.driverService.getDriverUserReresveList(reserveSearchDTO);
 		}
+		mav.addObject("reserveSearchDTO",reserveSearchDTO);
 		mav.addObject("reserveListAllCnt", reserveListAllCnt);
 		mav.addObject("reserveList", reserveList);
 		mav.setViewName("driverUserReserveForm.jsp");

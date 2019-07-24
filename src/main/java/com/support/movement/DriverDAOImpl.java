@@ -30,25 +30,25 @@ public class DriverDAOImpl implements DriverDAO{
 		return carDTO;
 	}
 	@Override
-	public int getDriveListAllCnt(String id) {
-		int driveListAllCnt = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriveListAllCnt",id);
+	public int getDriveListAllCnt(DriveSearchDTO driveSearchDTO) {
+		int driveListAllCnt = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriveListAllCnt",driveSearchDTO);
 		return driveListAllCnt;
 	}
 	@Override
-	public List<Map<String, String>> getDriveList(String id) {
-		 List<Map<String, String>> driveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriveList",id);
+	public List<Map<String, String>> getDriveList(DriveSearchDTO driveSearchDTO) {
+		 List<Map<String, String>> driveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriveList",driveSearchDTO);
 			return driveList;
 	}
 	
 	@Override
-	public int getDriverUserReresveListAllCnt(String id) {
-		int reserveListAllCnt = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriverUserReresveListAllCnt",id);
+	public int getDriverUserReresveListAllCnt(ReserveSearchDTO reserveSearchDTO) {
+		int reserveListAllCnt = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriverUserReresveListAllCnt",reserveSearchDTO);
 		return reserveListAllCnt;
 	}
 	
 	@Override
-	public List<Map<String, String>> getDriverUserReresveList(String id) {
-		List<Map<String, String>> reserveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriverUserReresveList",id);
+	public List<Map<String, String>> getDriverUserReresveList(ReserveSearchDTO reserveSearchDTO) {
+		List<Map<String, String>> reserveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriverUserReresveList",reserveSearchDTO);
 		return reserveList;
 	}
 }

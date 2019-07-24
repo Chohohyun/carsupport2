@@ -177,9 +177,7 @@
 									<dl>
 										<dt></dt>
 										<dd>
-											<input id="ctl00_ContentPlaceHolder1_ChkSave" type="checkbox"
-												name="ctl00$ContentPlaceHolder1$ChkSave" /> <label
-												for="chk_remmeber">아이디 기억하기</label>
+											<input type="checkbox" name="is_login" value="y">아이디 기억하기
 										</dd>
 									</dl>
 

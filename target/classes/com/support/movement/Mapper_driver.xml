@@ -28,32 +28,42 @@
 
 	</select>
 
-	<select id="getDriveList" parameterType="String" resultType="hashmap">
+	<select id="getDriveList" parameterType="com.support.movement.DriveSearchDTO" resultType="hashmap">
+		<if test="selectPageNo>0">
+		select 
+			*
+		from (select zzz.*, rownum||'' RNUM from (
+		</if>
 		select
-			RESERVE_APPLY_CAR_NUMBER as "RESERVE_APPLY_CAR_NUMBER"
-			,to_char( RESERVATION_DATE, 'YYYYMMDD' ) as "RESERVATION_DATE"
-			,START_POINT_LONGITUDE as "START_POINT_LONGITUDE"
-			,START_POINT_LATITUDE as "START_POINT_LATITUDE"
-			,END_POINT_LONGITUDE as "END_POINT_LONGITUDE"
-			,END_POINT_LATITUDE as "END_POINT_LATITUDE"
-			,to_char( DRIVE_START_TIME, 'HH24:MI:SS' ) as "DRIVE_START_TIME"
-			,to_char( DRIVE_FINISH_TIME, 'HH24:MI:SS' ) as "DRIVE_FINISH_TIME"
-			,DRIVE_DISTANCE as "DRIVE_DISTANCE"			
-			,CAR_NUMBER as "CAR_NUMBER"
-			,RESERVE_COUNT as "RESERVE_COUNT"
-			,USER_NO as "USER_NO"
-			,DRIVER_NO as "DRIVER_NO"
-			,START_ROAD_ADDR as "START_ROAD_ADDR"
-			,START_DETAIL_ADDR as "START_DETAIL_ADDR"
-			,END_ROAD_ADDR as "END_ROAD_ADDR"
-			,END_DETAIL_ADDR as "END_DETAIL_ADDR"
+			RESERVE_APPLY_CAR_NUMBER as "reserve_apply_car_number"
+			,to_char( RESERVATION_DATE, 'YYYYMMDD' ) as "reservation_date"
+			,START_POINT_LONGITUDE as "start_point_longitude"
+			,START_POINT_LATITUDE as "start_point_latitude"
+			,END_POINT_LONGITUDE as "end_point_longitude"
+			,END_POINT_LATITUDE as "end_point_latitude"
+			,CAR_NUMBER as "car_number"
+			,RESERVE_COUNT||'' as "reserve_count"
+			,USER_NO as "user_no"
+			,DRIVER_NO as "driver_no"
+			,START_ROAD_ADDR as "start_road_addr"
+			,START_DETAIL_ADDR as "start_detail_addr"
+			,END_ROAD_ADDR as "end_road_addr"
+			,END_DETAIL_ADDR as "end_detail_addr"
+			,to_char(DRIVE_FINISH_TIME, 'hh24:mi:ss') AS "drive_finish_time"
+			,to_char(DRIVE_START_TIME, 'hh24:mi:ss') AS "drive_start_time"
+			,DRIVE_DISTANCE AS "drive_distance"
 	
 		from RESERVE_APPLY_CAR
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
+		 <if test="selectPageNo>0">	
+		<![CDATA[
+		 ) zzz)  where RNUM>= ${selectPageNo} * 10 - 10+1 and RNUM <= ${selectPageNo} * 10
+		 ]]>
+		 </if>
 	</select>
 	
 	
-	<select id="getDriveListAllCnt" parameterType="String" resultType="int">		
+	<select id="getDriveListAllCnt" parameterType="com.support.movement.DriveSearchDTO" resultType="int">		
 		select 
 			count(*)	
 		from RESERVE_APPLY_CAR
@@ -71,30 +81,40 @@
 		car_driver=(select driver_no from driver where driver_id=#{id})
 	</select>
 	
-	<select id="getDriverUserReresveListAllCnt" parameterType="String" resultType="int">
+	<select id="getDriverUserReresveListAllCnt" parameterType="com.support.movement.ReserveSearchDTO" resultType="int">
 		select 
 			count(*)	
 		from RESERVE_APPLY_CAR
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2'
 	</select>
 	
-	<select id="getDriverUserReresveList" parameterType="String" resultType="hashmap">
+	<select id="getDriverUserReresveList" parameterType="com.support.movement.ReserveSearchDTO" resultType="hashmap">
+		<if test="selectPageNo>0">
+		select 
+			*
+		from (select zzz.*, rownum||'' RNUM from (
+		</if>
 		select
-			RESERVE_APPLY_CAR_NUMBER as "RESERVE_APPLY_CAR_NUMBER"
-			,to_char( RESERVATION_DATE, 'YYYYMMDD' ) as "RESERVATION_DATE"
-			,RESERVE_COUNT as "RESERVE_COUNT"
-			,USER_NO as "USER_NO"
+			RESERVE_APPLY_CAR_NUMBER as "reserve_apply_car_number"
+			,to_char( RESERVATION_DATE, 'YYYYMMDD' ) as "reservation_date"
+			,RESERVE_COUNT as "reserve_count"
+			,USER_NO as "user_no"
 			            ,(select user_name from DISABILITY_USER 
                         where user_no=(select user_no from RESERVE_APPLY_CAR where driver_no=(select driver_no from driver where driver_id=#{id}) 
                         and reserve_apply_car_number=(select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2')    
                     )
-              ) as "USER_NAME"
-			,START_ROAD_ADDR as "START_ROAD_ADDR"
-			,START_DETAIL_ADDR as "START_DETAIL_ADDR"
-			,END_ROAD_ADDR as "END_ROAD_ADDR"
-			,END_DETAIL_ADDR as "END_DETAIL_ADDR"
-			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "RESERVATION_HOUR"
+              ) as "user_name"
+			,START_ROAD_ADDR as "start_road_addr"
+			,START_DETAIL_ADDR as "start_detail_addr"
+			,END_ROAD_ADDR as "end_road_addr"
+			,END_DETAIL_ADDR as "end_detail_addr"
+			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "reservation_hour"
 		from RESERVE_APPLY_CAR 
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2'
+		 <if test="selectPageNo>0">	
+		<![CDATA[
+		 ) zzz)  where RNUM>= ${selectPageNo} * 10 - 10+1 and RNUM <= ${selectPageNo} * 10
+		 ]]>
+		 </if>
 	</select>
 </mapper>
