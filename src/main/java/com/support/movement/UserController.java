@@ -50,24 +50,7 @@ public class UserController {
 		mav.setViewName("userUseProcedure.jsp");
 		return mav;
 	}
-	//**********************************
-	// 회원가입 누르면 신청타입 form양식으로 이동
-	//**********************************
-	@RequestMapping(value="/regTypeForm.do")
-	public ModelAndView regTypeForm(
-			// HttpSession 객체가 들어올 매개변수 선언
-			// 매개변수에 자료형이 HttpSession이면 웹서버가
-			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session) {
-
-
-		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
-		//session.invalidate();
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("regTypeForm.jsp");
-		return mav;
-	}
-
+	
 
 
 	//**********************************
@@ -90,6 +73,7 @@ public class UserController {
 
 
 		List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
+		System.out.println(qnaList.size());
 		//------------------------------------------------------------------
 		// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
 		// ModelAndView 객체에 addObject 메소드로 저장된 것은
@@ -647,8 +631,9 @@ public class UserController {
 			}
 
 			int qnaListAllCnt = this.userService.getQnaListAllCnt(qnaSearchDTO);
-
+			
 			List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
+			
 			//------------------------------------------------------------------
 			// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
 			// ModelAndView 객체에 addObject 메소드로 저장된 것은

@@ -257,7 +257,7 @@
 	</select>
 	
 	
-	<select id="getQnaList"  parameterType="com.support.movement.QnaDTO" resultType="java.util.HashMap">
+	<select id="getQnaList"  parameterType="com.support.movement.QnaSearchDTO" resultType="java.util.HashMap">
 		<if test="selectPageNo>0">
 		select 
 			*
@@ -289,7 +289,7 @@
 	</select>
 	
 	
-	<select id="getQnaListAllCnt"  parameterType="com.support.movement.QnaDTO" resultType="int">
+	<select id="getQnaListAllCnt"  parameterType="com.support.movement.QnaSearchDTO" resultType="int">
 		select
 			count(*)
 		from question q

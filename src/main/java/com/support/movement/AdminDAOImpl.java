@@ -364,5 +364,17 @@ public class AdminDAOImpl implements AdminDAO{
 		return checkCarNumber;
 	}
 
+	@Override
+	public int getRefuseDriverCnt(int driver_no) {
+		int refuseDriverCnt = this.sqlSession.delete("com.support.movement.AdminDAO.getRefuseDriverCnt",driver_no);
+		return refuseDriverCnt;
+	}
+
+	@Override
+	public int getCheckUpdateCarNumber(CarDTO carDTO) {
+		int checkCarNumber = this.sqlSession.selectOne("com.support.movement.AdminDAO.getCheckUpdateCarNumber",carDTO);
+		return checkCarNumber;
+	}
+
 
 }

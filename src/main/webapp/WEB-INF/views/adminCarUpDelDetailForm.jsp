@@ -52,6 +52,27 @@
 
         
         function goCarUpdateProc(){
+        	var car_number = $("[name=car_number]").val();
+        	if(car_number_check(car_number)==false){
+        		alert("차량 번호 형식이 맞지 않습니다.");
+        		$("[name=car_number]").focus();
+        		return;
+        	}
+        	var car_year = $("[name=car_year]").val();
+    		if(is_empty2(car_year)==false){
+    			alert("차량 연식을 선택해주세요.");
+    			$("[name=car_year]").focus();
+    			return;
+    		}
+    		var car_distance =  $("[name=car_distance]").val();
+    		if(car_distance_check(car_distance)==false){
+    			alert("잘못된 주행거리입니다.");
+    			$("[name=car_distance]").focus();
+    			return;
+    		}
+        	if (confirm("수정하시겠습니까?") == false) {
+      			return;
+      		}
     		$.ajax({
     			url:"/support/carUpdateProc.do",
     			type:"post",
@@ -59,11 +80,15 @@
     			datatype:"html",
     			
     			success:function(data){
-    				if(data>=0){
+    				if(data>0){
     					alert("차량수정 성공!");
     					document.adminCarUpDelForm.submit();
     					//location.replace("/support/adminCarUpDelForm.do");
     				}
+    				else if(data==-2){
+    					alert("차량번호 중복");
+    					return;
+        			}
     				else{
     					alert("차량수정 실패!");
     				}
@@ -76,6 +101,9 @@
         }
         
         function goCarDeleteProc(){
+        	if (confirm("삭제하시겠습니까?") == false) {
+      			return;
+      		}
     		$.ajax({
     			url:"/support/carDeleteProc.do",
     			type:"post",
@@ -157,10 +185,10 @@
                 <tr>
                     <th scope="row">차량종류
                     <td><label class="radio-container" for="car_code1"> 
-                    		<input type="radio" name="car_code" checked="checked" id="car_code1" style="vertical-align:middle; value="1"> 슬로프 <span class="checkmark"></span>
+                    		<input type="radio" name="car_code" checked="checked" id="car_code1" style="vertical-align:middle;" value="1"> 슬로프 <span class="checkmark"></span>
                     	</label> <br><br>
                     	<label class="radio-container" for="car_code2"> 
-                        	<input type="radio" name="car_code" id="car_code2" style="vertical-align:middle;  value="2">리프트 <span class="checkmark"></span>
+                        	<input type="radio" name="car_code" id="car_code2" style="vertical-align:middle;"  value="2">리프트 <span class="checkmark"></span>
                         </label> 
                 </tr>
                 <tr>

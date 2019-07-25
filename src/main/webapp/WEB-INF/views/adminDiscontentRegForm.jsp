@@ -55,7 +55,7 @@
 			, success : function( discontentRegCnt ) {
 				if( discontentRegCnt == 1 ) {
 					alert("게시판 답글 등록 성공!");
-					location.replace("/support/adminDiscontentListForm.do");
+					document.adminDiscontentListForm.submit();
 				}
 				// [게시판 새글 입력 행 적용 개수] 가 1개가 아니면 경고하기
 				else {
@@ -73,41 +73,79 @@
 	}
 </script>
 </head>
-<body><center><br>
-	<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
-	<form  method="post" name="adminDiscontentRegForm" action="/support/adminDiscontentRegFormRegProc.do">
-		
-		<b>[불만게시판 답글쓰기(관리자 전용)]</b><br><br>
+
+<body>
+	<div id="wrap">
+		<!--head-->
+		<!--head end-->
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+
+		<form  method="post" name="adminDiscontentRegForm" action="/support/adminDiscontentRegFormRegProc.do">
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">불만게시판</span>
+					</div>
+					<table class="tbl tbl_form">
+						<colgroup>
+							<col style="width: 15%;">
+							<col style="width: 35%;">
+							<col style="width: 15%;">
+							<col style="width: 35%;">
+						</colgroup>	
 	
-		<table class="tbcss1"	border="1"	bordercolor=gray	cellspacing="0"		cellpadding="5"	align="center">
-		
+						<tbody>
+							<tr>
+								<th scope="row">제목</th>
+								<td><input type="text" 	size="40" maxlength="50" name="discontent_subject"></td>
+							</tr>
+						
+							<tr>
+							<th scope="row">내용</th>
+							<td colspan="3"><textarea name="discontent_content"  rows="13"	cols="150"></textarea>
+							</td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<input type="hidden" name="discontent_no" value="${discontent_no}">
+					
+					</form>
+	
+					
+					<div class="btn_box">
+					
+							<a href="javascript:checkDiscontentRegForm();" class="btn middle white radius-5">저장</a>
+							<a href="javascript:document.adminDiscontentListForm.submit()();" class="btn middle white radius-5">목록</a>
+					</div>
+				</div>
+			</div>
 			
-			<tr>
-				<th>  제 목
-				<td><input type="text" 	size="40"		maxlength="50" name="discontent_subject">
-			</tr>
+			  
 			
-			<tr>
-				<th> 내 용
-				<td><textarea name="discontent_content" 	rows="13"	cols="40"></textarea>
-				<td>
-			</tr>
-		</table>
-		
-		<table	border="0"><tr height=4><td></table> <!-- 여백을 위한 -->
-		
-		<input type="hidden" name="upDel"value="up">
-		
-		<input type="hidden" name="discontent_no" value="${discontent_no}">
-		<input type="button" value="저장"	 onClick="checkDiscontentRegForm()">
-		<input type="reset"	 value="다시작성" >
-		<input type="button" value="목록보기"		onClick="document.adminDiscontentListForm.submit()">
-		
-	</form>
+			<form name="adminDiscontentListForm"	method="post"	action="/support/adminDiscontentListForm.do">
+			</form>
+		</div>
+		<!--container end-->
+
+		<!--foot-->
+		<!--foot end-->
+	</div>
+
 	
-	<form name="adminDiscontentListForm"	method="post"	action="/support/adminDiscontentListForm.do">
-	</form>
-	
+
 	
 </body>
 </html>

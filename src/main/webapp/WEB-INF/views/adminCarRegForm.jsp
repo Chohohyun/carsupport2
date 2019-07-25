@@ -139,10 +139,10 @@
                 <tr>
                     <th  scope="row">차량종류
                     <td><label class="radio-container" for="car_code1"> 
-                    		<input type="radio" name="car_code" checked="checked" id="car_code1" style="vertical-align:middle; value="1"> 슬로프 <span class="checkmark"></span>
+                    		<input type="radio" name="car_code" checked="checked" id="car_code1" style="vertical-align:middle;" value="1"> 슬로프 <span class="checkmark"></span>
                     	</label> <br><br>
                     	<label class="radio-container" for="car_code2"> 
-                        	<input type="radio" name="car_code" id="car_code2" style="vertical-align:middle;  value="2">리프트 <span class="checkmark"></span>
+                        	<input type="radio" name="car_code" id="car_code2" style="vertical-align:middle;"  value="2">리프트 <span class="checkmark"></span>
                         </label> 
                 </tr>
                 <tr>

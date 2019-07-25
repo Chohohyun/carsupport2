@@ -49,29 +49,14 @@
 
 
       <script type="text/javascript" language="javascript">
-    	function userMainPage(){
-    		location.replace("/support/userMainPage.do");
-    	}
-    	function loginForm(){
-    		location.replace("/support/loginForm.do");
-    	}
-    	function regTypeForm(){
-    		location.replace("/support/regTypeForm.do");
-    	}
-    	function userUseProcedure(){
-    		location.replace("/support/userUseProcedure.do");
-    	}
-    	function userReservationForm(){
-    		location.replace("/support/userReservationForm.do");
-    	}
-    	function userReservationSituation(){
-    		location.replace("/support/userReservationSituation.do");
-    	}
-    	function qnaListForm(){
-    		location.replace("/support/qnaListForm.do");
-    	} 
+    	
     	function goRegForm(){
+    		if(${regType==1}){
     		location.replace("/support/regForm.do");
+    		}
+    		else{
+    		location.replace("/support/regForm2.do");
+            }
     	} 
 
 

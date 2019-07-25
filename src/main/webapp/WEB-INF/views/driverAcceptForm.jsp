@@ -10,17 +10,7 @@
 <html>
 <script>
 $(document).ready(function() {
-inputData("selectPageNo","${carSearchDTO.selectPageNo}");
-//페이징 처리 관련 html 소스를 class= pagingNumber 가진 태그 안에 삽입하기
-$(".pagingNumber").html(
-	getPagingNumber(
-	"${acceptListAllCnt}", // 검색 결과 총 행 개수
-	"${driverSearchDTO.selectPageNo}", // 선택된 현재 페이지 번호
-	"5", // 페이지 당 출력행의 개수
-	"10", // 페이지 당 보여줄 페이징번호 개수
-	"goSearch();" // 페이지 번호 클릭 실행할 자스 코드
-	)
-);
+
 });
 	function acceptDriver(no){
 		alert(no);
@@ -54,110 +44,135 @@ $(".pagingNumber").html(
 			
 		});
 	}
-	function goSearch(){
+	function refuseDriver(no){
+		alert(no);
+		
+		var driver_no = no;
+		if(confirm("정말 거절 하시겠습니까?")==false){ 
+			return;
+		} 
 		alert(1);
+		document.acceptDriverForm.driver_no.value=driver_no;
+		alert($("[name=acceptDriverForm]").serialize());
 		
-		
-		document.carMaintanceListSearchForm.submit();
-		
+		$.ajax({
+			url:"/support/refuseDriver.do",
+			type:"post",	
+			data:$("[name=acceptDriverForm]").serialize(),
+			datatype:"html",
+			success:function(data){
+				if(data==1){
+					alert("거절 성공!");
+					location.replace("/support/driverAcceptForm.do");
+				}
+				
+				else{
+					alert("거절 실패!");
+				}
+			},
+			error : function(){
+				alert("서버 접속 실패!");
+			}
+			
+		});
 	}
 </script>
 <head>
-<!-- Icons font CSS-->
-<link
-	href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-	rel="stylesheet">
-
-<!-- Vendor CSS-->
-<link href="/support/resources/vendor2/select2/select2.min.css"
-	rel="stylesheet" media="all">
-<link href="/support/resources/vendor2/datepicker/daterangepicker.css"
-	rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="/support/resources/css/main.css" rel="stylesheet"
-	media="all">
-<link href="/support/resources/css2/main.css" rel="stylesheet"
-	media="all">
-
-
-
-<link rel="icon" type="image/png"
-	href="/support/resources/images/icons/favicon.ico" />
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/css/util.css">
-<link rel="stylesheet" type="text/css"
-	href="/support/resources/css/main.css">
-
-
 
 </head>
+
 <body>
+	<div id="wrap">
+		<!--head-->
 
-	<center>
-		<h1>운전자 승인 리스트 UI</h1>
-		<br>
-		<br>
-		<table border=0>
 
-			<tr>
+		<!--head end-->
 
-				<td align=right>검색 총 개수 :
-					${requestScope.acceptListAllCnt} 개
-			
-			<tr>
-				<th align=center><span class="pagingNumber"></span>
-			<tr>
-				<td>
 
-					<table class="tbcss2 accptList" border="0" cellspacing="0"
-						cellpadding="5" rules="rows" frame="hsides" width=700px>
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<h2 class="h2tit">운전자승인</h2>
+					</div>
+					<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+						</colgroup>
+						<thead>
+							<th scope="col">번호</th>
+							<th scope="col">운전자 이름</th>
+							<th scope="col">ID</th>
+							<th scope="col">면허증 번호</th>
+							<th scope="col">휴대폰</th>
+							<th scope="col">등록</th>
+							<th scope="col">거절</th>
+						</thead>
+						<tbody>
+						<c:forEach items="${acceptList}" var="accept" varStatus="loopTagStatus">
+						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
+						<!--board 는 지역변수-->
 						<tr>
-							<th>번호
-							<th>운전자 이름
-							<th>ID
-							<th>면허증 번호
-							<th>휴대폰
-							<th>등록 <c:forEach items="${acceptList}" var="accept"
-									varStatus="loopTagStatus">
-									<tr style="cursor: pointer">
-										<td>${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}
-											<!-- 1증가일련번호-->
-										<td>${accept.driver_name}
-										<td>${accept.driver_id}
-										<td>${accept.driver_license_number}
-										<td>${accept.driver_phone}
-										<td><input type="button" value="승인"
-											onclick="acceptDriver(${accept.driver_no})">
-								</c:forEach>
-					</table>
-		</table>
+							<td class="txt_center">${acceptListAllCnt-(loopTagStatus.index+1)}</td>
+							<td class="txt_center">${accept.driver_name}</td>
+							<td class="txt_center">${accept.driver_id}</td>
+							<td class="txt_center">${accept.driver_license_number}</td>
+							<td class="txt_center">${accept.driver_phone}</td>
+							<td class="txt_center"><a href="javascript:acceptDriver(${accept.driver_no});" class="btn middle white radius-5">승인</a></td>
+							<td class="txt_center"><a href="javascript:refuseDriver(${accept.driver_no});" class="btn middle white radius-5">거절</a></td>
+							
+						
+							
+						</tr>
+						</c:forEach>
 
-		<br> ${requestScope.acceptListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-		<form name="selectPage"  method="post" action="/support/driverAcceptForm.do">
-			<input type="hidden" name="selectPageNo">
-		</form>
+							
+
+
+						
+
+						</tbody>
+					</table>
+					<center>
+					${requestScope.acceptListAllCnt==0?'검색된 승인리스트가 없습니다.':''}
+					</center>
+					<div class="btn_box">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--container end-->
+
+
+
+
+
+		<!--foot-->
+		<!--foot end-->
+	</div>
+	
 		<form name="acceptDriverForm">
 			<input type="hidden" name="driver_no" value="">
 		</form>
-	</center>
+	
 </body>
-
 </html>

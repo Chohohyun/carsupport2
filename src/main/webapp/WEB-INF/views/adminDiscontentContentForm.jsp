@@ -9,7 +9,7 @@
 <c:if test="${empty discontentDTO}">
 	<script>
       alert("게시판 글이 삭제되었습니다");
-      location.replace("/erp/discontentListForm.do")
+      document.discontentListForm.submit();
    </script>
 </c:if>
 
@@ -37,13 +37,13 @@ function goAdminDiscontentRegForm() {
 		 
 			if(data == 0) {
 				alert("이미 삭제된 게시글입니다.")
-				location.replace("/support/adminDiscontentListForm.do");
+				document.discontentListForm.submit();
 				
 			} else if(data == 1) {
 				document.adminDiscontentRegForm.submit();
 			} else if(data==2){
 				alert("이미 답글이 있는 게시물 입니다");
-				location.replace("/support/adminDiscontentListForm.do");
+				document.discontentListForm.submit();
 			
 			}
 			else{
@@ -87,10 +87,10 @@ function goAdminDiscontentRegForm() {
 				// 게시판 새글 입력 행 적용개수 가 한개면 메세지 띄우고 /erp/boardListForm.do 로 이동
 				if(upDelCnt >= 1) {
 					alert("삭제 성공!");
-					location.replace("/support/adminDiscontentListForm.do");
+					document.discontentListForm.submit();
 				} else if(upDelCnt == -1) {
 					alert("이미 삭제된 글입니다");
-					location.replace("/support/adminDiscontentListForm.do");
+					document.discontentListForm.submit();
 				} 
 				 else {
 					alert("서버연동 실패");
@@ -129,7 +129,7 @@ function goAdminDiscontentRegForm() {
 
 
 
-
+			<form  method="post" name="adminDiscontentContentForm" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">
@@ -200,6 +200,7 @@ function goAdminDiscontentRegForm() {
 					</div> 
 				</div>
 			</div>
+			</form>
 		</div>
 		<!--container end-->
 

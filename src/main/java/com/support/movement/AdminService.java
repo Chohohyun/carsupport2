@@ -85,4 +85,6 @@ public interface AdminService {
 
 	int getGroupCnt(Map<String, String> paramsMap);
 
+	int getRefuseDriverCnt(int driver_no);
+
 }

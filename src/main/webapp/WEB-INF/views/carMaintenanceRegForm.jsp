@@ -135,7 +135,7 @@
 						<tbody>
 							<tr>
 								<th scope="row">차량번호</th>
-								<td><input type="text" 	size="40" maxlength="50" name="car_number"></td>
+								<td><input type="text" 	size="40" maxlength="50" name="car_number" readonly></td>
 							</tr>
 						
 							<tr>
@@ -147,8 +147,14 @@
 								<td>
 									<select name="car_maintance_code">
 										<option value="">정비내역선택
-										<option value="1">엔진오일교체
-										<option value="2">타이어교체
+											<option value="1">정기점검</option>
+											<option value="2">엔진오일교체</option>
+											<option value="3">타이어교체</option>
+											<option value="4">연료휠터교환</option>
+											<option value="5">부동액충전</option>
+											<option value="6">하부점검</option>
+											<option value="7">범퍼교체</option>
+											<option value="8">기타</option>
 									</select>
 								</td>
 							</tr>

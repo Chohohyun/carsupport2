@@ -172,6 +172,10 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public int getCarUpdateCnt(CarDTO carDTO) {
+		int checkCarNumber = this.adminDAO.getCheckUpdateCarNumber(carDTO);
+		if(checkCarNumber>=1) {
+			return -2;
+		}
 		int carUpdateCnt = this.adminDAO.getCarUpdateCnt(carDTO);
 		return carUpdateCnt;
 	}
@@ -331,6 +335,12 @@ public class AdminServiceImpl implements AdminService{
 	public int getGroupCnt(Map<String, String> paramsMap) {
 		int groupCnt = this.adminDAO.getGroupCnt(paramsMap);
 		return groupCnt;
+	}
+
+	@Override
+	public int getRefuseDriverCnt(int driver_no) {
+		int refuseDriverCnt = this.adminDAO.getRefuseDriverCnt(driver_no);
+		return refuseDriverCnt;
 	}
 
 }

@@ -7,24 +7,22 @@
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp"%>
 
-<html xmlns="https://www.w3.org/1999/xhtml">
-
+<html>
 
 <script type="text/javascript">
       $(document).ready(function(){
 	  
-	      $("#userEmailTr").css("display","none");
-	      alert(1);
-		  document.userRegForm.AuthenticationNumber.style.display = "none";
-		  document.userRegForm.AuthenticationNumberBtn.style.display = "none";
+	      $("#driverEmailTr").css("display","none");
+		  document.driverRegForm.AuthenticationNumber.style.display = "none";
+		  document.driverRegForm.AuthenticationNumberBtn.style.display = "none";
 
       
       
       });
 		
       // 유저 메인 페이지로 이동
-      function goUserMainPage() {
-  		location.replace("/support/userMainPage.do");
+      function goAdminMainPage() {
+  		location.replace("/support/adminMainPage.do");
   	  }
       //가입 이메일 인증받기
       function acceptEmail(type) {
@@ -45,12 +43,12 @@
 				if (data == 1) {
 					alert("인증번호 전송 완료");
 
-					if (type == 'user') {
+					if (type == 'driver') {
 							
-						 $("#userEmailTr").css("display","");
-						document.userRegForm.AuthenticationNumber.style.display = "block";
-						document.userRegForm.AuthenticationNumberBtn.style.display = "block";
-						var elem = document.getElementById("userEmailBtn");
+						 $("#driverEmailTr").css("display","");
+						document.driverRegForm.AuthenticationNumber.style.display = "block";
+						document.driverRegForm.AuthenticationNumberBtn.style.display = "block";
+						var elem = document.getElementById("driverEmailBtn");
 						elem.value = "재전송";
 						return;
 					}
@@ -94,13 +92,13 @@
   						document.userRegForm.emailCheck.value = "1";
   						return;
   					} else {
-  						$("#driverEmail").hide();
-  						$("#driverEmailText").attr("readonly", true);
-  						$("#driverEmailBtn").attr("disabled", true);
-  						$("#driverEmailBtn").removeClass("btn--red");
-  						$("#driverEmailBtn").addClass("btn--gray");
-  						document.driverRegForm.emailCheck.value = "1";
-  						return;
+  						 $("#driverEmailTr").css("display","none");
+   						$("#driverEmailText").attr("readonly", true);
+   						$("#driverEmailBtn").attr("disabled", true);
+   						$("#driverEmailBtn").removeClass("btn--red");
+   						$("#driverEmailBtn").addClass("btn--gray");
+   						document.driverRegForm.emailCheck.value = "1";
+   						return;
   					}
   				} else if (data == 0) {
   					alert("인증번호가 틀립니다. 다시확인해주세요.");
@@ -117,109 +115,100 @@
   		});
 
   	}
-  	function goUserRegForm() {
-  		var userIdChk = $("[name=userRegForm] [name=idChk]").val();
-  		if (userIdChk== 0) {
+  	function godriverRegForm() {
+  		var driverIdChk = $("[name=driverRegForm] [name=idChk]").val();
+  		if (driverIdChk== 0) {
   			alert("아이디 중복확인을 먼저 해주세요.");
-  			$("[name=userRegForm] [name=id]").focus();
+  			$("[name=driverRegForm] [name=id]").focus();
   			return;
   		}
-  		var emailCheck = $("[name=userRegForm] [name=emailCheck]").val();
+  		var emailCheck = $("[name=driverRegForm] [name=emailCheck]").val();
   		if (emailCheck == 0) {
   			alert("이메일 인증을 먼저 받으세요.");
   			return;
   		}
 
-  		var driverId = $("[name=userRegForm] [name=id]").val();
+  		var driverId = $("[name=driverRegForm] [name=id]").val();
   		if (id_check(driverId) == false) {
   			alert("올바른 아이디형식이 아닙니다.");
-  			$("[name=userRegForm] [name=id]").focus();
+  			$("[name=driverRegForm] [name=id]").focus();
   			return;
   		}
 
-  		var driverPwd = $("[name=userRegForm] [name=pwd1]").val();
+  		var driverPwd = $("[name=driverRegForm] [name=pwd1]").val();
   		if (pwd_check(driverPwd) == false) {
   			alert("올바른 암호형식이 아닙니다.");
-  			$("[name=userRegForm] [name=pwd]").focus();
+  			$("[name=driverRegForm] [name=pwd]").focus();
   			return;
   		}
 
-  		var pwd1 = $("[name=userRegForm] [name=pwd1]").val();
-  		var pwd2 = $("[name=userRegForm] [name=pwd2]").val();
+  		var pwd1 = $("[name=driverRegForm] [name=pwd1]").val();
+  		var pwd2 = $("[name=driverRegForm] [name=pwd2]").val();
   		if (pwd2_check(pwd1, pwd2) == false) {
-  			$("[name=userRegForm] [name=pwd2]").val("");
-  			$("[name=userRegForm] [name=pwd2]").focus();
+  			$("[name=driverRegForm] [name=pwd2]").val("");
+  			$("[name=driverRegForm] [name=pwd2]").focus();
   			return;
   		}
 
-  		var name = $("[name=userRegForm] [name=name]").val();
+  		var name = $("[name=driverRegForm] [name=name]").val();
   		if (name_check(name) == false) {
   			alert("올바른 이름형식이 아닙니다.");
-  			$("[name=userRegForm] [name=name]").val("");
-  			$("[name=userRegForm] [name=name]").focus();
+  			$("[name=driverRegForm] [name=name]").val("");
+  			$("[name=driverRegForm] [name=name]").focus();
   			return;
   		}
-  		var gender = $("[name=userRegForm] [name=gender]:checked").length;
+  		var gender = $("[name=driverRegForm] [name=gender]:checked").length;
   		if (gender_check(gender) == false) {
-  			$("[name=userRegForm] [name=gender]").focus();
+  			$("[name=driverRegForm] [name=gender]").focus();
   			return;
   		}
 
-  		var jumin_num1 = $("[name=userRegForm] [name=jumin_num1]").val();
-  		var jumin_num2 = $("[name=userRegForm] [name=jumin_num2]").val();
+  		var jumin_num1 = $("[name=driverRegForm] [name=jumin_num1]").val();
+  		var jumin_num2 = $("[name=driverRegForm] [name=jumin_num2]").val();
 
   		if (jumin_num_check(jumin_num1, jumin_num2) == false) {
-  			$("[name=userRegForm] [name=jumin_num1]").focus();
+  			$("[name=driverRegForm] [name=jumin_num1]").focus();
   			return;
   		}
 
-  		var postal_code = $("[name=userRegForm] [name=postal_code]").val();
+  		var postal_code = $("[name=driverRegForm] [name=postal_code]").val();
   		if (is_empty2(postal_code) == false) {
   			alert("주소를 검색해주세요.");
   			return;
   		}
-  		var phone = $("[name=userRegForm] [name=phone]").val();
+  		var phone = $("[name=driverRegForm] [name=phone]").val();
   		if (phone_check(phone) == false) {
   			alert("올바른 핸드폰 번호 형식이 아닙니다.");
-  			$("[name=userRegForm] [name=phone]").focus();
+  			$("[name=driverRegForm] [name=phone]").focus();
   			return;
   		}
 
-  		var email = $("[name=userRegForm] [name=email]").val();
+  		var email = $("[name=driverRegForm] [name=email]").val();
   		if (email_check(email) == false) {
   			alert("올바른 이메일 형식이 아닙니다.");
-  			$("[name=userRegForm] [name=email]").focus();
+  			$("[name=driverRegForm] [name=email]").focus();
   			return;
   		}
-  		var disability_grade = $("[name=userRegForm] [name=disability_grade]")
-  				.val();
-  		if (is_empty2(disability_grade) == false) {
-  			alert("장애 등급을 선택해주세요.");
-  			$("[name=userRegForm] [name=disability_grade]").focus();
-  			return;
-  		}
-  		var disability_type = $("[name=userRegForm] [name=disability_type]")
-  				.val();
-  		if (is_empty2(disability_type) == false) {
-  			alert("장애 종류를 선택해주세요.");
-  			$("[name=userRegForm] [name=disability_type]").focus();
-  			return;
-  		}
-
+  		var driver_license_number = $("[name=driverRegForm] [name=driver_license_number]").val();
+			if (driver_license_check(driver_license_number) == false) {
+			alert("올바른 운전면허 형식이 아닙니다.");
+			$("[name=driverRegForm] [name=driver_license_number]").focus();
+			return;
+		}
   		if (confirm("가입하시겠습니까?") == false) {
   			return;
   		}
   		alert(1);
   		$.ajax({
-  			url : "/support/userRegForm.do",
+  			url : "/support/driverRegForm.do",
   			type : "post",
-  			data : $("[name=userRegForm]").serialize(),
+  			data : $("[name=driverRegForm]").serialize(),
   			datatype : "html",
 
   			success : function(data) {
   				if (data == 1) {
   					alert("회원가입 성공!");
-  					location.replace("/support/loginForm.do");
+  					location.replace("/support/adminMainPage.do");
 
   				} else {
   					alert("회원가입 실패!");
@@ -283,33 +272,7 @@
      </script>
 
 
-	<script type="text/javascript" language="javascript">
-	  	function userMainPage(){
-			location.replace("/support/userMainPage.do");
-		}
-		function loginForm(){
-			location.replace("/support/loginForm.do");
-		}
-		function regTypeForm(){
-			location.replace("/support/regTypeForm.do");
-		}
-		function userUseProcedure(){
-			location.replace("/support/userUseProcedure.do");
-		}
-		function userReservationForm(){
-			location.replace("/support/userReservationForm.do");
-		}
-		function userReservationSituation(){
-			location.replace("/support/userReservationSituation.do");
-		}
-		function qnaListForm(){
-			location.replace("/support/qnaListForm.do");
-		} 
-	          
-
-
-    </script>
-
+	
 
 
 <head>
@@ -334,6 +297,7 @@
 		src="https://www.gurihappycall.or.kr/js/design.js"></script>
 
 </head>
+
 <body>
 	<div id="wrap">
 		<!--head-->
@@ -342,8 +306,7 @@
 		<!--head end-->
 
 
-
-		<!--container-->
+<!--container-->
 		<div id="container">
 			<div class="banner_box">
 				<center>
@@ -355,7 +318,7 @@
 					</div>
 			</div>
 		<!-- ===================================[회원등록 폼]====================================== -->	
-		<form name="userRegForm" method="POST">
+		<form name="driverRegForm" method="POST">
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">
@@ -378,10 +341,10 @@
 						<th scope="row"><div class="name">아이디<em class="color-or"> *</em></div></th>
 						<td>
 							<div class="input_btn">
-								<input  type="text" name="id" id="userId" placeholder="아이디" style="width: 170px;"/> 
-								<a><input type="button" class="btn small grey" name="idBtn" id="userIdBtn" onclick="duplicationId('user');" value="중복확인"></a>
+								<input  type="text" name="id" id="driverId" placeholder="아이디" style="width: 170px;"/> 
+								<a><input type="button" class="btn small grey" name="idBtn" id="driverIdBtn" onclick="duplicationId('driver');" value="중복확인"></a>
 							</div>
-							<input type="hidden" name="idChk" id="userIdChk" value="0">
+							<input type="hidden" name="idChk" id="driverIdChk" value="0">
 						</td>
 					</tr>
 					<tr>
@@ -423,90 +386,47 @@
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">이메일주소<em class="color-or"> *</em></div></th>
-						<td><input class="input100" id="userEmailText" type="text" name="email" placeholder="이메일주소">
-							<a><input type="button" name="checkEmailBtn" id="userEmailBtn" class="btn small grey" onclick="acceptEmail('user')" value="인증번호받기"></a>
+						<td><input class="input100" id="driverEmailText" type="text" name="email" placeholder="이메일주소">
+							<a><input type="button" name="checkEmailBtn" id="driverEmailBtn" class="btn small grey" onclick="acceptEmail('driver')" value="인증번호받기"></a>
 						</td>
 					</tr>
-					<tr id="userEmailTr">
-						<th scope="row"><div class="name" id="userEmail">인증번호 입력<em class="color-or"> *</em></div></th>
-						<td><input class="input100" type="text" name="AuthenticationNumber" placeholder="인증번호입력">
-							<a><input type="button" name="AuthenticationNumberBtn" class="btn small grey" onclick="checkAuthenticationNumber('user')" value="확인"></a>
+					<tr id="driverEmailTr">
+						<th scope="row"><div class="name" id="driverEmail">인증번호 입력<em class="color-or"> *</em></div></th>
+						<td><input class="input100 input--style-5" type="text" name="AuthenticationNumber" placeholder="인증번호입력">
+							<a><input type="button" name="AuthenticationNumberBtn" class="btn small grey" onclick="checkAuthenticationNumber('driver')" value="확인"></a>
 							<input type="hidden" name="emailCheck" value="0">
 						</td>
 						
 					</tr>
 					
 					<tr>
-						<th scope="row"><div class="name">장애구분<em class="color-or"> *</em></div></th>
+						<th scope="row"><div class="name">면허증번호<em class="color-or"> *</em></div></th>
 						<td class="">
-							<select name="disability_type">
-								<option disabled="disabled" selected="selected" value="">Choose option</option>
-								<option value="01">신장</option>
-								<option value="02">지체</option>
-								<option value="03">뇌병변</option>
-								<option value="04">지적</option>
-								<option value="05">시각</option>
-								<option value="06">호흡기</option>
-								<option value="07">자폐</option>
-								<option value="08">간질</option>
-								<option value="09">정신</option>
-								<option value="10">청각</option>
-								<option value="11">언어</option>
-								<option value="12">척추</option>
-								<option value="12">장애</option>
-								<option value="13">발달</option>
-								<option value="14">노인</option>
-							</select>
-							<div class="select-dropdown"></div>
+							<input type="text" name="driver_license_number" placeholder="면허증번호"> 
 						</td>
 					</tr>
-					<tr>
-						<th scope="row"><div class="name">장애등급<em class="color-or"> *</em></div></th>
-						<td>
-							<select name="disability_grade">
-								<option disabled="disabled" selected="selected" value="">Choose
-									option</option>
-								<option value="01">1급</option>
-								<option value="02">2급</option>
-								<option value="03">등급외</option>
-								<option value="04">3급</option>
-								<option value="05">중증</option>
-								<option value="06">경증(등급 외)</option>
-							</select>
-							<div class="select-dropdown"></div>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><div class="name">휠체어<em class="color-or"> *</em></div></th>
-						<td><label class="radio-container"> 
-								<input type="radio" checked="checked" name="wheelchair" value="1">사용<span class="checkmark"></span>
-							</label>	
-							<label class="radio-container">
-								<input type="radio" checked="checked" name="wheelchair" value="2">미사용<span class="checkmark"></span>
-							</label>	
-						</td>
-					</tr>
+					
 					<tr>
 						<th scope="row"><div class="name">주소</div></th>
 						<td>
 							<div class="value">
 								<div class="row row-refine">
 									<div class="wrap-input40 input-group-desc">
-										<input class="input100" id="userpostal_code" onfocus="this.blur();" type="text" name="postal_code" placeholder="주소검색을 눌러주세요." readonly>
-										<a><input type="button" style="width:100px;"class="btn small grey" onclick="searchPostal_code('user')" value="주소검색"></a>
+										<input class="input100" id="driverpostal_code" onfocus="this.blur();" type="text" name="postal_code" placeholder="주소검색을 눌러주세요." readonly>
+										<a><input type="button" style="width:100px;"class="btn small grey" onclick="searchPostal_code('driver')" value="주소검색"></a>
 									</div>
 									
 									<div class="wrap-input40 input-group-desc">
-										<input class="input100" style="width:400px;" id="userroad_addr" onfocus="this.blur();" type="text" name="road_addr" placeholder="주소검색을 눌러주세요." readonly> 
+										<input class="input100" style="width:400px;" id="driverroad_addr" onfocus="this.blur();" type="text" name="road_addr" placeholder="주소검색을 눌러주세요." readonly> 
 									</div>
 									&nbsp;&nbsp;
 									<div class="wrap-input50 input-group-desc">
-										<input class="input100" style="width:400px;" id="userjibun_addr" onfocus="this.blur();" type="text" name="jibun_addr"	placeholder="주소검색을 눌러주세요." readonly> 
+										<input class="input100" style="width:400px;" id="driverjibun_addr" onfocus="this.blur();" type="text" name="jibun_addr"	placeholder="주소검색을 눌러주세요." readonly> 
 											<span id="guide" style="color: #999; display: none"></span>
 									</div>
 									
 									<div class="wrap-input100 input-group-desc">
-										<input class="input100" style="width:400px;" id="userdetail_addr" type="text" name="detail_addr" placeholder="상세주소를 입력해주세요.">
+										<input class="input100" style="width:400px;" id="driverdetail_addr" type="text" name="detail_addr" placeholder="상세주소를 입력해주세요.">
 									</div>
 								</div>
 							</div>
@@ -517,10 +437,12 @@
 
 			</div>
 			<div height:10px></div>
+			<input type="hidden"
+									name="admission_code" value="n">
 			<div class="btn_box">
-				<a><input type="button" onclick="goUserRegForm();" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="가입완료"></a> 
+				<a><input type="button" onclick="godriverRegForm();" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="등록"></a> 
 				&nbsp;&nbsp;&nbsp;
-				<a><input type="button" onclick="goUserMainPage();" value="취소" class="btn large blue radius-5"></a>
+				<a><input type="button" onclick="goAdminPage();" value="취소" class="btn large blue radius-5"></a>
 			</div>
 		</div>
 		</form>

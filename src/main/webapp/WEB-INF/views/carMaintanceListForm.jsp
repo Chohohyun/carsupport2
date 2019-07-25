@@ -198,13 +198,14 @@ $(document).ready(function() {
 								<td colspan="4">
 									<select name="maintance_code">
 											<option value=""></option>
-											<option value="1">엔진오일교체</option>
-											<option value="2">타이어교체</option>
-											<option value="3">연료휠터교환</option>
-											<option value="4">부동액충전</option>
-											<option value="5">하부점검</option>
-											<option value="6">범퍼교체</option>
-											<option value="7">기타</option>
+											<option value="1">정기점검</option>
+											<option value="2">엔진오일교체</option>
+											<option value="3">타이어교체</option>
+											<option value="4">연료휠터교환</option>
+											<option value="5">부동액충전</option>
+											<option value="6">하부점검</option>
+											<option value="7">범퍼교체</option>
+											<option value="8">기타</option>
 											
 									</select>
 								</td>
@@ -226,15 +227,17 @@ $(document).ready(function() {
 				<div class="cont_box">
 				<table class="tbl tbl_list">
 						<colgroup>
+							<col style="width: 15%;" />
 							<col style="width: 20%;" />
 							<col style="width: 25%;" />
 							<col style="width: 25%;" />
-							<col style="width: 30%;" />
+							<col style="width: 15%;" />
 						</colgroup>
 						<thead>
 							<th scope="col">번호</th>
 							<th scope="col">차량번호</th>
 							<th scope="col">차량정비날짜</th>
+							<th scope="col">정비종류</th>
 							<th scope="col">수정/삭제</th>
 						</thead>
 						<tbody>
@@ -245,6 +248,8 @@ $(document).ready(function() {
 							<td class="txt_center">${carMaintanceListAllCnt-(carSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${car.car_number}</td>
 							<td class="txt_center">${car.car_maintance_date}</td>
+							<td class="txt_center">${car.car_maintance_name}</td>
+							
 							<td class="txt_center"><a href="javascript:goCarMaintanceUpDelDetailForm( ${car.car_maintance_info_no} )";" class="btn middle white radius-5">수정</a>
 						</tr>
 						</c:forEach>

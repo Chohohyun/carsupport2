@@ -218,7 +218,7 @@
 	<%@include file="foot.jsp" %>
 	
 	<!--foot end-->
-	<form name="goRegForm" method="get" action="/support/regTypeForm.do"></form>
+	<form name="goRegForm" method="get" action="/support/regSelectForm.do"></form>
 	<form name="goFindIdForm" method="get" action="/support/findIdForm.do"></form>
 	<form name="goFindPwdForm" method="get" action="/support/findPwdForm.do"></form>
 	

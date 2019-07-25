@@ -10,7 +10,7 @@
 <c:if test="${empty discontentDTO}">
 	<script>
       alert("게시판 글이 삭제되었습니다");
-      location.replace("/erp/discontentListForm.do")
+      document.discontentListForm.submit();
    </script>
 </c:if>
 
@@ -53,7 +53,7 @@
 
 
 
-
+			
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

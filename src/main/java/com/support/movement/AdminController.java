@@ -238,7 +238,36 @@ public class AdminController {
 		} 
 		return acceptDriverCnt;
 	}
+	//**********************************
+	// 운전자 거절 작업
+	//**********************************
+	@RequestMapping(
+			value="/refuseDriver.do",
+			method = RequestMethod.POST,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody 
+	public int driverRefuseProc(
+			HttpSession session,HttpServletResponse response,
+			@RequestParam Map<String,String> paramsMap
+			) {
 
+		int refuseDriverCnt=0;
+		String driver_noS = paramsMap.get("driver_no");
+		int driver_no = Integer.parseInt(driver_noS);
+		System.out.println("여기서 dirver_id값은"+driver_no);
+		System.out.println(driver_no);
+		try {
+
+			refuseDriverCnt = this.adminService.getRefuseDriverCnt(driver_no);
+			System.out.println("드라이버 됩니다");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(".acceptDriver(~) 에서 에러 발생");
+			refuseDriverCnt=-1;
+		} 
+		return refuseDriverCnt;
+	}
 
 	//**********************************
 	// 운전자 가입
@@ -470,10 +499,18 @@ public class AdminController {
 			){
 		int carRegCnt = 0;
 		try {
+			System.out.println("여긴돼");
 			if(carDTO.getCar_driver()==null) {
 				carDTO.setCar_driver("0");
 			}
+			System.out.println("여긴돼");
+			System.out.println(carDTO.getCar_number());
+			System.out.println(carDTO.getCar_year());
+			System.out.println(carDTO.getCar_distance());
+			System.out.println(carDTO.getCar_code());
+			System.out.println(carDTO.getCar_driver());
 			carRegCnt = this.adminService.getCarRegCnt(carDTO);
+			System.out.println("여긴돼");
 		} catch (Exception e) {
 			System.out.println("carRegProc을 불러오는 도중 오류");
 		}
@@ -551,7 +588,9 @@ public class AdminController {
 	{
 		int carUpdateCnt =0;
 		try {
-			carUpdateCnt = this.adminService.getCarUpdateCnt(carDTO); 
+			System.out.println("carUpdate1");
+			carUpdateCnt = this.adminService.getCarUpdateCnt(carDTO);
+			System.out.println("carUpdate2"); 
 		} catch (Exception e) {
 			System.out.println("adminCarDeleteCnt을 불러오는 도중 오류");
 		}

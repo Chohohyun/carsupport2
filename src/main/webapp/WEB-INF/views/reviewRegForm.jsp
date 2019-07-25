@@ -120,20 +120,24 @@ label.star:before {
 						<table class="tbl tbl_form">
 							<colgroup>
 								<col style="width: 20%;" />
-								<col style="width: 60%;" />
+								<col style="width: 20%;" />
+								<col style="width: 20%;" />
+								
+								<col style="width: 20%;" />
+								<col style="width: 20%;" />
 			
 							</colgroup>
 							<tr>
 								<th scope="row">이용날짜
-								<td>${reserveList.reservation_date}</td>
+								<td colspan="3">${reserveList.reservation_date}</td>
 							</tr>
 							<tr>
 								<th scope="row">목적지
-								<td>${reserveList.end_road_addr}</td>
+								<td colspan="3">${reserveList.end_road_addr}</td>
 							</tr>
 							<tr>
 								<th scope="row">운전자
-								<td>${reserveList.driver_name}</td>
+								<td colspan="3">${reserveList.driver_name}</td>
 							</tr>
 							<tr>
 								<th scope="row">별점
@@ -153,10 +157,12 @@ label.star:before {
 									<input class="star star-5" id="star-5" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5"></label>
 									  -->
 								</td>
+								<td></td>
+								<td></td>
 							</tr>
 							<tr>
 								<th scope="row">평가내용
-								<td ><textarea name="review_content" rows="15" cols="100"></textarea></td>
+								<td colspan="3"><textarea name="review_content" rows="15" cols="100"></textarea></td>
 							</tr>
 						</table>
 			

@@ -49,7 +49,7 @@ public class LoginController {
 
 
 
-	
+
 	// 가상주소 /erp/loginForm.do로 접속하면 호출되는 메소드 선언
 	@RequestMapping(value="/loginForm.do")
 	public ModelAndView loginForm(
@@ -75,6 +75,22 @@ public class LoginController {
 	//**********************************
 	// 회원가입으로 이동
 	//**********************************
+	@RequestMapping(value="/regSelectForm.do")
+	public ModelAndView RegSelectForm(
+			// HttpSession 객체가 들어올 매개변수 선언
+			// 매개변수에 자료형이 HttpSession이면 웹서버가
+			// 생성한 HttpSession 객체가 들어온다.
+			HttpSession session) {
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("regSelectForm.jsp");
+		return mav;
+	}
+	//**********************************
+	// 회원가입으로 이동
+	//**********************************
 	@RequestMapping(value="/regForm.do")
 	public ModelAndView RegForm(
 			// HttpSession 객체가 들어올 매개변수 선언
@@ -88,6 +104,47 @@ public class LoginController {
 		mav.setViewName("regForm.jsp");
 		return mav;
 	}
+	//**********************************
+	// 회원가입으로 이동
+	//**********************************
+	@RequestMapping(value="/regForm2.do")
+	public ModelAndView RegForm2(
+			// HttpSession 객체가 들어올 매개변수 선언
+			// 매개변수에 자료형이 HttpSession이면 웹서버가
+			// 생성한 HttpSession 객체가 들어온다.
+			HttpSession session) {
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("regForm2.jsp");
+		return mav;
+	}
+	//**********************************
+	// 회원가입 누르면 신청타입 form양식으로 이동
+	//**********************************
+	//**********************************
+	// 로그인 시도
+	//**********************************
+	@RequestMapping(
+			value="/regTypeForm.do",
+			method=RequestMethod.POST,
+			produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public ModelAndView regTypeForm(
+			HttpSession session,HttpServletResponse response,
+			// 파리미터명, 파라미터값이 저장된 HashMap 객체를 받아오는 매개변수 선언
+			// 파라미터명은 키값으로 파라미터 값으로는 키값에 대응하는 저장 문자열 HashMap 객체 저장된다.
+			@RequestParam(value="regType") int regType
+			) {
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("regTypeForm.jsp");
+		mav.addObject("regType",regType);
+		return mav;
+	}
+
 	//**********************************
 	// 회원가입으로 이동
 	//**********************************

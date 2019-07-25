@@ -16,7 +16,7 @@
     		location.replace("/support/loginForm.do");
     	}
     	function regTypeForm(){
-    		location.replace("/support/regTypeForm.do");
+    		location.replace("/support/regSelectForm.do");
     	}
     	function userUseProcedure(){
     		location.replace("/support/userUseProcedure.do");

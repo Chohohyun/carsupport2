@@ -640,6 +640,7 @@
 			cmi.car_maintance_info_no||'' as "car_maintance_info_no"
 			, cmi.car_number||'' as "car_number"
 			, cmi.car_maintance_date||'' as "car_maintance_date"
+			, (select cc.car_maintance_name from code_car_maintance cc where cmi.car_maintance_code=cc.car_maintance_code)||'' as "car_maintance_name"
 		from car_maintance_info cmi
 		where 1=1	
 		<if test="car_number!=null and car_number.length()>0">
@@ -890,5 +891,20 @@
 		from discontent ds
 		where ds.discontent_group_no = (select ds2.discontent_group_no from discontent ds2 where ds2.discontent_no=${discontent_no})
 
+	</select>
+	
+	<delete id="getRefuseDriverCnt" parameterType="int">
+		delete
+		from driver
+		where driver_no=#{driver} 
+	</delete>
+	
+	<select id="getCheckUpdateCarNumber" parameterType="com.support.movement.CarDTO" resultType="int">
+		select
+			count(*)
+		from car_info
+		where car_number=#{car_number} and car_info_no not in (${car_info_no})
+	
+	
 	</select>
 </mapper>

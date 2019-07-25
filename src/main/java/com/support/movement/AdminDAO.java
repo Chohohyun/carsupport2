@@ -99,4 +99,8 @@ public interface AdminDAO {
 
 	int getCheckCarNumber(CarDTO carDTO);
 
+	int getRefuseDriverCnt(int driver_no);
+
+	int getCheckUpdateCarNumber(CarDTO carDTO);
+
 }
