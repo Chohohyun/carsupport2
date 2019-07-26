@@ -43,7 +43,7 @@
       });
       function goDriverGradeForm(RESERVE_APPLY_CAR_NUMBER){
   		alert(RESERVE_APPLY_CAR_NUMBER);
-  		$("[name=driverGradeForm] [name=RESERVE_APPLY_CAR_NUMBER]").val( RESERVE_APPLY_CAR_NUMBER );
+  		$("[name=driverGradeForm] [name=reserve_apply_car_number]").val( RESERVE_APPLY_CAR_NUMBER );
   		document.driverGradeForm.submit();
   	}
   	function goSearch(){
@@ -191,7 +191,7 @@
 				
 		<form name="driverGradeForm" method="post"
 			action="/support/driverGradeForm.do">
-			<input type="hidden" name="RESERVE_APPLY_CAR_NUMBER">
+			<input type="hidden" name="reserve_apply_car_number">
 		</form>
 </body>
 </html>

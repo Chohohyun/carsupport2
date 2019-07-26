@@ -15,9 +15,7 @@
 	  
 	      $("#userEmailTr").css("display","none");
 	      alert(1);
-		  document.userRegForm.AuthenticationNumber.style.display = "none";
-		  document.userRegForm.AuthenticationNumberBtn.style.display = "none";
-
+		  
       
       
       });
@@ -48,8 +46,7 @@
 					if (type == 'user') {
 							
 						 $("#userEmailTr").css("display","");
-						document.userRegForm.AuthenticationNumber.style.display = "block";
-						document.userRegForm.AuthenticationNumberBtn.style.display = "block";
+						
 						var elem = document.getElementById("userEmailBtn");
 						elem.value = "재전송";
 						return;
@@ -118,17 +115,8 @@
 
   	}
   	function goUserRegForm() {
-  		var userIdChk = $("[name=userRegForm] [name=idChk]").val();
-  		if (userIdChk== 0) {
-  			alert("아이디 중복확인을 먼저 해주세요.");
-  			$("[name=userRegForm] [name=id]").focus();
-  			return;
-  		}
-  		var emailCheck = $("[name=userRegForm] [name=emailCheck]").val();
-  		if (emailCheck == 0) {
-  			alert("이메일 인증을 먼저 받으세요.");
-  			return;
-  		}
+  		
+  		
 
   		var driverId = $("[name=userRegForm] [name=id]").val();
   		if (id_check(driverId) == false) {
@@ -136,7 +124,12 @@
   			$("[name=userRegForm] [name=id]").focus();
   			return;
   		}
-
+  		var userIdChk = $("[name=userRegForm] [name=idChk]").val();
+  		if (userIdChk== 0) {
+  			alert("아이디 중복확인을 먼저 해주세요.");
+  			$("[name=userRegForm] [name=id]").focus();
+  			return;
+  		}
   		var driverPwd = $("[name=userRegForm] [name=pwd1]").val();
   		if (pwd_check(driverPwd) == false) {
   			alert("올바른 암호형식이 아닙니다.");
@@ -159,12 +152,7 @@
   			$("[name=userRegForm] [name=name]").focus();
   			return;
   		}
-  		var gender = $("[name=userRegForm] [name=gender]:checked").length;
-  		if (gender_check(gender) == false) {
-  			$("[name=userRegForm] [name=gender]").focus();
-  			return;
-  		}
-
+  		
   		var jumin_num1 = $("[name=userRegForm] [name=jumin_num1]").val();
   		var jumin_num2 = $("[name=userRegForm] [name=jumin_num2]").val();
 
@@ -172,12 +160,19 @@
   			$("[name=userRegForm] [name=jumin_num1]").focus();
   			return;
   		}
-
-  		var postal_code = $("[name=userRegForm] [name=postal_code]").val();
-  		if (is_empty2(postal_code) == false) {
-  			alert("주소를 검색해주세요.");
+  		var gender = $("[name=userRegForm] [name=gender]:checked").length;
+  		if (gender_check(gender) == false) {
+  			$("[name=userRegForm] [name=gender]").focus();
   			return;
   		}
+  		
+		var gender_val = $("[name=userRegForm] [name=gender]:checked").val();
+		
+  		if (gender_jumin_check(gender_val,jumin_num2)==false){
+  			$("[name=userRegForm] [name=jumin_num2]").focus();
+  			return;
+  	  	}
+  		
   		var phone = $("[name=userRegForm] [name=phone]").val();
   		if (phone_check(phone) == false) {
   			alert("올바른 핸드폰 번호 형식이 아닙니다.");
@@ -189,6 +184,11 @@
   		if (email_check(email) == false) {
   			alert("올바른 이메일 형식이 아닙니다.");
   			$("[name=userRegForm] [name=email]").focus();
+  			return;
+  		}
+  		var emailCheck = $("[name=userRegForm] [name=emailCheck]").val();
+  		if (emailCheck == 0) {
+  			alert("이메일 인증을 먼저 받으세요.");
   			return;
   		}
   		var disability_grade = $("[name=userRegForm] [name=disability_grade]")
@@ -203,6 +203,11 @@
   		if (is_empty2(disability_type) == false) {
   			alert("장애 종류를 선택해주세요.");
   			$("[name=userRegForm] [name=disability_type]").focus();
+  			return;
+  		}
+  		var postal_code = $("[name=userRegForm] [name=postal_code]").val();
+  		if (is_empty2(postal_code) == false) {
+  			alert("주소를 검색해주세요.");
   			return;
   		}
 

@@ -15,7 +15,9 @@
     	function driverCarInfo(){
 			location.replace("/support/driverCarInfo.do");
 		}
-		
+    	function qnaListFormMain(){
+    		document.qnaListFormMain.submit();
+    	}    
 		function driverReservationSituation(){
 			document.driverReservationSituation.submit();
 		}
@@ -29,7 +31,8 @@
 			document.driveHistory.submit();
 		}
       </script>
-
+<form name="qnaListFormMain" method="post" action="/support/qnaListForm.do">
+		</form>
 		<form name="driveHistory" method="post" action="/support/driveHistory.do">
 		</form>
 		<form name="driverReservationSituation" method="post" action="/support/driverReservationSituation.do">
@@ -69,7 +72,7 @@
 						<li><a href="javascript:driverCarInfo();">차량정보</a></li>
 						<li><a href="javascript:driverHistory();">주행기록</a></li>
 						<li><a href="javascript:driverReservationSituation();">예약현황</a></li>
-						<li><a href="javascript:driverUpDelForm();">회원정보</a>
+						<li><a href="javascript:qnaListFormMain();">공지사항</a>
 						</li>
 					</ul>
 				</div>

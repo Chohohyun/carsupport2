@@ -28,6 +28,11 @@
       });*/
       });
 
+      function goQnaContentForm(data){
+  		document.qnaContentForm.question_no.value=data;
+  		document.qnaContentForm.submit();
+  		
+    	}
 
     </script>
       <script type="text/javascript" language="javascript">
@@ -73,7 +78,7 @@
               </div>
             </div>
             <div class="top_col right">
-              <a href="javascript:driverUserReserveForm();" class="item l1 radius-15 m-l-10">
+              <a href="javascript:driverReservationSituation();" class="item l1 radius-15 m-l-10">
                 <h2 class="tit">
                   예약현황<span class="size-18" >></span>
                 </h2>
@@ -84,80 +89,16 @@
               <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b" >
                 <p class="m-notice">
                   <span class="notice-tit">공지사항</span>
-                  <a href="javascript:qnaListForm();"><span class="notice-view">+더보기</span></a>
+                  <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
                 </p>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-                    
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=36">2019년 7월 1일 구리시 교통약자 이동지원센터 이용대</a></td>
-													<td >2019-06-27</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=35">6월 6일(목) 현충일 휴무 관련</a></td>
-													<td >2019-05-14</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=34">5월 6일(월요일) 어린이날 대체 공휴일 알림</a></td>
-													<td >2019-04-17</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=33">5월 1일(수요일) 근로자의 날 관련 알림</a></td>
-													<td >2019-04-17</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=32">2019년 3월 1일 삼일절 휴무 알림</a></td>
-													<td >2019-02-19</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=31">2019년 2월 5일 설날 연휴 관련 알림 </a></td>
-													<td >2019-01-07</td> 
-  
-                                        </tr>
-
-                             
-                        
-                            
-                                        <tr>
-										
-													<td class="l-h-30"><a href="https://www.gurihappycall.or.kr/notice_view.aspx?no=29">2019년 1월 1일 신정 관련 알림 </a></td>
-													<td >2018-12-26</td> 
-  
-                                        </tr>
-
-                             
+<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
+					<tr>
+					<td class="l-h-30"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
+					<td >${qna.reg_date}</td> 
+					</tr>
+ 					</c:forEach>
+ 
                          
 
                 </table>
@@ -266,6 +207,9 @@
  
 
         </form>
+        <form name="qnaContentForm" method="post" action="/support/qnaContentForm.do">
+			<input type="hidden" name="question_no">
+		</form>
         <%@include file="foot.jsp" %>
         <!--foot end-->
       </div>

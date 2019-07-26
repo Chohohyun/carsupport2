@@ -68,9 +68,19 @@ $(document).ready(function() {
 <head>
 
 </head>
-    <body><center>
-    <br>
-    	<div class="banner_box">
+
+
+<body>
+	<div id="wrap">
+		<!--head-->
+
+
+		<!--head end-->
+
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
 				<center>
 					<div class="img">
 						<img src="/support/resources/imagesUserMain1/banner2.png"
@@ -81,103 +91,109 @@ $(document).ready(function() {
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">
-						<h2 class="h2tit bg_service">차량 수정/삭제</h2>
+						<h2 class="h2tit">차량 정보</h2>
 					</div>
-    
-    <form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
-	<table class="tbl tbl_form">
-		<tr align="center" height=50px>
-			<th scope="col" colspan="6">차량 정보 검색</th>
-		<tr align="center">
-			<th scope="col">키워드
-			<td style="width:500px;"><input type="text" name="keyword" style="width:500px;"> 
-			<th scope="col">차량종류
-			<td style="width:200px;"><select name="car_code" style="width:150px;">
-					<option value="0"></option>
-					<option value="1">슬로프</option>
-					<option value="2">리프트</option>
-				</select>
-	</table>
-		<input type="hidden" name="selectPageNo">
-		<!-- <input type="hidden" name="ascDesc">
-		<input type="hidden" name="selectOption"> -->
-				<table>
-					<tr height=4>
-						<td>
-				</table>
-		<!--<input type="button" value="검색" onClick="goSearch();"> 
-		<input type="button" value="전부검색" onClick="goSearchAll();"> 
-		<input type="reset" value="초기화"> -->
-		<div class="btn_box">
-			<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
-			<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
-			<a href="javascript:goreset();" class="btn middle white radius-5">초기화</a>
-			<!-- &nbsp;<input type="reset" class="btn middle white radius-5" style="cursor:pointer; width:80px; text-align:center;"> -->
-		</div>
+					<form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
+					<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 20%;" />
+							<col style="width: 30%;" />
+							<col style="width: 20%;" />
+							<col style="width: 30%;" />
+							
+						</colgroup>
+						
 		
-	</form>
-    <!-- ----------------------[리스트 검색/요청]----------------------------- -->
-    <!-- 
-    <form name="carListForm" method="post" action="/support/carListForm.do">
-    	검색 :  <input type="text" name="carsearch" size="20">	
-    </form>
-     -->
-    <!-- ----------------------[리스트 출력 화면]----------------------------- -->
-  
-		<table border=0>
-			<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			검색 총 개수 : ${requestScope.carListAllCnt} 개
-		</table>	
-		<table class="tbl tbl_form">	
-				<colgroup>
-                        <col style="width:15%;"/>
-                        <col style="width:20%;"/>
-                        <col style="width:15%;"/>
-                        <col style="width:15%;"/>
-                        <col style="width:15%;"/>
-                        <col style="width:20%;"/>
-                    </colgroup>
-                
-				<tr height=50px>
-				<th scope="col">번호</th>
-				<th scope="col">차량번호</th>
-				<th scope="col">차량연식</th>
-				<th scope="col">주행거리</th>
-				<th scope="col">차량종류</th>
-				<th scope="col">수정/삭제</th>
-
-				<c:forEach items="${requestScope.carList}" var="car" varStatus="loopTagStatus">
-					<tr>
-						<td> ${selectPageNo*rowCntPerPage-rowCntPerPage+1+loopTagStatus.index}   <!-- 1증가일련번호-->						
-						<td>${car.car_number}
-						<td>${car.car_year}
-						<td>${car.car_distance}
-						<td>${car.car_code}
-						<td><a href="javascript:goCarUpDelDetailForm( ${car.car_info_no} );" class="btn middle white radius-5">수정/삭제</a>								
-				</c:forEach>
+						<tbody>
+							<tr>
+								<th scope="row">키워드</th>
+								<td><input type="text" name="keyword"></td>
+								<th scope="row">차량종류</th>
+								<td><select name="car_code">
+										<option value="0"></option>
+										<option value="1">슬로프</option>
+										<option value="2">리프트</option>
+									</select>
+								</td>
+								
+							</tr>
+							
+						</tbody>
+						</table>
+							<input type="hidden" name="selectPageNo">
+					</form>
+					
+					
+					<div class="btn_box">
+							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+					</div>
+				</div>
 				
-			
-		</table>
+				<table>
+					<tr style="height:4px">
+				</table>
 	
-		<br>
-		${requestScope.carListAllCnt==0? '  검색된 글이 없습니다.  ':''}
-		<div><span class="pagingNumber"></span></div>
-		
-		
-		
-	<!-- 	
-		<input type="hidden" name="keyword" value="${keyword}">
-	-->
-		<form name="carContentForm" method="post" action="/support/carContent.do">
+				<div class="cont_box">
+				<table class="tbl tbl_list">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+						</colgroup>
+						<thead>
+							<th scope="col">번호</th>
+							<th scope="col">차량번호</th>
+							<th scope="col">차량연식</th>
+							<th scope="col">주행거리</th>
+							<th scope="col">차량종류</th>
+							<th scope="col">수정/삭제</th>
+						</thead>
+						<tbody>
+						<c:forEach items="${requestScope.carList}" var="car" varStatus="loopTagStatus">
+						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
+						<!--board 는 지역변수-->
+						<tr>
+							<td class="txt_center">${carListAllCnt-(carSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${car.car_number}</td>
+							<td class="txt_center">${car.car_year}</td>
+							<td class="txt_center">${car.car_distance}</td>
+							<td class="txt_center">${car.car_code}</td>
+							
+							<td class="txt_center"><a href="javascript:goCarUpDelDetailForm( ${car.car_info_no} );" class="btn middle white radius-5">수정/삭제</a></td>	
+						</tr>							
+					</c:forEach>
+				
+						</tbody>
+					</table>
+					${requestScope.carListAllCnt==0?'검색된 글이 없습니다.':''}
+					<div class="paging">
+					<center>
+					<table>
+						<tr>
+						<td align="center"><span  class="pagingNumber"></span>
+					</table>
+					</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!--container end-->'
+	<form name="carContentForm" method="post" action="/support/carContent.do">
 			<input type="hidden" name="car_info_no">
 		</form>
-	 	</div>
-	 </div>
-	</center>
-    </body>
+</body>
 </html>
+ 
+					
+  
+    
+					
+   
+	
+		
+		

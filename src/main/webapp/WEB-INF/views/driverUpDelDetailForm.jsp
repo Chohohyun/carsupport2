@@ -70,16 +70,12 @@
 					if(type=='user'){
 
 						$("#userEmailTr").show();
-						document.userUpDelForm.AuthenticationNumber.style.display="block";
-						document.userUpDelForm.AuthenticationNumberBtn.style.display="block";
 						var elem = document.getElementById("userEmailBtn"); 
 						elem.value = "재전송";
 						return;
 					}
 					if(type=='driver'){
 						$("#driverEmailTr").show();
-						document.driverUpDelForm.AuthenticationNumber.style.display="block";
-						document.driverUpDelForm.AuthenticationNumberBtn.style.display="block";
 						var elem = document.getElementById("driverEmailBtn"); 
 						elem.value = "재전송";
 						return;
@@ -115,22 +111,10 @@
 		}
 		
 		else{
-			var value = $("[name=driverUpDelForm] [name=emailCheck]").val();
-			if(value==0){
-				alert("이메일이 변경되었습니다. 인증해주세요.");
-				return;
-			}
-			var driverId = $("[name=driverUpDelForm] [name=id]").val();
-			if(id_check(driverId)==false){
-				alert("올바른 아이디형식이 아닙니다.");
-				$("[name=driverUpDelForm] [name=id]").focus();
-				return;
-			}
-			
 			var driverPwd = $("[name=driverUpDelForm] [name=pwd1]").val(); 
 			if(pwd_check(driverPwd)==false){
 				alert("올바른 암호형식이 아닙니다.");
-				$("[name=driverUpDelForm] [name=pwd]").focus();
+				$("[name=driverUpDelForm] [name=pwd1]").focus();
 				return;
 			}
 			
@@ -149,25 +133,26 @@
 				$("[name=driverUpDelForm] [name=name]").focus();
 				return;
 			}
+			
+
+			var jumin_num1 = $("[name=driverUpDelForm] [name=jumin_num1]").val();
+			var jumin_num2 = $("[name=driverUpDelForm] [name=jumin_num2]").val();
+			
+			if(jumin_num_check(jumin_num1,jumin_num2)==false){
+				$("[name=driverUpDelForm] [name=jumin_num1]").focus();
+				return;
+			}
 			var gender=$("[name=driverUpDelForm] [name=gender]:checked").length;
 			if(gender_check(gender)==false){
 				$("[name=driverUpDelForm] [name=gender]").focus();
 				return;
 			}
-
-			var jumin_num1 = $("[name=driverUpDelForm] [name=jumin_num1]").val();
-			var jumin_num2 = $("[name=driverUpDelForm] [name=jumin_num2]").val();
-		
-			if(jumin_num_check(jumin_num1,jumin_num2)==false){
-				$("[name=driverUpDelForm] [name=jumin_num1]").focus();
-				return;
-			}
-
-			var postal_code = $("[name=driverUpDelForm] [name=postal_code]").val();
-			if(is_empty2(postal_code)==false){
-				alert("주소를 검색해주세요.");
-				return;
-			}
+			var gender_val = $("[name=driverUpDelForm] [name=gender]:checked").val();
+			alert(gender_val);
+	  		if (gender_jumin_check(gender_val,jumin_num2)==false){
+	  			$("[name=driverUpDelForm] [name=jumin_num2]").focus();
+	  			return;
+	  	  	}
 			var phone = $("[name=driverUpDelForm] [name=phone]").val();
 			if(phone_check(phone)==false){
 				alert("올바른 핸드폰 번호 형식이 아닙니다.");
@@ -175,18 +160,29 @@
 				return;
 			}
 			
+			
 			var email = $("[name=driverUpDelForm] [name=email]").val();
 			if(email_check(email)==false){
 				alert("올바른 이메일 형식이 아닙니다.");
 				$("[name=driverUpDelForm] [name=email]").focus();
 				return;
 			}
+			var value = $("[name=driverUpDelForm] [name=emailCheck]").val();
+			if(value==0){
+				alert("이메일이 변경되었습니다. 인증해주세요.");
+				return;
+			}
 			var driver_license_number = $("[name=driverUpDelForm] [name=driver_license_number]").val();
-			if (driver_license_check(driver_license_number) == false) {
-			alert("올바른 운전면허 형식이 아닙니다.");
-			$("[name=driverUpDelForm] [name=driver_license_number]").focus();
-			return;
-		}
+			if(driver_license_check(driver_license_number)==false){
+				alert("올바른 운전면허 형식이 아닙니다.");
+				$("[name=driverUpDelForm] [name=driver_license_number]").focus();
+				return;
+			}
+			var postal_code = $("[name=driverUpDelForm] [name=postal_code]").val();
+			if(is_empty2(postal_code)==false){
+				alert("주소를 검색해주세요.");
+				return;
+			}
 			
 			if(confirm("정말 수정 하시겠습니까?")==false){ 
 	 			return; 
@@ -205,7 +201,7 @@
 						alert("회원삭제 성공!");
 						
 
-						location.replace("/support/adminMainPage.do");
+						document.driverUpDelFormMain.submit();
 					}
 					else{
 						alert("회원삭제 실패!");
@@ -215,7 +211,7 @@
 					if(data==1){
 						alert("회원수정 성공!");
 
-						location.replace("/support/adminMainPage.do");
+						document.driverUpDelFormMain.submit();
 					}
 					else{
 						alert("회원수정 실패!");
@@ -429,7 +425,7 @@
 				
 				<a><input type="button" onclick="goUpDelProc('del');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="삭제"></a> 
 				&nbsp;&nbsp;&nbsp;
-				<a><input type="button" onclick="goUpDelPage();" value="취소" class="btn large white radius-5"></a>
+				<a><input type="button" onclick="goDriverUpDelForm();" value="취소" class="btn large white radius-5"></a>
 			</div>
 		</div>
 		<input type="hidden" name="driver_no">

@@ -26,9 +26,9 @@ none : 없는 상태
 underline : 있는 상태
 a:active : 링크부분에서 마우스를 누르고 있는 동안의 상태*/
 
-a:link { color: white; text-decoration: none;}
-a:visited { color: white; text-decoration: none;}
-a:hover { color: white; text-decoration: underline;}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
 
 /*네비게이션 색상*/
 
@@ -117,7 +117,7 @@ function adminMainPage(){
 		location.replace("/support/driverRegForm2.do");
 	}
 	function goDriverUpDelForm(){
-		document.driverUpDelForm.submit();
+		document.driverUpDelFormMain.submit();
 	}
 	// 차량관리
 	function carRegForm(){
@@ -128,10 +128,10 @@ function adminMainPage(){
 		document.carUpDelForm.submit();
 	}
 	function goCarListInfoForm(){
-		document.carListInfoForm.submit();
+		document.carListInfoFormMain.submit();
 	}
 	function goCarMaintanceListForm(){
-		document.carMaintanceList.submit();
+		document.carMaintanceListMain.submit();
 	}
 	
 	
@@ -139,7 +139,7 @@ function adminMainPage(){
 		location.replace("/support/userRegForm2.do");
 	}
 	function goUserUpDelForm(){
-		document.userUpDelForm.submit();
+		document.userUpDelFormMain.submit();
 	}
 	
 	// 불만 게시판으로 이동하는 함수(관리자)
@@ -148,7 +148,7 @@ function adminMainPage(){
 	}
 	// QnA 게시판으로 이동하는 함수
 	function qnaListForm() {
-		location.replace("/support/qnaListForm.do");
+		document.qnaListFormMain.submit();
 	}
 	
 	function logout(){
@@ -241,29 +241,32 @@ function adminMainPage(){
 </div>  
 <%-- <%@include file="titleadmin.jsp" %> --%>
 
-<form name="carMaintanceList" method="post" action="/support/carMaintanceListForm.do">
+<form name="carMaintanceListMain" method="post" action="/support/carMaintanceListForm.do">
 
 </form>
 
 <form name="carUpDelForm" method="post" action="/support/adminCarUpDelForm.do">
 </form>
 
-<form name="carListInfoForm" method="post" action="/support/carListInfoForm.do">
+<form name="carListInfoFormMain" method="post" action="/support/carListInfoForm.do">
 </form>
 
 <form name="driverAcceptForm" method="post" action="/support/driverAcceptForm.do">
 </form>
 
-<form name="driverUpDelForm" method="post" action="/support/driverUpDelForm.do">
+<form name="driverUpDelFormMain" method="post" action="/support/driverUpDelForm.do">
 </form>
 
 
-<form name="userUpDelForm" method="post" action="/support/userUpDelForm.do">
+<form name="userUpDelFormMain" method="post" action="/support/userUpDelForm.do">
 </form>
 
 <form name="adminDiscontentListFormMain" method="post" action="/support/adminDiscontentListForm.do">
 </form>
 
+
+<form name="qnaListFormMain" method="post" action="/support/qnaListForm.do">
+</form>
 
 </body>
 </html>

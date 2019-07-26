@@ -19,6 +19,10 @@ public interface DriverService {
 
 	List<Map<String, String>> getDriverUserReresveList(ReserveSearchDTO reserveSearchDTO);
 
+	ReviewDTO getDriverGrade(int reserve_apply_car_number);
+
+	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
+
 	
 
 }

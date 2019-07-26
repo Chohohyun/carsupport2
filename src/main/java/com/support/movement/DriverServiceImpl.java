@@ -60,4 +60,18 @@ public class DriverServiceImpl implements DriverService{
 		return reserveList;
 	}
 
+	@Override
+	public ReviewDTO getDriverGrade(int reserve_apply_car_number) {
+		ReviewDTO reviewDTO = this.driverDAO.getDriverGrade(reserve_apply_car_number);
+		return reviewDTO;
+		
+	}
+
+	@Override
+	public List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO) {
+		List<Map<String, String>> qnaList = this.driverDAO.getQnaList(qnaSearchDTO);
+		
+		return qnaList;
+	}
+
 }

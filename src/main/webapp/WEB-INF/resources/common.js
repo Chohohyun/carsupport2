@@ -98,6 +98,25 @@
            return false;
        }
    }
+   function gender_jumin_check(gender,num2){
+	   var arrNum = new Array();
+	   for (var i=0; i<num2.length; i++) {
+           arrNum[i] = num2.charAt(i);
+       } // 주민번호 뒷자리를 배열에 순서대로 담는다.
+	   if(gender==1){
+		   if(arrNum[0]!=1 && arrNum[0]!=3 ){
+			   alert("성별과 주민등록번호가 일치하지 않습니다.");
+			   return false;
+		   }
+	   }
+	  
+	   else{
+		   if(arrNum[0]!=2 && arrNum[0]!=4 ){
+			   alert("성별과 주민등록번호가 일치하지 않습니다.");
+			   return false;
+		   }
+	   }
+   }
    
    //--------------------------------------------------------------------------
    // 주민번호 유효성 체크 함수

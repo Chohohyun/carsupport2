@@ -167,7 +167,7 @@
 							
 							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
 							
-							<a href="javascript:goDiscontentRegForm();" class="btn middle white radius-5">새 글쓰기</a>
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
 						</form>
 
 					</div>

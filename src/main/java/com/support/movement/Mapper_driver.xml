@@ -117,4 +117,23 @@
 		 ]]>
 		 </if>
 	</select>
+	
+	<select id="getDriverGrade" parameterType="int" resultType="com.support.movement.ReviewDTO">
+		select
+            r.review_no||'' as "review_no",
+            r.reserve_apply_car_number||'' as "reserve_apply_car_number",
+            r.review_score||'' as "review_score",
+            r.review_content||'' as "review_content",
+            to_char( r.review_date, 'yyyy-mm-dd' )||'' as "review_date",
+            (select to_char(c.reservation_date,'yyyy-mm-dd hh24') from reserve_apply_car c where c.reserve_apply_car_number=r.reserve_apply_car_number)||'' as "reservation_date",
+            (select u.user_name from disability_user u,reserve_apply_car c where c.user_no=u.user_no and  c.reserve_apply_car_number=r.reserve_apply_car_number)||'' as "user_name",
+            (select c.end_road_addr from reserve_apply_car c where c.reserve_apply_car_number=r.reserve_apply_car_number)||'' as "end_road_addr",
+            (select c.start_road_addr from reserve_apply_car c where c.reserve_apply_car_number=r.reserve_apply_car_number)||'' as "start_road_addr"
+        from
+            review  r
+        where
+            r.reserve_apply_car_number=#{reserve_apply_car_number}
+            
+			
+	</select>
 </mapper>

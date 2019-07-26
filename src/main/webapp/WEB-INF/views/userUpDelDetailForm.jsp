@@ -73,8 +73,7 @@
 					if(type=='user'){
 
 						$("#userEmailTr").show();
-						document.userUpDelForm.AuthenticationNumber.style.display="block";
-						document.userUpDelForm.AuthenticationNumberBtn.style.display="block";
+						
 						var elem = document.getElementById("userEmailBtn"); 
 						elem.value = "재전송";
 						return;
@@ -82,8 +81,6 @@
 					if(type=='driver'){
 						alert(type);
 						$("#driverEmail").show();
-						document.driverUpDelForm.AuthenticationNumber.style.display="block";
-						document.driverUpDelForm.AuthenticationNumberBtn.style.display="block";
 						var elem = document.getElementById("driverEmailBtn"); 
 						elem.value = "재전송";
 						return;
@@ -119,17 +116,7 @@
 		}
 		
 		else{
-			var value = $("[name=userUpDelForm] [name=emailCheck]").val();
-			if(value==0){
-				alert("이메일이 변경되었습니다. 인증해주세요.");
-				return;
-			}
-			var driverId = $("[name=userUpDelForm] [name=id]").val();
-			if(id_check(driverId)==false){
-				alert("올바른 아이디형식이 아닙니다.");
-				$("[name=userUpDelForm] [name=id]").focus();
-				return;
-			}
+	
 			
 			var driverPwd = $("[name=userUpDelForm] [name=pwd1]").val(); 
 			if(pwd_check(driverPwd)==false){
@@ -153,11 +140,7 @@
 				$("[name=userUpDelForm] [name=name]").focus();
 				return;
 			}
-			var gender=$("[name=userUpDelForm] [name=gender]:checked").length;
-			if(gender_check(gender)==false){
-				$("[name=userUpDelForm] [name=gender]").focus();
-				return;
-			}
+			
 
 			var jumin_num1 = $("[name=userUpDelForm] [name=jumin_num1]").val();
 			var jumin_num2 = $("[name=userUpDelForm] [name=jumin_num2]").val();
@@ -166,12 +149,19 @@
 				$("[name=userUpDelForm] [name=jumin_num1]").focus();
 				return;
 			}
-
-			var postal_code = $("[name=userUpDelForm] [name=postal_code]").val();
-			if(is_empty2(postal_code)==false){
-				alert("주소를 검색해주세요.");
+			var gender=$("[name=userUpDelForm] [name=gender]:checked").length;
+			if(gender_check(gender)==false){
+				$("[name=userUpDelForm] [name=gender]").focus();
 				return;
 			}
+			var gender_val = $("[name=userUpDelForm] [name=gender]:checked").val();
+			
+	  		if (gender_jumin_check(gender_val,jumin_num2)==false){
+	  			$("[name=userUpDelForm] [name=jumin_num2]").focus();
+	  			return;
+	  	  	}
+	  		
+			
 			var phone = $("[name=userUpDelForm] [name=phone]").val();
 			if(phone_check(phone)==false){
 				alert("올바른 핸드폰 번호 형식이 아닙니다.");
@@ -185,6 +175,11 @@
 				$("[name=userUpDelForm] [name=email]").focus();
 				return;
 			}
+			var value = $("[name=userUpDelForm] [name=emailCheck]").val();
+			if(value==0){
+				alert("이메일이 변경되었습니다. 인증해주세요.");
+				return;
+			}
 			var disability_grade = $("[name=userUpDelForm] [name=disability_grade]").val();
 			if(is_empty2(disability_grade)==false){
 				alert("장애 등급을 선택해주세요.");
@@ -195,6 +190,11 @@
 			if(is_empty2(disability_type)==false){
 				alert("장애 종류를 선택해주세요.");
 				$("[name=userUpDelForm] [name=disability_type]").focus();
+				return;
+			}
+			var postal_code = $("[name=userUpDelForm] [name=postal_code]").val();
+			if(is_empty2(postal_code)==false){
+				alert("주소를 검색해주세요.");
 				return;
 			}
 			
@@ -215,7 +215,7 @@
 						alert("회원삭제 성공!");
 						
 
-						location.replace("/support/adminMainPage.do");
+						document.userUpDelFormMain.submit();
 					}
 					else{
 						alert("회원삭제 실패!");
@@ -225,7 +225,8 @@
 					if(data==1){
 						alert("회원수정 성공!");
 
-						location.replace("/support/adminMainPage.do");
+
+						document.userUpDelFormMain.submit();
 					}
 					else{
 						alert("회원수정 실패!");
@@ -483,7 +484,7 @@
 				
 				<a><input type="button" onclick="goUpDelProc('del');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="삭제"></a> 
 				&nbsp;&nbsp;&nbsp;
-				<a><input type="button" onclick="goUpDelPage();" value="취소" class="btn large white radius-5"></a>
+				<a><input type="button" onclick="goUserUpDelForm();" value="취소" class="btn large white radius-5"></a>
 			</div>
 		</div>
 		<input type="hidden" name="user_no">

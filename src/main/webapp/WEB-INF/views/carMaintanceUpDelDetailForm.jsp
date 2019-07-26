@@ -82,7 +82,7 @@
     			success:function(data){
     				if(data>=1){
     					alert("차량 정비내용 수정 성공!");
-    					location.replace("/support/adminMainPage.do");
+    					document.carMaintanceListMain.submit();
     				}
     				else{
     					alert("차량 정비내용 수정 실패!");
@@ -105,7 +105,7 @@
     			success:function(data){
     				if(data==1){
     					alert("차량 정비내용 삭제 성공!");
-    					location.replace("/support/adminMainPage.do");
+    					document.carMaintanceListMain.submit();
     				}
     				else{
     					alert("차량 정비내용 삭제 실패!");
@@ -196,7 +196,7 @@
 					
 						<a href="javascript:goCarMaintanceUpdateProc();" class="btn middle white radius-5">수정</a>
 						<a href="javascript:goCarMaintanceDeleteProc();" class="btn middle white radius-5">삭제</a>
-						<a href="javascript:goAdminMainPage();" class="btn middle white radius-5">취소</a>
+						<a href="javascript:goCarMaintanceListForm();" class="btn middle white radius-5">취소</a>
 					</div>
 				</div>
 			</div>

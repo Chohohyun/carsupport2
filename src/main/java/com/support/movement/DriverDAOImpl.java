@@ -51,4 +51,15 @@ public class DriverDAOImpl implements DriverDAO{
 		List<Map<String, String>> reserveList =  this.sqlSession.selectList("com.support.movement.DriverDAO.getDriverUserReresveList",reserveSearchDTO);
 		return reserveList;
 	}
+	@Override
+	public ReviewDTO getDriverGrade(int reserve_apply_car_number) {
+		ReviewDTO reviewDTO = this.sqlSession.selectOne("com.support.movement.DriverDAO.getDriverGrade",reserve_apply_car_number);
+		return reviewDTO;
+		
+	}
+	@Override
+	public List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO) {
+		List<Map<String, String>> qnaList= this.sqlSession.selectList("com.support.movement.UserDAO.getQnaList",qnaSearchDTO);
+		return qnaList;
+	}
 }

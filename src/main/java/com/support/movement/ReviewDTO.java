@@ -7,7 +7,10 @@ public class ReviewDTO {
 	private String review_date;
 	private String reservation_date;
 	private String end_road_addr;
+	private String start_road_addr;
 	private String driver_name;
+	private String review_no;
+	private String user_name;
 	
 	
 	
@@ -52,6 +55,24 @@ public class ReviewDTO {
 	}
 	public void setReview_date(String review_date) {
 		this.review_date = review_date;
+	}
+	public String getReview_no() {
+		return review_no;
+	}
+	public void setReview_no(String review_no) {
+		this.review_no = review_no;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getStart_road_addr() {
+		return start_road_addr;
+	}
+	public void setStart_road_addr(String start_road_addr) {
+		this.start_road_addr = start_road_addr;
 	}
 	
 	

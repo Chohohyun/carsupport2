@@ -26,7 +26,12 @@
 <body>
 	<div id="wrap">
 		<!--head-->
+		<c:if test="${sessionScope.idChk==3}">
 		<%@include file="title.jsp"%>
+		</c:if>
+		<c:if test="${sessionScope.idChk==5}">
+		<%@include file="title2.jsp"%>
+		</c:if>
 		<!--head end-->
 
 		<!--container-->

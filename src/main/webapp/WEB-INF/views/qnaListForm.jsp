@@ -71,6 +71,17 @@
 		inputData("selectPageNo","1");
 		document.qnaSearchForm.submit();
 	}
+	  function goqnaRegForm()
+      {
+   	  location.replace("/support/qnaRegForm.do")
+      }
+    
+      function goQnaUpDelForm(data) {
+   	   
+  		document.qnaUpDelForm.question_no.value=data;
+  		document.qnaUpDelForm.submit(); 
+  		}
+	
     </script>
       <script type="text/javascript" language="javascript">
 
@@ -90,8 +101,17 @@
   <body>
     <div id="wrap">
       <!--head-->
-      
+      	<c:if test="${sessionScope.idChk==1}">
+		<%@include file="adminMainPage.jsp"%>
+		</c:if>
+      	<c:if test="${sessionScope.idChk==3}">
 		<%@include file="title.jsp"%>
+		</c:if>
+		<c:if test="${sessionScope.idChk==5}">
+		<%@include file="title2.jsp"%>
+		</c:if>
+		
+		
 		
       <!--head end-->
 
@@ -125,7 +145,16 @@
            			
                     <tbody>
 					<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
-					<tr style="cursor: pointer" onClick="goQnaContentForm(${qna.question_no});">
+					<c:choose>
+						<c:when test="${sessionScope.idChk!=1}">
+							<tr style="cursor: pointer" onClick="goQnaContentForm(${qna.question_no});">
+						</c:when>
+						<c:otherwise>
+						<tr style="cursor: pointer"onClick="goQnaUpDelForm(${qna.question_no});">
+						</c:otherwise>
+						</c:choose>
+						
+					
 						<td>${qnaListAllCnt-(qnaSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
 						<td class="txt_left">${qna.question_subject}</td>
 						<td>관리자</td>
@@ -150,7 +179,11 @@
 							<input type="text" name="keyword" style="height:40px">
 							<input type="hidden" name="question_group_no">
 							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
-							
+							<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
+							<c:if test="${sessionScope.idChk==1}">
+		
+							<a href="javascript:goqnaRegForm();" class="btn middle white radius-5">글쓰기</a>
+							</c:if>
 						</form>
 
 					</div>
@@ -165,6 +198,11 @@
 		<form name="qnaContentForm" method="post" action="/support/qnaContentForm.do">
 			<input type="hidden" name="question_no">
 		</form>
+		<form name="qnaUpDelForm" method="post"
+			action="/support/qnaUpDelForm.do">
+			<input type="hidden" name="question_no">
+		</form>
+		
     <!--container end-->
 
 
@@ -172,7 +210,10 @@
 
         
         <!--foot-->
+       	<c:if test="${sessionScope.idChk!=1}">
+		
         <%@include file="foot.jsp"%>
+		</c:if>
         <!--foot end-->
       </div>
 
