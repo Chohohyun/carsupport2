@@ -11,9 +11,9 @@ public interface UserService {
 
 	List<Map<String, String>> getUserRevList(String id);
 
-	int getUserUtilDetailListAllCnt(String id);
+	int getUserUtilDetailListAllCnt(UtilizationSearchDTO utilizationSearchDTO);
 
-	List<Map<String, String>> getUserUtilDetailList(String id);
+	List<Map<String, String>> getUserUtilDetailList(UtilizationSearchDTO utilizationSearchDTO);
 
 	UserDTO getUserDTO(String id);
 

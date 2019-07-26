@@ -31,7 +31,7 @@ $(document).ready(function() {
 			success:function(data){
 				if(data==1){
 					alert("승인 성공!");
-					location.replace("/support/driverAcceptForm.do");
+					document.driverAcceptForm.submit();
 				}
 				
 				else{

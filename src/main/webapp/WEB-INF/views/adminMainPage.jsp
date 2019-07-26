@@ -26,92 +26,95 @@ none : 없는 상태
 underline : 있는 상태
 a:active : 링크부분에서 마우스를 누르고 있는 동안의 상태*/
 
-a:link { color: white; text-decoration: none;}
-a:visited { color: white; text-decoration: none;}
-a:hover { color: white; text-decoration: underline;}
+a:link { color: #474040; text-decoration: none; font-weight: bold;}
+a:visited { color: #474040; text-decoration: none;   font-weight: bold;}
+a:hover { color: #474040; text-decoration: underline;   font-weight: bold;}
 
 /*네비게이션 색상*/
 
 .navi_bg{
-	background: #FAFAFA;
+   background: #fafafa;
 }
 
 /*네비게이션 전체 영역 제어*/
 
 .nav {
-	height:95px;
-	list-style: none;
-	width:1100px;
-	margin:auto;
-	background: #FAFAFA;
-	font-size: 14px;
-	color:#000000;
+   height:95px;
+   list-style: none;
+   width:1100px;
+   margin:auto;
+   background: #fafafa;
+   font-size: 14px;
+   color:#000000;
 }
 
 /*주메뉴 영역 제어*/
 
 .topnav{
-	text-align:center;
-	width:100px;
-	height:15px;
-	cursor:pointer;
-	font-weight:bold;
+   text-align:center;
+   width:100px;
+   height:15px;
+   cursor:pointer;
+   font-weight:bold;
 }
 
 /*주메뉴 마우스 오버시*/
 
 .topnav:hover{
-	color:#aeb0b3;
+   color:#aeb0b3;
 }
 
 /*주메뉴,서브메뉴 한묶음 제어*/
 
 .navi_set{
-	float: left;
-	padding:10px;
-	position: relative;
-	padding-top: 50px;
+   float: left;
+   padding:10px;
+   position: relative;
+   padding-top: 50px;
 }
 
 
 .jy{
-	float: left;
-	padding:10px;
-	position: relative;
-	padding-top: 30px;
+   float: left;
+   padding:10px;
+   position: relative;
+   padding-top: 30px;
 }
 
 
 /*서브메뉴 전체영역 제어*/
 
 .subnav{
-	position: absolute;
-	left: 0; top: 75px;
-	background: #333;
-	display: none;
-	z-index:4;
+   position: absolute;
+   left: 0; top: 75px;
+   background: #ffffff;
+   display: none;
+   z-index:4;
+   border: 1px solid #ceccd4;
+   box-shadow: 8px 5px 8px 1px rgba(0,10,18,.1), 0 0 0 1px rgba(0,10,18,.1);
 }
 
 /*서브메뉴 한칸 제어*/
 
 .subnav li{
-	padding:0px;
-	width:120px;
-	height:35px;
-	line-height: 300%;
-	text-align:center;
-	border-bottom:1px solid #222;
-	border-top:1px solid #444;
-	cursor:pointer;
+   padding:0px;
+   width:120px;
+   height:35px;
+   line-height: 200%;
+   text-align:center;
+   /*border-bottom:1px solid #4a4a4a;
+   border-top:1px solid #4a4a4a;*/
+   cursor:pointer;
 }
 
 /*서브메뉴 마우스 오버시*/
 
 .subnav li:hover{
-	background:#555;
+   background:#f5f5f5;
 }
 
 </style>
+
 
 <link type="text/css" href="./css/style.css" rel="stylesheet" />
 <script>

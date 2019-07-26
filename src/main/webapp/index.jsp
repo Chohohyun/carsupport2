@@ -6,10 +6,11 @@
 <title>stars.css Demos</title>
 
 </head>
-
+	
 <body>
-
-
+<script>
+location.replace("/support/userMainPage.do");
+</script>
 
     
  

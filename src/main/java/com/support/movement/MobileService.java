@@ -22,5 +22,17 @@ public interface MobileService {
 	String getDriverId(Map<String, String> login);
 
 	List<Map<String, String>> getReserveList(Map<String, String> selectcode);
+
+	int getReserveRegCnt(String parameter, String select_num);
+
+	String getReserveDate(Map<String, String> update_code);
+
+	List<Map<String, String>> getReserveNo(Map<String, String> update_code);
+
+	int getDupleTimeRegCnt(String reservedate);
+
+	int UpdateDenyCode(List<Map<String, String>> reserveNoArr);
+
+	String getCodeStatus(String parameter);
 	
 }

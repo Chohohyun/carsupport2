@@ -230,15 +230,16 @@ public class UserController {
 			}
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
+			utilizationSearchDTO.setId(id);
 			if(id==null) {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
 			mav.setViewName("userUtilizationDetails.jsp");
-			int userUtilDetailListAllCnt = this.userService.getUserUtilDetailListAllCnt(id);
+			int userUtilDetailListAllCnt = this.userService.getUserUtilDetailListAllCnt(utilizationSearchDTO);
 			System.out.println(userUtilDetailListAllCnt);
 
-			userUtilDetailList= this.userService.getUserUtilDetailList(id);
+			userUtilDetailList= this.userService.getUserUtilDetailList(utilizationSearchDTO);
 			mav.addObject("utilizationSearchDTO",utilizationSearchDTO);
 			mav.addObject("userUtilDetailListAllCnt",userUtilDetailListAllCnt);
 			mav.addObject("userUtilDetailList",userUtilDetailList);

@@ -101,18 +101,21 @@
   <body>
     <div id="wrap">
       <!--head-->
-      	<c:if test="${sessionScope.idChk==1}">
-		<%@include file="adminMainPage.jsp"%>
-		</c:if>
-      	<c:if test="${sessionScope.idChk==3}">
-		<%@include file="title.jsp"%>
-		</c:if>
-		<c:if test="${sessionScope.idChk==5}">
-		<%@include file="title2.jsp"%>
-		</c:if>
-		
-		
-		
+      	<c:choose>
+      		<c:when test="${sessionScope.idChk==1}">
+      		<%@include file="adminMainPage.jsp"%>
+      		</c:when>
+      		<c:when test="${sessionScope.idChk==3}">
+      		<%@include file="title.jsp"%>
+      		</c:when>
+      		<c:when test="${sessionScope.idChk==5}">
+      		<%@include file="title2.jsp"%>
+      		</c:when>
+      		<c:otherwise>
+      		<%@include file="title.jsp"%>
+      		</c:otherwise>
+      	</c:choose>
+      
       <!--head end-->
 
 

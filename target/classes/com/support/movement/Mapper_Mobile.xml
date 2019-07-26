@@ -18,6 +18,12 @@
  		where driver_id=#{id} and driver_pwd=#{pwd}
  	</select>
  	
+ 	<select id="getReserveRegCnt" parameterType="hashmap" resultType="int">
+ 		select
+ 			count(*)
+ 		from reserve_apply_car
+ 		where (reserve_status_code=#{parameter} or reserve_status_code='4') and reserve_apply_car_number=#{select_num}
+ 	</select>
  	
  	<select id="getReserveList" parameterType="hashmap" resultType="hashmap">
  		select
@@ -30,6 +36,8 @@
 	 			,rac.car_number||'' as "car_number"
 	 			,rac.driver_no||'' as "driver_no"
 				,rac.user_no||'' as "user_no"
+				,du.USER_NAME as "USER_NAME"
+				,du.USER_PHONE as "USER_PHONE"
 	 			,rac.reserve_count||'' as "reserve_count"
 	 			,rac.start_road_addr||'' as "start_road_addr"
 	 			,rac.start_detail_addr||'' as "start_detail_addr"
@@ -39,64 +47,67 @@
 				,to_char(rac.drive_start_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_start_time"
 				,to_char(rac.drive_finish_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_finish_time"
 				,rac.drive_distance||'' as "drive_distance"
-			from reserve_apply_car rac left outer join RESERVE_ACCEPT_LIST ral
-			on rac.reserve_status_code=ral.reserve_status_code
-			where rac.reserve_status_code=#{status_code}
-			<if test="status_code==2 or status_code==5">
-				and rac.driver_no=#{driver_no}  
-			</if>
-			and rac.reserve_apply_car_number=ANY(select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=#{driver_no} and reserve_status_code!=3 )  
+		from reserve_apply_car rac left outer join RESERVE_ACCEPT_LIST ral
+		on rac.reserve_status_code=ral.reserve_status_code
+			left outer join DISABILITY_USER du
+				 on  rac.USER_NO=du.USER_NO
+		where rac.reserve_status_code=#{status_code}
+		<if test="status_code==2 or status_code==5">
+			and rac.driver_no=#{driver_no}  
+		</if>
+		and rac.reserve_apply_car_number=ANY( select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=#{driver_no} and reserve_status_code!=3 ) 
+		and rac.reservation_date&gt;=sysdate 
+		
 			
  	</select>
  	
 	<select id="getBoardList"  resultType="com.support.movement.MobileBoardDTO">
-			select
-                reserve_apply_car_number as "reserve_apply_car_number"
-                ,to_char(reservation_date,'yyyy-mm-dd AM HH:MI:SS') as "reservetion_date"
-	 			,start_point_longitude as "start_point_longitude"
-	 			,start_point_latitude as "start_point_latitude"
-	 			,end_point_longitude as "end_point_longitude"
-	 			,end_point_latitude as "end_point_latitude"
-	 			,car_number as "car_number"
-	 			,driver_no as "driver_no"
-				,user_no as "user_no"
-	 			,reserve_count as "reserve_count"
-	 			,start_road_addr as "start_road_addr"
-	 			,start_detail_addr as "start_detail_addr"
-	 			,end_road_addr as "end_road_addr"
-	 			,end_detail_addr as "end_derail_addr"
-				,reserve_status_code as "reserve_status_code"
-				,to_char(drive_start_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_start_time"
-				,to_char(drive_finish_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_finish_time"
-				,drive_distance as "drive_distance"
-			from reserve_apply_car order by reserve_apply_car_number asc
+		select
+            reserve_apply_car_number as "reserve_apply_car_number"
+            ,to_char(reservation_date,'yyyy-mm-dd AM HH:MI:SS') as "reservetion_date"
+ 			,start_point_longitude as "start_point_longitude"
+ 			,start_point_latitude as "start_point_latitude"
+ 			,end_point_longitude as "end_point_longitude"
+ 			,end_point_latitude as "end_point_latitude"
+ 			,car_number as "car_number"
+ 			,driver_no as "driver_no"
+			,user_no as "user_no"
+ 			,reserve_count as "reserve_count"
+ 			,start_road_addr as "start_road_addr"
+ 			,start_detail_addr as "start_detail_addr"
+ 			,end_road_addr as "end_road_addr"
+ 			,end_detail_addr as "end_derail_addr"
+			,reserve_status_code as "reserve_status_code"
+			,to_char(drive_start_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_start_time"
+			,to_char(drive_finish_time,'yyyy-mm-dd AM HH:MI:SS') as "drive_finish_time"
+			,drive_distance as "drive_distance"
+		from reserve_apply_car order by reserve_apply_car_number asc
 			
 	</select>
 	
 	<update id="UpdateCode" parameterType="hashmap">
 		update RESERVE_APPLY_CAR set
-				<if test="parameter!=3">
-					reserve_status_code = ${parameter}
-				</if>
-				
-				<if test="start_time==null and parameter!=3">
-					,driver_no=#{driver_no}
-					,car_number=(select car_number from car_info where car_driver=#{driver_no})	
-				</if>
+			<if test="parameter!=3">
+				reserve_status_code = ${parameter}
+			</if>
+			
+			<if test="start_time==null and parameter!=3">
+				,driver_no=#{driver_no}
+				,car_number=(select car_number from car_info where car_driver=#{driver_no})	
+			</if>
 
-				<if test="start_time!=null and start_time.length()>0">
-					,drive_start_time=to_date( #{start_time}, 'YYYY-MM-DD HH24:MI:SS' )	
-				</if>
-					
-				<choose>
-					<when test="parameter==2 or parameter==4">
-						,reserve_count=0
-					</when>
-					<otherwise>
-						reserve_count=reserve_count-1
-					</otherwise>
-				</choose>
+			<if test="start_time!=null and start_time.length()>0">
+				,drive_start_time=to_date( #{start_time}, 'YYYY-MM-DD HH24:MI:SS' )	
+			</if>
 				
+			<choose>
+				<when test="parameter==2 or parameter==4">
+					,reserve_count=0
+				</when>
+				<otherwise>
+					reserve_count=reserve_count-1
+				</otherwise>
+			</choose>	
 		where reserve_apply_car_number=${select_num}
 	</update>
 	
@@ -109,6 +120,30 @@
 		</if>	
 	</update>
 	
+	<select id="getReserveDate" parameterType="hashmap" resultType="String">
+		select
+			to_char(reservation_date,'YYYYMMDDHH24MI') "reservedate"
+		from RESERVE_APPLY_CAR
+		where reserve_apply_car_number=${select_num} 
+	</select>
+	
+	<select id="getDupleTimeRegCnt" parameterType="String" resultType="int">
+		select 
+			count(reserve_apply_car_number)	
+		from RESERVE_APPLY_CAR
+		where to_char(reservation_date,'YYYYMMDDHH24MI')=#{reservedate} and reserve_status_code='1' 
+	</select>
+	
+	<select id="getReserveNo"  parameterType="hashmap" resultType="hashmap">
+		select 
+			rac.RESERVE_APPLY_CAR_NUMBER   "reserveNo"
+		from RESERVE_APPLY_CAR  rac,  reserve_accept_list ral
+		where rac.RESERVE_APPLY_CAR_NUMBER=ral.RESERVE_APPLY_CAR_NUMBER 
+        	and to_char(rac.RESERVATION_DATE,'YYYYMMDDHH24MI')=#{reservedate} and ral.DRIVER_NO=#{driver_no} and rac.reserve_status_code='1'
+        order by rac.RESERVE_APPLY_CAR_NUMBER
+	</select>
+	
+	
 	<select id="getReserveCnt" parameterType="hashmap" resultType="String">
 		select 
 			count(*)||'' as "Cnt"
@@ -116,14 +151,30 @@
 		where reserve_apply_car_number=#{select_num} and  reserve_status_code!=#{parameter} 	
 	</select>
 	
+	<update id="UpdateDenyCode" parameterType="java.util.List">
+		update RESERVE_ACCEPT_LIST set
+			reserve_status_code='3'
+		where 
+		<foreach collection="list" item="reserveArr" separator=" or " >
+			<if test="reserveArr.reserveNo!=null">
+		 		RESERVE_APPLY_CAR_NUMBER=${reserveArr.reserveNo} 	
+		 	</if> 
+		</foreach> 
+		<foreach collection="list" item="reserveArr">
+			<if test="reserveArr.driver_no!=null">
+		 		and driver_no=#{reserveArr.driver_no} 
+		 	</if>
+		</foreach> 
+	</update>
 	
 	
+		
 	<update id="DeleteCode" parameterType="hashmap">
-			update  reserve_apply_car  set 
-				reserve_status_code=${parameter} 			
-				,drive_finish_time=to_date( #{endtime}, 'YYYY-MM-DD HH24:MI:SS' )
-				,drive_distance=${drive_distance}||' Meter'	
-			where reserve_apply_car_number=${select_num}
+		update  reserve_apply_car  set 
+			reserve_status_code=${parameter} 			
+			,drive_finish_time=to_date( #{endtime}, 'YYYY-MM-DD HH24:MI:SS' )
+			,drive_distance=${drive_distance}||' Meter'	
+		where reserve_apply_car_number=${select_num}
 	</update>
 	
 	<select id="getLoginList"  resultType="com.support.movement.MobileLoginDTO">
@@ -142,14 +193,18 @@
 		where user_no=(select user_no from reserve_apply_car where reserve_apply_car_number=#{select_num})
 	</select>
 	
-	<select id="getPhoneNum" parameterType="String" resultType="String">
-		
+	<select id="getPhoneNum" parameterType="String" resultType="String">	
 		select
 			user_phone||'' as "user_phone"
 		from  DISABILITY_USER
 		where user_no=(select user_no from reserve_apply_car where reserve_apply_car_number=#{select_num}) 
 	</select>
-	
+	<select id="getCodeStatus" parameterType="String" resultType="String">	
+		select
+			reserve_status_code||'' as "reserve_status_code"
+		from  reserve_apply_car
+		where reserve_apply_car_number=${parameter}
+	</select>
 
 </mapper>
 

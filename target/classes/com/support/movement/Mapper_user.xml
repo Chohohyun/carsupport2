@@ -131,6 +131,12 @@
 		from reserve_apply_car
 		where  to_char(sysdate,'yyyymmddhh24') - to_char(reservation_date,'yyyymmddhh24')  &gt; 0
 		and user_no = (select user_no from disability_user where user_id=#{id})
+		<if test="(use_year!=null and use_year.length()>0)">
+			and extract(year from rac.reservation_date) = #{use_year}
+		</if>
+		<if test="(use_month!=null and use_month.length()>0)">
+			and extract(month from rac.reservation_date) = #{use_month}
+		</if>
 	</select>
 	
 	<select id ="getUserUtilDetailList" parameterType="String" resultType="hashmap">
@@ -151,6 +157,14 @@
 		from reserve_apply_car rac
 		where to_char(sysdate,'yyyymmddhh24') - to_char(rac.reservation_date,'yyyymmddhh24')  &gt; 0
 		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
+		<if test="(use_year!=null and use_year.length()>0)">
+			and extract(year from rac.reservation_date) = #{use_year}
+		</if>
+		<if test="(use_month!=null and use_month.length()>0)">
+			and extract(month from rac.reservation_date) = #{use_month}
+		</if>
+		order by "reservation_date" desc
+		
 	</select>
 	<select id ="getReserveInfo" parameterType="int" resultType="hashmap">
 		 

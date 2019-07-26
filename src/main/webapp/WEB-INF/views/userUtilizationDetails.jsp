@@ -99,7 +99,7 @@
 							<th scope="col">번호</th>
 							<th scope="col">출발지</th>
 							<th scope="col">도착지</th>
-							<th scope="col">예약일시</th>
+							<th scope="col">이용날짜</th>
 							<th scope="col">운전자</th>
 							<th scope="col">예약상태</th>
 							<th scope="col">평점</th>
@@ -109,7 +109,7 @@
 						
 						<c:forEach items="${userUtilDetailList}" var="user" varStatus="loopTagStatus">
 						<tr>
-							<td class="txt_center">${userUtilDetailListAllCnt-(utilzationSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${userUtilDetailListAllCnt-(utilizationSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${user.start_road_addr}</td>
 							<td class="txt_center">${user.end_road_addr}</td>
 							<td class="txt_center">${user.reservation_date}</td>
@@ -144,9 +144,47 @@
 					
 						<form name="utilizationSearchForm" method=post action="/support/userUtilizationDetails.do">
 							<input type="hidden" name="selectPageNo">
-							<input type="text" name="keyword" style="height:40px">
-							
-							<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
+							<select name="use_year">
+								<option value="">이용년도</option>
+								<option value="2000">2000</option>
+								<option value="2001">2001</option>
+								<option value="2002">2002</option>
+								<option value="2003">2003</option>
+								<option value="2004">2004</option>
+								<option value="2005">2005</option>
+								<option value="2006">2006</option>
+								<option value="2007">2007</option>
+								<option value="2008">2008</option>
+								<option value="2009">2009</option>
+								<option value="2010">2010</option>
+								<option value="2011">2011</option>
+								<option value="2012">2012</option>
+								<option value="2013">2013</option>	
+								<option value="2014">2014</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018">2018</option>
+								<option value="2019">2019</option>
+								<option value="2020">2020</option>
+							</select>
+							년 
+							<select name="use_month" >
+								<option value="">이용월</option>
+								<option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+							</select>월		
+						<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
 							
 						</form>
 

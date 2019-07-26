@@ -70,16 +70,49 @@
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
 	</select>
 	<select id="getDriverCarInfo" parameterType="String"
-		resultType="com.support.movement.CarDTO">
-		select
-		car_number||'' as "car_number"
-		,CAR_YEAR||'' as "car_year"
-		, CAR_DISTANCE||'' "car_distance"
-		, (select CAR_TYPE from code_car where CAR_CODE=(select car_code from car_info where car_driver=(select driver_no from driver where driver_id=#{id}) ) )||'' as "car_code"
-		from car_info
-		where
-		car_driver=(select driver_no from driver where driver_id=#{id})
-	</select>
+      resultType="com.support.movement.CarDTO">
+      select
+      DISTINCT(ci.car_number)||'' as "car_number"
+      ,CAR_YEAR||'' as "car_year"
+      ,  case when 
+            ( 
+                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=( select car_number from car_info where car_driver=(select driver_no from driver where driver_id=#{id} ) ) )=0
+                             then ci.CAR_DISTANCE 
+                             else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=( select car_number from car_info where car_driver=(select driver_no from driver where driver_id=#{id} ) ) ) 
+                        end
+                         - DISTANCE
+             ) &lt;=50000 
+             then 50000-
+             (    
+                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=( select car_number from car_info where car_driver=(select driver_no from driver where driver_id=#{id} ) ) )=0
+                             then ci.CAR_DISTANCE 
+                             else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=( select car_number from car_info where car_driver=(select driver_no from driver where driver_id=#{id} ) ) ) 
+                        end
+                         - DISTANCE
+             )||''
+             else '차량정비필요' 
+         end "car_distance"
+      , (select CAR_TYPE from code_car where CAR_CODE=(select car_code from car_info where car_driver=(select driver_no from driver where driver_id=#{id}) ) )||'' as "car_code"
+      from car_info ci  ,
+           (
+            select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+                                (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+                                        where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+                                )
+                      )  "DISTANCE"
+            from car_info ci,
+               (select car_number, car_distance, count(*) "CNT"
+                from car_maintance_info
+                where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+                group by car_number, car_distance
+               ) cmi
+           where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+      
+            ) "REPAIR"
+      
+       where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
+       and car_driver=(select driver_no from driver where driver_id=#{id})
+   </select>
 	
 	<select id="getDriverUserReresveListAllCnt" parameterType="com.support.movement.ReserveSearchDTO" resultType="int">
 		select 

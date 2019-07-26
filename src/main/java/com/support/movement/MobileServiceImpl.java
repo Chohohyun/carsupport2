@@ -1,11 +1,12 @@
 package com.support.movement;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Map;
 @Service
 @Transactional
 public class MobileServiceImpl implements MobileService {
@@ -34,6 +35,15 @@ public class MobileServiceImpl implements MobileService {
 	public List<MobileBoardDTO> getBoardList(){
 		 List<MobileBoardDTO> boardList = this.mobileDAO.getBoardList();
 		 return boardList;
+	}
+	
+	@Override
+	public int getReserveRegCnt(String parameter, String select_num) {
+		Map<String, String> seachRegCnt = new HashMap<String, String>();
+		seachRegCnt.put("select_num", select_num);
+		seachRegCnt.put("parameter", parameter);
+		int reserveRegCnt = this.mobileDAO.getReserveRegCnt(seachRegCnt);
+		return reserveRegCnt;
 	}
 	
 	@Override
@@ -91,6 +101,30 @@ public class MobileServiceImpl implements MobileService {
 			return acceptListCodeCnt;
 		}
 	}
+	// 상태코드2 일때 예약시간 가져오기
+	@Override
+	public String getReserveDate(Map<String, String> update_code) {
+		String reserveDate = this.mobileDAO.getReserveDate(update_code);
+		return reserveDate;
+	}
+	// 중복된 시간에 본인에게 요청된 신청 존재 개수 가져오기
+	@Override
+	public int getDupleTimeRegCnt(String reservedate) {
+		int dupleTimeRegCnt = this.mobileDAO.getDupleTimeRegCnt(reservedate);
+		return dupleTimeRegCnt;
+	}
+	// 동일시간 요청된 예약 번호 가져오기
+	@Override
+	public List<Map<String, String>> getReserveNo(Map<String,String> update_code) {
+		List<Map<String, String>> reserveNoArr = this.mobileDAO.getReserveNo(update_code);
+		return reserveNoArr;
+	}
+	// 상태코드가 2일때 같은 요청시간인 나머지 거절 코드 3 업데이트
+	@Override
+	public int UpdateDenyCode(List<Map<String, String>> reserveNoArr) {
+		int updateCnt =  this.mobileDAO.UpdateDenyCode(reserveNoArr);
+		return updateCnt;
+	}
 
 	@Override
 	public int DeleteCode(Map<String, String> delete_code) {
@@ -113,6 +147,12 @@ public class MobileServiceImpl implements MobileService {
 	public UserDTO getUserDTO(String select_num) {
 		UserDTO userDTO = this.mobileDAO.getUserDTO(select_num);
 		return userDTO;
+	}
+
+	@Override
+	public String getCodeStatus(String parameter) {
+		String codeStatus = this.mobileDAO.getCodeStatus(parameter);
+		return codeStatus;
 	}
 
 /*	@Override

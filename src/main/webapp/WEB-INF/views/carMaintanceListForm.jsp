@@ -193,7 +193,8 @@ $(document).ready(function() {
 											<option value="10">10</option>
 											<option value="11">11</option>
 											<option value="12">12</option>
-										</select></td>
+										</select>월
+										</td>
 								<th scope="row">정비종류</th>
 								<td colspan="4">
 									<select name="maintance_code">

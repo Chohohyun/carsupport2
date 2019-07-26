@@ -513,39 +513,74 @@
 	</select>
 	
 	<!-- ============================차량리스트==============================-->
-	<select id="getCarList" parameterType="com.support.movement.CarSearchDTO" resultType="hashmap">
-	<if test="selectPageNo>0">
-	select 
-			*
-		from (select zzz.*, rownum||'' RNUM from (
-		</if>
-		select
-			ci.car_info_no||'' as "car_info_no"
-			, ci.car_number||'' as "car_number"
-			, ci.car_year||'' as "car_year"
-			, ci.car_distance||'' "car_distance"
-			, (select car_type from code_car cc where cc.car_code=ci.car_code) as "car_code"
-			, ci.car_driver||'' as "car_driver"
-			, ci.car_reg_date||'' as "car_reg_date"
-		from car_info ci 
-		where 1=1
-		<if test="car_code!=null and car_code.length()>0 and car_code!=0">
-						and ci.car_code=#{car_code}
-		</if>
-		<if test="(keyword!=null and keyword.length()>0)">
-			and (
-						upper(ci.car_number) like upper( '%${keyword}%')
-						 or upper(ci.car_year) like upper( '%${keyword}%')
-						 or upper(to_char(ci.car_reg_date,'yyyymmdd')) like upper( '%${keyword}%')
-						  or upper((select cc.car_type from code_car cc where cc.car_code=ci.car_code)) like upper( '%${keyword}%')
-				)
-		</if>
-		<if test="selectPageNo>0">
-		<![CDATA[
-		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
-		 ]]>
-		 </if>
-	</select>
+	  <select id="getCarList" parameterType="com.support.movement.CarSearchDTO" resultType="hashmap">
+   <if test="selectPageNo>0">
+   select 
+         *
+      from (select zzz.*, rownum||'' RNUM from (
+      </if>
+      select
+          DISTINCT(ci.car_info_no)||'' as "car_info_no"
+               , ci.car_number||'' as "car_number"
+               , ci.car_year||'' as "car_year"
+               , ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )||'' "car_distance"
+                  ,case when
+                         (    
+                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number)=0
+                                      then ci.CAR_DISTANCE 
+                                      else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )
+                                 end
+                              -DISTANCE 
+                          )&lt;=50000
+                          then   50000-
+                         (
+                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number)=0
+                                      then ci.CAR_DISTANCE 
+                                      else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )
+                                 end
+                              -DISTANCE 
+                          )||''
+                          else '차량정비필요'
+                 end "maintance_distance"
+                 , (select car_type from code_car cc where cc.car_code=ci.car_code) as "car_code"
+               , ci.car_driver||'' as "car_driver"
+               , ci.car_reg_date||'' as "car_reg_date"
+      
+       from car_info ci  ,
+           (
+            select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+                                (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+                                        where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+                                )
+                      )  "DISTANCE"
+            from car_info ci,
+               (select car_number, car_distance, count(*) "CNT"
+                from car_maintance_info
+                where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+                group by car_number, car_distance
+               ) cmi
+           where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+      
+            ) "REPAIR"
+      
+       where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
+      <if test="car_code!=null and car_code.length()>0 and car_code!=0">
+                  and ci.car_code=#{car_code}
+      </if>
+      <if test="(keyword!=null and keyword.length()>0)">
+         and (
+                  upper(ci.car_number) like upper( '%${keyword}%')
+                   or upper(ci.car_year) like upper( '%${keyword}%')
+                   or upper(to_char(ci.car_reg_date,'yyyymmdd')) like upper( '%${keyword}%')
+                    or upper((select cc.car_type from code_car cc where cc.car_code=ci.car_code)) like upper( '%${keyword}%')
+            )
+      </if>
+      <if test="selectPageNo>0">
+      <![CDATA[
+       ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
+       ]]>
+       </if>
+   </select>
 	
 	<!-- ============================차량상세보기==============================-->
 	<select id="getCarDTO" parameterType="int" resultType="com.support.movement.CarDTO">
@@ -620,7 +655,7 @@
 		<if test="(maintance_year!=null and maintance_year.length()>0)">
 			and extract(year from cmi.car_maintance_date) = #{maintance_year}
 		</if>
-		<if test="(maintance_month!=null and maintance_year.length()>0)">
+		<if test="(maintance_month!=null and maintance_month.length()>0)">
 			and extract(month from cmi.car_maintance_date) = #{maintance_month}
 		</if>
 		<if test="(maintance_code!=null and maintance_code.length()>0)">

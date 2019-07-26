@@ -29,19 +29,48 @@ public class MobileDAOImpl implements MobileDAO {
 		return reserveList;
 	}
 	
-	
-	
 	@Override
 	public List<MobileBoardDTO> getBoardList(){
 	
 		List<MobileBoardDTO> MobileBoardList = this.sqlSession.selectList("com.support.movement.MobileDAO.getBoardList");
 		return MobileBoardList;
 	}
+	
+	@Override
+	public int getReserveRegCnt(Map<String,String> seachRegCnt) {
+		int reserveRegCnt = this.sqlSession.selectOne("com.support.movement.MobileDAO.getReserveRegCnt" , seachRegCnt );
+		return reserveRegCnt;
+	}
+	
 	@Override
 	public int UpdateCode(Map<String, String> update_code) {
 		int reserveAcceptCode = this.sqlSession.update("com.support.movement.MobileDAO.UpdateCode",update_code);
 		return reserveAcceptCode;
 		
+	}
+	
+	@Override
+	public String getReserveDate(Map<String, String> update_code) {
+		String reserveDate = this.sqlSession.selectOne("com.support.movement.MobileDAO.getReserveDate",update_code);
+		return reserveDate;
+	}
+	
+	@Override
+	public int getDupleTimeRegCnt(String reservedate) {
+		int dupleTimeRegCnt = this.sqlSession.selectOne("com.support.movement.MobileDAO.getDupleTimeRegCnt",reservedate);
+		return dupleTimeRegCnt;
+	}
+	
+	@Override
+	public List<Map<String, String>> getReserveNo(Map<String, String> update_code) {
+		List<Map<String, String>> reservceNoArr = this.sqlSession.selectList("com.support.movement.MobileDAO.getReserveNo", update_code);
+		return reservceNoArr;
+	}
+	
+	@Override
+	public int UpdateDenyCode(List<Map<String, String>> reserveNoArr) {
+		int updateCnt = this.sqlSession.update("com.support.movement.MobileDAO.UpdateDenyCode", reserveNoArr);
+		return updateCnt;
 	}
 	
 	@Override
@@ -86,4 +115,10 @@ public class MobileDAOImpl implements MobileDAO {
 		PhoneDTO phoneDTO = this.sqlSession.selectOne("com.support.movement.MobileDAO.getPhoneDTO", select_num);
 		return phoneDTO;
 	}*/
+
+	@Override
+	public String getCodeStatus(String parameter) {
+		String codeStatus = this.sqlSession.selectOne("com.support.movement.MobileDAO.getCodeStatus", parameter);
+		return codeStatus;
+	}
 }

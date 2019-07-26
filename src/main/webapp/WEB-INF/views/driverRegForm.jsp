@@ -343,7 +343,7 @@
 						<th scope="row"><div class="name">아이디<em class="color-or"> *</em></div></th>
 						<td>
 							<div class="input_btn">
-								<input  type="text" name="id" id="driverId" placeholder="아이디" style="width: 170px;"/> 
+								<input  type="text" name="id" id="driverId" placeholder="아이디" style="width: 170px;" maxlength="20"/> 
 								<a><input type="button" class="btn small grey" name="idBtn" id="driverIdBtn" onclick="duplicationId('driver');" value="중복확인"></a>
 							</div>
 							<input type="hidden" name="idChk" id="driverIdChk" value="0">
@@ -351,28 +351,28 @@
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">비밀번호<em class="color-or"> *</em></div></th>
-						<td><input  type="password" name="pwd1" placeholder="비밀번호" style="width: 170px;" /> <br />
-							<span class="txt">*영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 9자리이상</span>
+						<td><input  type="password" name="pwd1" placeholder="비밀번호" style="width: 170px;" maxlength="15"/> <br />
+							<span class="txt">*영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 6자리이상</span>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">비밀번호 확인<em class="color-or"> *</em></div></th>
-						<td><input  type="password" name="pwd2" placeholder="비밀번호확인" style="width: 170px;" /></td>
+						<td><input  type="password" name="pwd2" placeholder="비밀번호확인" style="width: 170px;" maxlength="15"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">이름<em class="color-or"> *</em></div></th>
-						<td><input  type="text" name="name" placeholder="이름" style="width: 170px;" /> </td>
+						<td><input  type="text" name="name" placeholder="이름" style="width: 170px;" maxlength="10"/> </td>
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">주민번호<em class="color-or"> *</em></div></th>
-						<td><input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="jumin_num1" placeholder="앞주민번호" maxsize="6" >
+						<td><input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="jumin_num1" placeholder="앞주민번호" maxlength="6" >
 							<span>_</span>
-							<input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="password" name="jumin_num2" placeholder="뒷주민번호" maxsize="7">				
+							<input class="input100" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="password" name="jumin_num2" placeholder="뒷주민번호" maxlength="7" >				
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><div class="name">휴대폰번호<em class="color-or"> *</em></div></th>
-						<td><input class="input100 input--style-5" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="phone" placeholder="숫자만 입력해주세요"></br>
+						<td><input class="input100 input--style-5" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text" name="phone" placeholder="숫자만 입력해주세요" maxlength="11" ></br>
 						
 						</td>
 					</tr>
@@ -389,13 +389,13 @@
 					<tr>
 						<th scope="row"><div class="name">이메일주소<em class="color-or"> *</em></div></th>
 						<td><input class="input100" id="driverEmailText" type="text" name="email" placeholder="이메일주소">
-							<a><input type="button" name="checkEmailBtn" id="driverEmailBtn" class="btn small grey" onclick="acceptEmail('driver')" value="인증번호받기"></a>
+							<a><input type="button" name="checkEmailBtn" id="driverEmailBtn" class="btn small grey" onclick="acceptEmail('driver')" value="인증번호받기" maxlength="30" ></a>
 						</td>
 					</tr>
 					<tr id="driverEmailTr">
 						<th scope="row"><div class="name" id="driverEmail">인증번호 입력<em class="color-or"> *</em></div></th>
 						<td><input class="input100 input--style-5" type="text" name="AuthenticationNumber" placeholder="인증번호입력">
-							<a><input type="button" name="AuthenticationNumberBtn" class="btn small grey" onclick="checkAuthenticationNumber('driver')" value="확인"></a>
+							<a><input type="button" name="AuthenticationNumberBtn" class="btn small grey" onclick="checkAuthenticationNumber('driver')" value="확인" maxlength="8" ></a>
 							<input type="hidden" name="emailCheck" value="0">
 						</td>
 						
@@ -404,7 +404,7 @@
 					<tr>
 						<th scope="row"><div class="name">면허증번호<em class="color-or"> *</em></div></th>
 						<td class="">
-							<input type="text" name="driver_license_number" placeholder="면허증번호"> 
+							<input type="text" name="driver_license_number" placeholder="면허증번호" maxlength="20" > 
 						</td>
 					</tr>
 					
@@ -428,7 +428,7 @@
 									</div>
 									
 									<div class="wrap-input100 input-group-desc">
-										<input class="input100" style="width:400px;" id="driverdetail_addr" type="text" name="detail_addr" placeholder="상세주소를 입력해주세요.">
+										<input class="input100" style="width:400px;" id="driverdetail_addr" type="text" name="detail_addr" placeholder="상세주소를 입력해주세요." maxlength="20" >
 									</div>
 								</div>
 							</div>
