@@ -735,6 +735,7 @@
       set 
       	question_subject = #{subject}
           , question_content = #{content}
+          , question_group_no = ${question_group_no}
       where 
       	question_no = #{question_no}
    </update>

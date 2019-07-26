@@ -79,6 +79,7 @@ $(document).ready(function() {
 
 
 		<!--container-->
+		
 		<div id="container">
 			<div class="banner_box">
 				<center>
@@ -93,7 +94,9 @@ $(document).ready(function() {
 					<div class="tit_box">
 						<h2 class="h2tit">차량 정보</h2>
 					</div>
+					
 					<form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
+					
 					<table class="tbl tbl_list">
 						<colgroup>
 							<col style="width: 20%;" />

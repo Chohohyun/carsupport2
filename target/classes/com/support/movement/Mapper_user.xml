@@ -281,6 +281,8 @@
 						)
 						 
 			</if>
+		
+ 		order by "reg_date" desc
 		 <if test="selectPageNo>0">	
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 10 - 10+1 and RNUM <= ${selectPageNo} * 10

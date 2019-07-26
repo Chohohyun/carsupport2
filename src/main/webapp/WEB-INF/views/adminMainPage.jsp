@@ -26,26 +26,26 @@ none : 없는 상태
 underline : 있는 상태
 a:active : 링크부분에서 마우스를 누르고 있는 동안의 상태*/
 
-a:link { color: black; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: black; text-decoration: underline;}
+a:link { color: white; text-decoration: none;}
+a:visited { color: white; text-decoration: none;}
+a:hover { color: white; text-decoration: underline;}
 
 /*네비게이션 색상*/
 
 .navi_bg{
-	background:#222;
+	background: #FAFAFA;
 }
 
 /*네비게이션 전체 영역 제어*/
 
 .nav {
-	height:35px;
+	height:95px;
 	list-style: none;
-	width:840px;
+	width:1100px;
 	margin:auto;
-	background: #222;
-	font-size: 12px;
-	color:#fff;
+	background: #FAFAFA;
+	font-size: 14px;
+	color:#000000;
 }
 
 /*주메뉴 영역 제어*/
@@ -61,7 +61,7 @@ a:hover { color: black; text-decoration: underline;}
 /*주메뉴 마우스 오버시*/
 
 .topnav:hover{
-	color:#d3d3d3;
+	color:#aeb0b3;
 }
 
 /*주메뉴,서브메뉴 한묶음 제어*/
@@ -70,13 +70,23 @@ a:hover { color: black; text-decoration: underline;}
 	float: left;
 	padding:10px;
 	position: relative;
+	padding-top: 50px;
 }
+
+
+.jy{
+	float: left;
+	padding:10px;
+	position: relative;
+	padding-top: 30px;
+}
+
 
 /*서브메뉴 전체영역 제어*/
 
 .subnav{
 	position: absolute;
-	left: 0; top: 35px;
+	left: 0; top: 75px;
 	background: #333;
 	display: none;
 	z-index:4;
@@ -179,7 +189,12 @@ function adminMainPage(){
 	<div id="header">	
 			<div class="navi_bg">
 				<div class="nav">  
-
+					<li class="jy">
+					<a href="javascript:adminMainPage();"> <img
+					src="/support/resources/imagesUserMain1/adminLogo1.png" />
+					</a>
+					</li>
+					
 					<li class="navi_set">  
 						<div class="topnav" onclick="adminMainPage();">HOME</div>
 					</li>  
@@ -239,6 +254,10 @@ function adminMainPage(){
 			</div>
 	</div>
 </div>  
+<table>
+			<tr height=20>
+			<td>
+		</table>
 <%-- <%@include file="titleadmin.jsp" %> --%>
 
 <form name="carMaintanceListMain" method="post" action="/support/carMaintanceListForm.do">

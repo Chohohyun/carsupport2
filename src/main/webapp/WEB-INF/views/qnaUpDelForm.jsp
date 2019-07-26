@@ -4,12 +4,16 @@
 
 <!--JSP 기술의 한 종류인 [Include Directive] 를 이용하여 common.jsp파일의 코드를 삽입-->
 <!-- 절대경로로 common.jsp파일의 코드를 삽입-->
-<%@include file="/WEB-INF/views/common.jsp" %>
+<%@include file="common.jsp" %>
+<%@include file="adminMainPage.jsp" %>
 
 
 <html>
 <head>
 	<script>
+	$(document).ready(function(){
+		inputData("question_group_no","${qnaDTO.question_group_no}");
+		});
 		// 게시판 수정 삭제 화면에 입력된 데이터의 유효성 체크 함수 선언
 		function checkQnaUpDelForm(upDel) {
 			//------------------------------------------------------------------------------------------------------------------
@@ -26,6 +30,10 @@
 			//------------------------------------------------------------------------------------------------------------------
 			// 매개변수로 들어온 upDel에 up이 저장되었으면(수정 버튼을 눌렀다면)입력양식의 유효성 체크하고 수정여부 묻기
 			else if(upDel=="up") {
+				if(is_empty("question_group_no")){
+					alert("분류를 선택해주세요.");
+					return;
+				}
 				
 				if(is_empty("subject")) {
 					alert("제목을 입력하세요");
@@ -71,10 +79,10 @@
 				if(upDel == "up") {
 					if(upDelCnt == 1) {
 					alert("수정성공!");
-					location.replace("/support/qnaListForm.do");
+					document.qnaListForm.submit();
 					} else if (upDelCnt == -1) {
 						alert("삭제되어 수정이 불가능합니다")
-						location.replace("/support/qnaListForm.do");
+						document.qnaListForm.submit();
 					} else {
 						alert("서버 DB 연동 실패!")
 					}
@@ -82,10 +90,12 @@
 				  else if(upDel=="del") {
 					if(upDelCnt == 1) {
 						alert("삭제 성공!");
-						location.replace("/support/qnaListForm.do");
+
+						document.qnaListForm.submit();
 					} else if(upDelCnt == -1) {
 						alert("이미 삭제된 글입니다");
-						location.replace("/support/qnaListForm.do");
+
+						document.qnaListForm.submit();
 					}  else {
 						alert("서버연동 실패");
 					}
@@ -103,36 +113,83 @@
 
 </head>
 
-<body><center><br>
-	<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
-	<form  method="post" name="qnaUpDelForm" action="/support/qnaUpDelProc.do">
-		<b>[글 수정/삭제]</b>
-		<table class="tbcss1"	border="1"	bordercolor=gray	cellspacing="0"		cellpadding="5"	align="center">	
-			
-			<tr>
-				<th bgcolor="${headerColor}"> 제목
-				<td><input type="text" 	size="40"		maxlength="50" name="subject"	value="${qnaDTO.subject}"></td>
-			</tr>
-			
-			<tr>
-				<th bgcolor="${headerColor}"> 내 용
-				<td>
-				<textarea name="content" 	rows="13"	cols="40"> ${qnaDTO.content}</textarea>
-			</tr>
-			
-		</table>
-		
-		<input type="hidden"		name="upDel"		value="up">
-		<input type="hidden"		name="question_no"		value="${qnaDTO.question_no}">
+<body>
+	<div id="wrap">
+		<!--head-->
+		<!--head end-->
 
-		<input type="button"	value="수정"	onClick="checkQnaUpDelForm('up');">
-		<input type="button"	value="삭제"	onClick="checkQnaUpDelForm('del');">
-		<input type="button"	value="목록보기"	onClick="document.qnaListForm.submit();"> 
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+
+		<form  method="post" name="qnaUpDelForm"  action="/support/qnaUpDelProc.do">
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">공지사항,Q&A 수정/삭제</span>
+					</div>
+					<table class="tbl tbl_form">
+						<colgroup>
+							<col style="width: 30%;">
+							<col style="width: 70%;">
+							
+						</colgroup>	
+						<tbody>
+							<tr>
+								<th scope="row">분류</th>
+								<td><select name="question_group_no">
+										<option value="">분류선택</option>
+										<option value="1">공지사항</option>
+										<option value="2">Q&A</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+							<th scope="row">제목</th>
+							<td><input type="text" 	size="40" maxlength="50" name="subject" value="${qnaDTO.subject}">
+							</td>
+							</tr>
+							<tr>
+							<th scope="row">내용</th>
+							<td><textarea name="content"  rows="13"	cols="150">${qnaDTO.content}"</textarea>
+							</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn_box">
+							<a href="javascript:checkQnaUpDelForm('up');" class="btn middle white radius-5">수정</a>
+							<a href="javascript:checkQnaUpDelForm('del');" class="btn middle white radius-5">삭제</a>
+							<a href="javascript:document.qnaListForm.submit();" class="btn middle white radius-5">목록</a>
+					</div>
+				</div>
+			</div>
+			<input type="hidden"		name="upDel"		value="up">
+			<input type="hidden"		name="question_no"		value="${qnaDTO.question_no}">
+			
+			  
+			
+			</form>
+		</div>
+		<!--container end-->
+
+		<!--foot-->
+		<%@include file="foot.jsp"%>
+		<!--foot end-->
+	</div>
+
+	<form name="qnaListForm"	method="post"	action="/support/qnaListForm.do">
 	</form>
-	
-	<!-- [선택한 페이지번호] 저장한 hidden 태그 선언하고 [게시판 목록 화면] 으로 이동하는 form 태그 선언 -->
-	<form name="qnaListForm"	method="post"	action="/support/qnaListForm.do">  </form>
-	
+
 	
 </body>
 </html>
+

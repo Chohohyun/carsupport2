@@ -88,7 +88,7 @@
                   예약확인/취소 <span class="size-18" >></span>
                 </h2>
                 <span class="img">
-                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main02.png" alt="icon" />
+                  <img src="/support/resources/imagesUserMain1/icon_main02.png" alt="icon" />
                 </span>
               </a>
               <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b" >
@@ -115,7 +115,7 @@
                 </h2>
                 <!--<a href="#" class="btn_go"></a>-->
                 <div class="img">
-                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main01.png" alt="icon" />
+                  <img src="/support/resources/imagesUserMain1/icon_main01.png" alt="icon" />
                 </div>
               </a>
               <a href="javascript:userUseProcedure();" class="item r2 radius-15 m-l-10 m-t-10">
@@ -123,7 +123,7 @@
                   예약안내 <span class="size-18">></span>
                 </h2>
                 <span class="img">
-                  <img src="https://www.gurihappycall.or.kr/images/icon/icon_main03.png" alt="icon" />
+                  <img src="/support/resources/imagesUserMain1/icon_main03.png" alt="icon" />
                 </span>
               </a>
             </div>
@@ -192,7 +192,7 @@
                     <em class="blue f-bold size-15">예약 가능</em>합니다.
                   </div>
                   <div class="img call-img">
-                    <img src="https://www.gurihappycall.or.kr/images/img_main.png" alt="icon" />
+                    <img src="/support/resources/imagesUserMain1/img_people.png" alt="icon" />
                   </div>
                 </div>
               </div>

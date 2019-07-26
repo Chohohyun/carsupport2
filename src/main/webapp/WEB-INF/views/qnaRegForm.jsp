@@ -14,7 +14,10 @@
 	
 	// 게시판 등록 화면에 입력된 데이터의 유효성 체크 함수 선언
 	function checkQnaRegForm() {
-		
+		if(is_empty("question_group_no")){
+			alert("분류를 선택해주세요.");
+			return;
+		}
 		
 		if(is_empty("subject")) {
 			alert("제목을 입력하세요");
@@ -55,7 +58,7 @@
 			, success : function( qnaRegCnt ) {
 				if(qnaRegCnt == 1) {
 					alert("게시판 새글 등록 성공!");
-					location.replace("/support/qnaListForm.do");
+					document.qnaListForm.submit();
 				}
 				// [게시판 새글 입력 행 적용 개수] 가 1개가 아니면 경고하기
 				else {
@@ -73,47 +76,81 @@
 	}
 </script>
 </head>
-<body><center><br>
-	<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
-	<form  method="post" name="qnaRegForm" action="/support/qnaRegProc.do">
-		
-		<b>[QnA글쓰기]</b><br><br>
-	
-		<table class="tbcss1"	border="1"	bordercolor=gray	cellspacing="0"		cellpadding="5"	align="center">
+
+<body>
+	<div id="wrap">
+		<!--head-->
+		<!--head end-->
+
+		<!--container-->
+		<div id="container">
+			<div class="banner_box">
+				<center>
+					<div class="img">
+						<img src="/support/resources/imagesUserMain1/banner2.png"
+							alt="banner" />
+					</div>
+				</center>
+			</div>
+
+
+
+		<form  method="post" name="qnaRegForm"  action="/support/qnaRegProc.do">
+			<div class="sub_cont container">
+				<div class="cont_box">
+					<div class="tit_box">
+						<span class="h2tit bg_service">공지사항,Q&A 등록</span>
+					</div>
+					<table class="tbl tbl_form">
+						<colgroup>
+							<col style="width: 30%;">
+							<col style="width: 70%;">
+							
+						</colgroup>	
+						<tbody>
+							<tr>
+								<th scope="row">분류</th>
+								<td><select name="question_group_no">
+										<option value="">분류선택</option>
+										<option value="1">공지사항</option>
+										<option value="2">Q&A</option>
+									</select>
+								</td>
+							</tr>
+						
+							<tr>
+							<th scope="row">제목</th>
+							<td><input type="text" 	size="40" maxlength="50" name="subject">
+							</td>
+							</tr>
+							<tr>
+							<th scope="row">내용</th>
+							<td><textarea name="content"  rows="13"	cols="150"></textarea>
+							</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn_box">
+							<a href="javascript:checkQnaRegForm();" class="btn middle white radius-5">저장</a>
+							<a href="javascript:document.qnaListForm.submit();" class="btn middle white radius-5">목록</a>
+					</div>
+				</div>
+			</div>
 			
-			<tr>
-				<th>  분류
-				<td><select name="question_group_no">
-							<option value="">뷴류선택</option>
-							<option value="1">공지사항</option>
-							<option value="2">이용관련</option>
-							<option value="3">사이트관련</option>
-						</select>
-			</tr>
+			  
 			
-			
-			<tr>
-				<th>  제 목
-				<td><input type="text" 	size="40"		maxlength="50" name="subject">
-			</tr>
-			
-			<tr>
-				<th> 내 용
-				<td><textarea name="content" 	rows="13"	cols="40"></textarea>
-			</tr>
-		</table>
-		
-		<table	border="0"><tr height=4><td></table> <!-- 여백을 위한 -->
-		
-		
-		<input type="button"	value="저장"		onClick="checkQnaRegForm()">
-		<input type="reset"	value="다시작성">
-		<input type="button"	value="목록보기"		onClick="document.qnaListForm.submit()">
-	</form>
-	
+			</form>
+		</div>
+		<!--container end-->
+
+		<!--foot-->
+		<%@include file="foot.jsp"%>
+		<!--foot end-->
+	</div>
+
 	<form name="qnaListForm"	method="post"	action="/support/qnaListForm.do">
 	</form>
-	
+
 	
 </body>
 </html>
