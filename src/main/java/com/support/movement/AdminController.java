@@ -88,6 +88,18 @@ public class AdminController {
 		mav.setViewName("driverAcceptForm.jsp");
 		List<Map<String,String>> acceptList = new ArrayList<Map<String,String>>();
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("driverAcceptFormChild")) {
+				driverSearchDTO = (DriverSearchDTO) session.getAttribute("driverSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","driverAcceptForm");
+			
+			
+			
 			String id = (String) session.getAttribute("id");
 			if(driverSearchDTO.getSelectPageNo()==0) {
 				driverSearchDTO.setSelectPageNo(1);
@@ -115,6 +127,7 @@ public class AdminController {
 
 				System.out.println(6);
 			}
+			session.setAttribute("driverSearchDTO",driverSearchDTO);
 			mav.addObject("driverSearchDTO",driverSearchDTO);
 			mav.addObject("acceptListAllCnt",acceptListAllCnt);
 			mav.addObject("acceptList",acceptList);
@@ -146,6 +159,17 @@ public class AdminController {
 		mav.setViewName("driverUpDelForm.jsp");
 		List<Map<String,String>> upDelList = new ArrayList<Map<String,String>>();
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("driverUpDelFormChild")) {
+				driverSearchDTO = (DriverSearchDTO) session.getAttribute("driverSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","driverUpDelForm");
+			
+			
 			String id = (String) session.getAttribute("id");
 			if(driverSearchDTO.getSelectPageNo()==0) {
 				driverSearchDTO.setSelectPageNo(1);
@@ -169,6 +193,7 @@ public class AdminController {
 			if(upDelListAllCnt!=0) {
 				upDelList= this.adminService.getDriverUpDelList(id,driverSearchDTO);
 			}
+			session.setAttribute("driverSearchDTO",driverSearchDTO);
 			mav.addObject("driverSearchDTO",driverSearchDTO);
 			mav.addObject("upDelListAllCnt",upDelListAllCnt);
 			mav.addObject("upDelList",upDelList);
@@ -190,6 +215,7 @@ public class AdminController {
 			HttpSession session ) { 
 		// ModelAndView객체 생성하기 
 		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
+		session.setAttribute("uri","driverUpDelFormChild");
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("driverUpDelDetailForm.jsp"); 
 		try { 
@@ -214,6 +240,8 @@ public class AdminController {
 			HttpSession session ) { 
 		// ModelAndView객체 생성하기 
 		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
+
+		session.setAttribute("uri","userUpDelFormChild");
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("userUpDelDetailForm.jsp"); 
 		try { 
@@ -423,6 +451,18 @@ public class AdminController {
 		mav.setViewName("userUpDelForm.jsp");
 		List<Map<String,String>> upDelList = new ArrayList<Map<String,String>>();
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("userUpDelFormChild")) {
+				userSearchDTO = (UserSearchDTO) session.getAttribute("userSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","driverUpDelForm");
+			
+			
+			
 			String id = (String) session.getAttribute("id");
 			if(userSearchDTO.getSelectPageNo()==0) {
 				userSearchDTO.setSelectPageNo(1);
@@ -443,6 +483,7 @@ public class AdminController {
 			if(upDelListAllCnt!=0) {
 				upDelList= this.adminService.getUserUpDelList(id,userSearchDTO);
 			}
+			session.setAttribute("userSearchDTO",userSearchDTO);
 			mav.addObject("userSearchDTO",userSearchDTO);
 			mav.addObject("upDelListAllCnt",upDelListAllCnt);
 			mav.addObject("upDelList",upDelList);
@@ -565,6 +606,17 @@ public class AdminController {
 		int carListAllCnt = 0;
 		List<Map<String,String>> carList = new ArrayList<Map<String,String>>();
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("adminCarUpDelFormChild")) {
+				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","adminCarUpDelForm");
+			
+			
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
@@ -585,6 +637,7 @@ public class AdminController {
 		} catch (Exception e) {
 			System.out.println("adminCarUpDelForm을 불러오는 도중 오류");
 		}
+		session.setAttribute("carSearchDTO",carSearchDTO);
 		mav.setViewName("adminCarUpDelForm.jsp");
 		mav.addObject("carSearchDTO",carSearchDTO);
 		mav.addObject("carListAllCnt", carListAllCnt);
@@ -599,6 +652,7 @@ public class AdminController {
 			HttpSession session
 			, @RequestParam(value="car_info_no") int car_info_no
 			) {
+		session.setAttribute("uri","adminCarUpDelFormChild");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adminCarUpDelDetailForm.jsp");
 		CarDTO carDTO = this.adminService.getCarDTO(car_info_no); 
@@ -677,6 +731,19 @@ public class AdminController {
 		int carListAllCnt = 0;
 		List<Map<String,String>> carList = new ArrayList<Map<String,String>>();
 		try {
+			
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("carListInfoFormChild")) {
+				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","carListInfoForm");
+			
+			
+			
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
@@ -698,6 +765,7 @@ public class AdminController {
 		} catch (Exception e) {
 			System.out.println("carListInfoForm을 불러오는 도중 오류");
 		}
+		session.setAttribute("carSearchDTO",carSearchDTO);
 		mav.setViewName("carListInfoForm.jsp");
 		mav.addObject("carList", carList);
 		mav.addObject("carListAllCnt", carListAllCnt);
@@ -713,6 +781,7 @@ public class AdminController {
 			HttpSession session 
 			, @RequestParam(value="car_info_no") int car_info_no
 			) {
+		session.setAttribute("uri","carListInfoFormChild");
 		System.out.println("차량정비등록페이지");
 		ModelAndView mav = new ModelAndView();
 		CarDTO carDTO = this.adminService.getCarDTO(car_info_no); 
@@ -762,6 +831,19 @@ public class AdminController {
 		List<Map<String,String>> carMaintanceList = new ArrayList<Map<String,String>>();
 		ModelAndView mav = new ModelAndView();
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("carMaintanceListFormChild")) {
+				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","carMaintanceListForm");
+			
+			
+			
+			
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
@@ -783,6 +865,7 @@ public class AdminController {
 		} catch (Exception e) {
 			System.out.println("carListInfoForm을 불러오는 도중 오류");
 		}
+		session.setAttribute("carSearchDTO",carSearchDTO);
 		mav.addObject("carMaintanceListAllCnt", carMaintanceListAllCnt);
 		mav.addObject("carMaintanceList", carMaintanceList);
 		mav.addObject("carSearchDTO",carSearchDTO);
@@ -816,6 +899,7 @@ public class AdminController {
 			HttpSession session
 			, @RequestParam(value="car_maintance_info_no") int car_maintance_info_no
 			) {
+		session.setAttribute("uri","carMaintanceListFormChild");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("carMaintanceUpDelDetailForm.jsp");
 		CarMaintanceDTO carMaintanceDTO = this.adminService.getCarMaintanceDTO(car_maintance_info_no); 
@@ -878,13 +962,15 @@ public class AdminController {
 	//==============================
 	@RequestMapping( value="/qnaRegForm.do" )
 	public ModelAndView goQnaRegForm(
-
+			HttpSession session
 			){
 		//---------------------
 		// [ModelAndView 객체] 생성하기
 		// [ModelAndView 객체]에 [호출 JSP 페이지명]을 저장하기
 		// [ModelAndView 객체] 리턴하기
 		//---------------------
+
+		session.setAttribute("uri","qnaListFormChild");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("qnaRegForm.jsp");
 		return mav;
@@ -937,6 +1023,7 @@ public class AdminController {
 			@RequestParam(value="question_no") int question_no, 
 			HttpSession session ) { 
 
+		session.setAttribute("uri","qnaListFormChild");
 		// ModelAndView객체 생성하기 
 		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
 		ModelAndView mav = new ModelAndView(); 
@@ -1001,7 +1088,18 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adminDiscontentListForm.jsp");
 		try {
-
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("adminDiscontentListFormChild")) {
+				discontentSearchDTO = (DiscontentSearchDTO) session.getAttribute("discontentSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","adminDiscontentListForm");
+			
+			
+			
 			if(discontentSearchDTO.getSelectPageNo()==0) {
 				discontentSearchDTO.setSelectPageNo(1);
 			}
@@ -1024,6 +1122,9 @@ public class AdminController {
 			//-----------------------------------------------------
 
 			//-----------------------------------------------------
+
+			session.setAttribute("discontentSearchDTO",discontentSearchDTO);
+			
 			mav.addObject("discontentSearchDTO",discontentSearchDTO);
 			mav.addObject( "adminDiscontentList", adminDiscontentList );
 			mav.addObject( "adminDiscontentListAllCnt", adminDiscontentListAllCnt );
@@ -1051,6 +1152,8 @@ public class AdminController {
 			HttpSession session ) { 
 		// ModelAndView객체 생성하기 
 		// ModelAndVie 객체에 호출 JSP 페이지명을 저장하기 
+		session.setAttribute("uri","adminDiscontentListFormChild");
+		
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("adminDiscontentContentForm.jsp"); 
 		try { 
@@ -1074,6 +1177,7 @@ public class AdminController {
 			// 만약 파라미터명이 없으면 null 값이 들어오므로
 			// 매개변수의 자료형은 String 으로 하던가
 			// 아니면 defaultValue 를 사용하여 원하는 기본값을 받아오도록 한다.
+			HttpSession session,
 			@RequestParam(value="discontent_no") int discontent_no
 			){
 		//---------------------
@@ -1081,6 +1185,8 @@ public class AdminController {
 		// [ModelAndView 객체]에 [호출 JSP 페이지명]을 저장하기
 		// [ModelAndView 객체] 리턴하기
 		//---------------------
+
+		session.setAttribute("uri","adminDiscontentListFormChild");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("discontent_no",discontent_no);
 		mav.setViewName("adminDiscontentRegForm.jsp");
@@ -1137,6 +1243,8 @@ public class AdminController {
 			HttpSession session ) { 
 		// ModelAndView객체 생성하기 
 		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
+
+		session.setAttribute("uri","adminDiscontentListFormChild");
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("adminDiscontentEditForm.jsp"); 
 		try { 

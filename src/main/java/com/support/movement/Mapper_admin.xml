@@ -540,7 +540,7 @@
                                  end
                               -DISTANCE 
                           )||''
-                          else '차량정비필요'
+                          else '차량정기정검필요'
                  end "maintance_distance"
                  , (select car_type from code_car cc where cc.car_code=ci.car_code) as "car_code"
                , ci.car_driver||'' as "car_driver"

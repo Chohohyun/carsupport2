@@ -61,19 +61,22 @@ public class UserController {
 			// HttpSession 객체가 들어올 매개변수 선언
 			// 매개변수에 자료형이 HttpSession이면 웹서버가
 			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session) {
+			HttpSession session,QnaSearchDTO qnaSearchDTO) {
 
 
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
 
-
+		qnaSearchDTO.setSelectPageNo(1);
+		qnaSearchDTO.setQuestion_group_no(1);
+		
+		List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
 		//------------------------------------------------------------------
 		// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
 		// ModelAndView 객체에 addObject 메소드로 저장된 것은
 		// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
-		
+		mav.addObject("qnaList", qnaList);
 		mav.setViewName("userMainPage.jsp");
 		return mav;
 	}
@@ -223,6 +226,22 @@ public class UserController {
 
 		List<Map<String,String>> userUtilDetailList = new ArrayList<Map<String,String>>();
 		try {
+
+			
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("userUtilizationDetailsChild")) {
+
+				
+				utilizationSearchDTO = (UtilizationSearchDTO) session.getAttribute("utilizationSearchDTO");
+			}
+			else {
+
+				
+				
+			}
+			session.setAttribute("uri","userUtilizationDetails");
+			
 			if(utilizationSearchDTO.getSelectPageNo()==0) {
 				utilizationSearchDTO.setSelectPageNo(1);
 			}
@@ -245,7 +264,9 @@ public class UserController {
 				
 				utilizationSearchDTO.setSelectPageNo(1);
 			}
+			
 			userUtilDetailList= this.userService.getUserUtilDetailList(utilizationSearchDTO);
+			session.setAttribute("utilizationSearchDTO",utilizationSearchDTO);
 			mav.addObject("utilizationSearchDTO",utilizationSearchDTO);
 			mav.addObject("userUtilDetailListAllCnt",userUtilDetailListAllCnt);
 			mav.addObject("userUtilDetailList",userUtilDetailList);
@@ -266,6 +287,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("reviewRegForm.jsp"); 
 		try { 
+			session.setAttribute("uri","userUtilizationDetailsChild");
 			System.out.println(reserve_apply_car_number);
 			System.out.println("g하이");
 			Map<String,String> map = new HashMap<String,String>();
@@ -324,6 +346,19 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("discontentListForm.jsp");
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("discontentListFormChild")) {
+				
+				discontentSearchDTO = (DiscontentSearchDTO) session.getAttribute("discontentSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","discontentListForm");
+			
+			
+			
 			System.out.println("hi");
 			if(discontentSearchDTO.getSelectPageNo()==0) {
 				discontentSearchDTO.setSelectPageNo(1);
@@ -345,6 +380,7 @@ public class UserController {
 
 			System.out.println("bye");
 			//-----------------------------------------------------
+			session.setAttribute("discontentSearchDTO",discontentSearchDTO);
 			mav.addObject( "discontentSearchDTO", discontentSearchDTO );
 			mav.addObject( "discontentList", discontentList );
 			mav.addObject( "discontentListAllCnt", discontentListAllCnt );
@@ -372,7 +408,7 @@ public class UserController {
 			// 생성한 HttpSession 객체가 들어온다.
 			HttpSession session) {
 
-
+		session.setAttribute("uri","discontentListFormChild");
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
@@ -436,6 +472,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("discontentContentForm.jsp"); 
 		try { 
+			session.setAttribute("uri","discontentListFormChild");
 			System.out.println("driverDTO 아주 잘옴");
 			DiscontentDTO discontentDTO = this.userService.getDiscontentDTO(discontent_no); 
 			System.out.println(discontentDTO.getAdmin_name());
@@ -460,6 +497,7 @@ public class UserController {
 		mav.setViewName("discontentUpDelForm.jsp"); 
 		try { 
 
+			session.setAttribute("uri","discontentListFormChild");
 			System.out.println("driverDTO 아주 잘옴");
 			DiscontentDTO discontentDTO = this.userService.getDiscontentDTO(discontent_no); 
 			mav.addObject("discontentDTO",discontentDTO); 
@@ -551,6 +589,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("reviewUpDelForm.jsp"); 
 		try { 
+			session.setAttribute("uri","userUtilizationDetailsChild");
 			System.out.println(reserve_apply_car_number);
 			System.out.println("g하이");
 
@@ -611,6 +650,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("qnaContentForm.jsp"); 
 		try { 
+			session.setAttribute("uri","qnaListFormChild");
 			System.out.println("driverDTO 아주 잘옴");
 			QnaDTO qnaDTO = this.userService.getQnaDto(question_no); 
 
@@ -638,6 +678,19 @@ public class UserController {
 		mav.setViewName("qnaListForm.jsp");
 
 		try {
+			String uri = (String) session.getAttribute("uri");
+			
+			if(uri !=null && uri.equals("qnaListFormChild")) {
+				
+				qnaSearchDTO = (QnaSearchDTO) session.getAttribute("qnaSearchDTO");
+			}
+			else {
+				
+			}
+			session.setAttribute("uri","qnaListForm");
+			
+			
+			
 			if(qnaSearchDTO.getSelectPageNo()==0) {
 				qnaSearchDTO.setSelectPageNo(1);
 			}
@@ -661,6 +714,7 @@ public class UserController {
 			// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
 			// ModelAndView 객체에 addObject 메소드로 저장된 것은
 			// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
+			session.setAttribute("qnaSearchDTO",qnaSearchDTO);
 			mav.addObject("qnaSearchDTO",qnaSearchDTO);
 			mav.addObject("qnaList", qnaList);
 			mav.addObject("qnaListAllCnt", qnaListAllCnt);

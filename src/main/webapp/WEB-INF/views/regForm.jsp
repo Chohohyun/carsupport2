@@ -385,10 +385,11 @@
 							<div class="input_btn">
 								<input  type="text" name="id" id="userId" placeholder="아이디" style="width: 170px;" maxlength="20"/> 
 								
-								<a><input type="button" class="btn small grey" name="idBtn" id="userIdBtn" onclick="duplicationId('user');" value="중복확인"></a><br/>
-								<span class="txt">*영문,숫자 6자리이상</span>
+								<a><input type="button" class="btn small grey" name="idBtn" id="userIdBtn" onclick="duplicationId('user');" value="중복확인"></a>
+								
 							</div>
-							<input type="hidden" name="idChk" id="userIdChk" value="0">
+							<input type="hidden" name="idChk" id="userIdChk" value="0"><br/>
+							<span class="txt">*영문,숫자 6자리이상</span>
 						</td>
 					</tr>
 					<tr>
