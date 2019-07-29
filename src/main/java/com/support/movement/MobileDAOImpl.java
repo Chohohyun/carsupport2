@@ -74,6 +74,42 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 	
 	@Override
+	public int UpdateDenyCnt(List<Map<String, String>> reserveNoArr) {
+		int updateCnt = this.sqlSession.update("com.support.movement.MobileDAO.UpdateDenyCnt", reserveNoArr);
+		return updateCnt;
+	}
+	
+	@Override
+	public List<Map<String, String>> getCntZeroReserveNo(Map<String, String> update_code) {
+		List<Map<String, String>> cntZeroReserveNo = this.sqlSession.selectList("com.support.movement.MobileDAO.getCntZeroReserveNo", update_code);
+		return cntZeroReserveNo;
+	}
+	
+	@Override
+	public int getReserveCntZero(Map<String, String> update_code) {
+		int reserveCntZero = this.sqlSession.selectOne("com.support.movement.MobileDAO.getReserveCntZero", update_code );
+		return reserveCntZero;
+	}
+	
+	@Override
+	public int getUpdateCancleAccepListCode(List<Map<String, String>> cntZeroReserveNo) {
+		int canSleCnt = this.sqlSession.update("com.support.movement.MobileDAO.getUpdateCancleAccepListCode", cntZeroReserveNo);
+		return canSleCnt;
+	}
+	
+	@Override
+	public int updateCancleCode(List<Map<String, String>> cntZeroReserveNo) {
+		int canSleCnt = this.sqlSession.update("com.support.movement.MobileDAO.updateCancleCode", cntZeroReserveNo);
+		return canSleCnt;
+	}
+	
+	@Override
+	public List<Map<String, String>> getUserPhoneArr(List<Map<String, String>> cntZeroReserveNo) {
+		List<Map<String, String>> resultArr = this.sqlSession.selectList("com.support.movement.MobileDAO.getUserPhoneArr", cntZeroReserveNo);
+		return resultArr;
+	}
+	
+	@Override
 	public int acceptListCode(Map<String, String> update_code) {
 		int acceptListCode = this.sqlSession.update("com.support.movement.MobileDAO.acceptListCode",update_code);
 		return acceptListCode;
@@ -85,6 +121,11 @@ public class MobileDAOImpl implements MobileDAO {
 		return reserveCnt;
 	}
 	
+	@Override
+	public String getCodeStatus(Map<String,String> update_code) {
+		String item = this.sqlSession.selectOne("com.support.movement.MobileDAO.getCodeStatus", update_code);
+		return item;
+	}
 	
 	@Override
 	public int DeleteCode(Map<String, String> delete_code) {
@@ -115,10 +156,4 @@ public class MobileDAOImpl implements MobileDAO {
 		PhoneDTO phoneDTO = this.sqlSession.selectOne("com.support.movement.MobileDAO.getPhoneDTO", select_num);
 		return phoneDTO;
 	}*/
-
-	@Override
-	public String getCodeStatus(String parameter_code) {
-		String codeStatus = this.sqlSession.selectOne("com.support.movement.MobileDAO.getCodeStatus", parameter_code);
-		return codeStatus;
-	}
 }

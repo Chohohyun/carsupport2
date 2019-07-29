@@ -418,16 +418,16 @@
 				</table>
 
 
-			</div>
 			
 			<div class="btn_box">
-				<a><input type="button" onclick="goUpDelProc('up');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="수정"></a> 
+				<a><input type="button" onclick="goUpDelProc('up');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large blue radius-5"  value="수정"></a> 
 				
-				<a><input type="button" onclick="goUpDelProc('del');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="삭제"></a> 
+				<a><input type="button" onclick="goUpDelProc('del');" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large red radius-5"  value="삭제"></a> 
 				&nbsp;&nbsp;&nbsp;
 				<a><input type="button" onclick="goDriverUpDelForm();" value="취소" class="btn large white radius-5"></a>
 			</div>
-		</div>
+		</div></div>
+			
 		<input type="hidden" name="driver_no">
         <input type="hidden" name="upDel" value="up"> 
 		</form>

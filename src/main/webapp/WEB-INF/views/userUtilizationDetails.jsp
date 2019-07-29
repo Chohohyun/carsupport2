@@ -118,8 +118,14 @@
 							<td class="txt_center">${user.review_score}</td>
 							<c:choose>
 								<c:when test="${user.review_score=='미평가'}">
+									<c:choose>
+									<c:when test="${user.reserve_status_name=='주행완료'}">
 									<td class="txt_center"><a href="javascript:goReviewRegForm(${user.reserve_apply_car_number});" class="btn middle white radius-5">리뷰등록</a></td>
-															
+									</c:when>
+									<c:otherwise>
+									<td class="txt_center">리뷰등록불가</td>
+									</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									<td class="txt_center"><a href="javascript:goReviewUpDelForm(${user.reserve_apply_car_number});" class="btn middle white radius-5">리뷰수정</a></td>
@@ -168,7 +174,7 @@
 								<option value="2019">2019</option>
 								<option value="2020">2020</option>
 							</select>
-							년 
+							년
 							<select name="use_month" >
 								<option value="">이용월</option>
 								<option value="01">01</option>

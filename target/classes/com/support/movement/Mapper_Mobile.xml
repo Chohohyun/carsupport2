@@ -22,7 +22,7 @@
  		select
  			count(*)
  		from reserve_apply_car
- 		where (reserve_status_code=#{parameter} or reserve_status_code='4') and reserve_apply_car_number=#{select_num}
+ 		where (reserve_status_code='2' or reserve_status_code='4') and reserve_apply_car_number=#{select_num}
  	</select>
  	
  	<select id="getReserveList" parameterType="hashmap" resultType="hashmap">
@@ -153,9 +153,9 @@
 	
 	<update id="UpdateDenyCode" parameterType="java.util.List">
 		update RESERVE_ACCEPT_LIST set
-			reserve_status_code='3'
+			reserve_status_code='3' 
 		where 
-		<foreach collection="list" item="reserveArr" separator=" or " >
+		<foreach collection="list" item="reserveArr" separator=" or " open="(" close=")">
 			<if test="reserveArr.reserveNo!=null">
 		 		RESERVE_APPLY_CAR_NUMBER=${reserveArr.reserveNo} 	
 		 	</if> 
@@ -167,7 +167,77 @@
 		</foreach> 
 	</update>
 	
+	<update id="UpdateDenyCnt">
+	update RESERVE_APPLY_CAR set
+		reserve_count=reserve_count-1
+	where
+	<foreach collection="list" item="reserveArr" separator=" or " >
+		<if test="reserveArr.reserveNo!=null">
+			RESERVE_APPLY_CAR_NUMBER=${reserveArr.reserveNo}
+		</if>
+	</foreach>
+	</update>
 	
+	<!--  아래 공식 안되면 parameter update_code에 파라미터 3 넣고 해당 예약선택번호 AcceptLsit에서 3을 제외한 개수 카운트-->
+	<select id="getReserveCntZero" parameterType="hashmap" resultType="int">
+		select 
+			count(reserve_count) as "reserveCntZero"
+		from RESERVE_APPLY_CAR
+		where reserve_count=0 and reserve_status_code='1' and RESERVE_APPLY_CAR_NUMBER=#{select_num}	
+	</select>
+	
+	<!-- =============================카운트0인 예약번호 리턴하여 해당 예약번호 코드4로 변경 ============================= -->
+	<select id="getCntZeroReserveNo" parameterType="hashmap" resultType="hashmap">
+		select 
+			distinct(rac.RESERVE_APPLY_CAR_NUMBER) "reserveNo"
+		from RESERVE_APPLY_CAR  rac, RESERVE_ACCEPT_LIST ral
+		where rac.RESERVE_APPLY_CAR_NUMBER=ral.RESERVE_APPLY_CAR_NUMBER 
+        	and ral.reserve_status_code='3'  and ral.driver_no=#{driver_no} and rac.reserve_count=0
+        	and rac.RESERVE_APPLY_CAR_NUMBER=#{select_num}
+        order by rac.RESERVE_APPLY_CAR_NUMBER
+	</select>
+	
+	<update id="getUpdateCancleAccepListCode" parameterType="java.util.List">
+		update RESERVE_ACCEPT_LIST
+		set 
+			reserve_status_code='4'
+		where 
+		<foreach collection="list" item="reserveArr" separator=" or " >
+			<if test="reserveArr.reserveNo!=null">
+			 	RESERVE_APPLY_CAR_NUMBER=${reserveArr.reserveNo} 	
+			</if> 
+		</foreach> 
+	</update>
+	
+	<update id="updateCancleCode" parameterType="java.util.List">
+		update RESERVE_APPLY_CAR
+		set 
+			reserve_status_code='4'
+		where  
+	    <foreach collection="list" item="reserveArr" separator=" or "  >
+			<if test="reserveArr.reserveNo!=null">
+		 		RESERVE_APPLY_CAR_NUMBER=${reserveArr.reserveNo} 	
+		 	</if> 
+	    </foreach> 
+	</update>
+	<!-- =============================================================================================== -->
+	
+	<select id="getUserPhoneArr" parameterType="java.util.List">
+		select
+			user_phone||'' as "user_phone"
+		from  DISABILITY_USER
+		where
+		<foreach collection="list" item="reserveArr" separator=" or " >
+		 user_no=(select user_no from reserve_apply_car where reserve_apply_car_number=#{reserveArr.reserveNo}) 
+		</foreach>
+	</select>
+	
+	<select id="getCodeStatus" parameterType="hashmap" resultType="String">   
+      select
+         reserve_status_code||'' as "reserve_status_code"
+      from  reserve_apply_car
+      where reserve_apply_car_number=#{select_num}
+   </select>
 		
 	<update id="DeleteCode" parameterType="hashmap">
 		update  reserve_apply_car  set 
@@ -199,12 +269,7 @@
 		from  DISABILITY_USER
 		where user_no=(select user_no from reserve_apply_car where reserve_apply_car_number=#{select_num}) 
 	</select>
-	<select id="getCodeStatus" parameterType="String" resultType="String">	
-		select
-			reserve_status_code||'' as "reserve_status_code"
-		from  reserve_apply_car
-		where reserve_apply_car_number=#{parameter_code}
-	</select>
+	
 
 </mapper>
 

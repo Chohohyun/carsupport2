@@ -39,7 +39,19 @@ public interface MobileDAO {
 
 	int UpdateDenyCode(List<Map<String, String>> reserveNoArr);
 
-	String getCodeStatus(String parameter_code);
+	List<Map<String, String>> getCntZeroReserveNo(Map<String, String> update_code);
+
+	int getReserveCntZero(Map<String, String> update_code);
+
+	int getUpdateCancleAccepListCode(List<Map<String, String>> cntZeroReserveNo);
+
+	int updateCancleCode(List<Map<String, String>> cntZeroReserveNo);
+
+	List<Map<String, String>> getUserPhoneArr(List<Map<String, String>> cntZeroReserveNo);
+
+	String getCodeStatus(Map<String,String> update_code);
+
+	int UpdateDenyCnt(List<Map<String, String>> reserveNoArr);
 	
 	
 }
