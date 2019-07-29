@@ -11,6 +11,9 @@
 <script>
 	$(document).ready(function() {
 		inputData("selectPageNo","${utilizationSearchDTO.selectPageNo}");
+		inputData("use_year","${utilizationSearchDTO.use_year}");
+		inputData("use_month","${utilizationSearchDTO.use_month}");
+		inputData("selectPageNo","${utilizationSearchDTO.selectPageNo}");
   		$(".pagingNumber").html(
   				getPagingNumber(
   				"${userUtilDetailListAllCnt}", // 검색 결과 총 행 개수
@@ -49,7 +52,7 @@
 	// 모두검색 키워드 없애기
 	function goSearchAll(){
 		// 공용함수 setEmpty2 활용
-		setEmpty2(" [name=keyword], [name=use_year], [name=use_month]");
+		setEmpty2(" [name=use_year], [name=use_month]");
 		
 		inputData("selectPageNo","1");
 		document.utilizationSearchForm.submit();

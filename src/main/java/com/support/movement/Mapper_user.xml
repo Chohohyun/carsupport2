@@ -144,12 +144,12 @@
 		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
 	</select>
 	
-	<select id ="getUserUtilDetailListAllCnt" parameterType="String" resultType="int">
+	<select id ="getUserUtilDetailListAllCnt" parameterType="com.support.movement.UtilizationSearchDTO" resultType="int">
 		select
 			count(*)
-		from reserve_apply_car
-		where  to_char(sysdate,'yyyymmddhh24') - to_char(reservation_date,'yyyymmddhh24')  &gt; 0
-		and user_no = (select user_no from disability_user where user_id=#{id})
+		from reserve_apply_car rac
+		where  to_char(sysdate,'yyyymmddhh24') - to_char(rac.reservation_date,'yyyymmddhh24')  &gt; 0
+		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
 		<if test="(use_year!=null and use_year.length()>0)">
 			and extract(year from rac.reservation_date) = #{use_year}
 		</if>
@@ -158,7 +158,7 @@
 		</if>
 	</select>
 	
-	<select id ="getUserUtilDetailList" parameterType="String" resultType="hashmap">
+	<select id ="getUserUtilDetailList" parameterType="com.support.movement.UtilizationSearchDTO" resultType="hashmap">
 		select
 			rac.reserve_apply_car_number||'' as "reserve_apply_car_number",
             to_char(rac.reservation_date,'yyyy')||'년 '||to_char(rac.reservation_date,'mm')||'월 '||
