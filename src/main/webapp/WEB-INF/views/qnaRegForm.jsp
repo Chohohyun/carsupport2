@@ -95,7 +95,7 @@
 
 
 
-		<form  method="post" name="qnaRegForm"  action="/support/qnaRegProc.do">
+		<form  method="post" name="qnaRegForm" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

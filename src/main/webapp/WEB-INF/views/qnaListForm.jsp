@@ -17,6 +17,14 @@
       	inputData("selectPageNo","${qnaSearchDTO.selectPageNo}");
     		inputData("keyword","${qnaSearchDTO.keyword}");
     		inputData("question_group_no","${qnaSearchDTO.question_group_no}");
+    		if(${qnaSearchDTO.question_group_no}==1){
+    			$("#q2").css("color","gray");	
+    			$("#q1").css("color","black");
+        	}
+    		else{
+    			$("#q1").css("color","gray");	
+    			$("#q2").css("color","black");
+        	}
     		$(".pagingNumber").html(
     				getPagingNumber(
     				"${qnaListAllCnt}", // 검색 결과 총 행 개수
@@ -130,7 +138,7 @@
         <div class="sub_cont container">
             <div class="cont_box">
               <div class="tit_box">
-                <h2 class="h2tit"><a href="javascript:goQnaList('1');" >공지사항 </a> / <a href="javascript:goQnaList('2');" >Q & A</a> </h2>
+                <h2 class="h2tit"><a id="q1" href="javascript:goQnaList('1');" >공지사항 </a> / <a id="q2" href="javascript:goQnaList('2');" >Q & A</a> </h2>
               </div>
                 <table class="tbl tbl_list">
                     <colgroup>
