@@ -325,12 +325,12 @@ public class MobileDriverController {
 	//===================================================
 	@RequestMapping(value="/parameter_code.do")
 	public @ResponseBody Map<String,String> parameterCode(
-			String parameter
+			String parameter_code
 			) {
 		System.out.println("주행안내시작");
 		Map<String,String> codeStatus = new HashMap<String,String>();
 		
-		String item = mobileService.getCodeStatus(parameter);
+		String item = mobileService.getCodeStatus(parameter_code);
 		codeStatus.put("code",item);	
 		return codeStatus;
 

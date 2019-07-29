@@ -33,6 +33,6 @@ public interface MobileService {
 
 	int UpdateDenyCode(List<Map<String, String>> reserveNoArr);
 
-	String getCodeStatus(String parameter);
+	String getCodeStatus(String parameter_code);
 	
 }

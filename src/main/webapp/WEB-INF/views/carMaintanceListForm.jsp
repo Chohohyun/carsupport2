@@ -246,12 +246,12 @@ $(document).ready(function() {
 						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
 						<!--board 는 지역변수-->
 						<tr>
-							<td class="txt_center">${carMaintanceListAllCnt-(carSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${carMaintanceListAllCnt-(carSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${car.car_number}</td>
 							<td class="txt_center">${car.car_maintance_date}</td>
 							<td class="txt_center">${car.car_maintance_name}</td>
 							
-							<td class="txt_center"><a href="javascript:goCarMaintanceUpDelDetailForm( ${car.car_maintance_info_no} )";" class="btn middle white radius-5">수정</a>
+							<td class="txt_center"><a href="javascript:goCarMaintanceUpDelDetailForm( ${car.car_maintance_info_no} )" class="btn middle white radius-5">수정</a>
 						</tr>
 						</c:forEach>
 						</tbody>

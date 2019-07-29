@@ -106,7 +106,7 @@ function reservationCheck() {
 			datatype:"html",
 			
 			success:function(data){
-				if(data==1){
+				if(data>=1){
 					alert("예약신청 성공!");
 					location.replace("/support/userMainPage.do");
 					

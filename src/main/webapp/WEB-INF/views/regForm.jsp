@@ -224,7 +224,7 @@
   			success : function(data) {
   				if (data == 1) {
   					alert("회원가입 성공!");
-  					location.replace("/support/loginForm.do");
+  					location.replace("/support/userMainPage.do");
 
   				} else {
   					alert("회원가입 실패!");

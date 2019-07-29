@@ -209,5 +209,11 @@ public class UserDAOImpl implements UserDAO{
 		return qnaList;
 	}
 
+	@Override
+	public int getReservationWaitCnt(UserReservationDTO userReservationDTO) {
+		int reservationWaitCnt = this.sqlSession.selectOne("com.support.movement.UserDAO.getReservationWaitCnt",userReservationDTO);
+		return reservationWaitCnt;
+	}
+
 
 }

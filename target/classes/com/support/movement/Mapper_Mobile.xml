@@ -203,7 +203,7 @@
 		select
 			reserve_status_code||'' as "reserve_status_code"
 		from  reserve_apply_car
-		where reserve_apply_car_number=${parameter}
+		where reserve_apply_car_number=#{parameter_code}
 	</select>
 
 </mapper>

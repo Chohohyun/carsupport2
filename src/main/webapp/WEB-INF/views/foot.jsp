@@ -10,10 +10,9 @@
 		<div class="term_box container">
 			<div
 				style="margin-top: 20px; text-align: center; color: #777777; font-family: Dotum; font-size: 15px;">
-				<a href='https://www.gurihappycall.or.kr/term.aspx'>이용약관</a>&nbsp;
-				|&nbsp; <a href='https://www.gurihappycall.or.kr/private.aspx'>개인정보
-					처리방침</a>&nbsp; |&nbsp; <a
-					href='https://www.gurihappycall.or.kr/media.aspx'>영상정보처리기
+				<a href='http://www.ikosmo.co.kr/'>kosmo</a>&nbsp;
+				|&nbsp; <a href='https://www.github.com/Chohohyun/carsupport2'>프로젝트 코드</a>&nbsp; |&nbsp; <a
+					href='https://blog.naver.com/ghgus947'>영상정보처리기
 					운영관리방침</a>&nbsp; |&nbsp; <a
 					href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
 			</div>
@@ -23,9 +22,8 @@
 	<div id="foot">
 		<div class="foot_box container">
 			<p class="copyright">
-				경기도 구리시 안골로 40(교문동, 교문동주차빌딩 3층)&nbsp;㉾ 11934&nbsp;&nbsp;&nbsp;전화 :
-				1577-3659&nbsp;&nbsp;&nbsp;팩스 : 070-4275-1080 <br />Copyright © Guri
-				Support For Moving Center All Right Reserved.
+				서울시 금천구 가산동 426-5 월드메르디앙 2차 410호 &nbsp;&nbsp;&nbsp;전화 :
+				02-2025-8523 &nbsp;&nbsp;&nbsp;팩스 : 02-2025-4113 <br />Copyright (C) 2010 KOSMO. All rights reserved.
 			</p>
 		</div>
 	</div>

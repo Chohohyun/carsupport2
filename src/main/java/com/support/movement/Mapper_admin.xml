@@ -699,6 +699,7 @@
 		<if test="(maintance_code!=null and maintance_code.length()>0)">
 			and cmi.car_maintance_code = ${maintance_code}
 		</if>
+		order by "car_maintance_date" asc
 		<if test="selectPageNo>0">
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5

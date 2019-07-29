@@ -150,8 +150,8 @@ public class MobileServiceImpl implements MobileService {
 	}
 
 	@Override
-	public String getCodeStatus(String parameter) {
-		String codeStatus = this.mobileDAO.getCodeStatus(parameter);
+	public String getCodeStatus(String parameter_code) {
+		String codeStatus = this.mobileDAO.getCodeStatus(parameter_code);
 		return codeStatus;
 	}
 

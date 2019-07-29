@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService{
 		int reservationAlreadyCnt = this.userDAO.getReservationAlreadyCnt(userReservationDTO);
 		int CarCnt = this.userDAO.getPossibleCarCnt(userReservationDTO);
 		int possibleCarCnt = CarCnt - reservationAlreadyCnt;
+		int reservationWaitCnt = this.userDAO.getReservationWaitCnt(userReservationDTO);
+		possibleCarCnt = possibleCarCnt - reservationWaitCnt;
 		System.out.println("여기까진 되자");
 		if(possibleCarCnt > 0) {
 			String user_no = this.userDAO.getUserNo(userId);

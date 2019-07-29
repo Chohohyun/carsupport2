@@ -66,5 +66,7 @@ public interface UserDAO {
 
 	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
 
+	int getReservationWaitCnt(UserReservationDTO userReservationDTO);
+
 
 }

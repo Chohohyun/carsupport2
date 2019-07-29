@@ -206,7 +206,7 @@
 			
             <a href="javascript:goCarUpdateProc()" class="btn middle white radius-5">수정</a>
             <a href="javascript:goCarDeleteProc();" class="btn middle white radius-5">삭제</a>
-            <a href="javascript:goCarListInfoForm();" class="btn middle white radius-5">취소</a> 
+            <a href="javascript:goUpDelForm();" class="btn middle white radius-5">취소</a> 
         </form>	     
        
     </center></body>

@@ -160,7 +160,7 @@
 							</tr>
 							<tr>
 							<th scope="row">내용</th>
-							<td><textarea name="content"  rows="13"	cols="150">${qnaDTO.content}"</textarea>
+							<td><textarea name="content"  rows="13"	cols="150">${qnaDTO.content}</textarea>
 							</td>
 							</tr>
 						</tbody>

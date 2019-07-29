@@ -117,8 +117,8 @@ public class MobileDAOImpl implements MobileDAO {
 	}*/
 
 	@Override
-	public String getCodeStatus(String parameter) {
-		String codeStatus = this.sqlSession.selectOne("com.support.movement.MobileDAO.getCodeStatus", parameter);
+	public String getCodeStatus(String parameter_code) {
+		String codeStatus = this.sqlSession.selectOne("com.support.movement.MobileDAO.getCodeStatus", parameter_code);
 		return codeStatus;
 	}
 }

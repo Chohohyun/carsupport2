@@ -61,7 +61,7 @@
        			success:function(data){
        				if(data==1){
        					alert("차량 정비 내용 등록 성공!");
-       					location.replace("/support/adminMainPage.do");
+       					document.carListInfoFormMain.submit();
        				}
        				else{
        					alert("차량 정비 내용 등록 실패!");
@@ -96,7 +96,7 @@
         }
         
         function goAdminMainPage(){
-        	location.replace("/support/adminMainPage.do");
+        	document.carListInfoFormMain.submit();
         }
         </script>
 </head>

@@ -131,7 +131,7 @@ $(document).ready(function() {
 						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
 						<!--board 는 지역변수-->
 						<tr>
-							<td class="txt_center">${acceptListAllCnt-(loopTagStatus.index+1)}</td>
+							<td class="txt_center">${acceptListAllCnt-(loopTagStatus.index)}</td>
 							<td class="txt_center">${accept.driver_name}</td>
 							<td class="txt_center">${accept.driver_id}</td>
 							<td class="txt_center">${accept.driver_license_number}</td>

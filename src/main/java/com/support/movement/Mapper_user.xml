@@ -4,7 +4,17 @@
 
 <mapper namespace="com.support.movement.UserDAO">
 
-	<select id="getReservationAlreadyCnt" parameterType="com.support.movement.UserDAO" resultType="int">
+	<select id="getReservationWaitCnt" parameterType="com.support.movement.UserReservationDTO" resultType="int">
+		select
+			count(*)
+		from reserve_apply_car
+		where car_number in ((select c.car_number from car_info c where c.car_code=${car_code}  )) 
+		and reservation_date=to_date('${car_reservation_date}${car_reservation_hour}','yyyy-mm-dd hh24')
+		and reserve_status_code=1 		
+		
+	</select>
+	
+	<select id="getReservationAlreadyCnt" parameterType="com.support.movement.UserReservationDTO" resultType="int">
 		select
 			count(*)
 		from reserve_apply_car
@@ -14,7 +24,7 @@
 		
 	</select>
 	
-	<select id="getPossibleCarCnt" parameterType="com.support.movement.UserDAO" resultType="int">
+	<select id="getPossibleCarCnt" parameterType="com.support.movement.UserReservationDTO" resultType="int">
 		select
 			count(*)
 		from car_info

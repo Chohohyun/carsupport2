@@ -84,7 +84,7 @@ $(document).ready(function() {
 					<div class="tit_box">
 						<h2 class="h2tit">차량 정보</h2>
 					</div>
-					<form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
+					<form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/carListInfoForm.do">
 					<table class="tbl tbl_list">
 						<colgroup>
 							<col style="width: 20%;" />
@@ -146,7 +146,7 @@ $(document).ready(function() {
 						<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
 						<!--board 는 지역변수-->
 						<tr>
-							<td class="txt_center">${carListAllCnt-(carSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${carListAllCnt-(carSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${car.car_number}</td>
 							<td class="txt_center">${car.car_year}</td>
 							<td class="txt_center">${car.maintance_distance}</td>
