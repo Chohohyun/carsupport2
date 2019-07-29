@@ -125,7 +125,8 @@
 	<select id ="getUserRevList" parameterType="String" resultType="hashmap">
 		select
 			rac.reserve_apply_car_number||'' as "reserve_apply_car_number",
-            to_char(rac.reservation_date,'yyyymmddhh24')||'' as "reservation_date",
+            to_char(rac.reservation_date,'yyyy')||'년 '||to_char(rac.reservation_date,'mm')||'월 '||
+            to_char(rac.reservation_date,'dd')||'일 '||to_char(rac.reservation_date,'hh24')||'시 ' as "reservation_date",
             rac.start_point_longitude||'' as "start_point_longitude",
             rac.start_point_latitude||'' as "start_point_latitude",
             rac.end_point_longitude||'' as "end_point_longitude",
@@ -137,14 +138,17 @@
 			start_road_addr as "start_road_addr",
 			end_detail_addr as "end_detail_addr",
 			end_road_addr as "end_road_addr",
-			reserve_status_code||'' as "reserve_status_code"
-            
+			reserve_status_code||'' as "reserve_status_code",
+			to_char(rac.apply_date,'yyyy')||'년 '||to_char(rac.apply_date,'mm')||'월 '||
+            to_char(rac.apply_date,'dd')||'일 '||to_char(rac.apply_date,'hh24')||'시 ' as "apply_date"
 		from reserve_apply_car rac
 		where to_char(rac.reservation_date,'yyyymmddhh24') - to_char(sysdate,'yyyymmddhh24') &gt; 0
 		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
+		order by rac.reservation_date desc
 	</select>
 	
 	<select id ="getUserUtilDetailListAllCnt" parameterType="com.support.movement.UtilizationSearchDTO" resultType="int">
+		
 		select
 			count(*)
 		from reserve_apply_car rac
@@ -159,6 +163,11 @@
 	</select>
 	
 	<select id ="getUserUtilDetailList" parameterType="com.support.movement.UtilizationSearchDTO" resultType="hashmap">
+		<if test="selectPageNo>0">
+		select 
+			*
+		from (select zzz.*, rownum||'' RNUM from (
+		</if>
 		select
 			rac.reserve_apply_car_number||'' as "reserve_apply_car_number",
             to_char(rac.reservation_date,'yyyy')||'년 '||to_char(rac.reservation_date,'mm')||'월 '||
@@ -167,23 +176,27 @@
             rac.start_point_latitude||'' as "start_point_latitude",
             rac.end_point_longitude||'' as "end_point_longitude",
             rac.end_point_latitude||'' as "end_point_latitude",
-            decode(start_road_addr,'','도로명주소없음',start_road_addr)||'' as "start_road_addr",
-            decode(end_road_addr,'','도로명주소없음',end_road_addr)||'' as "end_road_addr",
+            decode(rac.start_road_addr,'','도로명주소없음',rac.start_road_addr)||'' as "start_road_addr",
+            decode(rac.end_road_addr,'','도로명주소없음',rac.end_road_addr)||'' as "end_road_addr",
             decode(rac.car_number,'','미정',rac.car_number)||'' as "car_number",
             decode((select d.driver_name from driver d where rac.driver_no=d.driver_no),'','미정',(select d.driver_name from driver d where rac.driver_no=d.driver_no))||'' as "driver_name",
             (select crs.reserve_status_name from code_reserve_status crs where crs.reserve_status_code = rac.reserve_status_code)||'' as "reserve_status_name",
             decode((select re.review_score from review re where re.reserve_apply_car_number = rac.reserve_apply_car_number),'','미평가',(select re.review_score from review re where re.reserve_apply_car_number = rac.reserve_apply_car_number))||'' as "review_score"
 		from reserve_apply_car rac
-		where to_char(sysdate,'yyyymmddhh24') - to_char(rac.reservation_date,'yyyymmddhh24')  &gt; 0
-		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
+		where sysdate &gt; rac.reservation_date  
+		and rac.user_no in (select du.user_no from disability_user du where du.user_id=#{id})
 		<if test="(use_year!=null and use_year.length()>0)">
 			and extract(year from rac.reservation_date) = #{use_year}
 		</if>
 		<if test="(use_month!=null and use_month.length()>0)">
 			and extract(month from rac.reservation_date) = #{use_month}
 		</if>
-		order by "reservation_date" desc
-		
+		order by rac.reservation_date desc
+		<if test="selectPageNo>0">	
+		<![CDATA[
+		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
+		 ]]>
+		 </if>
 	</select>
 	<select id ="getReserveInfo" parameterType="int" resultType="hashmap">
 		 

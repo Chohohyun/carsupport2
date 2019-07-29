@@ -18,7 +18,7 @@
   				getPagingNumber(
   				"${userUtilDetailListAllCnt}", // 검색 결과 총 행 개수
   				"${utilizationSearchDTO.selectPageNo}", // 선택된 현재 페이지 번호
-  				"10", // 페이지 당 출력행의 개수
+  				"5", // 페이지 당 출력행의 개수
   				"10", // 페이지 당 보여줄 페이징번호 개수
   				"goSearch();" // 페이지 번호 클릭 실행할 자스 코드
   				)
@@ -113,7 +113,7 @@
 						
 						<c:forEach items="${userUtilDetailList}" var="user" varStatus="loopTagStatus">
 						<tr>
-							<td class="txt_center">${userUtilDetailListAllCnt-(utilizationSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}</td>
+							<td class="txt_center">${userUtilDetailListAllCnt-(utilizationSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${user.start_road_addr}</td>
 							<td class="txt_center">${user.end_road_addr}</td>
 							<td class="txt_center">${user.reservation_date}</td>

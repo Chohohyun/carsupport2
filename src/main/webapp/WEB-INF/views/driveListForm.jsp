@@ -20,7 +20,7 @@
   				getPagingNumber(
   				"${driveListAllCnt}", // 검색 결과 총 행 개수
   				"${driveSearchDTO.selectPageNo}", // 선택된 현재 페이지 번호
-  				"10", // 페이지 당 출력행의 개수
+  				"5", // 페이지 당 출력행의 개수
   				"10", // 페이지 당 보여줄 페이징번호 개수
   				"goSearch();" // 페이지 번호 클릭 실행할 자스 코드
   				)
@@ -134,7 +134,7 @@
 								<!--boardList는 BoardListFormAction에 request.setAttribute("boardList", boardList);에서 "boardList" 요고다-->
 								<!--board 는 지역변수-->
 								<tr>
-									<td class="txt_center">${driveListAllCnt-(driveSearchDTO.selectPageNo*10-10+1+loopTagStatus.index)+1}
+									<td class="txt_center">${driveListAllCnt-(driveSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}
 									<td>${drive.reservation_date}
 									<td>${drive.start_road_addr}
 									<td>${drive.end_road_addr}

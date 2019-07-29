@@ -95,7 +95,15 @@ public class AdminController {
 			System.out.println(2);
 
 			int acceptListAllCnt = this.adminService.getAcceptListAllCnt(id,driverSearchDTO);
+			int lastPageNo = acceptListAllCnt / 5;
+			if( acceptListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < driverSearchDTO.getSelectPageNo() ){
 
+				
+				driverSearchDTO.setSelectPageNo(1);
+			}
 			System.out.println(3);
 			System.out.println(acceptListAllCnt);
 
@@ -142,8 +150,21 @@ public class AdminController {
 			if(driverSearchDTO.getSelectPageNo()==0) {
 				driverSearchDTO.setSelectPageNo(1);
 			}
+			
+			
 			System.out.println("여기?");
 			int upDelListAllCnt = this.adminService.getDriverUpDelListAllCnt(id,driverSearchDTO);
+			
+			int lastPageNo = upDelListAllCnt / 5;
+			if( upDelListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < driverSearchDTO.getSelectPageNo() ){
+
+				
+				driverSearchDTO.setSelectPageNo(1);
+			}
+			
 			System.out.println(upDelListAllCnt);
 			if(upDelListAllCnt!=0) {
 				upDelList= this.adminService.getDriverUpDelList(id,driverSearchDTO);
@@ -408,6 +429,16 @@ public class AdminController {
 			}
 
 			int upDelListAllCnt = this.adminService.getUserUpDelListAllCnt(id,userSearchDTO);
+			
+			int lastPageNo = upDelListAllCnt / 5;
+			if( upDelListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < userSearchDTO.getSelectPageNo() ){
+
+				
+				userSearchDTO.setSelectPageNo(1);
+			}
 			System.out.println(upDelListAllCnt);
 			if(upDelListAllCnt!=0) {
 				upDelList= this.adminService.getUserUpDelList(id,userSearchDTO);
@@ -538,6 +569,15 @@ public class AdminController {
 				carSearchDTO.setSelectPageNo(1);
 			}
 			carListAllCnt = this.adminService.getCarListAllCnt(carSearchDTO);
+			int lastPageNo = carListAllCnt / 5;
+			if( carListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
+
+				
+				carSearchDTO.setSelectPageNo(1);
+			}
 			if(carListAllCnt!=0) {
 				carList= this.adminService.getCarList(carSearchDTO);
 			}
@@ -641,6 +681,16 @@ public class AdminController {
 				carSearchDTO.setSelectPageNo(1);
 			}
 			carListAllCnt = this.adminService.getCarListAllCnt(carSearchDTO);
+			
+			int lastPageNo = carListAllCnt / 5;
+			if( carListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
+
+				
+				carSearchDTO.setSelectPageNo(1);
+			}
 			if(carListAllCnt!=0) {
 				carList= this.adminService.getCarList(carSearchDTO);
 			}
@@ -717,6 +767,15 @@ public class AdminController {
 			}
 			System.out.println(carSearchDTO.getCar_number());
 			carMaintanceListAllCnt = this.adminService.getCarMaintanceListAllCnt(carSearchDTO);
+			int lastPageNo = carMaintanceListAllCnt / 5;
+			if( carMaintanceListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
+
+				
+				carSearchDTO.setSelectPageNo(1);
+			}
 			if(carMaintanceListAllCnt!=0) {
 				carMaintanceList= this.adminService.getCarMaintanceList(carSearchDTO);
 			}
@@ -947,6 +1006,17 @@ public class AdminController {
 				discontentSearchDTO.setSelectPageNo(1);
 			}
 			int adminDiscontentListAllCnt = this.adminService.getAdminDiscontentListAllCnt(discontentSearchDTO);
+			int lastPageNo = adminDiscontentListAllCnt / 10;
+			if( adminDiscontentListAllCnt % 10>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < discontentSearchDTO.getSelectPageNo() ){
+
+				
+				discontentSearchDTO.setSelectPageNo(1);
+			}
+			System.out.println("여긴된다.1");
+			
 			System.out.println("이상없음");
 			// System.out.println(adminDiscontentListAllCnt); 이상없음
 			//-----------------------------------------------------

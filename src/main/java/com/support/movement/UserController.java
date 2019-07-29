@@ -61,24 +61,19 @@ public class UserController {
 			// HttpSession 객체가 들어올 매개변수 선언
 			// 매개변수에 자료형이 HttpSession이면 웹서버가
 			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session,QnaSearchDTO qnaSearchDTO) {
+			HttpSession session) {
 
 
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
 
-		qnaSearchDTO.setSelectPageNo(1);
-		qnaSearchDTO.setQuestion_group_no(1);
 
-
-		List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
-		System.out.println(qnaList.size());
 		//------------------------------------------------------------------
 		// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
 		// ModelAndView 객체에 addObject 메소드로 저장된 것은
 		// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
-		mav.addObject("qnaList", qnaList);
+		
 		mav.setViewName("userMainPage.jsp");
 		return mav;
 	}
@@ -241,7 +236,15 @@ public class UserController {
 			mav.setViewName("userUtilizationDetails.jsp");
 			int userUtilDetailListAllCnt = this.userService.getUserUtilDetailListAllCnt(utilizationSearchDTO);
 			System.out.println(userUtilDetailListAllCnt);
+			int lastPageNo = userUtilDetailListAllCnt / 5;
+			if( userUtilDetailListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < utilizationSearchDTO.getSelectPageNo() ){
 
+				
+				utilizationSearchDTO.setSelectPageNo(1);
+			}
 			userUtilDetailList= this.userService.getUserUtilDetailList(utilizationSearchDTO);
 			mav.addObject("utilizationSearchDTO",utilizationSearchDTO);
 			mav.addObject("userUtilDetailListAllCnt",userUtilDetailListAllCnt);
@@ -326,7 +329,15 @@ public class UserController {
 				discontentSearchDTO.setSelectPageNo(1);
 			}
 			int discontentListAllCnt = this.userService.getDiscontentListAllCnt(discontentSearchDTO);
+			int lastPageNo = discontentListAllCnt / 10;
+			if( discontentListAllCnt % 10>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < discontentSearchDTO.getSelectPageNo() ){
 
+				
+				discontentSearchDTO.setSelectPageNo(1);
+			}
 			System.out.println("hi");
 			//-----------------------------------------------------
 			List<Map<String,String>> discontentList = this.userService.getDiscontentList(discontentSearchDTO);
@@ -635,7 +646,15 @@ public class UserController {
 			}
 
 			int qnaListAllCnt = this.userService.getQnaListAllCnt(qnaSearchDTO);
-			
+			int lastPageNo = qnaListAllCnt / 10;
+			if( qnaListAllCnt % 10>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < qnaSearchDTO.getSelectPageNo() ){
+
+				
+				qnaSearchDTO.setSelectPageNo(1);
+			}
 			List<Map<String,String>> qnaList = this.userService.getQnaList(qnaSearchDTO);
 			
 			//------------------------------------------------------------------

@@ -42,24 +42,13 @@ public class DriverController {
 			// HttpSession 객체가 들어올 매개변수 선언
 			// 매개변수에 자료형이 HttpSession이면 웹서버가
 			// 생성한 HttpSession 객체가 들어온다.
-			HttpSession session,QnaSearchDTO qnaSearchDTO) {
+			HttpSession session) {
 
 
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
 
-		qnaSearchDTO.setSelectPageNo(1);
-		qnaSearchDTO.setQuestion_group_no(1);
-
-
-		List<Map<String,String>> qnaList = this.driverService.getQnaList(qnaSearchDTO);
-		System.out.println(qnaList.size());
-		//------------------------------------------------------------------
-		// ModelAndView 객체에  검색 개수, 게시판 검색 목록 저장하기
-		// ModelAndView 객체에 addObject 메소드로 저장된 것은
-		// 추후 HttpServletRequest 객체에 setAttribute 메소드 호출로 다시 재저장 된다
-		mav.addObject("qnaList", qnaList);
 		mav.setViewName("driverMainPage.jsp");
 		return mav;
 	}
@@ -109,6 +98,15 @@ public class DriverController {
 
 		try {
 			driveListAllCnt = this.driverService.getDriveListAllCnt(driveSearchDTO);
+			int lastPageNo = driveListAllCnt / 5;
+			if( driveListAllCnt % 5>0) {
+				lastPageNo++;
+			}
+			if( lastPageNo < driveSearchDTO.getSelectPageNo() ){
+
+				
+				driveSearchDTO.setSelectPageNo(1);
+			}
 			System.out.println(driveListAllCnt);
 			if(driveListAllCnt>0) {
 				driveList= this.driverService.getDriveList(driveSearchDTO);
@@ -168,7 +166,15 @@ public class DriverController {
 
 		List<Map<String,String>> reserveList = new ArrayList<Map<String,String>>();
 		reserveListAllCnt = this.driverService.getDriverUserReresveListAllCnt(reserveSearchDTO);	
+		int lastPageNo = reserveListAllCnt / 5;
+		if( reserveListAllCnt % 5>0) {
+			lastPageNo++;
+		}
+		if( lastPageNo < reserveSearchDTO.getSelectPageNo() ){
 
+			
+			reserveSearchDTO.setSelectPageNo(1);
+		}
 		if(reserveListAllCnt>0) {
 			reserveList = this.driverService.getDriverUserReresveList(reserveSearchDTO);
 		}

@@ -674,7 +674,7 @@
 		select
 			cmi.car_maintance_info_no||'' as "car_maintance_info_no"
 			, cmi.car_number||'' as "car_number"
-			, cmi.car_maintance_date||'' as "car_maintance_date"
+			, to_char(cmi.car_maintance_date,'yyyy-mm-dd')||'' as "car_maintance_date"
 			, (select cc.car_maintance_name from code_car_maintance cc where cmi.car_maintance_code=cc.car_maintance_code)||'' as "car_maintance_name"
 		from car_maintance_info cmi
 		where 1=1	

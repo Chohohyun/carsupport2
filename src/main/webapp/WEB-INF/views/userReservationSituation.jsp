@@ -108,11 +108,10 @@ function userCancelReservation(number){
 
 							<table class="tbl tbl_list">
 								<colgroup>
-									<col style="width: 10%;" />
+									<col style="width: 20%;" />
 									<col style="width: 10%;" />
 									<col style="width: 30%;" />
 									<col style="width: 30%;" />
-									<col style="width: 10%;" />
 									<col style="width: 10%;" />
 								</colgroup>
 								<thead>
@@ -121,7 +120,7 @@ function userCancelReservation(number){
 									<th scope="col">상태</th>
 									<th scope="col">출발지</th>
 									<th scope="col">도착지</th>
-									<th scope="col">수정</th>
+									
 									<th scope="col">취소</th>
 								</thead>
 								<tbody>
@@ -129,20 +128,11 @@ function userCancelReservation(number){
 									<c:forEach items="${userRevList}" var="user"
 										varStatus="loopTagStatus">
 										<tr>
-											<td>${user.reservation_date}
+											<td>${user.apply_date}<br/>${user.reservation_date}
 											<td>${user.reserve_status_name}
 											<td>${user.start_road_addr}
-											<td>${user.end_road_addr}<c:choose>
-													<c:when
-														test="${user.reserve_status_code==1 || user.reserve_status_code==2}">
-														<td><a onclick="userUpDelReservation(${user.reserve_apply_car_number});" class="btn middle white radius-5">수정</a>
-															
-													</c:when>
-													<c:otherwise>
-
-														<td>
-													</c:otherwise>
-												</c:choose> <c:choose>
+											<td>${user.end_road_addr}
+											<c:choose>
 													<c:when
 														test="${user.reserve_status_code==1 || user.reserve_status_code==2}">
 														<td><a onclick="userCancelReservation(${user.reserve_apply_car_number});" class="btn middle white radius-5">취소</a>
@@ -150,7 +140,7 @@ function userCancelReservation(number){
 													</c:when>
 													<c:otherwise>
 
-														<td>
+														<td>취소된예약
 													</c:otherwise>
 												</c:choose>
 									</c:forEach>

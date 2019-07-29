@@ -446,9 +446,9 @@
 			<input type="hidden"
 									name="admission_code" value="n">
 			<div class="btn_box">
-				<a><input type="button" onclick="godriverRegForm();" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="등록"></a> 
+				<a><input type="button" onclick="godriverRegForm();" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large blue radius-5"  value="등록"></a> 
 				&nbsp;&nbsp;&nbsp;
-				<a><input type="button" onclick="goMainPage();" value="취소" class="btn large blue radius-5"></a>
+				<a><input type="button" onclick="goMainPage();" value="취소" class="btn large white radius-5"></a>
 			</div>
 		</div>
 		</form>
