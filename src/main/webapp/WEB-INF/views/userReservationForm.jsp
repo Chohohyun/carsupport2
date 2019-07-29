@@ -114,6 +114,9 @@ function reservationCheck() {
 				else if(data==0){
 					alert("예약신청 도중 오류발생.");
 				}
+				else if(data==-1){
+					alert("해당 날짜에 이미 예약을 하셨습니다. 예약은 하루에 한건만 가능합니다.");
+				}
 				else if(data==-2){
 					alert("예약가능한 차량이 없습니다. 날짜나 차량종류를 변경해주세요.");
 				}

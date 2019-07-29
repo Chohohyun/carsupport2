@@ -25,14 +25,24 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int getReservationCheck(UserReservationDTO userReservationDTO,String userId) {
+		String user_no = this.userDAO.getUserNo(userId);
+		userReservationDTO.setUser_no(user_no);
+		int userReserveChk = this.userDAO.getUserReserveChk(userReservationDTO);
+		if(userReserveChk >0) {
+			return -1;
+		}
 		int reservationAlreadyCnt = this.userDAO.getReservationAlreadyCnt(userReservationDTO);
+		System.out.println("예약된차"+reservationAlreadyCnt);
 		int CarCnt = this.userDAO.getPossibleCarCnt(userReservationDTO);
+		System.out.println("차수"+CarCnt);
 		int possibleCarCnt = CarCnt - reservationAlreadyCnt;
+		System.out.println("예약가능차"+possibleCarCnt);
 		int reservationWaitCnt = this.userDAO.getReservationWaitCnt(userReservationDTO);
+		System.out.println("예약대기중"+reservationWaitCnt);
 		possibleCarCnt = possibleCarCnt - reservationWaitCnt;
 		System.out.println("여기까진 되자");
 		if(possibleCarCnt > 0) {
-			String user_no = this.userDAO.getUserNo(userId);
+		
 			System.out.println("여기까진 되자");
 			userReservationDTO.setUser_no(user_no);
 			System.out.println("여기까진 되자3");

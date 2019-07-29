@@ -127,6 +127,9 @@ public class UserController {
 
 		try {
 			String userId = (String)session.getAttribute("id");
+			System.out.println(userReservationDTO.getCar_reservation_date());
+			System.out.println(userReservationDTO.getCar_reservation_hour());
+			System.out.println(userReservationDTO.getCar_code());
 			reservationCheckCnt = this.userService.getReservationCheck(userReservationDTO,userId);
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -68,5 +68,7 @@ public interface UserDAO {
 
 	int getReservationWaitCnt(UserReservationDTO userReservationDTO);
 
+	int getUserReserveChk(UserReservationDTO userReservationDTO);
+
 
 }

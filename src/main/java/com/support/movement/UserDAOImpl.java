@@ -215,5 +215,11 @@ public class UserDAOImpl implements UserDAO{
 		return reservationWaitCnt;
 	}
 
+	@Override
+	public int getUserReserveChk(UserReservationDTO userReservationDTO) {
+		int userReserveChk = this.sqlSession.selectOne("com.support.movement.UserDAO.getUserReserveChk",userReservationDTO);
+		return userReserveChk;
+	}
+
 
 }
