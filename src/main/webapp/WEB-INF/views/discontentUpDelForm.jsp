@@ -5,6 +5,7 @@
 <!--JSP 기술의 한 종류인 [Include Directive] 를 이용하여 common.jsp파일의 코드를 삽입-->
 <%@include file="common.jsp" %>
 
+<%@include file="checkUser.jsp" %>
 <html>
 <head>
    <title>게시판</title>

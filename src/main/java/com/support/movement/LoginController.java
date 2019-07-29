@@ -69,7 +69,25 @@ public class LoginController {
 		mav.setViewName("loginForm.jsp");
 		return mav;
 	}
+	@RequestMapping(value="/logout.do")
+	public ModelAndView logout(
+			// HttpSession 객체가 들어올 매개변수 선언
+			// 매개변수에 자료형이 HttpSession이면 웹서버가
+			// 생성한 HttpSession 객체가 들어온다.
+			HttpSession session) {
 
+		// HttpSession 객체에 저장된 로그인 아이디 삭제하기
+		session.removeAttribute("id");
+		session.removeAttribute("name");
+		session.removeAttribute("idChk");
+
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("logout.jsp");
+		return mav;
+	}
 
 
 	//**********************************

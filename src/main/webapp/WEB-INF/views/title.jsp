@@ -35,7 +35,7 @@
 			location.replace("/support/userUpDelForm2.do");
 		}
 		function logout(){
-			location.replace("/support/loginForm.do");
+			location.replace("/support/logout.do");
 		}
 		function discontentListFormMain(){
 			document.discontentListFormMain.submit();

@@ -5,7 +5,7 @@
 	
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp" %>
-
+<%@include file="checkDriver.jsp" %>
 
 <script type="text/javascript" language="javascript">
 
@@ -25,7 +25,7 @@
 			location.replace("/support/driverUpDelForm2.do");
 		}
 		function logout(){
-			location.replace("/support/loginForm.do");
+			location.replace("/support/logout.do");
 		}
 		function driverHistory(){
 			document.driveHistory.submit();

@@ -95,7 +95,7 @@ public class UserController {
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("id")!=null) {
+		if(session.getAttribute("idChk")=="3") {
 			mav.setViewName("userReservationForm.jsp");
 		}
 		else {
@@ -157,7 +157,7 @@ public class UserController {
 		try {
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
-			if(id==null) {
+			if(session.getAttribute("idChk")=="3") {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
@@ -248,7 +248,7 @@ public class UserController {
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
 			utilizationSearchDTO.setId(id);
-			if(id==null) {
+			if(session.getAttribute("idChk")=="3") {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
