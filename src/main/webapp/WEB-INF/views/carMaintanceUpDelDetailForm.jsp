@@ -139,7 +139,7 @@
 
 
 
-		<form  method="post" name="carMaintanceUpDelProc" >
+		<form  method="post" name="carMaintanceUpDelProc" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

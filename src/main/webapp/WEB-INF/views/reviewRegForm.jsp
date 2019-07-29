@@ -114,7 +114,7 @@ label.star:before {
 			<br>
 					<!-- [게시판 등록] 화면을 출력하는 form 태그 선언-->
 					<form method="post" name="reviewRegForm"
-						action="/support/reviewRegProc">
+						onsubmit="return false;"  >
 			
 			
 						<table class="tbl tbl_form">

@@ -49,7 +49,8 @@
 	// 모두검색 키워드 없애기
 	function goSearchAll(){
 		// 공용함수 setEmpty2 활용
-		setEmpty2(" [name=keyword]");
+		setEmpty2(" [name=keyword], [name=use_year], [name=use_month]");
+		
 		inputData("selectPageNo","1");
 		document.utilizationSearchForm.submit();
 	}
@@ -191,7 +192,7 @@
 								<option value="12">12</option>
 							</select>월		
 						<a href="javascript:goSearch();" class="btn middle white radius-5">검색</a>
-							
+						<a href="javascript:goSearchAll();" class="btn middle white radius-5">전부검색</a>
 						</form>
 
 					</div>

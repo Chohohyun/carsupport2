@@ -360,7 +360,7 @@
 					</div>
 			</div>
 		<!-- ===================================[회원등록 폼]====================================== -->	
-		<form name="userRegForm" method="POST">
+		<form name="userRegForm" method="POST" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

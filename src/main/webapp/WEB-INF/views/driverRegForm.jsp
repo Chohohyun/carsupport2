@@ -320,7 +320,7 @@
 					</div>
 			</div>
 		<!-- ===================================[회원등록 폼]====================================== -->	
-		<form name="driverRegForm" method="POST">
+		<form name="driverRegForm" method="POST" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

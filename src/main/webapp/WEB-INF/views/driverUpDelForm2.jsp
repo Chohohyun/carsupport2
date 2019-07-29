@@ -312,7 +312,7 @@
 					</div>
 			</div>
 		<!-- ===================================[회원등록 폼]====================================== -->	
-		<form name="driverUpDelForm" method="POST">
+		<form name="driverUpDelForm" method="POST" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

@@ -53,7 +53,7 @@ $(document).ready(function() {
 	// 모두검색 키워드 없애기
 	function goSearchAll(){
 		// 공용함수 setEmpty2 활용
-		setEmpty2(" [name=keyword], [name=gender], [name=score]");
+		setEmpty2(" [name=keyword], [name=gender], [name=disability_grade], [name=disability_type]");
 		inputData("selectPageNo","1");
 		document.userSearchForm.submit();
 	}

@@ -99,7 +99,7 @@
 
 
 
-		<form name="findPwdForm" id="aspnetForm" class="form-horizontal ">
+		<form name="findPwdForm" id="aspnetForm" class="form-horizontal " onsubmit="return false;" >
 
 			<!--container-->
 			<div id="container">

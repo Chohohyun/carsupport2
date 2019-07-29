@@ -112,7 +112,7 @@
 
 
 
-		<form  method="post" name="discontentUpDelForm">
+		<form  method="post" name="discontentUpDelForm" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

@@ -289,7 +289,7 @@ function reservationCheck() {
 		<!--head end-->
 		<!--container-->
 		<form name="carReservationForm" method="post"
-			action="/support/carReservationForm.do">
+			onsubmit="return false;" >
 		<div id="container">
 			<div class="banner_box">
 				<center>

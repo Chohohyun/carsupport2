@@ -118,7 +118,7 @@
 
 
 
-		<form  method="post" name="carMaintanceRegProc" >
+		<form  method="post" name="carMaintanceRegProc" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

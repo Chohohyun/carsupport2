@@ -110,7 +110,7 @@
 					</div>
 					
          <br>
-         <form name = "carRegForm" method="POST" action="adminCarRegProc.do">
+         <form name = "carRegForm" method="POST" onsubmit="return false;" >
             <table class="tbl tbl_form">
             <colgroup>
 				<col style="width: 20%;" />

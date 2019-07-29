@@ -95,7 +95,7 @@
 
 
 
-		<form  method="post" name="qnaRegForm" >
+		<form  method="post" name="qnaRegForm" onsubmit="return false;">
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

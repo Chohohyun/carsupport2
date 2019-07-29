@@ -155,7 +155,7 @@
 					</div>
 					
          <br>
-         <form name = "carUpDelProcForm" method="POST">
+         <form name = "carUpDelProcForm" method="POST" onsubmit="return false;" >
          
             <table class="tbl tbl_form">
              <colgroup>

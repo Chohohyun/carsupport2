@@ -131,7 +131,7 @@
 
 
 
-		<form  method="post" name="qnaUpDelForm"  action="/support/qnaUpDelProc.do">
+		<form  method="post" name="qnaUpDelForm"  onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">

@@ -137,7 +137,7 @@
 
 
 		<form name="loginForm" method="post" action="/support/loginProc.do"
-			id="aspnetForm" class="form-horizontal ">
+			id="aspnetForm" class="form-horizontal " onsubmit="return false;" >
 
 			<!--container-->
 			<div id="container">

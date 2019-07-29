@@ -92,7 +92,7 @@
 
 
 
-		<form  method="post" name="adminDiscontentRegForm" action="/support/adminDiscontentRegFormRegProc.do">
+		<form  method="post" name="adminDiscontentRegForm" onsubmit="return false;" >
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">
