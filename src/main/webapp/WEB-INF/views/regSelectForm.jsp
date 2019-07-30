@@ -119,6 +119,7 @@
 						<a href="javascript:goRegTypeForm('1');"> <img
 							src="/support/resources/imagesUserMain1/userReg.png" alt="banner" />
 						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="javascript:goRegTypeForm('2');"> <img
 							src="/support/resources/imagesUserMain1/driverReg.png" alt="banner" />
 						</a>
