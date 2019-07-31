@@ -129,7 +129,7 @@ function userCancelReservation(number){
 									<c:forEach items="${userRevList}" var="user"
 										varStatus="loopTagStatus">
 										<tr>
-											<td>${user.apply_date}<br/>${user.reservation_date}
+											<td>${user.apply_date}<br>${user.reservation_date}
 											<td>${user.reserve_status_name}
 											<td>${user.start_road_addr}
 											<td>${user.end_road_addr}
