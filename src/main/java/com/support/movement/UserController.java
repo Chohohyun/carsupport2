@@ -97,7 +97,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		String idChk = (String) session.getAttribute("idChk");
 		
-		if(idChk==null || !(idChk.equals("3"))) {
+		if(idChk==null || (!idChk.equals("3"))) {
 			mav.setViewName("loginForm.jsp");
 			return mav;
 		}
@@ -161,7 +161,7 @@ public class UserController {
 			String id = (String) session.getAttribute("id");
 			String idChk = (String) session.getAttribute("idChk");
 			System.out.println(id);
-			if(idChk==null || !(idChk.equals("3"))) {
+			if(idChk==null || (!idChk.equals("3"))) {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
@@ -251,15 +251,19 @@ public class UserController {
 			}
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
-			utilizationSearchDTO.setId(id);
-			String idChk = (String) session.getAttribute("idChk");
-			System.out.println(id);
-			if(idChk==null || !(idChk.equals("3"))) {
+			System.out.println("123");
+			String ddddd = (String) session.getAttribute("idChk");
+			System.out.println("456");
+			if(ddddd==null || (!ddddd.equals("3"))) {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
+			utilizationSearchDTO.setId(id);
+			System.out.println("여긴된다.123");
 			mav.setViewName("userUtilizationDetails.jsp");
 			int userUtilDetailListAllCnt = this.userService.getUserUtilDetailListAllCnt(utilizationSearchDTO);
+
+			System.out.println("여긴된다.1232");
 			System.out.println(userUtilDetailListAllCnt);
 			int lastPageNo = userUtilDetailListAllCnt / 5;
 			if( userUtilDetailListAllCnt % 5>0) {
@@ -279,7 +283,7 @@ public class UserController {
 
 
 		}catch (Exception e) {
-			System.out.println("drivetAcceptForm을 불러오는 도중 오류");
+			System.out.println("userutil을 불러오는 도중 오류");
 		}
 		return mav;
 	}

@@ -214,7 +214,7 @@ public class LoginController {
 			session.removeAttribute("uri");
 			admin_idCnt = this.loginService.getAdminCnt(paramsMap);
 			if(admin_idCnt==1 || admin_idCnt==3 || admin_idCnt==5 )  {
-				session.setAttribute("idChk",admin_idCnt);
+				session.setAttribute("idChk",admin_idCnt+"");
 				session.setAttribute("id", paramsMap.get("id"));
 				String name= this.loginService.getName(paramsMap,admin_idCnt);
 				session.setAttribute("name",name);
