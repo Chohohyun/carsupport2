@@ -243,10 +243,14 @@
 		update  reserve_apply_car  set 
 			reserve_status_code=${parameter} 			
 			,drive_finish_time=to_date( #{endtime}, 'YYYY-MM-DD HH24:MI:SS' )
-			,drive_distance=${drive_distance}||' Meter'	
+			,drive_distance=${drive_distance}
 		where reserve_apply_car_number=${select_num}
 	</update>
-	
+	<update id="getDistanceUpdate" parameterType="hashmap">
+		update car_info c set
+			c.car_distance = c.car_distance + ${drive_distance}/1000
+		where c.car_number = (select rac.car_number from reserve_apply_car rac where rac.reserve_apply_car_number=${select_num})
+	</update>
 	<select id="getLoginList"  resultType="com.support.movement.MobileLoginDTO">
 		select
 			driver_id as "driver_id"

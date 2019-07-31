@@ -203,6 +203,7 @@ public class MobileServiceImpl implements MobileService {
 		int acceptListCode = 0;
 		int deleteCode = 0;
 		deleteCode = this.mobileDAO.DeleteCode(delete_code);
+		int distanceUpdate = this.mobileDAO.getDistanceUpdate(delete_code);
 		if(deleteCode>0) {
 			acceptListCode = this.mobileDAO.acceptListCode(delete_code);
 		}		

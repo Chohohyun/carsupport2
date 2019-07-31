@@ -767,6 +767,7 @@ public class AdminController {
 		}
 		session.setAttribute("carSearchDTO",carSearchDTO);
 		mav.setViewName("carListInfoForm.jsp");
+		mav.addObject("carSearchDTO", carSearchDTO);
 		mav.addObject("carList", carList);
 		mav.addObject("carListAllCnt", carListAllCnt);
 		System.out.println("차정보리스트완?");

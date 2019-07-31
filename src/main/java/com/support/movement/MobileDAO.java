@@ -52,6 +52,8 @@ public interface MobileDAO {
 	String getCodeStatus(Map<String,String> update_code);
 
 	int UpdateDenyCnt(List<Map<String, String>> reserveNoArr);
+
+	int getDistanceUpdate(Map<String, String> delete_code);
 	
 	
 }

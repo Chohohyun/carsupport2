@@ -156,4 +156,10 @@ public class MobileDAOImpl implements MobileDAO {
 		PhoneDTO phoneDTO = this.sqlSession.selectOne("com.support.movement.MobileDAO.getPhoneDTO", select_num);
 		return phoneDTO;
 	}*/
+
+	@Override
+	public int getDistanceUpdate(Map<String, String> delete_code) {
+		int distanceUpdate = this.sqlSession.update("com.support.movement.MobileDAO.getDistanceUpdate", delete_code);
+		return distanceUpdate;
+	}
 }

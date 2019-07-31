@@ -523,25 +523,12 @@
           DISTINCT(ci.car_info_no)||'' as "car_info_no"
                , ci.car_number||'' as "car_number"
                , ci.car_year||'' as "car_year"
-               , ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )||'' "car_distance"
-                  ,case when
-                         (    
-                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number)=0
-                                      then ci.CAR_DISTANCE 
-                                      else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )
-                                 end
-                              -DISTANCE 
-                          )&lt;=50000
-                          then   50000-
-                         (
-                        case when  (select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number)=0
-                                      then ci.CAR_DISTANCE 
-                                      else  ci.car_distance+( select nvl(round( sum(to_number(substr(replace(rac.drive_distance,'Meter',''), 1 ) )/1000 ), 3 ),0) from reserve_apply_car rac where rac.car_number=ci.car_number )
-                                 end
-                              -DISTANCE 
-                          )||''
-                          else '차량정기정검필요'
-                 end "maintance_distance"
+               , ci.car_distance||'' "car_distance"
+                  ,case when(ci.car_distance -DISTANCE)&lt;=50000
+                  	 then   
+                  		(50000-ci.car_distance +DISTANCE)||'' 
+                     else '차량정기정검필요'
+                 	end "maintance_distance"
                  , (select car_type from code_car cc where cc.car_code=ci.car_code) as "car_code"
                , ci.car_driver||'' as "car_driver"
                , ci.car_reg_date||'' as "car_reg_date"
@@ -693,9 +680,10 @@
 		<if test="(maintance_year!=null and maintance_year.length()>0)">
 			and extract(year from cmi.car_maintance_date) = #{maintance_year}
 		</if>
-		<if test="(maintance_month!=null and maintance_year.length()>0)">
+		<if test="(maintance_month!=null and maintance_month.length()>0)">
 			and extract(month from cmi.car_maintance_date) = #{maintance_month}
 		</if>
+		
 		<if test="(maintance_code!=null and maintance_code.length()>0)">
 			and cmi.car_maintance_code = ${maintance_code}
 		</if>
