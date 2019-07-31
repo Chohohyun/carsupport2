@@ -94,7 +94,7 @@
               <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b" >
                 <p class="m-notice">
                   <span class="notice-tit">공지사항</span>
-                  <a href="javascript:qnaListForm();"><span class="notice-view">+더보기</span></a>
+                  <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
                 </p>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">

@@ -491,9 +491,9 @@
 			</div>
 			<div height:10px></div>
 			<div class="btn_box">
-				<a><input type="button" onclick="goUserRegForm();" id="ctl00_ContentPlaceHolder1_LinkOk" class="btn large white radius-5"  value="등록"></a> 
-				&nbsp;&nbsp;&nbsp;
-				<a><input type="button" onclick="goAdminPage();" value="취소" class="btn large blue radius-5"></a>
+			
+				<a href="javascript:goUserRegForm();" onclick="return submitcheck()"  class="btn large blue radius-5">등록</a>
+                <a href="javascript:goAdminPage();" class="btn large white radius-5">취소</a> 
 			</div>
 		</div>
 		</form>

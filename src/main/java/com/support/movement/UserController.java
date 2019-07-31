@@ -95,11 +95,14 @@ public class UserController {
 		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
 		//session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		if(session.getAttribute("idChk")=="3") {
-			mav.setViewName("userReservationForm.jsp");
+		String idChk = (String) session.getAttribute("idChk");
+		
+		if(idChk==null || !(idChk.equals("3"))) {
+			mav.setViewName("loginForm.jsp");
+			return mav;
 		}
 		else {
-			mav.setViewName("loginForm.jsp");
+			mav.setViewName("userReservationForm.jsp");
 		}
 		return mav;
 	}
@@ -156,8 +159,9 @@ public class UserController {
 		List<Map<String,String>> userRevList = new ArrayList<Map<String,String>>();
 		try {
 			String id = (String) session.getAttribute("id");
+			String idChk = (String) session.getAttribute("idChk");
 			System.out.println(id);
-			if(session.getAttribute("idChk")=="3") {
+			if(idChk==null || !(idChk.equals("3"))) {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
@@ -248,7 +252,9 @@ public class UserController {
 			String id = (String) session.getAttribute("id");
 			System.out.println(id);
 			utilizationSearchDTO.setId(id);
-			if(session.getAttribute("idChk")=="3") {
+			String idChk = (String) session.getAttribute("idChk");
+			System.out.println(id);
+			if(idChk==null || !(idChk.equals("3"))) {
 				mav.setViewName("loginForm.jsp");
 				return mav;
 			}
@@ -653,7 +659,9 @@ public class UserController {
 			session.setAttribute("uri","qnaListFormChild");
 			System.out.println("driverDTO 아주 잘옴");
 			QnaDTO qnaDTO = this.userService.getQnaDto(question_no); 
-
+			if(session.getAttribute("qnaSearchDTO")==null) {
+				session.setAttribute("uri","qnaMainPage");
+			}
 			mav.addObject("qnaDTO",qnaDTO); 
 			System.out.println("qnaDTO 아주 잘옴");
 		}catch(Exception e){ 
