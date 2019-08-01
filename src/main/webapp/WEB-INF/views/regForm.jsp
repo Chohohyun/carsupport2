@@ -14,7 +14,7 @@
       $(document).ready(function(){
 	  
 	      $("#userEmailTr").css("display","none");
-	      alert(1);
+	      
 		  
       
       

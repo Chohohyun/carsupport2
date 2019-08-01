@@ -80,16 +80,16 @@
     			datatype:"html",
     			success:function(data){
     				if(data==1){
-    					alert("관리자 로그인 성공!");
+    					
     					location.replace("/support/adminMainPage.do");
     				}
     				else if(data==3){
-    					alert("일반회원 로그인 성공!");
+    					
     					location.replace("/support/userMainPage.do");
     					
     				}
     				else if(data==5){
-    					alert("운전자 로그인 성공!");
+    					
     					location.replace("/support/driverMainPage.do");
     				}
     				else if(data==-2){

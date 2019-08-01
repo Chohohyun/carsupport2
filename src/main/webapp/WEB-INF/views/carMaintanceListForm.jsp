@@ -35,21 +35,21 @@ $(document).ready(function() {
 
 	function searchCar(){
 		var car_number = $('[name=carList]').val();
-		alert(car_number);
+	
 		document.carMaintanceListSearchForm.car_number.value=car_number;
 		document.carMaintanceListSearchForm.submit();
 		
 	}
 	 
 	function goCarMaintanceUpDelDetailForm(car_maintance_info_no){
-		alert(car_maintance_info_no);
+		
 		
 		$("[name=carMaintanceContent] [name=car_maintance_info_no]").val( car_maintance_info_no );
 		document.carMaintanceContent.submit();
 	}
 	
 	function createCarList(){
-    	alert(1);
+    	
 		var carList = [];
     	$.ajax({
 			url:"/support/carList.do"
@@ -57,7 +57,7 @@ $(document).ready(function() {
 			,datatype: "application/json"
 			,success : function(data){
 				var datalen = data.length;
-				alert(datalen)
+				
 				for(var i=0; i<datalen; i++){
 					carList[i] = data[i].car_number;
 					var option = $("<option value="+data[i].car_number+">"+carList[i]+"</option>");
@@ -73,7 +73,7 @@ $(document).ready(function() {
 		});
 	}
 	function goSearch(){
-		alert(1);
+	
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

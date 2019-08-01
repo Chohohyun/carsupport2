@@ -133,7 +133,7 @@
            
          
               
-            window.open('https://www.gurihappycall.or.kr/etc/apl_use.hwp');
+            window.open('http://13.125.147.190:8080/support/resources/etc/apl_use.hwp');
               
  
 
@@ -235,14 +235,14 @@
                     <p>
 1. 변경 사유
                       <span class="br"></span>
- 1) 「교통약자의 이동편의 증진법 시행규칙」의 개정으로 「구리시 교통약자 이동편의  증진에 관한 조례」가 「구리시 특별교통수단 등의 운영에 관한 조례」로 전부 개정        됨.
+ 1) 「교통약자의 이동편의 증진법 시행규칙」의 개정으로 「금천구 교통약자 이동편의  증진에 관한 조례」가 「금천구 특별교통수단 등의 운영에 관한 조례」로 전부 개정        됨.
                       <span class="br"></span>
- 2) 개정 조례 「구리시 특별교통수단 등의 운영에 관한 조례」에 의해 구리시 교통약자 이동지원센터 운영지침 개정됨.
+ 2) 개정 조례 「금천구 특별교통수단 등의 운영에 관한 조례」에 의해 금천구 교통약자 이동지원센터 운영지침 개정됨.
                       <span class="br"></span>
                       <span class="br"></span><br>
 2. 주요 내용
                       <span class="br"></span>
-  1) 『구리시 특별교통수단 등의 운영에 관한 조례』 제10조제1항, 제2항에  따른 이용대상자의 범위는 다음과 같다.
+  1) 『금천구 특별교통수단 등의 운영에 관한 조례』 제10조제1항, 제2항에  따른 이용대상자의 범위는 다음과 같다.
                       <span class="br"></span>
     ① 「장애인 복지법 시행규칙」 제2조제1항에 따른 장애의 정도가 심한 장애인(휠체어등을 이용하는 보행 상 장애인에 한정)으로서 버스ㆍ지하철 등의 이용이 어려운         사람(복지카드, 장애인등록증, 진단서 등 제출자로 한함)_ (법 개정 전 1.2급은 복지         카드로, 3급은 휠체어 등을 이용하는 보행 상 장애인으로 한정하며 진단서 등 증빙         서류 제출자로 한함)
                       <span class="br"></span>
@@ -313,15 +313,11 @@
               <dd class="info" style="padding:50px;border:1px solid #a0a0a0">
                 <ul>
                   <li>
-                    <h3>「구리시 특별교통수단 등의 운영에 관한 조례」 제16조 규정에 의하여 구리시 교통약자 이동편의를 위한 특별교통수단(“행복콜”)의 이용요금과 이동지원센터의 운영에 대하여 고시한 요금으로 적용한다.
+                    <h3>「금천구 특별교통수단 등의 운영에 관한 조례」 제16조 규정에 의하여 금천구 교통약자 이동편의를 위한 특별교통수단(“행복콜”)의 이용요금과 이동지원센터의 운영에 대하여 고시한 요금으로 적용한다.
 </h3>
                     <br/>
                     <p>
-                      <em class="blue f-bold">- 기본요금 :</em> 10km 이내 1,200원
-                      <span class="br"></span>
-                        <em class="blue f-bold">- 추가요금 :</em> 10km 초과 1km당 200원
-                      <span class="br"></span>
-                          <em class="blue f-bold">- 할증요금 :</em> 해당 없음
+                      <em class="blue f-bold">- 요금 :</em> 무료로 운영됩니다.
                       <span class="br"></span>
                             <em class="blue f-bold">- 기타요금 :</em> 부대비용(주차비, 유료도로 통행료 등) 이용자 부담
                     </p>
@@ -335,7 +331,7 @@
                     <h3>이용방법(과정)</h3>
                     <br/>
                     <p >
-                      <img src="images/service_img_03.png" />                    
+                      <img src="/support/resources/imagesUserMain1/service_img_03.png" />                    
                     </p>
                   </li>
                 </ul>
@@ -358,8 +354,6 @@
                     <br/>
                     <p>
                       <em class="blue f-bold">1일(당일) 제한</em> 
-                      <span class="br"></span>
-                      ▪ 요금 체납 시 납부할 때까지 이용 제한
                       <span class="br"></span>
                       ▪ 탑승 시 신분증(복지카드) 및 진단서 등 증빙서류를 제시하지 못하는 경우
                       <span class="br"></span>

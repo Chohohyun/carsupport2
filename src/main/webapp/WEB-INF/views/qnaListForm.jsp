@@ -13,7 +13,6 @@
    
     <script type="text/javascript">
       $(document).ready(function(){
-    	  alert(${qnaSearchDTO.selectPageNo});
       	inputData("selectPageNo","${qnaSearchDTO.selectPageNo}");
     		inputData("keyword","${qnaSearchDTO.keyword}");
     		inputData("question_group_no","${qnaSearchDTO.question_group_no}");
@@ -48,7 +47,6 @@
 
   	//**********************************************************************************
   	function goQnaContentForm(data){
-  	  	alert(1);
 		document.qnaContentForm.question_no.value=data;
 		document.qnaContentForm.submit();
 		
@@ -62,7 +60,6 @@
   		goSearch();
   	}
   	function goSearch(){
-		alert(1);
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

@@ -376,5 +376,11 @@ public class AdminDAOImpl implements AdminDAO{
 		return checkCarNumber;
 	}
 
+	@Override
+	public List<Map<String, String>> getCarList() {
+		List<Map<String, String>> carList = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarOptionList");
+		return carList;
+	}
+
 
 }

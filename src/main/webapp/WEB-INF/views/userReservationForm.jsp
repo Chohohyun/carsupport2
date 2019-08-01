@@ -19,7 +19,7 @@
 		location.replace("/support/userMainPage.do");
 	}
 	function checkDate(){
-		alert(1);
+		
     	var date = new Date(); 
 		var year = date.getFullYear(); 
 		var month = new String(date.getMonth()+1); 
@@ -33,8 +33,7 @@
 		} 
 		var sysdate = year + "" + month + "" + day;
     	var regDate = $("[name=car_reservation_date]").val();
-    	alert(sysdate);
-    	alert(regDate);
+    	
     	if(regDate<sysdate){
     		alert("과거 날짜를 선택할 수 없습니다.");
     		$("[name=car_reservation_date]").val("");
@@ -99,8 +98,7 @@ function reservationCheck() {
 				alert("시간을 선택해주세요.");
 			return;
 			}
-		alert(1);
-		alert($("[name=carReservationForm]").serialize());
+	
 		$.ajax({
 			url:"/support/reservationCheck.do",
 			type:"post",

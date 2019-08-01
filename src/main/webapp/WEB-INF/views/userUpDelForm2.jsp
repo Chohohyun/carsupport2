@@ -80,7 +80,7 @@
 						return;
 					}
 					if(type=='driver'){
-						alert(type);
+						
 						$("#driverEmail").show();
 						
 						var elem = document.getElementById("driverEmailBtn"); 

@@ -343,4 +343,10 @@ public class AdminServiceImpl implements AdminService{
 		return refuseDriverCnt;
 	}
 
+	@Override
+	public List<Map<String, String>> getCarList() {
+		 List<Map<String, String>> carList = this.adminDAO.getCarList();
+		 return carList;
+	}
+
 }

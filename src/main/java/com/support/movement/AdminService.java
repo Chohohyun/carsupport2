@@ -87,4 +87,6 @@ public interface AdminService {
 
 	int getRefuseDriverCnt(int driver_no);
 
+	List<Map<String, String>> getCarList();
+
 }

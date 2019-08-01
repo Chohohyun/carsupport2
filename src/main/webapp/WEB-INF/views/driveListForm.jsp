@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-		alert(${driveSearchDTO.selectPageNo});
+		
     	inputData("selectPageNo","${driveSearchDTO.selectPageNo}");
   		
   		$(".pagingNumber").html(
@@ -42,12 +42,12 @@
       });*/
       });
       function goDriverGradeForm(RESERVE_APPLY_CAR_NUMBER){
-  		alert(RESERVE_APPLY_CAR_NUMBER);
+  	
   		$("[name=driverGradeForm] [name=reserve_apply_car_number]").val( RESERVE_APPLY_CAR_NUMBER );
   		document.driverGradeForm.submit();
   	}
   	function goSearch(){
-		alert(1);
+		
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

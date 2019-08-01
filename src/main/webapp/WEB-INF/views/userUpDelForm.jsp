@@ -31,16 +31,16 @@ $(document).ready(function() {
 });
 	
 	function upDelUser(no){
-		alert(no);
+		
 		
 		var user_no = no;
 		
-		alert(1);
+		
 		document.upDelUserForm.user_no.value=user_no;
 		document.upDelUserForm.submit();
 	}
 	function goSearch(){
-		alert(1);
+		
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

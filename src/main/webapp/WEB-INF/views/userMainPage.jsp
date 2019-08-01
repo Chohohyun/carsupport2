@@ -34,7 +34,7 @@
   		
     	}
     </script>
-      <script type="text/javascript" language="javascript">
+      <!-- <script type="text/javascript" language="javascript">
 
           if (/Android/i.test(navigator.userAgent)) {
               window.document.location.href = "/NotFound.aspx";
@@ -43,7 +43,7 @@
           } else {
               // 그 외 디바이스
           }
-     </script>
+     </script> -->
 
 	
 	
@@ -96,10 +96,15 @@
                   <span class="notice-tit">공지사항</span>
                   <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
                 </p>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed" >
+                 <colgroup>
+                       
+                        <col style="width:70%;"/>
+                        <col style="width:30%;"/>
+                 </colgroup>
 				<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
 					<tr>
-					<td class="l-h-30"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
+					<td class="l-h-30" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
 					<td >${qna.reg_date}</td> 
 					</tr>
  					</c:forEach>
@@ -134,10 +139,10 @@
               <ul class="txt_list">
                 <li class="txt_item">
                   <p class="list_txt">
-                    <strong class="size-14">사전예약(상담)</strong></br>
+                    <strong class="size-14">사전예약</strong></br>
                     - 평일 09:00 ~ 18:00(이용 2일전 사전예약제)</br>
                     &nbsp;&nbsp;토·일·공휴일 예약은 평일 근무시간 접수)</br></br>
-                    <strong class="size-14">즉시(콜) 이용</strong></br>
+                    <strong class="size-14">즉시 이용</strong></br>
                     - 이용 당일 최소 2시간 전 예약신청</br>
                     &nbsp;&nbsp;(월~금, 배차여유 가능 시)
                   </p>
@@ -149,10 +154,10 @@
               <ul class="txt_list">
                 <li class="txt_item">
                   <p class="list_txt">
-                    - 구리시 전역, 경기도, 서울특별시, 인천광역시</br>
+                    - 금천구 전역, 경기도, 서울특별시, 인천광역시</br>
                     &nbsp;&nbsp; 전역 편도운행</br></br>
                     - 관내에서 출발하는 교통약자로서 출발지는</br>
-                    &nbsp;&nbsp;구리시 관내 원칙</br></br>
+                    &nbsp;&nbsp;금천구 관내 원칙</br></br>
 
                     <strong class="size-14">차량운행</strong></br>
                     - 평일(월~금) 07:00~22:00</br>
@@ -185,7 +190,7 @@
               <div class="time_box">
                 <div class="phone_box2">
                   <h2 class="phone2">행복콜</h2>
-                  <h2 class="phone">1577-3659</h2>
+                  <h2 class="phone">2025-8523</h2>
                   <div class="txt call-img-txt">
                     교통약자 이동지원센터에</br>
                     <em class="blue f-bold size-15">&nbsp;&nbsp;&nbsp;등록된 회원만</em></br>

@@ -19,7 +19,7 @@
 				,success : function(data){
 					
 					var datalen = data.length;
-					alert(datalen);
+					
 					for(var i=0; i<datalen; i++){
 						driverList[i] = data[i].driver_name;
 						var option = $("<option value="+data[i].driver_no+">"+driverList[i]+"</option>");
@@ -93,7 +93,7 @@
     
     
     
-    <body><center>
+    <body>
     	<br>
     	<div class="banner_box">
 				<center>
@@ -155,14 +155,18 @@
                 </tr>
       
             </table><br>
+			<div class="btn_box">
+					
+				      <a href="javascript:goCarRegProc();" class="btn middle white radius-5">등록</a> &nbsp; &nbsp;
+            		<a href="javascript:goAdminMainPage();" class="btn middle white radius-5">취소</a> 
+            	
 
-            <a href="javascript:goCarRegProc();" class="btn middle white radius-5">등록</a> &nbsp; &nbsp;
-            <a href="javascript:goAdminMainPage();" class="btn middle white radius-5">취소</a> 
-            
+			</div> 
+          
         </form>
         </div>
      </div>
-    </center></body>
+   </body>
     
     <form name="adminMainPage" method="post" action="adminMainPage.do">
          </form>

@@ -12,7 +12,7 @@
    
     <script>            
         $(document).ready(function() {
-        	alert(1);
+        	
         	createDriverList();
         	inputData("car_year", "${carDTO.car_year}" );
         	inputData("car_code", "${carDTO.car_code}" );
@@ -22,7 +22,7 @@
         });  // $(document).ready(function() {
     
     	function createDriverList(){
-        	alert(1);
+        
     		var driverList = [];
         	$.ajax({
     			url:"/support/driverList.do"
@@ -137,7 +137,7 @@
     
     
     
-    <body><center>
+    <body>
     	
          <br>
     	<div class="banner_box">
@@ -201,15 +201,18 @@
                 </tr>
 	
             </table><br>
-	
-			<input type="hidden" name="car_info_no" value="${carDTO.car_info_no}">
-			
-            <a href="javascript:goCarUpdateProc()" class="btn middle white radius-5">수정</a>
+			<div class="btn_box">
+				  <a href="javascript:goCarUpdateProc()" class="btn middle white radius-5">수정</a>
             <a href="javascript:goCarDeleteProc();" class="btn middle white radius-5">삭제</a>
             <a href="javascript:goUpDelForm();" class="btn middle white radius-5">취소</a> 
+			</div> 
+          
+			<input type="hidden" name="car_info_no" value="${carDTO.car_info_no}">
+			
+          
         </form>	     
        
-    </center></body>
+    </body>
         
          <form name="adminCarUpDelForm" method="post" action="adminCarUpDelForm.do">
          </form>

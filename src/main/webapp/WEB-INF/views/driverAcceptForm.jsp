@@ -13,15 +13,15 @@ $(document).ready(function() {
 
 });
 	function acceptDriver(no){
-		alert(no);
+		
 		
 		var driver_no = no;
 		if(confirm("정말 승인 하시겠습니까?")==false){ 
 			return;
 		} 
-		alert(1);
+		
 		document.acceptDriverForm.driver_no.value=driver_no;
-		alert($("[name=acceptDriverForm]").serialize());
+	
 		
 		$.ajax({
 			url:"/support/acceptDriver.do",
@@ -45,15 +45,14 @@ $(document).ready(function() {
 		});
 	}
 	function refuseDriver(no){
-		alert(no);
+	
 		
 		var driver_no = no;
 		if(confirm("정말 거절 하시겠습니까?")==false){ 
 			return;
 		} 
-		alert(1);
+		
 		document.acceptDriverForm.driver_no.value=driver_no;
-		alert($("[name=acceptDriverForm]").serialize());
 		
 		$.ajax({
 			url:"/support/refuseDriver.do",

@@ -13,7 +13,6 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-		alert(${reserveSearchDTO.selectPageNo});
     	inputData("selectPageNo","${reserveSearchDTO.selectPageNo}");
   		
   		$(".pagingNumber").html(
@@ -42,7 +41,6 @@
       });*/
       });
   	function goSearch(){
-		alert(1);
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");
@@ -103,17 +101,15 @@
 					</div>
 					<table class="tbl tbl_list">
 						<colgroup>
-							<col style="width: 5%;" />
-							<col style="width: 13%;" />
-							<col style="width: 21%;" />
-							<col style="width: 21%;" />
-							<col style="width: 12%;" />
-							<col style="width: 13%;" />
+							<col style="width: 10%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
+							<col style="width: 20%;" />
 							<col style="width: 10%;" />
 						</colgroup>
 						<thead>
 							<th scope="col">번호</th>
-							<th scope="col">날짜</th>
 							<th scope="col">출발지</th>
 							<th scope="col">목적지</th>
 							<th scope="col">예약시간</th>
@@ -131,7 +127,6 @@
 									<td>${reserve.reservation_date}
 									<td>${reserve.start_road_addr}
 									<td>${reserve.end_road_addr}
-									<td>${reserve.reservation_hour}
 									<td>${reserve.user_name}
 									<td><a href="javascript:goCancelReserveForm(${reserve.reserve_apply_car_number});" class="btn middle white radius-5">취소</a>
 						

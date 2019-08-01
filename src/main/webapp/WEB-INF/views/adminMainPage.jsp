@@ -139,7 +139,7 @@ function adminMainPage(){
 		location.replace("/support/adminCarRegForm.do");
 	}
 	function goCarUpDelForm(){
-		alert(1);
+		
 		document.carUpDelForm.submit();
 	}
 	function goCarListInfoForm(){

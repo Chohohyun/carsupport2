@@ -13,7 +13,7 @@
 	$(document).ready(function() {
 	});
 	function checkReview() {
-		alert(1);
+		
 		$.ajax({
 			url : "/support/reviewRegProc.do",
 			type : "post",

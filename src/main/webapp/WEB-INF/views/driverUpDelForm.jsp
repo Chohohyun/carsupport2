@@ -28,16 +28,15 @@ $(document).ready(function() {
 	
 });
 	function upDelDriver(no){
-		alert(no);
+		
 		
 		var driver_no = no;
 		
-		alert(1);
 		document.upDelDriverForm.driver_no.value=driver_no;
 		document.upDelDriverForm.submit();
 	}
 	function goSearch(){
-		alert(1);
+		
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

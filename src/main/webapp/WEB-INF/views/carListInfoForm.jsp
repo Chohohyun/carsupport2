@@ -30,7 +30,7 @@ $(document).ready(function() {
 	// 정비내역등록 화면이으로 이동
 	//----------------------------------------
 	function goCarMaintenanceRegForm(car_info_no){
-		alert(car_info_no);
+	
 		$("[name=carMaintenanceRegForm] [name=car_info_no]").val( car_info_no );
 		document.carMaintenanceRegForm.submit();
 	}
@@ -148,8 +148,18 @@ $(document).ready(function() {
 						<tr>
 							<td class="txt_center">${carListAllCnt-(carSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${car.car_number}</td>
+							
 							<td class="txt_center">${car.car_year}</td>
-							<td class="txt_center">${car.maintance_distance}</td>
+							<c:choose>
+							
+								<c:when test="${car.maintance_distance}<0">
+									<td class="txt_center">차량정기점검필요</td>
+								</c:when>
+								<c:otherwise>
+									<td class="txt_center">${car.maintance_distance}km</td>
+								</c:otherwise>
+							</c:choose>
+							
 							<td class="txt_center">${car.car_code}</td>
 							
 							<td class="txt_center"><a href="javascript:goCarMaintenanceRegForm( ${car.car_info_no} );" class="btn middle white radius-5">정비내역등록</a></td>	

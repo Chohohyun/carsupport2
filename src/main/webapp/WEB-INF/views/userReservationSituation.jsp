@@ -39,7 +39,7 @@
 <script type="text/javascript" language="javascript">
 
 function userCancelReservation(number){
-	alert(number);
+	
 	var num = {"reserve_apply_car_number":number};
 	 $.ajax({
 		url:"/support/cancelReservation.do",

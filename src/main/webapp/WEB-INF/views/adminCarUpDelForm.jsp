@@ -37,7 +37,7 @@ $(document).ready(function() {
 	// 수정/삭제 화면이으로 이동
 	//----------------------------------------
 	function goCarUpDelDetailForm(car_info_no){
-		alert(car_info_no);
+		
 		$("[name=carContentForm] [name=car_info_no]").val(car_info_no);
 		document.carContentForm.submit();
 	}
@@ -92,7 +92,7 @@ $(document).ready(function() {
 			<div class="sub_cont container">
 				<div class="cont_box">
 					<div class="tit_box">
-						<h2 class="h2tit">차량 정보</h2>
+						<h2 class="h2tit">차량 수정/삭제</h2>
 					</div>
 					
 					<form class="carInfoSearchForm" name="carInfoSearchForm" method="post" action="/support/adminCarUpDelForm.do">
@@ -141,15 +141,17 @@ $(document).ready(function() {
 				<table class="tbl tbl_list">
 						<colgroup>
 							<col style="width: 10%;" />
-							<col style="width: 20%;" />
-							<col style="width: 20%;" />
-							<col style="width: 20%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
+							<col style="width: 15%;" />
 							<col style="width: 15%;" />
 							<col style="width: 15%;" />
 						</colgroup>
 						<thead>
 							<th scope="col">번호</th>
 							<th scope="col">차량번호</th>
+							<th scope="col">운전자</th>
 							<th scope="col">차량연식</th>
 							<th scope="col">주행거리</th>
 							<th scope="col">차량종류</th>
@@ -162,8 +164,9 @@ $(document).ready(function() {
 						<tr>
 							<td class="txt_center">${carListAllCnt-(carSearchDTO.selectPageNo*5-5+1+loopTagStatus.index)+1}</td>
 							<td class="txt_center">${car.car_number}</td>
+							<td class="txt_center">${car.driver_name}</td>
 							<td class="txt_center">${car.car_year}</td>
-							<td class="txt_center">${car.car_distance}</td>
+							<td class="txt_center">${car.car_distance}km</td>
 							<td class="txt_center">${car.car_code}</td>
 							
 							<td class="txt_center"><a href="javascript:goCarUpDelDetailForm( ${car.car_info_no} );" class="btn middle white radius-5">수정/삭제</a></td>	

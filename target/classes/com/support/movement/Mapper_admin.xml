@@ -513,44 +513,36 @@
 	</select>
 	
 	<!-- ============================차량리스트==============================-->
+	
+	<select id="getCarOptionList" resultType="hashmap">
+		select
+       
+        ci.car_number||'' as "car_number"
+    
+        from car_info ci   
+	</select>
 	  <select id="getCarList" parameterType="com.support.movement.CarSearchDTO" resultType="hashmap">
    <if test="selectPageNo>0">
    select 
          *
       from (select zzz.*, rownum||'' RNUM from (
       </if>
-      select
-          DISTINCT(ci.car_info_no)||'' as "car_info_no"
-               , ci.car_number||'' as "car_number"
-               , ci.car_year||'' as "car_year"
-               , ci.car_distance||'' "car_distance"
-                  ,case when(ci.car_distance -DISTANCE)&lt;=50000
-                  	 then   
-                  		(50000-ci.car_distance +DISTANCE)||'' 
-                     else '차량정기정검필요'
-                 	end "maintance_distance"
-                 , (select car_type from code_car cc where cc.car_code=ci.car_code) as "car_code"
-               , ci.car_driver||'' as "car_driver"
-               , ci.car_reg_date||'' as "car_reg_date"
-      
-       from car_info ci  ,
-           (
-            select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
-                                (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
-                                        where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
-                                )
-                      )  "DISTANCE"
-            from car_info ci,
-               (select car_number, car_distance, count(*) "CNT"
-                from car_maintance_info
-                where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
-                group by car_number, car_distance
-               ) cmi
-           where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
-      
-            ) "REPAIR"
-      
-       where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
+        select
+        ci.car_info_no||'' as "car_info_no",
+        ci.car_number||'' as "car_number",
+        ci.car_year||'' as "car_year",
+        ci.car_distance||'' as "car_distance",
+        decode((select d.driver_name from driver d where ci.car_driver = d.driver_no),'','운전자미등록',
+        (select d.driver_name from driver d where ci.car_driver = d.driver_no))||'' "driver_name",
+        ci.car_driver||'' as "car_driver",
+        to_char(ci.car_reg_date,'yyyy-mm-dd')||'' as "car_reg_date",
+        (select cc.car_type from code_car cc where cc.car_code=ci.car_code) as "car_code",       
+        case when
+        (select count(*) from car_maintance_info cmi where cmi.car_number = ci.car_number and cmi.car_maintance_code=1) > 0 
+        then 50000-(select ci.car_distance-max(cmi.car_distance) from car_maintance_info cmi where cmi.car_number = ci.car_number and cmi.car_maintance_code=1) 
+        else 50000-ci.car_distance        
+        end "maintance_distance"
+        from car_info ci   
       <if test="car_code!=null and car_code.length()>0 and car_code!=0">
                   and ci.car_code=#{car_code}
       </if>

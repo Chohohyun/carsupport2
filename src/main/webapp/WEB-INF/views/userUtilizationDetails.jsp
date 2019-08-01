@@ -28,19 +28,19 @@
 		
 	});
 	function goReviewRegForm(number){
-		alert(1);
+		
 		document.reviewRegForm.reserve_apply_car_number.value=number;
 		document.reviewRegForm.submit();
 		
 	}
 	function goReviewUpDelForm(number){
-		alert(1);
+		
 		document.reviewUpDelForm.reserve_apply_car_number.value=number;
 		document.reviewUpDelForm.submit();
 		
 	}
 	function goSearch(){
-		alert(1);
+
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");

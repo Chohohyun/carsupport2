@@ -12,9 +12,8 @@
 				style="margin-top: 20px; text-align: center; color: #777777; font-family: Dotum; font-size: 15px;">
 				<a href='http://www.ikosmo.co.kr/'>kosmo</a>&nbsp;
 				|&nbsp; <a href='https://www.github.com/Chohohyun/carsupport2'>프로젝트 코드</a>&nbsp; |&nbsp; <a
-					href='https://blog.naver.com/ghgus947'>영상정보처리기
-					운영관리방침</a>&nbsp; |&nbsp; <a
-					href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
+					href='https://blog.naver.com/ghgus947'>부팀장블로그</a>&nbsp; |&nbsp; <a
+					href='https://www.instagram.com/hobit_run/'>퍼블리셔인스타</a>
 			</div>
 		</div>
 	</div>
@@ -22,8 +21,7 @@
 	<div id="foot">
 		<div class="foot_box container">
 			<p class="copyright">
-				서울시 금천구 가산동 426-5 월드메르디앙 2차 410호 &nbsp;&nbsp;&nbsp;전화 :
-				02-2025-8523 &nbsp;&nbsp;&nbsp;팩스 : 02-2025-4113 <br />Copyright (C) 2010 KOSMO. All rights reserved.
+				서울시 금천구 가산동 426-5 월드메르디앙 2차 410호 &nbsp;&nbsp;&nbsp;전화 : 02-2025-8523&nbsp;&nbsp;&nbsp;팩스 : 02-2025-4113 <br />Copyright (C) 2010 KOSMO. All rights reserved.
 			</p>
 		</div>
 	</div>

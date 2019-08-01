@@ -17,7 +17,7 @@ $(document).ready(function() {
 	// 운전자 리뷰 화면이으로 이동
 	//----------------------------------------
 	function goReviewRegForm(reserve_apply_car_number){
-		alert(reserve_apply_car_number);
+		
 		document.reviewRegForm.reserve_apply_car_number.value = reserve_apply_car_number;
 		//$("[name=reviewRegForm] [name=reserve_apply_car_number]").val( reserve_apply_car_number );
 		document.reviewRegForm.submit();

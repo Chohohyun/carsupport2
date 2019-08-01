@@ -36,7 +36,7 @@
 		</if>
 		select
 			RESERVE_APPLY_CAR_NUMBER as "reserve_apply_car_number"
-			,to_char( RESERVATION_DATE, 'YYYY-MM-DD' ) as "reservation_date"
+			,to_char(reservation_date,'yyyy')||'년 '||to_char(reservation_date,'mm')||'월 '||to_char(reservation_date,'dd')||'일 '||to_char(reservation_date,'hh24')||'시' as "reservation_date"
 			,START_POINT_LONGITUDE as "start_point_longitude"
 			,START_POINT_LATITUDE as "start_point_latitude"
 			,END_POINT_LONGITUDE as "end_point_longitude"
@@ -55,6 +55,7 @@
 	
 		from RESERVE_APPLY_CAR
 		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
+		and reservation_date &lt; sysdate
 		 <if test="selectPageNo>0">	
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -71,39 +72,21 @@
 	</select>
 	<select id="getDriverCarInfo" parameterType="String"
       resultType="com.support.movement.CarDTO">
-      select
-      DISTINCT(ci.car_number)||'' as "car_number"
-      ,CAR_YEAR||'' as "car_year"
-      ,  case when 
-             (
-                select 
-                   (ci.car_distance -DISTANCE) 
-                from reserve_apply_car rac 
-                where rac.car_number=( select car_number from car_info where car_driver=(select driver_no from driver where driver_id=#{id} ) )
-               ) &lt;=50000 
-            then (50000-ci.car_distance +DISTANCE)||'' 
-             else '차량정기정검필요' 
-         end "car_distance"
-      , (select CAR_TYPE from code_car where CAR_CODE=(select car_code from car_info where car_driver=(select driver_no from driver where driver_id=#{id}) ) )||'' as "car_code"
-      from car_info ci  ,
-           (
-            select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
-                                (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
-                                        where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
-                                )
-                      )  "DISTANCE"
-            from car_info ci,
-               (select car_number, car_distance, count(*) "CNT"
-                from car_maintance_info
-                where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
-                group by car_number, car_distance
-               ) cmi
-           where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
-      
-            ) "REPAIR"
-      
-       where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
-       and car_driver=(select driver_no from driver where driver_id=#{id})
+                                   
+       select
+       
+       ci.car_number||'' as "car_number",
+       ci.car_year||'' as "car_year",
+        
+       case when
+       (select count(*) from car_maintance_info cmi where cmi.car_number = ci.car_number and cmi.car_maintance_code=1) > 0 
+       then 50000-(select ci.car_distance-max(cmi.car_distance) from car_maintance_info cmi where cmi.car_number = ci.car_number and cmi.car_maintance_code=1) 
+       else 50000-ci.car_distance        
+       end "car_distance",
+       
+       (select cc.car_type from code_car cc where cc.car_code=ci.car_code)||'' as "car_code" 
+       from car_info ci         
+       where ci.car_driver=(select d.driver_no from driver d where d.driver_id=#{id})
    </select>
 	
 	<select id="getDriverUserReresveListAllCnt" parameterType="com.support.movement.ReserveSearchDTO" resultType="int">
@@ -119,23 +102,19 @@
 			*
 		from (select zzz.*, rownum||'' RNUM from (
 		</if>
-		select
-			RESERVE_APPLY_CAR_NUMBER as "reserve_apply_car_number"
-			,to_char( RESERVATION_DATE, 'YYYY-MM-DD' ) as "reservation_date"
-			,RESERVE_COUNT as "reserve_count"
-			,USER_NO as "user_no"
-			            ,(select user_name from DISABILITY_USER 
-                        where user_no=(select user_no from RESERVE_APPLY_CAR where driver_no=(select driver_no from driver where driver_id=#{id}) 
-                        and reserve_apply_car_number=(select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2')    
-                    )
-              ) as "user_name"
-			,START_ROAD_ADDR as "start_road_addr"
-			,START_DETAIL_ADDR as "start_detail_addr"
-			,END_ROAD_ADDR as "end_road_addr"
-			,END_DETAIL_ADDR as "end_detail_addr"
-			,to_char( RESERVATION_DATE, 'HH24:MI:SS' ) as "reservation_hour"
-		from RESERVE_APPLY_CAR 
-		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='2'
+		 select
+        rac.reserve_apply_car_number||'' as "reserve_apply_car_number",
+        to_char(rac.reservation_date,'yyyy')||'년 '||to_char(rac.reservation_date,'mm')||'월 '||to_char(rac.reservation_date,'dd')||'일 '||to_char(rac.reservation_date,'hh24')||'시' as "reservation_date",
+        rac.reserve_count||'' as "reserve_count",
+        rac.user_no||'' as "user_no",
+        (select u.user_name from disability_user u where u.user_no=rac.user_no)||'' as "user_name",
+        rac.start_road_addr||'' as "start_road_addr",
+        rac.start_detail_addr||'' as "start_detail_addr",
+        rac.end_road_addr||'' as "end_road_addr",
+		rac.end_detail_addr||'' as "end_detail_addr"
+        from reserve_apply_car rac
+        where rac.driver_no =(select d.driver_no from driver d where driver_id=#{id}) and reserve_status_code='2'
+   		and rac.reservation_date &gt; sysdate
 		 <if test="selectPageNo>0">	
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5

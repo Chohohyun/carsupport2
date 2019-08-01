@@ -84,10 +84,8 @@
         		 if (status === kakao.maps.services.Status.OK) {
         		
         		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        			alert(result[0].y);
         			
-        			alert(result[0].x);
-        			alert(1); 
+        			
                    	if(where=="start"||where=="end"){
                    		document.getElementById(where+"Latitude").value = result[0].y;
                    		document.getElementById(where+"Longitude").value = result[0].x;
@@ -110,7 +108,7 @@
         		    map.setCenter(coords);
         		}
         		 else{
-        			 alert(안되네);
+        			 
         		 }
         	});    
                 var guideTextBox = document.getElementById("guide");
@@ -180,7 +178,7 @@
 		        		 if (status === kakao.maps.services.Status.OK) {
 		        		
 		        		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		        			alert(result[0].y);
+		        			
 		        			document.getElementById(where+"Latitude").value = result[0].y;
 		        			document.getElementById(where+"Longitude").value = result[0].x;
 		        		    // 결과값으로 받은 위치를 마커로 표시합니다
@@ -199,7 +197,7 @@
 		        		  /*   map.setCenter(coords); */
 		        		}
 		        		 else{
-		        			 alert(안되네);
+		        			
 		        		 }
 	        		});    
                 }

@@ -275,16 +275,16 @@
     function is_empty2(name){
 
     	try{
-    		alert(1);
+    		
     			var tmp=$.trim(name);
 
-        		alert(2);
+        		
     			tmp=tmp.split(" ").join("");
     			if(tmp!=""){
     				return true;
     			}
 
-        		alert(3);
+        		
     		return false;
     	}catch (e) {
     		alert("is_empty('"+nameV+"')함수에서 에러 발생!");

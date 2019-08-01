@@ -103,4 +103,6 @@ public interface AdminDAO {
 
 	int getCheckUpdateCarNumber(CarDTO carDTO);
 
+	List<Map<String, String>> getCarList();
+
 }

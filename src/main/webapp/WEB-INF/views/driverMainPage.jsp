@@ -91,15 +91,19 @@
                   <span class="notice-tit">공지사항</span>
                   <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
                 </p>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+                <colgroup>
+                       
+                        <col style="width:70%;"/>
+                        <col style="width:30%;"/>
+                 </colgroup>
+				<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
 					<tr>
-					<td class="l-h-30"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
+					<td class="l-h-30" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
 					<td >${qna.reg_date}</td> 
 					</tr>
  					</c:forEach>
- 
-                         
+
 
                 </table>
               </div>

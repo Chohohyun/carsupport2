@@ -8,7 +8,7 @@
 <script>
 
       $(document).ready(function(){
-		alert(${discontentSearchDTO.selectPageNo});
+
     	inputData("selectPageNo","${discontentSearchDTO.selectPageNo}");
   		inputData("keyword","${discontentSearchDTO.keyword}");
   		$(".pagingNumber").html(
@@ -49,12 +49,12 @@
   		document.adminDiscontentContentForm.submit();
   	}
   	function goSearch(){
-		alert(1);
 		if(is_special_char("keyword")){
 			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
 			$(".keyword").val("");
 			return;
 		}
+		
 		
 		document.adminDiscontentSearchForm.submit();
 		

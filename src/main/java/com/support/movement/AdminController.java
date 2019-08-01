@@ -883,11 +883,11 @@ public class AdminController {
 			)
 	@ResponseBody 
 	public List<Map<String,String>> carList(
-			HttpSession session, HttpServletResponse response,
-			CarSearchDTO carSearchDTO
+			HttpSession session
+			
 			){
-		System.out.println(carSearchDTO);
-		List<Map<String,String>> carList = this.adminService.getCarList(carSearchDTO);	
+		
+		List<Map<String,String>> carList = this.adminService.getCarList();	
 		System.out.println(carList+"llllll");
 		return carList;
 

@@ -69,9 +69,18 @@
 							
 							<tr>
 							<th scope="row">정비까지 남은 KM</th>
-							<td>${carDTO.car_distance} KM
+							<c:choose>
 							
-							</td>
+								<c:when test="${carDTO.car_distance}<0">
+									<td>차량정기점검필요</td>
+								</c:when>
+								<c:otherwise>
+									
+									<td>${carDTO.car_distance}km</td>
+							
+								</c:otherwise>
+							</c:choose>
+							
 							<th scope="row">차량 종류</th>
 							<td>${carDTO.car_code}
 							</td>
