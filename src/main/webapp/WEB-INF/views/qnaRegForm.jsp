@@ -125,7 +125,7 @@
 							</tr>
 							<tr>
 							<th scope="row">내용</th>
-							<td><textarea name="content"  rows="13"	cols="150"></textarea>
+							<td><textarea name="content" wrap="hard" rows="13"	cols="150"></textarea>
 							</td>
 							</tr>
 						</tbody>

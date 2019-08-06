@@ -12,6 +12,7 @@
 $(document).ready(function() {
 	inputData("selectPageNo","${driverSearchDTO.selectPageNo}");
 	inputData("keyword","${driverSearchDTO.keyword}");
+	inputData("score","${driverSearchDTO.score}");
 	<c:forEach items="${driverSearchDTO.gender}" var="gender">
 	inputData("gender","${gender}");
 	</c:forEach>
@@ -84,7 +85,7 @@ $(document).ready(function() {
 					<div class="tit_box">
 						<h2 class="h2tit">운전자 검색</h2>
 					</div>
-					<form class="driverSearchForm" name="driverSearchForm" method="post" action="/support/driverUpDelForm.do"">
+					<form class="driverSearchForm" name="driverSearchForm" method="post" action="/support/driverUpDelForm.do">
 					<table class="tbl tbl_list">
 						<colgroup>
 							<col style="width: 10%;" />
@@ -137,7 +138,8 @@ $(document).ready(function() {
 							<col style="width: 15%;" />
 							<col style="width: 20%;" />
 							<col style="width: 20%;" />
-							<col style="width: 20%;" />
+							<col style="width: 10%;" />
+							<col style="width: 10%;" />
 						</colgroup>
 						<thead>
 							<th scope="col">번호</th>
@@ -145,6 +147,7 @@ $(document).ready(function() {
 							<th scope="col">ID</th>
 							<th scope="col">면허증 번호</th>
 							<th scope="col">휴대폰</th>
+							<th scope="col">평점</th>
 							<th scope="col">수정/삭제</th>
 						</thead>
 						<tbody>
@@ -157,6 +160,14 @@ $(document).ready(function() {
 							<td class="txt_center">${upDel.driver_id}</td>
 							<td class="txt_center">${upDel.driver_license_number}</td>
 							<td class="txt_center">${upDel.driver_phone}</td>
+							<c:if test="${upDel.review_score=='리뷰없음'}">
+								
+								<td class="txt_center">${upDel.review_score}</td>
+							</c:if>
+							<c:if test="${upDel.review_score!='리뷰없음'}">
+								
+								<td class="txt_center">${upDel.review_score}점</td>
+							</c:if>
 							<td class="txt_center"><a href="javascript:upDelDriver(${upDel.driver_no});" class="btn middle white radius-5">수정</a>
 						</tr>
 						</c:forEach>

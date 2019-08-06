@@ -349,4 +349,164 @@ public class AdminServiceImpl implements AdminService{
 		 return carList;
 	}
 
+	
+	//************************************************************************************
+	// 통꼐
+	//************************************************************************************
+	@Override
+	public List<Map<String, String>> getCarCount() {
+		List<Map<String, String>> carCount = this.adminDAO.getCarCount();
+		return carCount;
+	}
+
+	@Override
+	public int getCarMainTanceCnt() {
+		int carMainTanceCnt = this.adminDAO.getCarMainTanceCnt();
+		return carMainTanceCnt;
+	}
+
+	@Override
+	public List<Map<String, String>> getRepairStatus(String repairYear) {
+		List<Map<String, String>> repairStatus = this.adminDAO.getRepairStatus(repairYear);
+		return repairStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarSelectList(String repairYear) {
+		List<Map<String, String>> getCarSelectList = this.adminDAO.getCarSelectList(repairYear);
+				return getCarSelectList;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarTypeStatus(String carTypeYear) {
+		List<Map<String, String>> carTypeStatus = this.adminDAO.getCarTypeStatus(carTypeYear);
+				return carTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getRepairCodeStatus(String car_number) {
+		List<Map<String, String>> repairCodeStatus = this.adminDAO.getRepairCodeStatus(car_number);
+				return repairCodeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarInfoList(Map<String, String> sort) {
+		List<Map<String, String>> carInfoList = this.adminDAO.getCarInfoList(sort);
+				return carInfoList;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverTotalCount() {
+		List<Map<String, String>> driverTotalCount = this.adminDAO.getDriverTotalCount();
+				return driverTotalCount;
+	}
+
+	@Override
+	public int getDriveCount() {
+		int driveCount = this.adminDAO.getDriveCount();
+		return driveCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriveHistoryStatus(String driveYear) {
+		List<Map<String, String>> driveHistoryStatus = this.adminDAO.getDriveHistoryStatus(driveYear);
+				return driveHistoryStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverGenderCount(String driverYear) {
+		List<Map<String, String>> driverGenderCount = this.adminDAO.getDriverGenderCount(driverYear);
+				return driverGenderCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverReserveStatics(String reserveYear) {
+		List<Map<String, String>> driverReserveStatics = this.adminDAO.getDriverReserveStatics(reserveYear);
+				return driverReserveStatics;
+	}
+
+	@Override
+	public List<Map<String, String>> getStatusDriverList(Map<String, String> sort) {
+		List<Map<String, String>> statusDriverList = this.adminDAO.getStatusDriverList(sort);
+				return statusDriverList;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserTotalCount() {
+		List<Map<String, String>> userTotalCount = this.adminDAO.getUserTotalCount();
+				return userTotalCount;
+	}
+
+	@Override
+	public int getUserReserveCount() {
+		int userReserveCount = this.adminDAO.getUserReserveCount();
+		return userReserveCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserReserveStatus(String reserveYear) {
+		List<Map<String, String>> userReserveStatus = this.adminDAO.getUserReserveStatus(reserveYear);
+				return userReserveStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserGenderCount(String userYear) {
+		List<Map<String, String>> userGenderCount = this.adminDAO.getUserGenderCount(userYear);
+				return userGenderCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserReserveStatics(String userReserveYear) {
+		List<Map<String, String>> userReserveStatics = this.adminDAO.getUserReserveStatics(userReserveYear);
+				return userReserveStatics;
+	}
+
+	@Override
+	public List<Map<String, String>> getStatusUserList(Map<String, String> sort) {
+		List<Map<String, String>> statusUserList = this.adminDAO.getStatusUserList(sort);
+				return statusUserList;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarRepairInfoList() {
+		List<Map<String, String>> carRepairInfoList = this.adminDAO.getCarRepairInfoList();
+				return carRepairInfoList;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverAcceptList() {
+		List<Map<String, String>> driverAcceptList = this.adminDAO.getDriverAcceptList();
+				return driverAcceptList;
+	}
+
+	@Override
+	public List<Map<String, String>> getReservationStatus() {
+		List<Map<String, String>> reservationStatus = this.adminDAO.getReservationStatus();
+				return reservationStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserCarTypeStatus(String userCarTypeYear) {
+		List<Map<String, String>> userCarTypeStatus = this.adminDAO.getUserCarTypeStatus(userCarTypeYear);
+				return userCarTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getRegCarTypeStatus(String regCarTypeYear) {
+		List<Map<String, String>> regCarTypeStatus = this.adminDAO.getRegCarTypeStatus(regCarTypeYear);
+		return regCarTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserGenderStatus(String userGenderYear) {
+		List<Map<String, String>> userGenderStatus = this.adminDAO.getUserGenderStatus(userGenderYear);
+		return userGenderStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverGenderStatus(String driverGenderYear) {
+		List<Map<String, String>> driverGenderStatus = this.adminDAO.getDriverGenderStatus(driverGenderYear);
+		return driverGenderStatus;
+	}
+
 }

@@ -77,8 +77,8 @@
 	#{detail_addr},
 	#{phone},
 	#{email},
-	${disability_type},
 	${disability_grade},
+	${disability_type},
 	${wheelchair}
 	)
 			

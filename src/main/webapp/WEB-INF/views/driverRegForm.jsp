@@ -409,7 +409,7 @@
 					</tr>
 					
 					<tr>
-						<th scope="row"><div class="name">주소</div></th>
+						<th scope="row"><div class="name"><em class="color-or"> *</em>주소</div></th>
 						<td>
 							<div class="value">
 								<div class="row row-refine">
@@ -436,15 +436,15 @@
 					</tr>
 				</table>
 
-
-			</div>
-			<div height:10px></div>
-			<input type="hidden"
-									name="admission_code" value="y">
 			<div class="btn_box">
-				<a href="javascript:godriverRegForm();" onclick="return submitcheck()"  class="btn large blue radius-5">등록</a>
-                <a href="javascript:goAdminPage();" class="btn large white radius-5">취소</a> 
+					 
+					<a href="javascript:godriverRegForm();" onclick="return submitcheck()"  class="btn large blue radius-5">등록</a>
+                	<a href="javascript:goAdminPage();" class="btn large white radius-5">취소</a> 
 			</div>
+			</div>
+			
+			<input type="hidden" name="admission_code" value="y">
+			
 		</div>
 		</form>
 	</div>

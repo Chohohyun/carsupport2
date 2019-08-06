@@ -118,11 +118,11 @@ a:hover { color: #474040; text-decoration: underline;   font-weight: bold;}
 </style>
 
 
-<link type="text/css" href="./css/style.css" rel="stylesheet" />
+<link type="text/css" href="resources/css/style.css" rel="stylesheet" />
 <script>
 
 function adminMainPage(){
-	location.replace("/support/adminMainPage.do")
+	location.replace("/support/adminHomePage.do")
 }
 	function goDriverAcceptForm(){
 		document.driverAcceptForm.submit();
@@ -170,6 +170,15 @@ function adminMainPage(){
 		location.replace("/support/logout.do");
 		
 	}
+	  function adminStaticsCar(){
+	      location.replace("/support/adminStaticsCar.do");
+	   }
+	   function adminStaticsDriver(){
+	      location.replace("/support/adminStaticsDriver.do");
+	   }
+	   function adminStaticsUser(){
+	      location.replace("/support/adminStaticsUser.do");
+	   }
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -185,7 +194,31 @@ function adminMainPage(){
 	  
 	});  
 </script>
+<!-- Icons font CSS-->
+    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 
+    <!-- Vendor CSS-->
+    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
+    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
+    
+    
+    
+	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/css/main.css">
+    
 
 </head>
 
@@ -245,9 +278,9 @@ function adminMainPage(){
 					<li class="navi_set">  
 						<div class="topnav">통계관리</div>
 						<ul class="subnav">  
-							<li><a href="#">차량 통계</a></li>  
-							<li><a href="#">운전자 통계</a></li> 
-							<li><a href="#">회원 통계</a></li>  
+							   <li><a href="javascript:adminStaticsCar();">차량 통계</a></li>  
+                    			 <li><a href="javascript:adminStaticsDriver();">운전자 통계</a></li> 
+                    			 <li><a href="javascript:adminStaticsUser();">회원 통계</a></li>  
 						</ul>  
 					</li>
 				

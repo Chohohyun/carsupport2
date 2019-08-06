@@ -164,7 +164,7 @@ label.star:before {
 							</tr>
 							<tr>
 								<th scope="row">평가내용
-								<td colspan="3"><textarea name="review_content" rows="15" cols="100"></textarea></td>
+								<td colspan="3"><textarea name="review_content" wrap="hard" rows="15" cols="100"></textarea></td>
 							</tr>
 						</table>
 			

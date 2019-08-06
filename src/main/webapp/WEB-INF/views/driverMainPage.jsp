@@ -91,7 +91,7 @@
                   <span class="notice-tit">공지사항</span>
                   <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
                 </p>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed" > 
                 <colgroup>
                        
                         <col style="width:70%;"/>
@@ -192,7 +192,7 @@
               <div class="time_box">
                 <div class="phone_box2">
                   <h2 class="phone2">행복콜</h2>
-                  <h2 class="phone">1577-3659</h2>
+                  <h2 class="phone">2025-8523</h2>
                   <div class="txt call-img-txt">
                     교통약자 이동지원센터에</br>
                     <em class="blue f-bold size-15">&nbsp;&nbsp;&nbsp;등록된 회원만</em></br>

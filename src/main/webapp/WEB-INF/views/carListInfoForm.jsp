@@ -152,7 +152,7 @@ $(document).ready(function() {
 							<td class="txt_center">${car.car_year}</td>
 							<c:choose>
 							
-								<c:when test="${car.maintance_distance}<0">
+								<c:when test="${car.maintance_distance<0}">
 									<td class="txt_center">차량정기점검필요</td>
 								</c:when>
 								<c:otherwise>

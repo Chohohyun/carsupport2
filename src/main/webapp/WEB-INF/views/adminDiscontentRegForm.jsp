@@ -114,7 +114,7 @@
 						
 							<tr>
 							<th scope="row">내용</th>
-							<td colspan="3"><textarea name="discontent_content"  rows="13"	cols="150"></textarea>
+							<td colspan="3"><textarea name="discontent_content" wrap="hard" rows="13"	cols="150"></textarea>
 							</td>
 							</tr>
 							

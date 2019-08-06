@@ -495,7 +495,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><div class="name">주소</div></th>
+						<th scope="row"><div class="name"><em class="color-or"> *</em>주소</div></th>
 						<td>
 							<div class="value">
 								<div class="row row-refine">

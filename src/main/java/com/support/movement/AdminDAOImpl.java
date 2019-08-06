@@ -382,5 +382,161 @@ public class AdminDAOImpl implements AdminDAO{
 		return carList;
 	}
 
+	@Override
+	public List<Map<String, String>> getCarCount() {
+		List<Map<String, String>> carCount = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarCount");
+		return carCount;
+	}
+
+	@Override
+	public int getCarMainTanceCnt() {
+		int carMainTanceCnt = this.sqlSession.selectOne("com.support.movement.AdminDAO.getCarMainTanceCnt");
+		return carMainTanceCnt;
+	}
+
+	@Override
+	public List<Map<String, String>> getRepairStatus(String repairYear) {
+		List<Map<String, String>> repairStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getRepairStatus",repairYear);
+		return repairStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarSelectList(String repairYear) {
+		List<Map<String, String>> carSelectList = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarSelectList",repairYear);
+		return carSelectList;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarTypeStatus(String carTypeYear) {
+		List<Map<String, String>> carTypeStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarTypeStatus",carTypeYear);
+		return carTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getRepairCodeStatus(String car_number) {
+		List<Map<String, String>> repairCodeStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getRepairCodeStatus",car_number);
+		return repairCodeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarInfoList(Map<String, String> sort) {
+		List<Map<String, String>> carInfoList = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarInfoList",sort);
+		return carInfoList;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverTotalCount() {
+		List<Map<String, String>> driverTotalCount = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriverTotalCount");
+		return driverTotalCount;
+	}
+
+	@Override
+	public int getDriveCount() {
+		int driveCount = this.sqlSession.selectOne("com.support.movement.AdminDAO.getDriveCount");
+		return driveCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriveHistoryStatus(String driveYear) {
+		List<Map<String, String>> driveHistoryStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriveHistoryStatus",driveYear);
+		return driveHistoryStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverGenderCount(String driverYear) {
+		List<Map<String, String>> driverGenderCount = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriverGenderCount",driverYear);
+		return driverGenderCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverReserveStatics(String reserveYear) {
+		List<Map<String, String>> driverReserveStatics = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriverReserveStatics",reserveYear);
+		return driverReserveStatics;
+	}
+
+	@Override
+	public List<Map<String, String>> getStatusDriverList(Map<String, String> sort) {
+		List<Map<String, String>> statusDriverList = this.sqlSession.selectList("com.support.movement.AdminDAO.getStatusDriverList",sort);
+		return statusDriverList;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserTotalCount() {
+		List<Map<String, String>> userTotalCount = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserTotalCount");
+		return userTotalCount;
+	}
+
+	@Override
+	public int getUserReserveCount() {
+		int userReserveCount = this.sqlSession.selectOne("com.support.movement.AdminDAO.getUserReserveCount");
+		return userReserveCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserReserveStatus(String reserveYear) {
+		List<Map<String, String>> userReserveStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserReserveStatus",reserveYear);
+		return userReserveStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserGenderCount(String userYear) {
+		List<Map<String, String>> userGenderCount = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserGenderCount",userYear);
+		return userGenderCount;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserReserveStatics(String userReserveYear) {
+		List<Map<String, String>> userReserveStatics = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserReserveStatics",userReserveYear);
+		return userReserveStatics;
+	}
+
+	@Override
+	public List<Map<String, String>> getStatusUserList(Map<String, String> sort) {
+		List<Map<String, String>> statusUserList = this.sqlSession.selectList("com.support.movement.AdminDAO.getStatusUserList",sort);
+		return statusUserList;
+	}
+
+	@Override
+	public List<Map<String, String>> getCarRepairInfoList() {
+		List<Map<String, String>> carRepairInfoList = this.sqlSession.selectList("com.support.movement.AdminDAO.getCarRepairInfoList");
+		return carRepairInfoList;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverAcceptList() {
+		List<Map<String, String>> driverAcceptList = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriverAcceptList");
+		return driverAcceptList;
+	}
+
+	@Override
+	public List<Map<String, String>> getReservationStatus() {
+		List<Map<String, String>> reservationStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getReservationStatus");
+		return reservationStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserCarTypeStatus(String userCarTypeYear) {
+		List<Map<String, String>> userCarTypeStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserCarTypeStatus",userCarTypeYear);
+		return userCarTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getRegCarTypeStatus(String regCarTypeYear) {
+		List<Map<String, String>> regCarTypeStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getRegCarTypeStatus",regCarTypeYear);
+		return regCarTypeStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getUserGenderStatus(String userGenderYear) {
+		List<Map<String, String>> userGenderStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getUserGenderStatus",userGenderYear);
+		return userGenderStatus;
+	}
+
+	@Override
+	public List<Map<String, String>> getDriverGenderStatus(String driverGenderYear) {
+		List<Map<String, String>> driverGenderStatus = this.sqlSession.selectList("com.support.movement.AdminDAO.getDriverGenderStatus",driverGenderYear);
+		return driverGenderStatus;
+	}
+
 
 }

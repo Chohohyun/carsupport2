@@ -171,7 +171,7 @@ function goAdminDiscontentRegForm() {
 							</tr>
 							<tr>
 							<th scope="row">내용</th>
-							<td colspan="3">${discontentDTO.discontent_content}
+							<td colspan="3"><pre>${discontentDTO.discontent_content}</pre>
 							</td>
 							</tr>
 							

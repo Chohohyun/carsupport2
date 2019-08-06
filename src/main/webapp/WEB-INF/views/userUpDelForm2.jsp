@@ -484,7 +484,7 @@
 			<div class="btn_box">
 			
 				<a href="javascript:goUpDelProc('up');" onclick="return submitcheck()"  class="btn large blue radius-5">수정</a>
-                <a href="javascript:goUpDelProc('del');" class="btn large red radius-5">삭제</a> 
+                <a href="javascript:goUpDelProc('del');" class="btn large white radius-5">삭제</a> 
                 <a href="javascript:goUpDelPage();" class="btn large white radius-5">취소</a> 
 			</div>
 			</div>

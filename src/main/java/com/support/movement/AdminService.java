@@ -89,4 +89,56 @@ public interface AdminService {
 
 	List<Map<String, String>> getCarList();
 
+	List<Map<String, String>> getCarCount();
+
+	int getCarMainTanceCnt();
+
+	List<Map<String, String>> getRepairStatus(String repairYear);
+
+	List<Map<String, String>> getCarSelectList(String repairYear);
+
+	List<Map<String, String>> getCarTypeStatus(String carTypeYear);
+
+	List<Map<String, String>> getRepairCodeStatus(String car_number);
+
+	List<Map<String, String>> getCarInfoList(Map<String, String> sort);
+
+	List<Map<String, String>> getDriverTotalCount();
+
+	int getDriveCount();
+
+	List<Map<String, String>> getDriveHistoryStatus(String driveYear);
+
+	List<Map<String, String>> getDriverGenderCount(String driverYear);
+
+	List<Map<String, String>> getDriverReserveStatics(String reserveYear);
+
+	List<Map<String, String>> getStatusDriverList(Map<String, String> sort);
+
+	List<Map<String, String>> getUserTotalCount();
+
+	int getUserReserveCount();
+
+	List<Map<String, String>> getUserReserveStatus(String reserveYear);
+
+	List<Map<String, String>> getUserGenderCount(String userYear);
+
+	List<Map<String, String>> getUserReserveStatics(String userReserveYear);
+
+	List<Map<String, String>> getStatusUserList(Map<String, String> sort);
+
+	List<Map<String, String>> getCarRepairInfoList();
+
+	List<Map<String, String>> getDriverAcceptList();
+
+	List<Map<String, String>> getReservationStatus();
+
+	List<Map<String, String>> getUserCarTypeStatus(String userCarTypeYear);
+
+	List<Map<String, String>> getRegCarTypeStatus(String regCarTypeYear);
+
+	List<Map<String, String>> getUserGenderStatus(String userGenderYear);
+
+	List<Map<String, String>> getDriverGenderStatus(String driverGenderYear);
+
 }

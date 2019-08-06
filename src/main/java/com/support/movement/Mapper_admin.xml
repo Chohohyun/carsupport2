@@ -82,6 +82,15 @@
 				</foreach>
 				))  
 		</if> 
+		<if test="(score!=null and score.length()>0)">
+		
+			and(
+				${score}-1 &lt;
+				(select avg(r.review_score) from review r, reserve_apply_car rac where r.reserve_apply_car_number = rac.reserve_apply_car_number and rac.driver_no = d.driver_no)   
+                and
+                (select avg(r.review_score) from review r, reserve_apply_car rac where r.reserve_apply_car_number = rac.reserve_apply_car_number and rac.driver_no = d.driver_no)    &lt;= ${score}
+			)
+		</if>
 	</select>
 	
 	<select id="getUserUpDelListAllCnt" parameterType="com.support.movement.UserSearchDTO"  resultType="int">
@@ -148,8 +157,8 @@
              d.driver_phone as "driver_phone",  
              d.driver_email as "driver_email",  
              d.driver_license_number as "driver_license_number", 
-             to_char(d.driver_reg_date,'YYYY-MM-DD') "driver_reg_date"
-              
+             to_char(d.driver_reg_date,'YYYY-MM-DD') "driver_reg_date",
+             (select nvl(avg(r.review_score)||'','리뷰없음') from review r, reserve_apply_car rac where r.reserve_apply_car_number = rac.reserve_apply_car_number and rac.driver_no = d.driver_no)||'' as "review_score"
          from driver d
          where d.admission_code='y' 
          <if test="(keyword!=null and keyword.length()>0)">
@@ -184,6 +193,16 @@
 				</foreach>
 				))  
 		</if> 
+		<if test="(score!=null and score.length()>0)">
+		
+			and(
+				${score}-1 &lt;
+				(select avg(r.review_score) from review r, reserve_apply_car rac where r.reserve_apply_car_number = rac.reserve_apply_car_number and rac.driver_no = d.driver_no)   
+                and
+                (select avg(r.review_score) from review r, reserve_apply_car rac where r.reserve_apply_car_number = rac.reserve_apply_car_number and rac.driver_no = d.driver_no)    &lt;= ${score}
+			)
+		</if>
+		order by "driver_name" asc
 		<if test="selectPageNo>0">
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -258,7 +277,7 @@
 			and u.disability_grade_code=${disability_grade}
 		
 		</if>
-		
+		order by "user_name" asc
 		<if test="selectPageNo>0">
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -542,7 +561,8 @@
         then 50000-(select ci.car_distance-max(cmi.car_distance) from car_maintance_info cmi where cmi.car_number = ci.car_number and cmi.car_maintance_code=1) 
         else 50000-ci.car_distance        
         end "maintance_distance"
-        from car_info ci   
+        from car_info ci  
+        where 1=1 
       <if test="car_code!=null and car_code.length()>0 and car_code!=0">
                   and ci.car_code=#{car_code}
       </if>
@@ -554,6 +574,7 @@
                     or upper((select cc.car_type from code_car cc where cc.car_code=ci.car_code)) like upper( '%${keyword}%')
             )
       </if>
+      order by "car_year" desc
       <if test="selectPageNo>0">
       <![CDATA[
        ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -657,6 +678,7 @@
 			, (select cc.car_maintance_name from code_car_maintance cc where cmi.car_maintance_code=cc.car_maintance_code)||'' as "car_maintance_name"
 		from car_maintance_info cmi
 		where 1=1	
+	
 		<if test="car_number!=null and car_number.length()>0">
 						and cmi.car_number=#{car_number}
 		</if>
@@ -679,7 +701,7 @@
 		<if test="(maintance_code!=null and maintance_code.length()>0)">
 			and cmi.car_maintance_code = ${maintance_code}
 		</if>
-		order by "car_maintance_date" asc
+		order by "car_maintance_date" desc
 		<if test="selectPageNo>0">
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -923,5 +945,319 @@
 		where car_number=#{car_number} and car_info_no not in (${car_info_no})
 	
 	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--  ==============================================차량 통계========================================================================= -->
+	<select id="getRepairStatus" parameterType="String" resultType="hashmap">
+		 select     
+			 mm.* ,
+			 (select nvl( count(cmi.CAR_MAINTANCE_INFO_NO) ,0) from CAR_MAINTANCE_INFO cmi where  to_char(cmi.CAR_MAINTANCE_DATE,'YYYYMM')=#{repairYear}||replace(mm.month, '월' , '') )||''  "monthVal"
+		from
+		 ( SELECT '01월' "MONTH" FROM DUAL UNION
+		  SELECT '02월' "MONTH" FROM DUAL UNION
+		  SELECT '03월' "MONTH" FROM DUAL UNION
+		  SELECT '04월' "MONTH" FROM DUAL UNION
+		  SELECT '05월' "MONTH" FROM DUAL UNION
+		  SELECT '06월' "MONTH" FROM DUAL UNION
+		  SELECT '07월' "MONTH" FROM DUAL UNION
+		  SELECT '08월' "MONTH" FROM DUAL UNION
+		  SELECT '09월' "MONTH" FROM DUAL UNION
+		  SELECT '10월' "MONTH" FROM DUAL UNION
+		  SELECT '11월' "MONTH" FROM DUAL UNION
+		  SELECT '12월' "MONTH" FROM DUAL ) mm	 
+	</select>
+	
+	<select id="getCarSelectList"  parameterType="String" resultType="hashmap">
+		select car_number||'' "car_number"
+		from car_info
+		where  to_char(CAR_REG_DATE,'YYYY')&lt;=#{repairYear}
+	</select>
+	
+	<select id="getCarTypeStatus" parameterType="String" resultType="hashmap">
+		select  car.car_type "carType",
+		        (select nvl( count(ci.CAR_CODE),0) from car_info ci where car.CAR_CODE=ci.CAR_CODE and to_char(ci.CAR_REG_DATE,'YYYY')=#{carTypeYear})||'' "carCnt"
+		from (select  car_code, car_type from CODE_CAR  ) "CAR"
+
+	</select>
+	
+ 	<select id="getRepairCodeStatus" parameterType="String" resultType="hashmap">
+		
+		select CMN.car_maintance_name "codeName"
+		       , (select count(*) from  CAR_MAINTANCE_INFO cmi  where CMN.car_maintance_code=cmi.car_maintance_code and cmi.car_number=#{car_number} )||'' "codeCnt"
+		from (select car_maintance_name, car_maintance_code from code_car_maintance ) "CMN"
+
+	</select> 
+	
+	<select id="getCarInfoList" parameterType="hashmap" resultType="hashmap">
+		select
+		   distinct(ci.car_number)||'' "car_number"
+		  ,case when(ci.car_distance -DISTANCE)&lt;=50000
+             then   
+               (50000-ci.car_distance +DISTANCE)||'' 
+            else '차량정기정검필요'
+           end  "car_maintance"
+		  ,ci.car_distance||'' "car_distance" 
+		  ,car_year||'' "car_year"
+		  ,(select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO)||'' "car_driver"
+		from car_info ci ,
+		     (
+		      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+		                          (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+		                                  where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+		                          )
+		                )  "DISTANCE"
+		      from car_info ci,
+		         (select car_number, car_distance, count(*) "CNT"
+		          from car_maintance_info
+		          where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+		          group by car_number, car_distance
+		         ) cmi
+			  where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+		
+		      ) "REPAIR"
+		
+		 where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
+		<if test="selectName!=null and selectName.length()>0 and ascDsc!=null and ascDsc.length()>0" >
+			order by ${selectName} ${ascDsc}
+		</if>
+	</select>
+	
+	<select id="getCarCount" resultType="hashmap">
+		select distinct((select nvl(count(*),0) from car_info))||' EA' "carTots"
+	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='1')||' EA' "carLifts"
+	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='2')||' EA' "carSlopes"
+		from car_info
+	</select>
+	
+	<select id="getCarMainTanceCnt" resultType="int">
+		select count(*) "maintanceCnt"
+		from
+		(
+		select DISTINCT(ci.CAR_NUMBER) "car_number"
+		        ,case when(ci.car_distance -DISTANCE)&lt;=50000
+                   then   
+                     (50000-ci.car_distance +DISTANCE)||'' 
+                  else '차량정기정검필요'
+                 end  "CAR_MAINTANCE"
+		from car_info ci ,
+				     (
+				      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+				                          (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+				                                  where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+				                          )
+				                )  "DISTANCE"
+				      from car_info ci,
+				         (select car_number, car_distance, count(*) "CNT"
+				          from car_maintance_info
+				          where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+				          group by car_number, car_distance
+				         ) cmi
+					  where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+		
+				      ) "REPAIR"
+		where  REPAIR.car_number=ci.CAR_NUMBER
+		) "ZZZ"
+		where CAR_MAINTANCE='차량정기정검필요'
+	</select>
+	
+	<!--  ==============================================운전자 통계========================================================================= -->
+	<select id="getDriverTotalCount" resultType="hashmap">
+		select distinct((select nvl(count(*),0) from driver))||' EA' "driverTots"
+	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='1')||' EA' "driverMales"
+	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='2')||' EA' "driverFeMales"
+		from driver
+	</select>
+	
+	<select id="getDriveCount" resultType="int">
+		select
+		       count(rac.RESERVE_STATUS_CODE) "driveCnt"
+		from reserve_apply_car rac
+		where rac.reserve_status_code='5' and to_char(reservation_date,'YYYYMMDD')=to_char(sysdate,'YYYYMMDD')
+	</select>
+	
+	<select id="getDriveHistoryStatus" parameterType="String" resultType="hashmap">
+		select     
+			 mm.* ,
+			(select nvl( count(rac.RESERVE_STATUS_CODE) ,0) from reserve_apply_car rac where  to_char(rac.reservation_date,'YYYYMM')=#{driveYear}||replace(mm.month, '월' , '') and rac.reserve_status_code='5')||''  "monthVal"
+		from
+		 ( SELECT '01월' "MONTH" FROM DUAL UNION
+		  SELECT '02월' "MONTH" FROM DUAL UNION
+		  SELECT '03월' "MONTH" FROM DUAL UNION
+		  SELECT '04월' "MONTH" FROM DUAL UNION
+		  SELECT '05월' "MONTH" FROM DUAL UNION
+		  SELECT '06월' "MONTH" FROM DUAL UNION
+		  SELECT '07월' "MONTH" FROM DUAL UNION
+		  SELECT '08월' "MONTH" FROM DUAL UNION
+		  SELECT '09월' "MONTH" FROM DUAL UNION
+		  SELECT '10월' "MONTH" FROM DUAL UNION
+		  SELECT '11월' "MONTH" FROM DUAL UNION
+		  SELECT '12월' "MONTH" FROM DUAL ) mm
+	</select>
+	
+	<select id="getDriverGenderCount" parameterType="String" resultType="hashmap">
+		select   decode(drivers.driver_gender,'1','남','여'   ) "gender",
+		         (select nvl( count(*),0) from driver dr where dr.DRIVER_GENDER=drivers.DRIVER_GENDER and to_char(dr.driver_reg_date,'YYYY')&lt;=#{driverYear}||'')||'' "driverGenderCnt"  
+		from  ( SELECT '1' "DRIVER_GENDER" FROM DUAL UNION
+		        SELECT '2' "DRIVER_GENDER" FROM DUAL) drivers   
+	</select>
+	
+	<select id="getDriverReserveStatics" parameterType="String" resultType="hashmap">
+        select CRS.reserve_status_name "codeName"
+	       , (select count(*) from  RESERVE_APPLY_CAR rac  where CRS.reserve_status_code=rac.RESERVE_STATUS_CODE and to_char(rac.RESERVATION_DATE,'YYYY')=#{reserveYear}||'')||'' "codeCnt"
+		from (select reserve_status_name, reserve_status_code from CODE_RESERVE_STATUS ) "CRS" 
+		where CRS.reserve_status_code='3' or CRS.reserve_status_code='4' or CRS.reserve_status_code='5'
+	</select>
+	
+	<select id="getStatusDriverList" parameterType="hashmap" resultType="hashmap">
+		select driver_name "driver_name"
+               ,decode(driver_gender,'1','남','여'   ) "driver_gender"
+               ,driver_phone "driver_phone"
+               ,to_char(driver_reg_date,'YYYY') "driver_reg_date"
+               ,(select nvl(round(avg(review_score))||'', '평점없음') from review rv, RESERVE_APPLY_CAR rac where driver.DRIVER_NO=rac.DRIVER_NO and rac.RESERVE_APPLY_CAR_NUMBER=rv.RESERVE_APPLY_CAR_NUMBER) "driver_point"
+        from driver
+        <if test="selectName!=null and selectName.length()>0 and ascDsc!=null and ascDsc.length()>0" >
+			order by ${selectName} ${ascDsc}
+		</if>
+	</select>
+	<!--  ==============================================유저 통계========================================================================= -->
+	<select id="getUserTotalCount" resultType="hashmap">
+	 	select distinct((select nvl(count(*),0) from DISABILITY_USER))||' EA' "userTots"
+	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='1')||' EA' "userMales"
+	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='2')||' EA' "userFeMales"
+		from DISABILITY_USER
+	</select>
+	<select id="getUserReserveCount" resultType="int">
+		select
+	       count(RESERVE_STATUS_CODE) "reserveCnt"
+		from reserve_apply_car rac
+		where rac.reserve_status_code='1' and to_char(reservation_date,'YYYYMMDD')=to_char(sysdate,'YYYYMMDD')
+	</select>
+	<select id="getUserReserveStatus" parameterType="String" resultType="hashmap">
+		select
+			 mm.* ,
+			 (select nvl( count(rac.RESERVE_STATUS_CODE) ,0) from reserve_apply_car rac where  to_char(rac.reservation_date,'YYYYMM')=#{reserveYear}||replace(mm.month, '월' , '') )||''  "monthVal"
+		from
+		 ( SELECT '01월' "MONTH" FROM DUAL UNION
+		  SELECT '02월' "MONTH" FROM DUAL UNION
+		  SELECT '03월' "MONTH" FROM DUAL UNION
+		  SELECT '04월' "MONTH" FROM DUAL UNION
+		  SELECT '05월' "MONTH" FROM DUAL UNION
+		  SELECT '06월' "MONTH" FROM DUAL UNION
+		  SELECT '07월' "MONTH" FROM DUAL UNION
+		  SELECT '08월' "MONTH" FROM DUAL UNION
+		  SELECT '09월' "MONTH" FROM DUAL UNION
+		  SELECT '10월' "MONTH" FROM DUAL UNION
+		  SELECT '11월' "MONTH" FROM DUAL UNION
+		  SELECT '12월' "MONTH" FROM DUAL ) mm
+	</select>
+	<select id="getUserGenderCount" parameterType="String" resultType="hashmap">
+        select   decode(users.user_gender,'1','남','여'   ) "gender",
+	         (select nvl( count(*),0) from DISABILITY_USER du where du.USER_GENDER=users.USER_GENDER and to_char(du.user_reg_date,'YYYY')&lt;=#{userYear}||'')||'' "userGenderCnt"
+		from  ( SELECT '1' "USER_GENDER" FROM DUAL UNION
+		        SELECT '2' "USER_GENDER" FROM DUAL) users
+	</select>
+	<select id="getUserReserveStatics" parameterType="String" resultType="hashmap">
+	    select CRS.reserve_status_name "codeName"
+		       , (select count(*) from  RESERVE_APPLY_CAR rac  where CRS.reserve_status_code=rac.RESERVE_STATUS_CODE and to_char(rac.RESERVATION_DATE,'YYYY')=#{userReserveYear}||'')||'' "codeCnt"
+		from (select reserve_status_name, reserve_status_code from CODE_RESERVE_STATUS ) "CRS"
+        where  CRS.reserve_status_code='4' or CRS.reserve_status_code='5'
+	</select>
+	<select id="getStatusUserList" parameterType="String" resultType="hashmap">
+        select (select user_name from DISABILITY_USER du where dus.USER_NO=du.USER_NO)||''  "user_name"
+               , (select decode(user_gender,'1','남','여'   ) from DISABILITY_USER du where dus.USER_NO=du.USER_NO)||''  "user_gender" 
+               , (select user_phone from DISABILITY_USER du where dus.USER_NO=du.USER_NO )||'' "user_phone"
+               ,(select
+                       count(rac.RESERVE_APPLY_CAR_NUMBER)
+                from reserve_apply_car rac where rac.USER_NO=dus.USER_NO)||''  "user_reservation"
+               ,(select
+                       count(rac.RESERVE_APPLY_CAR_NUMBER) 
+                from reserve_apply_car rac  where rac.USER_NO=dus.USER_NO and rac.RESERVE_STATUS_CODE='4')||'' "user_cancel"
+        from  (select user_no from DISABILITY_USER ) "DUS"
+        <if test="selectName!=null and selectName.length()>0 and ascDsc!=null and ascDsc.length()>0" >
+			order by ${selectName} ${ascDsc}
+		</if>
+	</select>
+	
+	<!--  ==============================================홈 대쉬보드 ========================================================================= -->
+	<select id="getCarRepairInfoList" resultType="hashmap">
+		  select * from
+			(select 
+			DISTINCT(ci.car_number) "CAR_NUMBER"
+	      	,case when(ci.car_distance -DISTANCE)>50000
+	                   then '차량정기정검필요'
+	                 end "MAINTANCE_DISTANCE"
+	      	, (select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO)||'' "PHONE"
+	      	, (select car_type from code_car cc where cc.CAR_CODE=ci.CAR_CODE)||'' "CARTYPE"
+	      	, (select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO)||'' "DRIVERNAME"
+			from car_info ci,
+			     (
+			      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+			                          (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+			                                  where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+	
+			                          )
+			                )  "DISTANCE"
+			      from car_info ci,
+			         (select car_number, car_distance, count(*) "CNT"
+			          from car_maintance_info
+			          where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+			          group by car_number, car_distance
+			         ) cmi
+				  where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+			      ) "REPAIR"
+				  where 1=1 and REPAIR.car_number=ci.CAR_NUMBER) "ZZZ"
+		 where ZZZ.MAINTANCE_DISTANCE is not null
+	</select>
+	
+	<select id="getDriverAcceptList" resultType="hashmap">
+		select
+		    driver_name||''  "driver_name"  
+		    ,driver_phone||'' "driver_phone"
+		    ,decode(driver_gender,'1','남','여') "driver_gender"
+		    ,driver_license_number||'' "driver_license_number"
+		    ,driver_no||'' "driver_no"
+		from driver 
+		where  admission_code='n' 
+	</select>
+	
+	<select id="getReservationStatus" resultType="hashmap">
+		select CRS.reserve_status_name "codeName"
+		       , (select count(*) from  RESERVE_APPLY_CAR rac  where CRS.reserve_status_code=rac.RESERVE_STATUS_CODE and to_char(rac.RESERVATION_DATE,'YYYY')=to_char(sysdate,'YYYY')||'')||'' "codeCnt"
+		from (select reserve_status_name, reserve_status_code from CODE_RESERVE_STATUS ) "CRS"
+        where  CRS.reserve_status_code='1' or CRS.reserve_status_code='2' or CRS.reserve_status_code='3' or CRS.reserve_status_code='4' or CRS.reserve_status_code='5'
+	</select>
+	
+	<select id="getUserCarTypeStatus" parameterType="String" resultType="hashmap">
+		select  car.car_type "carType"
+        	,(select nvl( count(rac.DRIVER_NO),0) from RESERVE_APPLY_CAR rac, car_info ci where ci.CAR_DRIVER(+)=rac.DRIVER_NO and car.CAR_CODE=ci.CAR_CODE(+) and to_char(ci.CAR_REG_DATE,'YYYY')=#{userCarTypeYear})||'' "carCnt"
+		from (select  car_code, car_type from CODE_CAR  ) "CAR"
+		
+	</select>
+	
+	<select id="getRegCarTypeStatus" parameterType="String" resultType="hashmap">
+		select  car.car_type "carType"
+		      ,(select nvl( count(ci.CAR_CODE),0) from car_info ci where car.CAR_CODE=ci.CAR_CODE and to_char(ci.CAR_REG_DATE,'YYYY')=#{regCarTypeYear})||'' "carCnt"
+		from (select  car_code, car_type from CODE_CAR  ) "CAR"
+	</select>
+	
+	<select id="getUserGenderStatus" parameterType="String" resultType="hashmap">
+	 	select   decode(users.user_gender,'1','남','여'   ) "gender",
+	         (select nvl( count(*),0) from DISABILITY_USER du where du.USER_GENDER=users.USER_GENDER and to_char(du.user_reg_date,'YYYY')&lt;=#{userGenderYear}||'')||'' "userGenderCnt"
+		from  ( SELECT '1' "USER_GENDER" FROM DUAL UNION
+		        SELECT '2' "USER_GENDER" FROM DUAL) users
+	</select>
+	
+	<select id="getDriverGenderStatus" parameterType="String" resultType="hashmap">
+		select   decode(drivers.driver_gender,'1','남','여'   ) "gender",
+		         (select nvl( count(*),0) from driver dr where dr.DRIVER_GENDER=drivers.DRIVER_GENDER and to_char(dr.driver_reg_date,'YYYY')&lt;=#{driverGenderYear}||'')||'' "driverGenderCnt"  
+		from  ( SELECT '1' "DRIVER_GENDER" FROM DUAL UNION
+		        SELECT '2' "DRIVER_GENDER" FROM DUAL) drivers   
 	</select>
 </mapper>

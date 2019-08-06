@@ -59,9 +59,9 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row">차량번호</th>
+								<th scope="row">차량 번호</th>
 								<td>${carDTO.car_number}</td>
-								<th scope="row">남은 차량 연식</th>
+								<th scope="row">차량 연식</th>
 								<td>${carDTO.car_year}년</td>
 					     
 							</tr>
@@ -71,7 +71,7 @@
 							<th scope="row">정비까지 남은 KM</th>
 							<c:choose>
 							
-								<c:when test="${carDTO.car_distance}<0">
+								<c:when test="${carDTO.car_distance<0}">
 									<td>차량정기점검필요</td>
 								</c:when>
 								<c:otherwise>

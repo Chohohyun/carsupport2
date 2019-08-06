@@ -5,33 +5,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 얘는 include directive에 포함되지 않는다. -->
- <script src="/support/resources/vendor2/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="/support/resources/vendor2/select2/select2.min.js"></script>
-    <script src="/support/resources/vendor2/datepicker/moment.min.js"></script>
-    <script src="/support/resources/vendor2/datepicker/daterangepicker.js"></script>
 
-    <!-- Main JS-->
-    <script src="/support/resources/js2/global.js"></script>
-
-
-	<script src="/support/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="/support/resources/vendor/bootstrap/js/popper.js"></script>
-	<script src="/support/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/support/resources/vendor/select2/select2.min.js"></script>
-	<script src="/support/resources/vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
 <!--===============================================================================================-->
-	<script src="/support/resources/js/main.js"></script>
-<script src="/support/resources/jquery-1.11.0.min.js"></script>
+	<script src="resources/js/main.js"></script>
+<script src="resources/jquery-1.11.0.min.js"></script>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link href="/support/resources/common.css?ver=<%=Math.random()%>" rel="stylesheet" type="text/css">
+<link href="resources/common.css?ver=<%=Math.random()%>" rel="stylesheet" type="text/css">
 
 <!-- 사용자 정의 태그인 JSTL의 C 코어태그를 사용하여 변수 선언하기 -->
 <!-- 변수 thColor 선언하고 데이터 #708090 저장하기 -->
@@ -41,7 +22,7 @@
 <c:set var="evenTrColor" value="#white"/>
 <c:set var="mouseOverColor" value="#D0E0F4"/>
 
-<script src="/support/resources/common.js?ver=<%=Math.random()%>"></script>
+<script src="resources/common.js?ver=<%=Math.random()%>"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -251,10 +232,10 @@ function panTo() {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link type="text/css" rel="stylesheet" href="/support/resources/cssUserMain/style.css"/>
-    <link type="text/css" rel="stylesheet" href="/support/resources/cssUserMain/pop.css"/>
-    <script type="text/javascript" src="/support/resources/jsUserMain/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/support/resources/jsUserMain/jquery.bxslider.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="resources/cssUserMain/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/cssUserMain/pop.css"/>
+    <script type="text/javascript" src="resources/jsUserMain/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="resources/jsUserMain/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="https://www.gurihappycall.or.kr/js/design.js"></script>
 
 ${warning}

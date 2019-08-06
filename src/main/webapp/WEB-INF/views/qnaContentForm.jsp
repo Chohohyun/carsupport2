@@ -82,7 +82,7 @@
 							
 							<tr>
 							<th scope="row">내용</th>
-							<td colspan="5">${qnaDTO.content}
+							<td colspan="5"><pre>${qnaDTO.content}</pre>
 							</td>
 							</tr>
 							

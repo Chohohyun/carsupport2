@@ -55,8 +55,17 @@
 		<if test="status_code==2 or status_code==5">
 			and rac.driver_no=#{driver_no}  
 		</if>
-		and rac.reserve_apply_car_number=ANY( select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=#{driver_no} and reserve_status_code!=3 ) 
-		and rac.reservation_date&gt;=sysdate 
+		and rac.reserve_apply_car_number=ANY( select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=#{driver_no} and reserve_status_code!=3 )
+		<choose>
+			<when test="tatus_code==5">
+			and rac.reservation_date&lt;=sysdate 
+			and rac.reservation_date+7&gt;sysdate
+			</when>
+			<otherwise>
+			and rac.reservation_date&gt;=sysdate 
+			</otherwise>
+		</choose> 
+		
 		
 			
  	</select>

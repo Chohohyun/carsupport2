@@ -81,7 +81,7 @@
     			success:function(data){
     				if(data==1){
     					
-    					location.replace("/support/adminMainPage.do");
+    					location.replace("/support/adminHomePage.do");
     				}
     				else if(data==3){
     					

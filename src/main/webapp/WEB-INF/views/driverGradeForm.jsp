@@ -4,8 +4,10 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+
 <!-- jsp 기술의 한 종류인 include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입하기 -->
 <%@include file="common.jsp"%>
+
 <html>
 <script>
 	$(document).ready(function() {
@@ -141,7 +143,7 @@ label.star:before {
 							</tr>
 							<tr>
 								<th scope="row">평가내용
-								<td colspan="3">${reviewDTO.review_content}</td>
+								<td colspan="3"><pre>${reviewDTO.review_content}</pre></td>
 							</tr>
 						</table>
 			
@@ -175,4 +177,10 @@ label.star:before {
 	<!--foot end-->
 </div>
 </body>
+<c:if test="${empty reviewDTO}">
+	<script>
+      alert("리뷰가 등록되지 않았습니다.");
+      document.driveList.submit();
+   </script>
+</c:if>
 </html>

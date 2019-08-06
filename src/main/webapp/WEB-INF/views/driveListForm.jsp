@@ -140,7 +140,7 @@
 									<td>${drive.end_road_addr}
 									<td>${drive.drive_start_time}
 									<td>${drive.drive_finish_time}
-									<td>${drive.drive_distance}
+									<td>${drive.drive_distance}m
 									<td><a href="javascript:goDriverGradeForm(${drive.reserve_apply_car_number});" class="btn middle white radius-5">보기</a>
 						
 								</tr>

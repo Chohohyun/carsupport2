@@ -89,17 +89,17 @@ public class AdminController {
 		List<Map<String,String>> acceptList = new ArrayList<Map<String,String>>();
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("driverAcceptFormChild")) {
 				driverSearchDTO = (DriverSearchDTO) session.getAttribute("driverSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","driverAcceptForm");
-			
-			
-			
+
+
+
 			String id = (String) session.getAttribute("id");
 			if(driverSearchDTO.getSelectPageNo()==0) {
 				driverSearchDTO.setSelectPageNo(1);
@@ -113,7 +113,7 @@ public class AdminController {
 			}
 			if( lastPageNo < driverSearchDTO.getSelectPageNo() ){
 
-				
+
 				driverSearchDTO.setSelectPageNo(1);
 			}
 			System.out.println(3);
@@ -160,35 +160,37 @@ public class AdminController {
 		List<Map<String,String>> upDelList = new ArrayList<Map<String,String>>();
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("driverUpDelFormChild")) {
 				driverSearchDTO = (DriverSearchDTO) session.getAttribute("driverSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","driverUpDelForm");
-			
-			
+
+			System.out.println(driverSearchDTO.getScore());
+			System.out.println(driverSearchDTO.getKeyword());
+			System.out.println(driverSearchDTO.getGender());
 			String id = (String) session.getAttribute("id");
 			if(driverSearchDTO.getSelectPageNo()==0) {
 				driverSearchDTO.setSelectPageNo(1);
 			}
-			
-			
+
+
 			System.out.println("여기?");
 			int upDelListAllCnt = this.adminService.getDriverUpDelListAllCnt(id,driverSearchDTO);
-			
+
 			int lastPageNo = upDelListAllCnt / 5;
 			if( upDelListAllCnt % 5>0) {
 				lastPageNo++;
 			}
 			if( lastPageNo < driverSearchDTO.getSelectPageNo() ){
 
-				
+
 				driverSearchDTO.setSelectPageNo(1);
 			}
-			
+
 			System.out.println(upDelListAllCnt);
 			if(upDelListAllCnt!=0) {
 				upDelList= this.adminService.getDriverUpDelList(id,driverSearchDTO);
@@ -452,31 +454,31 @@ public class AdminController {
 		List<Map<String,String>> upDelList = new ArrayList<Map<String,String>>();
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("userUpDelFormChild")) {
 				userSearchDTO = (UserSearchDTO) session.getAttribute("userSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","driverUpDelForm");
-			
-			
-			
+
+
+
 			String id = (String) session.getAttribute("id");
 			if(userSearchDTO.getSelectPageNo()==0) {
 				userSearchDTO.setSelectPageNo(1);
 			}
 
 			int upDelListAllCnt = this.adminService.getUserUpDelListAllCnt(id,userSearchDTO);
-			
+
 			int lastPageNo = upDelListAllCnt / 5;
 			if( upDelListAllCnt % 5>0) {
 				lastPageNo++;
 			}
 			if( lastPageNo < userSearchDTO.getSelectPageNo() ){
 
-				
+
 				userSearchDTO.setSelectPageNo(1);
 			}
 			System.out.println(upDelListAllCnt);
@@ -607,16 +609,16 @@ public class AdminController {
 		List<Map<String,String>> carList = new ArrayList<Map<String,String>>();
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("adminCarUpDelFormChild")) {
 				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","adminCarUpDelForm");
-			
-			
+
+
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
@@ -627,7 +629,7 @@ public class AdminController {
 			}
 			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
 
-				
+
 				carSearchDTO.setSelectPageNo(1);
 			}
 			if(carListAllCnt!=0) {
@@ -731,31 +733,31 @@ public class AdminController {
 		int carListAllCnt = 0;
 		List<Map<String,String>> carList = new ArrayList<Map<String,String>>();
 		try {
-			
+
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("carListInfoFormChild")) {
 				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","carListInfoForm");
-			
-			
-			
+
+
+
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
 			carListAllCnt = this.adminService.getCarListAllCnt(carSearchDTO);
-			
+
 			int lastPageNo = carListAllCnt / 5;
 			if( carListAllCnt % 5>0) {
 				lastPageNo++;
 			}
 			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
 
-				
+
 				carSearchDTO.setSelectPageNo(1);
 			}
 			if(carListAllCnt!=0) {
@@ -833,18 +835,18 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("carMaintanceListFormChild")) {
 				carSearchDTO = (CarSearchDTO) session.getAttribute("carSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","carMaintanceListForm");
-			
-			
-			
-			
+
+
+
+
 			if(carSearchDTO.getSelectPageNo()==0) {
 				carSearchDTO.setSelectPageNo(1);
 			}
@@ -856,7 +858,7 @@ public class AdminController {
 			}
 			if( lastPageNo < carSearchDTO.getSelectPageNo() ){
 
-				
+
 				carSearchDTO.setSelectPageNo(1);
 			}
 			if(carMaintanceListAllCnt!=0) {
@@ -884,9 +886,9 @@ public class AdminController {
 	@ResponseBody 
 	public List<Map<String,String>> carList(
 			HttpSession session
-			
+
 			){
-		
+
 		List<Map<String,String>> carList = this.adminService.getCarList();	
 		System.out.println(carList+"llllll");
 		return carList;
@@ -1090,17 +1092,17 @@ public class AdminController {
 		mav.setViewName("adminDiscontentListForm.jsp");
 		try {
 			String uri = (String) session.getAttribute("uri");
-			
+
 			if(uri !=null && uri.equals("adminDiscontentListFormChild")) {
 				discontentSearchDTO = (DiscontentSearchDTO) session.getAttribute("discontentSearchDTO");
 			}
 			else {
-				
+
 			}
 			session.setAttribute("uri","adminDiscontentListForm");
-			
-			
-			
+
+
+
 			if(discontentSearchDTO.getSelectPageNo()==0) {
 				discontentSearchDTO.setSelectPageNo(1);
 			}
@@ -1111,11 +1113,11 @@ public class AdminController {
 			}
 			if( lastPageNo < discontentSearchDTO.getSelectPageNo() ){
 
-				
+
 				discontentSearchDTO.setSelectPageNo(1);
 			}
 			System.out.println("여긴된다.1");
-			
+
 			System.out.println("이상없음");
 			// System.out.println(adminDiscontentListAllCnt); 이상없음
 			//-----------------------------------------------------
@@ -1125,7 +1127,7 @@ public class AdminController {
 			//-----------------------------------------------------
 
 			session.setAttribute("discontentSearchDTO",discontentSearchDTO);
-			
+
 			mav.addObject("discontentSearchDTO",discontentSearchDTO);
 			mav.addObject( "adminDiscontentList", adminDiscontentList );
 			mav.addObject( "adminDiscontentListAllCnt", adminDiscontentListAllCnt );
@@ -1154,7 +1156,7 @@ public class AdminController {
 		// ModelAndView객체 생성하기 
 		// ModelAndVie 객체에 호출 JSP 페이지명을 저장하기 
 		session.setAttribute("uri","adminDiscontentListFormChild");
-		
+
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("adminDiscontentContentForm.jsp"); 
 		try { 
@@ -1324,5 +1326,796 @@ public class AdminController {
 			groupCnt= -1;
 		}
 		return groupCnt;
+	}
+
+
+
+	//*********************************************************************************************************************************
+	// 통계
+	//*********************************************************************************************************************************
+
+	//********************************************************************************************
+	// 차량통계 화면으로 이동
+	//********************************************************************************************
+	@RequestMapping(value="/adminStaticsCar.do")
+	public ModelAndView adminStaticsCar(
+			HttpSession session) 
+	{
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminStaticsCar.jsp");
+		return mav;
+	}
+
+	//**********************************
+	// 차량 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/carCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> getCarCount(
+			HttpSession session
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("차량개수구하기");
+			resultList = this.adminService.getCarCount();
+
+		}catch (Exception e) {
+			System.out.println("carCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}	
+
+	//**********************************
+	// 정비 점검 필요한 차량 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/carMainTanceCnt.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public int getCarMainTanceCnt(
+			HttpSession session
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		int carMaintanceCnt = 0;
+		try {	
+			System.out.println("정기점검차량개수구하기");
+			carMaintanceCnt = this.adminService.getCarMainTanceCnt();
+
+		}catch (Exception e) {
+			System.out.println("carCount.do 에서 DB연동실패");
+
+		}
+		return carMaintanceCnt;
+	}
+
+	//**********************************
+	// 년도 월별 수리 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/repairStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> repairStatus(
+			HttpSession session, String repairYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println(repairYear);
+			resultList = this.adminService.getRepairStatus(repairYear);
+
+		}catch (Exception e) {
+			System.out.println("repairStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 년도별 차량리스트 구하기
+	//**********************************
+	@RequestMapping(
+			value="/carSelectList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> carSelectList(
+			HttpSession session, String repairYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println(repairYear);
+			resultList = this.adminService.getCarSelectList(repairYear);
+
+		}catch (Exception e) {
+			System.out.println("repairStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+
+	//**********************************
+	// 차량 타입별 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/carTypeStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> carTypeStatus(
+			HttpSession session, String carTypeYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("carType : " + carTypeYear);
+			resultList = this.adminService.getCarTypeStatus(carTypeYear);
+
+		}catch (Exception e) {
+			System.out.println("carTypeStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 차량 수리코드 별 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/repairCodeStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> repairCodeStatus(
+			HttpSession session, String car_number
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("car_number : " + car_number);
+			if(car_number==null || car_number.length()==0) {
+				return resultList;
+			}
+			resultList = this.adminService.getRepairCodeStatus(car_number);
+
+		}catch (Exception e) {
+			System.out.println("RepairCodeStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 차량정보 리스트
+	//**********************************
+	@RequestMapping(
+			value="/getCarInfoList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> getCarInfoList(
+			HttpSession session, String selectName, String ascDsc
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("car_number : " + selectName);
+			if(selectName.equals("number")) {
+				selectName = "1";
+			}
+			else if(selectName.equals("maintance")) {
+				selectName = "2";
+			}
+			else if(selectName.equals("distance")) {
+				selectName = "3";
+			}
+			else if(selectName.equals("year")) {
+				selectName = "4";
+			}
+			else {
+				selectName = "5";
+			}
+
+			Map<String,String> sort = new HashMap<String,String>();
+			sort.put("selectName", selectName);
+			sort.put("ascDsc", ascDsc);
+
+			resultList = this.adminService.getCarInfoList(sort);
+
+		}catch (Exception e) {
+			System.out.println("RepairCodeStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//********************************************************************************************
+	// 운전자통계 화면으로 이동
+	//********************************************************************************************
+	@RequestMapping(value="/adminStaticsDriver.do")
+	public ModelAndView adminStaticsDriver(
+			HttpSession session) 
+	{
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminStaticsDriver.jsp");
+		return mav;
+	}
+
+	//**********************************
+	// 운전자 전체 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driverTotalCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driverTotalCount(
+			HttpSession session
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("운전자 전체 인원 구하기");
+			resultList = this.adminService.getDriverTotalCount();
+
+		}catch (Exception e) {
+			System.out.println("driverTotalCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}	
+	//**********************************
+	// 운전자 주행 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driveCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public int getDriveCount(
+			HttpSession session
+			) {
+		int driveCnt = 0;
+		try {	
+			System.out.println("운전자 주행 개수 구하기");
+			driveCnt = this.adminService.getDriveCount();
+
+		}catch (Exception e) {
+			System.out.println("driveCount.do 에서 DB연동실패");
+
+		}
+		return driveCnt;
+	}
+
+	//**********************************
+	// 년도 월별 주행완료 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driveHistoryStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driveHistoryStatus(
+			HttpSession session, String driveYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println(driveYear);
+			resultList = this.adminService.getDriveHistoryStatus(driveYear);
+
+		}catch (Exception e) {
+			System.out.println("driveHistoryStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 운저자별 성별 인원 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driverGenderCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driverGenderCount(
+			HttpSession session, String driverYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("driverYear : " + driverYear);
+			resultList = this.adminService.getDriverGenderCount(driverYear);
+
+		}catch (Exception e) {
+			System.out.println("driverGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 운전자 예약 상태코드 별 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driverReserveStatics.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driverReserveStatics(
+			HttpSession session, String reserveYear
+
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("reserveYear : " + reserveYear);
+			resultList = this.adminService.getDriverReserveStatics(reserveYear);
+
+		}catch (Exception e) {
+			System.out.println("driverReserveStatics.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 운전자 정보 리스트
+	//**********************************
+	@RequestMapping(
+			value="/statusDriverList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> statusDriverList(
+			HttpSession session, String selectName, String ascDsc
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("selectName : " + selectName);
+			if(selectName.equals("number")) {
+				selectName = "1";
+			}
+			else if(selectName.equals("gender")) {
+				selectName = "2";
+			}
+			else if(selectName.equals("phone")) {
+				selectName = "3";
+			}
+			else if(selectName.equals("register year")) {
+				selectName = "4";
+			}
+			else {
+				selectName = "5";
+			}
+
+			Map<String,String> sort = new HashMap<String,String>();
+			sort.put("selectName", selectName);
+			sort.put("ascDsc", ascDsc);
+
+			resultList = this.adminService.getStatusDriverList(sort);
+
+		}catch (Exception e) {
+			System.out.println("statusDriverList.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//********************************************************************************************
+	// 유저통계 화면으로 이동
+	//********************************************************************************************
+	@RequestMapping(value="/adminStaticsUser.do")
+	public ModelAndView adminStaticsUser(
+			HttpSession session) 
+	{
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminStaticsUser.jsp");
+		return mav;
+	}
+
+	//**********************************
+	// 운전자 전체 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userTotalCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userTotalCount(
+			HttpSession session
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("유저 전체 인원 구하기");
+			resultList = this.adminService.getUserTotalCount();
+
+		}catch (Exception e) {
+			System.out.println("getUserTotalCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}	
+	//**********************************
+	// 유저 예약 신청 개수 구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userReserveCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public int userReserveCount(
+			HttpSession session
+			) {
+		int reserveCnt = 0;
+		try {	
+			System.out.println("유저 예약 신청 개수 구하기");
+			reserveCnt = this.adminService.getUserReserveCount();
+
+		}catch (Exception e) {
+			System.out.println("userReserveCount.do 에서 DB연동실패");
+
+		}
+		return reserveCnt;
+	}	
+
+	//**********************************
+	// 년도 월별 예약 신청 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userReserveStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userReserveStatus(
+			HttpSession session, String reserveYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println(reserveYear);
+			resultList = this.adminService.getUserReserveStatus(reserveYear);
+
+		}catch (Exception e) {
+			System.out.println("userReserveStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 유저별 성별 인원 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userGenderCount.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userGenderCount(
+			HttpSession session, String userYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("userYear : " + userYear);
+			resultList = this.adminService.getUserGenderCount(userYear);
+
+		}catch (Exception e) {
+			System.out.println("userGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 유저 예약 상태코드 별 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userReserveStatics.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userReserveStatics(
+			HttpSession session, String userReserveYear
+
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("userReserveYear : " + userReserveYear);
+			resultList = this.adminService.getUserReserveStatics(userReserveYear);
+
+		}catch (Exception e) {
+			System.out.println("userReserveStatics.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 유저 정보 리스트
+	//**********************************
+	@RequestMapping(
+			value="/statusUserList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> statusUserList(
+			HttpSession session, String selectName, String ascDsc
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("selectName : " + selectName);
+			if(selectName.equals("name")) {
+				selectName = "1";
+			}
+			else if(selectName.equals("gender")) {
+				selectName = "2";
+			}
+			else if(selectName.equals("phone")) {
+				selectName = "3";
+			}
+			else if(selectName.equals("reservation")) {
+				selectName = "4";
+			}
+			else {
+				selectName = "5";
+			}
+
+			Map<String,String> sort = new HashMap<String,String>();
+			sort.put("selectName", selectName);
+			sort.put("ascDsc", ascDsc);
+
+			resultList = this.adminService.getStatusUserList(sort);
+
+		}catch (Exception e) {
+			System.out.println("getStatusUserList.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//******************************************************************************************************************************
+	// 관리자가 Home 클릭시 대쉬보드 화면으로 이동하는 페이지
+	//******************************************************************************************************************************
+	@RequestMapping(value="/adminHomePage.do")
+	public ModelAndView adminHome(
+			// HttpSession 객체가 들어올 매개변수 선언
+			// 매개변수에 자료형이 HttpSession이면 웹서버가
+			// 생성한 HttpSession 객체가 들어온다.
+			HttpSession session) {
+
+
+		// <참고>HttpSession 객체에 저장된 모든 데이터 제거한다.
+		//session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminHomePage.jsp");
+		return mav;
+	}
+
+	//**********************************
+	// 점검 차량 정보 리스트
+	//**********************************
+	@RequestMapping(
+			value="/carRepairInfoList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> carRepairInfoList(
+			HttpSession session
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			resultList = this.adminService.getCarRepairInfoList();	
+		}catch (Exception e) {
+			System.out.println("getCarRepairInfoList.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 운전자 승인 정보 리스트
+	//**********************************
+	@RequestMapping(
+			value="/driverAcceptList.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driverAcceptList(
+			HttpSession session
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			resultList = this.adminService.getDriverAcceptList();	
+		}catch (Exception e) {
+			System.out.println("getDriverAcceptList.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 예약 상태코드 별 횟수 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/reservationStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> reservationStatus(
+			HttpSession session
+
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			resultList = this.adminService.getReservationStatus();
+
+		}catch (Exception e) {
+			System.out.println("getReservationStatus.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 유저별 차량 타입 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userCarTypeStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userCarTypeStatus(
+			HttpSession session, String userCarTypeYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("userCarTypeYear : " + userCarTypeYear);
+			resultList = this.adminService.getUserCarTypeStatus(userCarTypeYear);
+
+		}catch (Exception e) {
+			System.out.println("userGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 등록된 차량 타입 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/regCarTypeStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> regCarTypeStatus(
+			HttpSession session, String regCarTypeYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("regCarTypeYear : " + regCarTypeYear);
+			resultList = this.adminService.getRegCarTypeStatus(regCarTypeYear);
+
+		}catch (Exception e) {
+			System.out.println("userGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 유저 성별 인원 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/userGenderStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> userGenderStatus(
+			HttpSession session, String userGenderYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("userGenderYear : " + userGenderYear);
+			resultList = this.adminService.getUserGenderStatus(userGenderYear);
+
+		}catch (Exception e) {
+			System.out.println("userGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
+	}
+
+	//**********************************
+	// 운전자 성별 인원 통계구하기 
+	//**********************************
+	@RequestMapping(
+			value="/driverGenderStatus.do"
+			, method=RequestMethod.POST
+			, produces="application/json;chrset=utf-8"
+			)
+	@ResponseBody 
+	public List<Map<String,String>> driverGenderStatus(
+			HttpSession session, String driverGenderYear
+			//,HttpServletResponse response
+			//,@RequestParam Map<String,String> paramsMap
+			) {
+		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+		try {	
+			System.out.println("driverGenderYear : " + driverGenderYear);
+			resultList = this.adminService.getDriverGenderStatus(driverGenderYear);
+
+		}catch (Exception e) {
+			System.out.println("userGenderCount.do 에서 DB연동실패");
+
+		}
+		return resultList;
 	}
 }
