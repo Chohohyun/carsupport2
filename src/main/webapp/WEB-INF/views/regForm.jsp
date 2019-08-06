@@ -276,16 +276,7 @@
   	}
 
     </script>
-	<script type="text/javascript" language="javascript">
-
-          if (/Android/i.test(navigator.userAgent)) {
-              window.document.location.href = "/NotFound.aspx";
-          } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-              window.document.location.href = "/NotFound.aspx";
-          } else {
-              // 그 외 디바이스
-          }
-     </script>
+	
 
 
 	<script type="text/javascript" language="javascript">

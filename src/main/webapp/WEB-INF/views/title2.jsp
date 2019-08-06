@@ -89,14 +89,14 @@
 					</a>
 					<ul class="menu">
 						<li></li>
-						<li><a href="https://www.gurihappycall.or.kr/service.aspx"
-							class="link01">예약안내</a></li>
+						<li><a href="javascript:driverCarInfo();"
+							class="link01">차량정보</a></li>
 						<li><a
-							href="https://www.gurihappycall.or.kr/reserv_request.aspx"
-							class="link02">예약신청</a></li>
+							href="javascript:driverHistory();"
+							class="link02">주행기록</a></li>
 						<li><a
-							href="https://www.gurihappycall.or.kr/reserv_list.aspx"
-							class="link03">예약 확인/취소</a></li>
+							href="javascript:driverReservationSituation();"
+							class="link03">예약현황</a></li>
 					</ul>
 				</div>
 				<div class="nav_mask"></div>

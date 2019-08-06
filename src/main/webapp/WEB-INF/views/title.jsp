@@ -105,13 +105,13 @@
 					</a>
 					<ul class="menu">
 						<li></li>
-						<li><a href="https://www.gurihappycall.or.kr/service.aspx"
+						<li><a href="javascript:userUseProcedure();"
 							class="link01">예약안내</a></li>
 						<li><a
-							href="https://www.gurihappycall.or.kr/reserv_request.aspx"
+							href="javascript:userReservationForm();"
 							class="link02">예약신청</a></li>
 						<li><a
-							href="https://www.gurihappycall.or.kr/reserv_list.aspx"
+							href="javascript:userReservationSituation();"
 							class="link03">예약 확인/취소</a></li>
 					</ul>
 				</div>

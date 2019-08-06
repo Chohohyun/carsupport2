@@ -36,17 +36,7 @@
 
 
     </script>
-      <script type="text/javascript" language="javascript">
-
-          if (/Android/i.test(navigator.userAgent)) {
-              window.document.location.href = "/NotFound.aspx";
-          } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-              window.document.location.href = "/NotFound.aspx";
-          } else {
-              // 그 외 디바이스
-          }
-     </script>
-
+     
 
       <script type="text/javascript" language="javascript">
     	
@@ -651,25 +641,7 @@
         </form>
         
         <!--foot-->
-        <div id="term">  
-          <div class="term_box container"> 
-            <div style="margin-top:20px;text-align:center; color:#777777; font-family:Dotum; font-size:15px;">
-                 <a href='https://www.gurihappycall.or.kr/term.aspx'>이용약관</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/private.aspx'>개인정보 처리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/media.aspx'>영상정보처리기 운영관리방침</a>&nbsp;
-                |&nbsp; <a href='https://www.gurihappycall.or.kr/email.aspx'>이메일집단수집거부</a>
-            </div> 
-             </div> 
-        </div>
-        
-        <div id="foot">   
-          <div class="foot_box container"> 
-            <p class="copyright">
-              경기도 구리시 안골로 40(교문동, 교문동주차빌딩 3층)&nbsp;㉾ 11934&nbsp;&nbsp;&nbsp;전화 : 1577-3659&nbsp;&nbsp;&nbsp;팩스 : 070-4275-1080
-              <br/>Copyright © Guri Support For Moving Center All Right Reserved.
-            </p> 
-          </div>
-        </div>
+       	<%@include file="foot.jsp"%>
         <!--foot end-->
       </div>
     </div>
