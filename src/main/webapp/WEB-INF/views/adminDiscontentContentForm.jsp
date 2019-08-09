@@ -15,7 +15,7 @@
 
 <html>
 <head>
-<title>게시판</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 <script>
       
 //게시판 답글 화면으로 이동하는 함수 선언

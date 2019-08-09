@@ -10,7 +10,7 @@
 <html>
 
 <head>
-<title>교통약자 이동지원센터</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,6 +37,27 @@
 <script src="resources/cssDashboard/js/plugins/bootstrap-notify.js"></script>
 <!--     sTyle    -->
 <link href="resources/cssDashboard/style.css" rel="stylesheet">
+<!-- Icons font CSS-->
+    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
+    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
+    
+    
+    
+	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+
 <style>
 
 ::-webkit-scrollbar {

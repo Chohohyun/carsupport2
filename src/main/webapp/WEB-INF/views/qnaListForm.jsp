@@ -9,7 +9,7 @@
 
 <html xmlns="https://www.w3.org/1999/xhtml">
   <head>
-    <title>COSMO 교통약자 이동지원센터</title>
+    <title>KOSMO 교통약자 이동지원센터</title>
    
     <script type="text/javascript">
       $(document).ready(function(){

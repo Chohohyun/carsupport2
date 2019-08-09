@@ -8,7 +8,7 @@
 
 <html>
 <head>
-   <title>게시판</title>
+   <title>KOSMO 교통약자 이동지원센터</title>
    <script>
       // 게시판 수정 삭제 화면에 입력된 데이터의 유효성 체크 함수 선언
       function checkDisContentUpDelForm(upDel) {

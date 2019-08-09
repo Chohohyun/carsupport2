@@ -7,6 +7,7 @@
 <html>
 
 	<head>
+	<title>KOSMO 교통약자 이동지원센터</title>
     <meta charset="UTF-8"> 
    
     <script>            
@@ -66,7 +67,7 @@
     			success:function(data){
     				if(data==1){
     					alert("차량등록 성공!");
-    					document.adminMainPage.submit();
+    					adminMainPage();
     					//location.replace("/support/adminMainPage.do");
     				}
     				else if(data==-2){
@@ -158,7 +159,7 @@
 			<div class="btn_box">
 					
 				      <a href="javascript:goCarRegProc();" class="btn middle white radius-5">등록</a> &nbsp; &nbsp;
-            		<a href="javascript:goAdminMainPage();" class="btn middle white radius-5">취소</a> 
+            		<a href="javascript:adminMainPage();" class="btn middle white radius-5">취소</a> 
             	
 
 			</div> 
@@ -168,7 +169,5 @@
      </div>
    </body>
     
-    <form name="adminMainPage" method="post" action="adminMainPage.do">
-         </form>
 </html>
 

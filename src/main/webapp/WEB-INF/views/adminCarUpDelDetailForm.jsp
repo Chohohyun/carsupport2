@@ -8,7 +8,7 @@
 
 
 	<head>
-
+	<title>KOSMO 교통약자 이동지원센터</title>
    
     <script>            
         $(document).ready(function() {

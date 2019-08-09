@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html xmlns="https://www.w3.org/1999/xhtml">
   <head>
-    <title>COSMO 교통약자 이동지원센터</title>
+    <title>KOSMO 교통약자 이동지원센터</title>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -77,7 +77,7 @@
                   <img src="https://www.gurihappycall.or.kr/images/icon/icon_main02.png" alt="icon" />
                 </span>
               </a>
-              <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b" >
+              <div class="item2 l2 radius-15 m-l-10 m-t-10 border-1-b">
                 <p class="m-notice">
                   <span class="notice-tit">공지사항</span>
                   <a href="javascript:qnaListFormMain();"><span class="notice-view">+더보기</span></a>
@@ -88,10 +88,19 @@
                         <col style="width:70%;"/>
                         <col style="width:30%;"/>
                  </colgroup>
-				<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
+					<c:forEach items="${qnaList}" var="qna" varStatus="loopTagStatus">
 					<tr>
-					<td class="l-h-30" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
-					<td >${qna.reg_date}</td> 
+					<c:choose>
+						<c:when test="${loopTagStatus.index>=7}">
+						<td>
+						
+						</td>
+						</c:when>
+						<c:otherwise>
+						<td class="l-h-30" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><a href="javascript:goQnaContentForm(${qna.question_no});">${qna.question_subject}</a></td>
+						<td >${qna.reg_date}</td> 
+						</c:otherwise>
+					</c:choose>
 					</tr>
  					</c:forEach>
 
@@ -177,7 +186,7 @@
             <div class="item contact_info">
               <div class="phone_box">
                 <h3 class="tit">
-                  COSMO 교통약자 이동지원센터
+                  KOSMO 교통약자 이동지원센터
                 </h3>
               </div>
               <div class="time_box">

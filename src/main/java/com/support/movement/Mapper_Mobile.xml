@@ -22,7 +22,14 @@
  		select
  			count(*)
  		from reserve_apply_car
- 		where (reserve_status_code='2' or reserve_status_code='4') and reserve_apply_car_number=#{select_num}
+ 		where 
+ 		<if test="parameter==2">
+ 			reserve_status_code='2'
+ 		</if>
+ 		<if test="parameter==4">
+ 			reserve_status_code='4'
+ 		</if>
+ 			and reserve_apply_car_number=#{select_num}
  	</select>
  	
  	<select id="getReserveList" parameterType="hashmap" resultType="hashmap">

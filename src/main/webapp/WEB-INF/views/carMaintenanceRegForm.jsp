@@ -8,6 +8,7 @@
 
 <html>
 <head>
+<title>KOSMO 교통약자 이동지원센터</title>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />

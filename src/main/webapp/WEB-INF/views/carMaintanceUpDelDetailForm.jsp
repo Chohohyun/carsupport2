@@ -5,6 +5,7 @@
 <%@include file="adminMainPage.jsp"%>
 <html>
 <head>
+<title>KOSMO 교통약자 이동지원센터</title>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
@@ -17,7 +18,6 @@
         	inputData("car_number", "${carMaintanceDTO.car_number}" );
         	inputData("car_maintance_date", "${carMaintanceDTO.car_maintance_date}" );
         	inputData("car_maintance_code", "${carMaintanceDTO.car_maintance_code}" );
-        	inputData("car_maintance_content", "${carMaintanceDTO.car_maintance_content}" );
         });  // $(document).ready(function() {        
         </script>
 
@@ -119,7 +119,7 @@
         }
      // 취소 버튼(메인페이지 이동)
         function goAdminMainPage(){
-        	location.replace("/support/adminMainPage.do");
+        	location.replace("/support/adminHomePage.do");
         }
         </script>
 </head>
@@ -181,12 +181,12 @@
 								<th scope="row">주행거리</th>
 								<td><input type="text" name="car_distance"
 										onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-										placehoder="KM">
+										placehoder="KM" readonly>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">세부내용</th>
-								<td><textarea name="car_maintance_content" cols="50" rows="7"></textarea>
+								<td><textarea name="car_maintance_content" cols="50" rows="7" >${carMaintanceDTO.car_maintance_content}</textarea>
 								</td>
 							</tr>
 						</tbody>

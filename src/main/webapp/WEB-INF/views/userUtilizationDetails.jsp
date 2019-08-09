@@ -60,7 +60,7 @@
 	}
 </script>
 <head>
-
+<title>KOSMO 교통약자 이동지원센터</title>
 </head>
 <body>
 	<div id="wrap">
@@ -124,7 +124,7 @@
 							<c:choose>
 								<c:when test="${user.review_score=='미평가'}">
 									<c:choose>
-									<c:when test="${user.reserve_status_name=='주행완료'}">
+									<c:when test="${user.reserve_status_name=='주행완료' or user.reserve_status_name=='예약완료'}">
 									<td class="txt_center"><a href="javascript:goReviewRegForm(${user.reserve_apply_car_number});" class="btn middle white radius-5">리뷰등록</a></td>
 									</c:when>
 									<c:otherwise>

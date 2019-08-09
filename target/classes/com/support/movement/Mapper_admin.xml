@@ -1005,7 +1005,7 @@
            end  "car_maintance"
 		  ,ci.car_distance||'' "car_distance" 
 		  ,car_year||'' "car_year"
-		  ,(select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO)||'' "car_driver"
+		  ,decode((select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO),'','미등록',(select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO))||'' "car_driver"
 		from car_info ci ,
 		     (
 		      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
@@ -1030,9 +1030,9 @@
 	</select>
 	
 	<select id="getCarCount" resultType="hashmap">
-		select distinct((select nvl(count(*),0) from car_info))||' EA' "carTots"
-	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='1')||' EA' "carLifts"
-	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='2')||' EA' "carSlopes"
+		select distinct((select nvl(count(*),0) from car_info))||' 대' "carTots"
+	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='1')||' 대' "carLifts"
+	        ,( select nvl(count(CAR_CODE),0) from car_info where car_code='2')||' 대' "carSlopes"
 		from car_info
 	</select>
 	
@@ -1069,9 +1069,9 @@
 	
 	<!--  ==============================================운전자 통계========================================================================= -->
 	<select id="getDriverTotalCount" resultType="hashmap">
-		select distinct((select nvl(count(*),0) from driver))||' EA' "driverTots"
-	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='1')||' EA' "driverMales"
-	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='2')||' EA' "driverFeMales"
+		select distinct((select nvl(count(*),0) from driver))||' 명' "driverTots"
+	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='1')||' 명' "driverMales"
+	        ,( select nvl(count(driver_gender),0) from driver where driver_gender='2')||' 명' "driverFeMales"
 		from driver
 	</select>
 	
@@ -1128,9 +1128,9 @@
 	</select>
 	<!--  ==============================================유저 통계========================================================================= -->
 	<select id="getUserTotalCount" resultType="hashmap">
-	 	select distinct((select nvl(count(*),0) from DISABILITY_USER))||' EA' "userTots"
-	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='1')||' EA' "userMales"
-	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='2')||' EA' "userFeMales"
+	 	select distinct((select nvl(count(*),0) from DISABILITY_USER))||' 명' "userTots"
+	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='1')||' 명' "userMales"
+	        ,( select nvl(count(user_gender),0) from DISABILITY_USER where user_gender='2')||' 명' "userFeMales"
 		from DISABILITY_USER
 	</select>
 	<select id="getUserReserveCount" resultType="int">
@@ -1193,9 +1193,9 @@
 	      	,case when(ci.car_distance -DISTANCE)>50000
 	                   then '차량정기정검필요'
 	                 end "MAINTANCE_DISTANCE"
-	      	, (select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO)||'' "PHONE"
+	      	, decode((select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','운전자미등록',(select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "PHONE"
 	      	, (select car_type from code_car cc where cc.CAR_CODE=ci.CAR_CODE)||'' "CARTYPE"
-	      	, (select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO)||'' "DRIVERNAME"
+	      	, decode((select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','운전자미등록',(select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "DRIVERNAME"
 			from car_info ci,
 			     (
 			      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,

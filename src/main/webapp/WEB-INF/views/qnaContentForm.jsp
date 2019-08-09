@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>게시판</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 <script>
       
       

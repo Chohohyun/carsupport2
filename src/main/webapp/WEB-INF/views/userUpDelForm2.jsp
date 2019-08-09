@@ -9,6 +9,9 @@
 
 <%@include file="checkUser.jsp" %>
 <html>
+<head>
+<title>KOSMO 교통약자 이동지원센터</title>
+</head>
 <script>
 	
 		
@@ -352,7 +355,7 @@
 					<tr>
 						<th scope="row"><div class="name">비밀번호<em class="color-or"> *</em></div></th>
 						<td><input  type="password" name="pwd1" placeholder="비밀번호" style="width: 170px;" maxlength="15" /> <br />
-							<span class="txt">*영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 9자리이상</span>
+							<span class="txt">*영문,숫자 6자리이상</span>
 						</td>
 					</tr>
 					<tr>
@@ -418,9 +421,9 @@
 								<option value="10">청각</option>
 								<option value="11">언어</option>
 								<option value="12">척추</option>
-								<option value="12">장애</option>
-								<option value="13">발달</option>
-								<option value="14">노인</option>
+								<option value="13">장애</option>
+								<option value="14">발달</option>
+								<option value="15">노인</option>
 							</select>
 							<div class="select-dropdown"></div>
 						</td>

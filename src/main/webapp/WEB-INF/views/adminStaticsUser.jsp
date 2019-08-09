@@ -7,7 +7,10 @@
 <html>
 <head>
 <style>
-
+ -ms-overflow-style: none; 
+  ::-webkit-scrollbar { 
+    display: none !important;
+  }
 .table>thead>tr>th {
 	font-size: 14px;
 	font-weight: 700;
@@ -27,7 +30,7 @@
 
 
 </style>
-<title>Insert title here</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../assets/img/apple-icon.png">
@@ -56,6 +59,26 @@
 <script src="resources/cssDashboard/js/plugins/bootstrap-notify.js"></script>
 <!--     sTyle    -->
 <link href="resources/cssDashboard/style.css" rel="stylesheet">
+<!-- Icons font CSS-->
+    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
+    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
+    
+    
+    
+	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
 
 <script>
 	var currentYear;
@@ -97,6 +120,7 @@
                 str = str.split("▲").join("");
                 // ▼ 제거하기
                 str = str.split("▼").join("");
+                $(this).html(str);
             })
             //------------------------------------------
             // 클릭한 th안의 문자열 뒤에 ▲ 또는 ▼ 붙이기
@@ -175,7 +199,7 @@
    			,data : $("[name=userStatus]").serialize()
    			//,datatype: "application/json"
    			,success : function(data){
-   			  	document.userStatus.reserveCount.value=data+" EA";
+   			  	document.userStatus.reserveCount.value=data+" 명";
    			 	return;
    				//alert(datalen);
    			}
@@ -221,7 +245,7 @@
 	    		    data: {
 	    		        labels: labels,
 	    		        datasets: [{
-	    		            label: "월별 차량 정비 횟수",
+	    		            label: "월별 차량 예약 횟수",
 	    		            data: data,
 	    		            backgroundColor: 'rgba(54, 162, 235, 0.2)',
 	    		            borderColor: 'rgba(54, 162, 235, 1)',
@@ -334,13 +358,13 @@
 	    		        datasets: [{
 	    		            label: "코드별 예약",
 	    		            data: data,
-	    		            backgroundColor: ["rgba(151,187,205,0.2)",
-	    		            				 'rgba(75, 192, 192, 0.2)',
-	    		            				 'rgba(255, 99, 132, 0.2)'
+	    		            backgroundColor: ["rgba(81,188,218,0.2)",
+	    		            				 'rgba(251, 198, 88, 0.2)',
+	    		            				 'rgba(107, 208, 152, 0.2)'
 	    		            				 ],
-	    		            borderColor: ["rgba(151,187,205,1)",
-	    		            				'rgba(75, 192, 192, 1)',
-	    		            				'rgba(255, 99, 132, 1)'
+	    		            borderColor: ["rgba(81,188,218,1)",
+	    		            				'rgba(251, 198, 88, 1)',
+	    		            				'rgba(107, 208, 152, 1)'
 	    		            			],
 	    		            //pointColor: "rgba(151,187,205,1)",
 	    		            borderWidth: 1
@@ -375,11 +399,11 @@
    				
                 for(var j=0; j<data.length; j++){
                 	$(".table tbody:eq(0)").append("<tr>");                
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].user_name+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].user_gender+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].user_phone+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].user_reservation+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td class='text-right'>"+data[j].user_cancel+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].user_name+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].user_gender+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].user_phone+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].user_reservation+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].user_cancel+"</td>" );
                     $(".table tbody:eq(0)").append("</tr>");
                 }
 
@@ -422,7 +446,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-globe text-warning"></i>
+												<!-- <i class="nc-icon nc-globe text-warning"></i> -->
+												<img src="resources/cssDashboard/img/total_users.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -449,7 +474,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-money-coins text-success"></i>
+												<!-- <i class="nc-icon nc-money-coins text-success"></i> -->
+												<img src="resources/cssDashboard/img/male_users.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -474,8 +500,9 @@
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5 col-md-4">
-											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-vector text-danger"></i>
+											<div class="icon-big text-center icon-warning"><!-- 
+												<i class="nc-icon nc-vector text-danger"></i> -->
+												<img src="resources/cssDashboard/img/female_users.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -502,7 +529,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-favourite-28 text-primary"></i>
+												<!-- <i class="nc-icon nc-favourite-28 text-primary"></i> -->
+												<img src="resources/cssDashboard/img/reservation.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -650,11 +678,11 @@
 
 										<thead class="text-primary">
 											<tr>
-												<th scope="col" style="cursor:pointer">name</th>
-												<th scope="col" style="cursor:pointer;">gender</th >
-												<th scope="col" style="cursor:pointer;">phone</th >
-												<th scope="col" style="cursor:pointer">reservation</th>
-												<th class="text-right" scope="col" style="cursor:pointer">cansle</th>
+												<th class="txt_center" scope="col" style="cursor:pointer">name</th>
+												<th class="txt_center" scope="col" style="cursor:pointer;">gender</th >
+												<th class="txt_center" scope="col" style="cursor:pointer;">phone</th >
+												<th class="txt_center" scope="col" style="cursor:pointer">reservation</th>
+												<th class="txt_center" scope="col" style="cursor:pointer">cancel</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -662,7 +690,8 @@
 												<td></td>
 												<td></td>
 												<td></td>
-												<td class="text-right"></td>
+												<td></td>
+												<td class="txt_center" ></td>
 											</tr>
 										</tbody>
 									</table>

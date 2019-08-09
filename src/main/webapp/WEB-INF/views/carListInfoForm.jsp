@@ -8,6 +8,7 @@
 <%@include file="common.jsp" %>
 <%@include file="adminMainPage.jsp" %>
 <html>
+<title>KOSMO 교통약자 이동지원센터</title>
 <script>
 $(document).ready(function() {
 	inputData("keyword","${carSearchDTO.keyword}");

@@ -6,8 +6,12 @@
 <%@include file="adminMainPage.jsp"%>
 <html>
 <head>
-<style>
 
+<style>
+ -ms-overflow-style: none;
+  &::-webkit-scrollbar { 
+    display: none !important;
+  }
 .table>thead>tr>th {
 	font-size: 14px;
 	font-weight: 700;
@@ -27,7 +31,7 @@
 
 
 </style>
-<title>Insert title here</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../assets/img/apple-icon.png">
@@ -56,6 +60,26 @@
 <script src="resources/cssDashboard/js/plugins/bootstrap-notify.js"></script>
 <!--     sTyle    -->
 <link href="resources/cssDashboard/style.css" rel="stylesheet">
+<!-- Icons font CSS-->
+    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
+    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
+    
+    
+    
+	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
 
 <script>
 	var currentYear;
@@ -83,19 +107,22 @@
             var thisThObj = $(this);
             // 내림차순 오름차순 여부를 저장할 변수선언
             var ascDesc = "";
-            //------------------------------------------
+          //------------------------------------------
             // 클린한 th 형제의 th 태그 안의 문자열에 ▲ ▼ 제거
             //------------------------------------------
             thisThObj.siblings().each(function(){
                 // i 번째 형제 th 태그 안에 문자열을 얻자
                 var str = $(this).text();
+                console.log(str);
                 // 앞뒤 공백 제거하기
                 str = $.trim(str);
                 // ▲ 제거하기
                 str = str.split("▲").join("");
                 // ▼ 제거하기
                 str = str.split("▼").join("");
+                $(this).html(str);
             })
+            //----------------
             //------------------------------------------
             // 클릭한 th안의 문자열 뒤에 ▲ 또는 ▼ 붙이기
             //------------------------------------------
@@ -176,7 +203,7 @@
    			,data : $("[name=carStatus]").serialize()
    			//,datatype: "application/json"
    			,success : function(data){
-   			  	document.carStatus.maintance.value=data+" EA";
+   			  	document.carStatus.maintance.value=data+" 대";
    			 	return;
    				//alert(datalen);
    			}
@@ -381,9 +408,9 @@
 	    		        datasets: [{
 	    		            label: "코드별 정비 횟수",
 	    		            data: data,
-	    		            backgroundColor: "rgba(151,187,205,0.2)",
-	    		            borderColor: "rgba(151,187,205,1)",
-	    		            pointColor: "rgba(151,187,205,1)",
+	    		            backgroundColor: "rgba(81,188,218,0.2)",
+	    		            borderColor: "rgba(81,188,218,1)",
+	    		            pointColor: "rgba(81,188,218,1)",
 	    		            borderWidth: 1
 	    		        }]
 	    		        /* {
@@ -427,11 +454,11 @@
    				
                 for(var j=0; j<data.length; j++){
                 	$(".table tbody:eq(0)").append("<tr>");                
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].car_number+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].car_maintance+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].car_distance+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].car_year+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td class='text-right'>"+data[j].car_driver+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].car_number+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].car_maintance+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].car_distance+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].car_year+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].car_driver+"</td>" );
                     $(".table tbody:eq(0)").append("</tr>");
                 }
 
@@ -476,7 +503,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-globe text-warning"></i>
+												<!-- <i class="nc-icon nc-globe text-warning"></i> -->
+												<img src="resources/cssDashboard/img/car_total.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -503,7 +531,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-money-coins text-success"></i>
+											<!-- 	<i class="nc-icon nc-money-coins text-success"></i> -->
+												<img src="resources/cssDashboard/img/car_lift.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -529,7 +558,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-vector text-danger"></i>
+												<!-- <i class="nc-icon nc-vector text-danger"></i> -->
+												<img src="resources/cssDashboard/img/car_slope.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -556,7 +586,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-favourite-28 text-primary"></i>
+												<!-- <i class="nc-icon nc-favourite-28 text-primary"></i> -->
+												<img src="resources/cssDashboard/img/maintance.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -677,7 +708,7 @@
 
 				<div class="row">
 
-					<div class="col-md-12">
+					<div class="col-md-12" >
 						<div class="card card-plain">
 							<div class="card-header">
 								<h4 class="card-title">Cars Imformation</h4>
@@ -688,28 +719,29 @@
 									<table class="table" boarder="1" style="height:200px;" >
 
 										<colgroup>
-											<col style="width: 25%;" />
-											<col style="width: 25%;" />
-											<col style="width: 25%;" />
-											<col style="width: 15%;" />
-											<col style="width: 15%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
 										</colgroup>
 
 										<thead class="text-primary">
 											<tr>
-												<th scope="col" style="cursor:pointer">number</th>
-												<th scope="col" style="cursor:pointer;">maintance(KM)</th >
-												<th scope="col" style="cursor:pointer;">distance(KM)</th >
-												<th scope="col" style="cursor:pointer">year</th>
-												<th class="text-right" scope="col" style="cursor:pointer">driver</th>
+												<th class='txt_center' scope="col" style="cursor:pointer">number</th>
+												<th class='txt_center' scope="col" style="cursor:pointer;">maintance(KM)</th >
+												<th class='txt_center' scope="col" style="cursor:pointer;">distance(KM)</th >
+												<th class='txt_center' scope="col" style="cursor:pointer">year</th>
+												<th class='txt_center' scope="col" style="cursor:pointer">driver</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td class="text-right"></td>
+												<td class='txt_center'></td>
+												<td class='txt_center'></td>
+												<td class='txt_center'></td>
+												<td class='txt_center'></td>
+												<td class='txt_center'></td>
 											</tr>
 										</tbody>
 									</table>

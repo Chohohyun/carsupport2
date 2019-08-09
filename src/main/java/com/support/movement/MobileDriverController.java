@@ -95,7 +95,7 @@ public class MobileDriverController {
 		System.out.println("driver_no: " + driver_no);
 		//System.out.println("check" + check);
 		// 예약상태코드가 2 ,3 ,4일 경우 중복여부를 확인하여 (이미 상태코드가 2,4일경우) 중복 일경우 리턴
-		if(parameter.equals("2") ||  parameter.equals("3") || parameter.equals("4") ) {
+		if(parameter.equals("2") ||  parameter.equals("4") ) {
 			int reserveRegCnt = mobileService.getReserveRegCnt(parameter, select_num);
 			System.out.println("중복체크");
 			System.out.println("reserveRegCnt" + reserveRegCnt);

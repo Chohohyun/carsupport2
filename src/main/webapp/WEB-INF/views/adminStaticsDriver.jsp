@@ -7,7 +7,10 @@
 <html>
 <head>
 <style>
-
+ -ms-overflow-style: none; 
+  ::-webkit-scrollbar { 
+    display: none !important;
+  }
 .table>thead>tr>th {
 	font-size: 14px;
 	font-weight: 700;
@@ -27,7 +30,7 @@
 
 
 </style>
-<title>Insert title here</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../assets/img/apple-icon.png">
@@ -56,6 +59,26 @@
 <script src="resources/cssDashboard/js/plugins/bootstrap-notify.js"></script>
 <!--     sTyle    -->
 <link href="resources/cssDashboard/style.css" rel="stylesheet">
+<!-- Icons font CSS-->
+    <link href="/support/resources/vendor2/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/support/resources/vendor2/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/support/resources/vendor2/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/support/resources/css/main.css" rel="stylesheet" media="all">
+    <link href="/support/resources/css2/main.css" rel="stylesheet" media="all">
+    
+    
+    
+	<link rel="icon" type="image/png" href="/support/resources/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/support/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/support/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
 
 <script>
 	var currentYear;
@@ -97,6 +120,7 @@
                 str = str.split("▲").join("");
                 // ▼ 제거하기
                 str = str.split("▼").join("");
+                $(this).html(str);
             })
             //------------------------------------------
             // 클릭한 th안의 문자열 뒤에 ▲ 또는 ▼ 붙이기
@@ -175,7 +199,7 @@
    			,data : $("[name=driverStatus]").serialize()
    			//,datatype: "application/json"
    			,success : function(data){
-   			  	document.driverStatus.DriveCount.value=data+" EA";
+   			  	document.driverStatus.DriveCount.value=data+" 회";
    			 	return;
    				//alert(datalen);
    			}
@@ -330,7 +354,7 @@
 	    		    data: {
 	    		        labels: labels,
 	    		        datasets: [{
-	    		            label: "코드별 정비 횟수",
+	    		            label: "코드별 예약",
 	    		            data: data,
 	    		            backgroundColor: "rgba(151,187,205,0.2)",
 	    		            borderColor: "rgba(151,187,205,1)",
@@ -368,11 +392,11 @@
    				
                 for(var j=0; j<data.length; j++){
                 	$(".table tbody:eq(0)").append("<tr>");                
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].driver_name+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].driver_gender+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].driver_phone+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td>"+data[j].driver_reg_date+"</td>" );
-                    $(".table tbody tr:eq("+j+")").append( "<td class='text-right'>"+data[j].driver_point+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].driver_name+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].driver_gender+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].driver_phone+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].driver_reg_date+"</td>" );
+                    $(".table tbody tr:eq("+j+")").append( "<td class='txt_center'>"+data[j].driver_point+"</td>" );
                     $(".table tbody:eq(0)").append("</tr>");
                 }
 
@@ -417,7 +441,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-globe text-warning"></i>
+												<!-- <i class="nc-icon nc-globe text-warning"></i> -->
+												<img src="resources/cssDashboard/img/driver_total.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -444,7 +469,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-money-coins text-success"></i>
+												<!-- <i class="nc-icon nc-money-coins text-success"></i> -->
+												<img src="resources/cssDashboard/img/driver_male.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -470,7 +496,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-vector text-danger"></i>
+											<!-- 	<i class="nc-icon nc-vector text-danger"></i> -->
+												<img src="resources/cssDashboard/img/driver_female.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -497,7 +524,8 @@
 									<div class="row">
 										<div class="col-5 col-md-4">
 											<div class="icon-big text-center icon-warning">
-												<i class="nc-icon nc-favourite-28 text-primary"></i>
+												<!-- <i class="nc-icon nc-favourite-28 text-primary"></i> -->
+												<img src="resources/cssDashboard/img/drive_count.png">
 											</div>
 										</div>
 										<div class="col-7 col-md-8">
@@ -636,20 +664,20 @@
 									<table class="table" boarder="1" style="height:200px;" >
 
 										<colgroup>
-											<col style="width: 25%;" />
-											<col style="width: 25%;" />
-											<col style="width: 25%;" />
-											<col style="width: 15%;" />
-											<col style="width: 15%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
+											<col style="width: 20%;" />
 										</colgroup>
 
 										<thead class="text-primary">
 											<tr>
-												<th scope="col" style="cursor:pointer">name</th>
-												<th scope="col" style="cursor:pointer;">gender</th >
-												<th scope="col" style="cursor:pointer;">phone</th >
-												<th scope="col" style="cursor:pointer">register year</th>
-												<th class="text-right" scope="col" style="cursor:pointer">point</th>
+												<th class='txt_center'scope="col" style="cursor:pointer">name</th>
+												<th class='txt_center' scope="col" style="cursor:pointer;">gender</th >
+												<th class='txt_center' scope="col" style="cursor:pointer;">phone</th >
+												<th class='txt_center' scope="col" style="cursor:pointer">register year</th>
+												<th class='txt_center' scope="col" style="cursor:pointer">point</th>
 											</tr>
 										</thead>
 										<tbody>

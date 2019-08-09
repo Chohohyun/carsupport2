@@ -9,7 +9,7 @@
 
 <html xmlns="https://www.w3.org/1999/xhtml">
 <head>
-<title>COSMO 교통약자 이동지원센터</title>
+<title>KOSMO 교통약자 이동지원센터</title>
 
 <script type="text/javascript">
       $(document).ready(function(){
@@ -117,7 +117,7 @@
 									<td>${reserve.start_road_addr}
 									<td>${reserve.end_road_addr}
 									<td>${reserve.user_name}
-									<td><a href="javascript:goCancelReserveForm(${reserve.reserve_apply_car_number});" class="btn middle white radius-5">취소</a>
+									<td>
 						
 								</tr>
 							</c:forEach>

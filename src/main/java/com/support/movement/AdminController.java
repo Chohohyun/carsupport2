@@ -1508,52 +1508,52 @@ public class AdminController {
 		}
 		return resultList;
 	}
-
 	//**********************************
-	// 차량정보 리스트
-	//**********************************
-	@RequestMapping(
-			value="/getCarInfoList.do"
-			, method=RequestMethod.POST
-			, produces="application/json;chrset=utf-8"
-			)
-	@ResponseBody 
-	public List<Map<String,String>> getCarInfoList(
-			HttpSession session, String selectName, String ascDsc
-			//,HttpServletResponse response
-			//,@RequestParam Map<String,String> paramsMap
-			) {
-		List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
-		try {	
-			System.out.println("car_number : " + selectName);
-			if(selectName.equals("number")) {
-				selectName = "1";
-			}
-			else if(selectName.equals("maintance")) {
-				selectName = "2";
-			}
-			else if(selectName.equals("distance")) {
-				selectName = "3";
-			}
-			else if(selectName.equals("year")) {
-				selectName = "4";
-			}
-			else {
-				selectName = "5";
-			}
-
-			Map<String,String> sort = new HashMap<String,String>();
-			sort.put("selectName", selectName);
-			sort.put("ascDsc", ascDsc);
-
-			resultList = this.adminService.getCarInfoList(sort);
-
-		}catch (Exception e) {
-			System.out.println("RepairCodeStatus.do 에서 DB연동실패");
-
-		}
-		return resultList;
-	}
+	   // 차량정보 리스트
+	   //**********************************
+	   @RequestMapping(
+	         value="/getCarInfoList.do"
+	         , method=RequestMethod.POST
+	         , produces="application/json;chrset=utf-8"
+	         )
+	   @ResponseBody 
+	   public List<Map<String,String>> getCarInfoList(
+	         HttpSession session, String selectName, String ascDsc
+	         //,HttpServletResponse response
+	         //,@RequestParam Map<String,String> paramsMap
+	         ) {
+	      List<Map<String,String>> resultList = new ArrayList<Map<String,String>>();
+	      System.out.println("");
+	      try {   
+	         System.out.println("car_number : " + selectName);
+	         if(selectName.equals("number")) {
+	            selectName = "1";
+	         }
+	         else if(selectName.equals("maintance(KM)")) {
+	            selectName = "2";
+	         }
+	         else if(selectName.equals("distance(KM)")) {
+	            selectName = "3";
+	         }
+	         else if(selectName.equals("year")) {
+	            selectName = "4";
+	         }
+	         else {
+	            selectName = "5";
+	         }
+	         
+	         Map<String,String> sort = new HashMap<String,String>();
+	         sort.put("selectName", selectName);
+	         sort.put("ascDsc", ascDsc);
+	         
+	         resultList = this.adminService.getCarInfoList(sort);
+	         
+	      }catch (Exception e) {
+	         System.out.println("RepairCodeStatus.do 에서 DB연동실패");
+	         
+	      }
+	      return resultList;
+	   }
 
 	//********************************************************************************************
 	// 운전자통계 화면으로 이동
