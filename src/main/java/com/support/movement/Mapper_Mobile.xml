@@ -43,8 +43,8 @@
 	 			,rac.car_number||'' as "car_number"
 	 			,rac.driver_no||'' as "driver_no"
 				,rac.user_no||'' as "user_no"
-				,du.USER_NAME as "USER_NAME"
-				,du.USER_PHONE as "USER_PHONE"
+				,decode(du.USER_NAME,'','탈퇴회원',du.USER_NAME)||'' as "USER_NAME"
+				,decode(du.USER_PHONE,'','탈퇴회원',du.USER_PHONE)||'' as "USER_PHONE"
 	 			,rac.reserve_count||'' as "reserve_count"
 	 			,rac.start_road_addr||'' as "start_road_addr"
 	 			,rac.start_detail_addr||'' as "start_detail_addr"
@@ -64,9 +64,12 @@
 		</if>
 		and rac.reserve_apply_car_number=ANY( select reserve_apply_car_number from RESERVE_ACCEPT_LIST where driver_no=#{driver_no} and reserve_status_code!=3 )
 		<choose>
-			<when test="tatus_code==5">
+			<when test="status_code==5">
 			and rac.reservation_date&lt;=sysdate 
-			and rac.reservation_date+7&gt;sysdate
+			and rac.reservation_date&gt;sysdate-7
+			</when>
+			<when test="status_code==2">
+			and rac.reservation_date+0.2&gt;=sysdate 
 			</when>
 			<otherwise>
 			and rac.reservation_date&gt;=sysdate 

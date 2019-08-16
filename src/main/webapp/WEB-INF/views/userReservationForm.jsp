@@ -314,7 +314,7 @@ function reservationCheck() {
 						</colgroup>
 
 						<tr>
-							<th scope="row"><div class="name">출발지</div></th>
+							<th scope="row"><div class="name">출발지<em class="color-or"> *</em></div></th>
 							<td>
 								<div class="value">
 									<div class="row row-refine">
@@ -349,7 +349,7 @@ function reservationCheck() {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><div class="name">도착지</div></th>
+							<th scope="row"><div class="name">도착지<em class="color-or"> *</em></div></th>
 							<td>
 								<div class="value">
 									<div class="row row-refine">

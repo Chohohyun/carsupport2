@@ -98,8 +98,9 @@ public class DriverController {
 		String id = (String) session.getAttribute("id");
 		if(driveSearchDTO.getSelectPageNo()==0){
 			driveSearchDTO.setSelectPageNo(1);
-			driveSearchDTO.setId(id);
+			
 		}
+		driveSearchDTO.setId(id);
 		List<Map<String,String>> driveList = new ArrayList<Map<String,String>>();
 
 		ModelAndView mav = new ModelAndView();
@@ -245,4 +246,55 @@ public class DriverController {
 		} 
 		return mav; 
 	} 
+	
+	@RequestMapping(value="/driveRegForm.do", method=RequestMethod.POST,produces="application/json;charset=UTF-8") 
+	public ModelAndView driveRegForm( 
+			@RequestParam(value="reserve_apply_car_number") int reserve_apply_car_number, 
+			HttpSession session ) { 
+		// ModelAndView객체 생성하기 
+		// ModelAndView객체에 호출 JSP 페이지명을 저장하기 
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("driveRegForm.jsp"); 
+		try { 
+			System.out.println(reserve_apply_car_number);
+			System.out.println("g하이");
+			
+			DriveHistoryDTO driveHistoryDTO = this.driverService.getDriveReg(reserve_apply_car_number);
+			mav.addObject("driveHistoryDTO",driveHistoryDTO);
+		}catch(Exception e){ 
+			System.out.println("DriverController.driveRegForm(~) 메소드 예외 발생"); 
+		} 
+		return mav; 
+	} 
+	
+	@RequestMapping(
+			value="/driveHistoryRegProc.do"
+			,method=RequestMethod.POST
+			,produces="application/json;charset=UTF-8"
+			)
+	@ResponseBody
+	public int reviewRegProc(
+			DriveHistoryDTO driveHistoryDTO,
+			HttpSession session
+			) {
+		// 메소드 첫 줄에 도스창 찍는 명령어 안되면 매개변수 쪽으로 들어오다가 오류 발생 한 것
+		System.out.println("driveHistory 메소드 시작. driveHistoryDTO 이상없음");
+
+
+		int reviewRegCnt = 0;
+		try {
+			System.out.println(driveHistoryDTO.getReserve_apply_car_number());
+			System.out.println(driveHistoryDTO.getDrive_distance());
+			System.out.println(driveHistoryDTO.getDrive_start_time());
+			System.out.println(driveHistoryDTO.getDrive_finish_time());
+			reviewRegCnt = this.driverService.insertDriveHistory(driveHistoryDTO);
+			System.out.println("에러 테스트3");
+
+		} catch(Exception e) {
+			System.out.println("reviewRegProc 메소드에서 에러발생!");
+			reviewRegCnt = -1;
+		}
+		//
+		return reviewRegCnt;
+	}
 }

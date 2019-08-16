@@ -31,6 +31,10 @@
 					alert("서버 접속 실패!");			
 				}
 			});
+
+			inputData("car_number","99가9999");
+			inputData("car_year","2018");
+			inputData("car_distance","1000");
         });  // $(document).ready(function() {
         
         

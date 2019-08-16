@@ -13,7 +13,8 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-		
+		alert("${driveSearchDTO.selectPageNo}");
+		alert("${driveListAllCnt}");
     	inputData("selectPageNo","${driveSearchDTO.selectPageNo}");
   		
   		$(".pagingNumber").html(
@@ -46,13 +47,14 @@
   		$("[name=driverGradeForm] [name=reserve_apply_car_number]").val( RESERVE_APPLY_CAR_NUMBER );
   		document.driverGradeForm.submit();
   	}
+    function goDriveRegForm(RESERVE_APPLY_CAR_NUMBER){
+    	$("[name=driveRegForm] [name=reserve_apply_car_number]").val( RESERVE_APPLY_CAR_NUMBER );
+  		document.driveRegForm.submit();
+
+    }
   	function goSearch(){
 		
-		if(is_special_char("keyword")){
-			alert("키워드에는 영문,숫자,한글,_ 만 가능합니다.");
-			$(".keyword").val("");
-			return;
-		}
+		
 		
 		document.driveSearchForm.submit();
 		
@@ -115,7 +117,7 @@
 							<th scope="col">출발시간</th>
 							<th scope="col">도착시간</th>
 							<th scope="col">주행거리</th>
-							<th scope="col">리뷰</th>
+							<th scope="col">비고</th>
 						</thead>
 						<tbody>
 							<c:forEach items="${requestScope.driveList}"
@@ -127,10 +129,19 @@
 									<td>${drive.reservation_date}
 									<td>${drive.start_road_addr}
 									<td>${drive.end_road_addr}
+									<c:if test="${drive.reserve_status_code=='4'}">
+									<td>-
+									<td>-
+									<td>주행미등록
+									<td><a href="javascript:goDriveRegForm(${drive.reserve_apply_car_number});" class="btn middle white radius-5">등록</a>
+									</c:if>
+									<c:if test="${drive.reserve_status_code=='5'}">
 									<td>${drive.drive_start_time}
 									<td>${drive.drive_finish_time}
 									<td>${drive.drive_distance}m
-									<td><a href="javascript:goDriverGradeForm(${drive.reserve_apply_car_number});" class="btn middle white radius-5">보기</a>
+									<td><a href="javascript:goDriverGradeForm(${drive.reserve_apply_car_number});" class="btn middle white radius-5">리뷰</a>
+									</c:if>
+									
 						
 								</tr>
 							</c:forEach>
@@ -180,6 +191,11 @@
 				
 		<form name="driverGradeForm" method="post"
 			action="/support/driverGradeForm.do">
+			<input type="hidden" name="reserve_apply_car_number">
+		</form>
+		
+		<form name="driveRegForm" method="post"
+			action="/support/driveRegForm.do">
 			<input type="hidden" name="reserve_apply_car_number">
 		</form>
 </body>

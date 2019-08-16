@@ -192,7 +192,7 @@
 	 			return; 
 	 		}
 		}
-		alert($("[name=driverUpDelForm]").serialize());
+		
 		$.ajax({
 			url:"/support/adminDriverUpDelProc.do",
 			type:"post",

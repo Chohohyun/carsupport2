@@ -74,4 +74,22 @@ public class DriverServiceImpl implements DriverService{
 		return qnaList;
 	}
 
+	@Override
+	public DriveHistoryDTO getDriveReg(int reserve_apply_car_number) {
+		DriveHistoryDTO driveHistoryDTO = this.driverDAO.getDriveReg(reserve_apply_car_number);
+		return driveHistoryDTO;
+	}
+
+	@Override
+	public int insertDriveHistory(DriveHistoryDTO driveHistoryDTO) {
+		System.out.println("1");
+		int driveChangeStatusCnt = this.driverDAO.getDriveChangeStatus(driveHistoryDTO);
+		System.out.println("2");
+		int driveAcceptStatusCnt = this.driverDAO.getDriveAcceptStatus(driveHistoryDTO);
+		System.out.println("3");
+		int carDistance = this.driverDAO.updateCarDistance(driveHistoryDTO);
+		int insertDriveHistoryCnt = this.driverDAO.insertDriveHistory(driveHistoryDTO);
+		return insertDriveHistoryCnt;
+	}
+
 }

@@ -996,38 +996,49 @@
 	</select> 
 	
 	<select id="getCarInfoList" parameterType="hashmap" resultType="hashmap">
-		select
-		   distinct(ci.car_number)||'' "car_number"
-		  ,case when(ci.car_distance -DISTANCE)&lt;=50000
+
+               select
+         distinct(ci.car_number)||'' "car_number"
+        ,case when(ci.car_distance -DISTANCE)&lt;=50000
              then   
                (50000-ci.car_distance +DISTANCE)||'' 
-            else '차량정기정검필요'
+             else '차량정기정검필요'
            end  "car_maintance"
-		  ,ci.car_distance||'' "car_distance" 
-		  ,car_year||'' "car_year"
-		  ,decode((select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO),'','미등록',(select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO))||'' "car_driver"
-		from car_info ci ,
-		     (
-		      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
-		                          (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
-		                                  where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
-		                          )
-		                )  "DISTANCE"
-		      from car_info ci,
-		         (select car_number, car_distance, count(*) "CNT"
-		          from car_maintance_info
-		          where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
-		          group by car_number, car_distance
-		         ) cmi
-			  where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
-		
-		      ) "REPAIR"
-		
-		 where 1=1 and REPAIR.car_number=ci.CAR_NUMBER
-		<if test="selectName!=null and selectName.length()>0 and ascDsc!=null and ascDsc.length()>0" >
-			order by ${selectName} ${ascDsc}
-		</if>
-	</select>
+        ,ci.car_distance||'' "car_distance" 
+        ,car_year||'' "car_year"
+        ,decode((select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO),'','미등록',(select driver_name from driver  where ci.CAR_DRIVER=driver.DRIVER_NO))||'' "car_driver"
+        ,(50000-ci.car_distance +DISTANCE)||''   "CAR_MAINTANCE2"
+      from car_info ci ,
+           (
+            select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,
+                                (select nvl(cmi.car_distance , 0) from car_maintance_info cmi, car_info ci
+                                        where to_char(cmi.car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info) and cmi.car_maintance_code='1' and cmi.car_number=ci.CAR_NUMBER
+                                )
+                      )  "DISTANCE"
+            from car_info ci,
+               (select car_number, car_distance, count(*) "CNT"
+                from car_maintance_info
+                where car_maintance_code='1' and to_char(car_maintance_date,'YYYYMMDD')=ANY(select max(to_char(car_maintance_date,'YYYYMMDD')) from car_maintance_info)
+                group by car_number, car_distance
+               ) cmi
+           where ci.CAR_NUMBER=cmi.CAR_NUMBER(+)
+      
+            ) "REPAIR"
+      
+       where 1=1 and REPAIR.car_number=ci.CAR_NUMBER     
+      <if test="selectName!=null and selectName.length()>0 and ascDsc!=null and ascDsc.length()>0" >   
+         <if test="selectName==2">
+         order by to_number(CAR_MAINTANCE2) ${ascDsc}
+         </if>
+         <if test="selectName==3">
+         order by to_number(ci.CAR_DISTANCE||'') ${ascDsc}
+         </if>
+         <if test="selectName!=3 and selectName!=2">
+         order by ${selectName} ${ascDsc}
+         </if>
+      </if> 
+      
+   </select>
 	
 	<select id="getCarCount" resultType="hashmap">
 		select distinct((select nvl(count(*),0) from car_info))||' 대' "carTots"
@@ -1191,11 +1202,11 @@
 			(select 
 			DISTINCT(ci.car_number) "CAR_NUMBER"
 	      	,case when(ci.car_distance -DISTANCE)>50000
-	                   then '차량정기정검필요'
+	                   then '점검필요'
 	                 end "MAINTANCE_DISTANCE"
-	      	, decode((select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','운전자미등록',(select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "PHONE"
+	      	, decode((select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','      -      ',(select driver_phone from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "PHONE"
 	      	, (select car_type from code_car cc where cc.CAR_CODE=ci.CAR_CODE)||'' "CARTYPE"
-	      	, decode((select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','운전자미등록',(select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "DRIVERNAME"
+	      	, decode((select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO),'','미등록',(select driver_name from driver dr where ci.CAR_DRIVER=dr.DRIVER_NO))||'' "DRIVERNAME"
 			from car_info ci,
 			     (
 			      select  ci.CAR_NUMBER, decode( nvl(cmi.CNT,0), 0 , 0,

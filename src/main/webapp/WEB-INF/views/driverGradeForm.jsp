@@ -101,7 +101,8 @@ label.star:before {
 						<table class="tbl tbl_form">
 							<colgroup>
 								<col style="width: 20%;" />
-								<col style="width: 30%;" />
+								<col style="width: 17%;" />
+								<col style="width: 13%;" />
 								<col style="width: 20%;" />
 								
 								<col style="width: 30%;" />
@@ -109,14 +110,14 @@ label.star:before {
 							</colgroup>
 							<tr>
 								<th scope="row">이용자이름
-								<td>${reviewDTO.user_name}</td>
+								<td colspan="2">${reviewDTO.user_name}</td>
 								<th scope="row">이용날짜
 								<td>${reviewDTO.reservation_date}</td>
 								
 							</tr>
 							<tr>
 								<th scope="row">출발지
-								<td>${reviewDTO.start_road_addr}</td>
+								<td colspan="2">${reviewDTO.start_road_addr}</td>
 								<th scope="row">목적지
 								<td>${reviewDTO.end_road_addr}</td>
 							</tr>
@@ -125,7 +126,7 @@ label.star:before {
 								<th scope="row">별점
 								<td>
 								
-									<input class="star star-5 pull-right "  id="star-5-2" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5-2"></label>
+									<input class="star star-5"  id="star-5-2" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5-2"></label>
 									<input class="star star-4"  id="star-4-2" type="radio" name="review_score" value="4"/><label class="star star-4" for="star-4-2"></label>
 									<input class="star star-3"  id="star-3-2" type="radio" name="review_score" value="3"/> <label class="star star-3" for="star-3-2"></label>
 									<input class="star star-2"  id="star-2-2" type="radio" name="review_score" value="2"/> <label class="star star-2" for="star-2-2"></label>
@@ -139,6 +140,9 @@ label.star:before {
 									<input class="star star-5" id="star-5" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5"></label>
 									  -->
 								</td>
+								<td></td>
+								<td></td>
+								<td></td>
 								<th scope="row">리뷰등록일</th>
 								<td>${reviewDTO.review_date}</td>
 							</tr>

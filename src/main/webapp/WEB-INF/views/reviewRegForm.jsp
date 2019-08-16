@@ -40,6 +40,7 @@
 </script>
 <head>
 <title>KOSMO 교통약자 이동지원센터</title>
+
 <style>
 div.stars {
 	width: 150px;
@@ -123,11 +124,11 @@ label.star:before {
 						<table class="tbl tbl_form">
 							<colgroup>
 								<col style="width: 20%;" />
-								<col style="width: 20%;" />
+								<col style="width: 17%;" />
 								<col style="width: 20%;" />
 								
 								<col style="width: 20%;" />
-								<col style="width: 20%;" />
+								<col style="width: 23%;" />
 			
 							</colgroup>
 							<tr>
@@ -162,6 +163,8 @@ label.star:before {
 								</td>
 								<td></td>
 								<td></td>
+								<td>
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">평가내용

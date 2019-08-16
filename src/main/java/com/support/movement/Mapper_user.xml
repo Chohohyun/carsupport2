@@ -152,7 +152,7 @@
 		select
 			count(*)
 		from reserve_apply_car rac
-		where  to_char(sysdate,'yyyymmddhh24') - to_char(rac.reservation_date,'yyyymmddhh24')  &gt; 0
+		where  sysdate &gt; rac.reservation_date
 		and rac.user_no = (select du.user_no from disability_user du where du.user_id=#{id})
 		<if test="(use_year!=null and use_year.length()>0)">
 			and extract(year from rac.reservation_date) = #{use_year}

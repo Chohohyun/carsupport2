@@ -207,7 +207,7 @@
 	 			return; 
 	 		}
 		}
-		alert($("[name=userUpDelForm]").serialize());
+		
 		$.ajax({
 			url:"/support/adminUserUpDelProc.do",
 			type:"post",

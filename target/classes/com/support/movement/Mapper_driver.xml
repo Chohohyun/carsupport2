@@ -49,13 +49,15 @@
 			,START_DETAIL_ADDR as "start_detail_addr"
 			,END_ROAD_ADDR as "end_road_addr"
 			,END_DETAIL_ADDR as "end_detail_addr"
-			,to_char(DRIVE_FINISH_TIME, 'hh24:mi:ss') AS "drive_finish_time"
-			,to_char(DRIVE_START_TIME, 'hh24:mi:ss') AS "drive_start_time"
-			,DRIVE_DISTANCE AS "drive_distance"
+			,to_char(drive_finish_time, 'hh24')||'시 '||to_char(drive_finish_time, 'mi')||'분' as "drive_finish_time"
+			,to_char(drive_start_time, 'hh24')||'시 '||to_char(drive_start_time, 'mi')||'분' as "drive_start_time"
+			,decode(DRIVE_DISTANCE,'','0',DRIVE_DISTANCE)||'' AS "drive_distance"
+			,reserve_status_code||'' as "reserve_status_code"
 	
 		from RESERVE_APPLY_CAR
-		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
+		where driver_no=(select driver_no from driver where driver_id=#{id}) and (RESERVE_STATUS_CODE='5' or RESERVE_STATUS_CODE='4')
 		and reservation_date &lt; sysdate
+		order by reservation_date desc
 		 <if test="selectPageNo>0">	
 		<![CDATA[
 		 ) zzz)  where RNUM>= ${selectPageNo} * 5 - 5+1 and RNUM <= ${selectPageNo} * 5
@@ -68,7 +70,7 @@
 		select 
 			count(*)	
 		from RESERVE_APPLY_CAR
-		where driver_no=(select driver_no from driver where driver_id=#{id}) and RESERVE_STATUS_CODE='5'
+		where driver_no=(select driver_no from driver where driver_id=#{id}) and (RESERVE_STATUS_CODE='5' or RESERVE_STATUS_CODE='4')
 		and reservation_date &lt; sysdate
 	</select>
 	<select id="getDriverCarInfo" parameterType="String"
@@ -142,4 +144,47 @@
             
 			
 	</select>
+	
+	<select id="getDriveReg" parameterType="int" resultType="com.support.movement.DriveHistoryDTO">
+		select
+            (select u.user_name from disability_user u where r.user_no=u.user_no)||'' as "user_name",
+            to_char(r.reservation_date,'yyyy')||'년 '||to_char(r.reservation_date,'mm')||'월 '||to_char(r.reservation_date,'dd')||'일 '||to_char(r.reservation_date,'hh24')||'시' as "reservation_date",
+            r.start_road_addr||'' as "start_road_addr", 
+            r.end_road_addr||'' as "end_road_addr", 
+            to_char(r.drive_finish_time, 'hh24:mi')||'' as "drive_finish_time",
+			to_char(r.drive_start_time, 'hh24:mi')||'' as "drive_start_time",
+            r.drive_distance||'' as "drive_distance",
+            r.reserve_apply_car_number||'' as "reserve_apply_car_number"
+        from
+            reserve_apply_car r
+        where
+            r.reserve_apply_car_number=#{reserve_apply_car_number}
+            
+			
+	</select>
+	
+	<update id="getDriveChangeStatus" parameterType="com.support.movement.DriveHistoryDTO">
+		update reserve_apply_car
+		set reserve_status_code='5'
+		where reserve_apply_car_number=${reserve_apply_car_number}
+	</update>
+	<update id="getDriveAcceptStatus" parameterType="com.support.movement.DriveHistoryDTO">
+		update reserve_accept_list
+		set reserve_status_code='5'
+		where reserve_apply_car_number=${reserve_apply_car_number}
+	</update>
+	 <update id="insertDriveHistory" parameterType="com.support.movement.DriveHistoryDTO">
+		 update reserve_apply_car
+		set drive_finish_time = to_date(to_char(reservation_date,'yyyy-mm-dd')||'-'||#{drive_finish_time}, 'yyyy-mm-dd-hh24:mi:ss'),
+			drive_start_time = to_date(to_char(reservation_date,'yyyy-mm-dd')||'-'||#{drive_start_time}, 'yyyy-mm-dd-hh24:mi:ss'),
+			drive_distance = #{drive_distance}
+		where reserve_apply_car_number=${reserve_apply_car_number} 
+	</update>	
+	
+	<update id="updateCarDistance" parameterType="com.support.movement.DriveHistoryDTO">
+		update car_info c set
+			c.car_distance = c.car_distance + ${drive_distance}/1000
+		where c.car_number = (select rac.car_number from reserve_apply_car rac where rac.reserve_apply_car_number=${reserve_apply_car_number})
+	</update>
+ 
 </mapper>

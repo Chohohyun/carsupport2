@@ -14,9 +14,20 @@
       $(document).ready(function(){
 	  
 	      $("#userEmailTr").css("display","none");
-	      
-		  
-      
+	      inputData("id","user1000");
+	      inputData("pwd1","rhfqoddl1000");
+	      inputData("pwd2","rhfqoddl1000");
+	      inputData("name","홍길동");
+	      inputData("jumin_num1","910705");
+	      inputData("jumin_num2","2363543");
+	      inputData("phone","01088680947");
+	      inputData("email","ghgus947@naver.com");
+	      inputData("disability_type","03");
+	      inputData("disability_grade","01");
+	      inputData("postal_code","08505");
+	      inputData("road_addr","서울 금천구 가산디지털2로 123");
+	      inputData("jibun_addr","서울 금천구 가산동 426-5");
+	      inputData("detail_addr","405호");
       
       });
 		

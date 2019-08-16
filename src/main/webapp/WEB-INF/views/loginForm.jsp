@@ -54,6 +54,22 @@
     	function goFindPwdForm(){
     		document.goFindPwdForm.submit();
     	}
+    	function insertDriver(index){
+    		$(".id").val("driver"+index);
+    		$(".pwd").val("rhfqoddl"+index);
+    		checkLoginForm();
+        }
+    	function insertUser(index){
+    		$(".id").val("userr"+index);
+    		$(".pwd").val("rhfqoddl"+index);
+    		checkLoginForm();
+        }
+        function insertAdmin(){
+        	$(".id").val("abc");
+    		$(".pwd").val("123");
+    		checkLoginForm();
+
+        }
     	function checkLoginForm() {
     		// 입력된 아이디를 가져와 변수에 저장
     		var id = $(".id").val();
@@ -72,7 +88,7 @@
     			alert("비밀번호를 입력하지 않았습니다.");
     			return;
     		}
-    		alert($("[name=loginForm]").serialize());
+    		
     		$.ajax({
     			url:"/support/loginProc.do",
     			type:"post",	
@@ -147,7 +163,32 @@
 						</div>
 
 						<div id="ctl00_ContentPlaceHolder1_UpdatePanel1">
+							
 							<div class="login_box">
+								<div class="login-s-box">
+										
+										<a href="javascript:insertUser('1');">유저1</a> | 
+										<a href="javascript:insertUser('2');">유저2</a> |
+										<a href="javascript:insertUser('3');">유저3</a> |
+										<a href="javascript:insertUser('4');">유저4</a> |
+										<a href="javascript:insertUser('5');">유저5</a>
+										<br>
+										
+										<a href="javascript:insertDriver('1');">운전자1</a> |
+										<a href="javascript:insertDriver('2');">운전자2</a> |
+										<a href="javascript:insertDriver('3');">운전자3</a> |
+										<a href="javascript:insertDriver('4');">운전자4</a> |
+										<a href="javascript:insertDriver('5');">운전자5</a> 
+										
+										<br>
+										
+										<a href="javascript:insertAdmin();">관리자</a> 
+										
+										
+	
+										
+										
+								</div>
 								<div class="login-s-box">
 									<dl>
 										<dt>아이디</dt>
@@ -186,6 +227,9 @@
 										&nbsp;&nbsp; <a href="javascript:goRegForm();">회원가입하기</a>
 									</div>
 								</div>
+								
+								
+								
 							</div>
 
 						</div>

@@ -22,4 +22,14 @@ public interface DriverDAO {
 
 	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
 
+	DriveHistoryDTO getDriveReg(int reserve_apply_car_number);
+
+	int getDriveChangeStatus(DriveHistoryDTO driveHistoryDTO);
+
+	int getDriveAcceptStatus(DriveHistoryDTO driveHistoryDTO);
+
+	int insertDriveHistory(DriveHistoryDTO driveHistoryDTO);
+
+	int updateCarDistance(DriveHistoryDTO driveHistoryDTO);
+
 }

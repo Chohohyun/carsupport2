@@ -23,6 +23,10 @@ public interface DriverService {
 
 	List<Map<String, String>> getQnaList(QnaSearchDTO qnaSearchDTO);
 
+	DriveHistoryDTO getDriveReg(int reserve_apply_car_number);
+
+	int insertDriveHistory(DriveHistoryDTO driveHistoryDTO);
+
 	
 
 }

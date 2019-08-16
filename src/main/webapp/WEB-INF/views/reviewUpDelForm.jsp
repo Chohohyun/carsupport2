@@ -155,33 +155,44 @@ label.star:before {
 						<table class="tbl tbl_form">
 							<colgroup>
 								<col style="width: 20%;" />
-								<col style="width: 60%;" />
+								<col style="width: 17%;" />
+								<col style="width: 20%;" />
+								
+								<col style="width: 20%;" />
+								<col style="width: 23%;" />
 			
 							</colgroup>
 							<tr>
 								<th scope="row">이용날짜
-								<td>${reviewDTO.reservation_date}</td>
+								<td colspan="4">${reviewDTO.reservation_date}</td>
 							</tr>
 							<tr>
 								<th scope="row">목적지
-								<td>${reviewDTO.end_road_addr}</td>
+								<td colspan="4">${reviewDTO.end_road_addr}</td>
 							</tr>
 							<tr>
 								<th scope="row">운전자
-								<td>${reviewDTO.driver_name}</td>
+								<td colspan="4">${reviewDTO.driver_name}</td>
 							</tr>
 							<tr>
 								<th scope="row">별점
-								<td><input class="star star-5 pull-right " id="star-5-2" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5-2"></label>
+								<td><input class="star star-5" id="star-5-2" type="radio" name="review_score" value="5"/> <label class="star star-5" for="star-5-2"></label>
 									<input class="star star-4" id="star-4-2" type="radio" name="review_score" value="4"/><label class="star star-4" for="star-4-2"></label>
 									<input class="star star-3" id="star-3-2" type="radio" name="review_score" value="3"/> <label class="star star-3" for="star-3-2"></label>
 									<input class="star star-2" id="star-2-2" type="radio" name="review_score" value="2"/> <label class="star star-2" for="star-2-2"></label>
 									<input class="star star-1" id="star-1-2" type="radio" name="review_score" checked="checked"  value="1"/> <label class="star star-1" for="star-1-2"></label>	
 								</td>
+								
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">평가내용
-								<td><textarea name="review_content" rows="15" cols="100"></textarea></td>
+								<td colspan="4"><textarea name="review_content" rows="15" cols="100"></textarea></td>
 							</tr>
 						</table>
 			

@@ -356,9 +356,15 @@
 	    		        datasets: [{
 	    		            label: "코드별 예약",
 	    		            data: data,
-	    		            backgroundColor: "rgba(151,187,205,0.2)",
-	    		            borderColor: "rgba(151,187,205,1)",
-	    		            pointColor: "rgba(151,187,205,1)",
+	    		            backgroundColor: ["rgba(81,188,218,0.2)",
+	            				 'rgba(251, 198, 88, 0.2)',
+	            				 'rgba(107, 208, 152, 0.2)'
+	            				 ],
+	           				borderColor: ["rgba(81,188,218,1)",
+	            				'rgba(251, 198, 88, 1)',
+	            				'rgba(107, 208, 152, 1)'
+	            			],
+	    		            //pointColor: "rgba(151,187,205,1)",
 	    		            borderWidth: 1
 	    		        }]
 	    		    },

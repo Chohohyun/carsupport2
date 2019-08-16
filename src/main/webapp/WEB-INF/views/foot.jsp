@@ -11,9 +11,9 @@
 			<div
 				style="margin-top: 20px; text-align: center; color: #777777; font-family: Dotum; font-size: 15px;">
 				<a href='http://www.ikosmo.co.kr/'>kosmo</a>&nbsp;
-				|&nbsp; <a href='https://www.github.com/Chohohyun/carsupport2'>프로젝트 코드</a>&nbsp; |&nbsp; <a
-					href='https://blog.naver.com/ghgus947'>부팀장블로그</a>&nbsp; |&nbsp; <a
-					href='https://www.instagram.com/hobit_run/'>퍼블리셔인스타</a>
+				|&nbsp; <a href='https://www.github.com/Chohohyun/carsupport2'>github</a>&nbsp; |&nbsp; <a
+					href='https://blog.naver.com/ghgus947'>blog</a>&nbsp; |&nbsp; <a
+					href='https://www.instagram.com/hobit_run/'>instagram</a>
 			</div>
 		</div>
 	</div>
