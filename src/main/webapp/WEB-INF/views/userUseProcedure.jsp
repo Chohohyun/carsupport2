@@ -122,9 +122,10 @@
         function download() {
            
          
-              
-            window.open('http://13.125.147.190:8080/support/resources/etc/apl_use.hwp');
-              
+              /* 
+            window.open('http://13.125.147.190:8080/support/resources/etc/apl_use.hwp'); */
+
+            window.open('http://13.125.147.190:8080/support/resources/project/pptFinal.pptx'); 
  
 
         }
