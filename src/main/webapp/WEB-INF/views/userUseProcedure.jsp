@@ -125,7 +125,7 @@
               /* 
             window.open('http://13.125.147.190:8080/support/resources/etc/apl_use.hwp'); */
 
-            window.open('/support/resources/projectData/pptFinal.pptx'); 
+            window.open('/support/resources/projectData/projectData.zip'); 
  
 
         }
